@@ -7,5 +7,4 @@ Security Capture the Flag Platform
 
 # Credits
 
-Daniele Votta
-Filippo Schiavio
+Daniele Votta | Filippo Schiavio
