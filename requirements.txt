@@ -1,1 +1,4 @@
 django
+
+django-registration
+django-registration-defaults
