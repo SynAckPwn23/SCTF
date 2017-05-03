@@ -1,0 +1,16 @@
+[
+  {
+    "model": "sctf.team",
+    "pk": 1,
+    "fields": {
+      "name": "Team 1"
+    }
+  },
+  {
+    "model": "sctf.team",
+    "pk": 2,
+    "fields": {
+      "name": "Team 2"
+    }
+  }
+]
