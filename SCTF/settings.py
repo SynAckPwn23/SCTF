@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'sctf',
+    'challenges',
 
     'django.contrib.admin',
     'django.contrib.auth',
