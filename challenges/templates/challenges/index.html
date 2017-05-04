@@ -47,7 +47,7 @@
 					<!-- modals -->
 					<!-- Large modal -->
 					{% for challenge in category.challenges.all %}
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}</button>
 
 					<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
@@ -59,38 +59,41 @@
 									<h4 class="modal-title" id="myModalLabel">{{challenge.name}} - Points: {{challenge.points}}</h4>
 								</div>
 								<div class="modal-body">
-								<p><strong>Description</strong>: {{challenge.description}}</p>
-								{% for hint in challenge.hints.all %}
-								<p><strong>Hints</strong>: {{hint}}</p>
-								{% endfor %}
+									<p><strong>Description</strong>: {{challenge.description}}</p>
+									{% for hint in challenge.hints.all %}
+									<p><strong>Hints</strong>: {{hint}}</p>
+									{% endfor %}
 
-								{% for attachment in challenge.attachments.all %}
-								<p><strong>Attachement</strong>: 
-								<button type="button" onclick="window.location.href='/{{attachment.file.url}}'" class="btn btn-primary">{{attachment.name}}</button></p>
+									{% for attachment in challenge.attachments.all %}
+									<p><strong>Attachement</strong>: 
+										<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
+									</p>
+									{% endfor %}
 
-								{% endfor %}
+									<p style="margin-bottom: 50px;"><strong>Key</strong>: 
+										<input class="form-control col-md-7 col-xs-12" type="text" name="password2" required="required" id="id_password2" type="text">
+									</p>
 
 
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Send Key</button>
+									</div>
 
 								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Send Key</button>
-								</div>
-
 							</div>
 						</div>
+						{% endfor %}
+						<!-- /modals -->
 					</div>
-					{% endfor %}
-					<!-- /modals -->
 				</div>
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
+		<div class="clearfix"></div>
 	</div>
-	<div class="clearfix"></div>
-</div>
-<!-- /page content -->
+	<!-- /page content -->
 </div>
 <!-- /page content -->
 {% endblock %}
