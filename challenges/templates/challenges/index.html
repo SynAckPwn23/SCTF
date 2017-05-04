@@ -64,6 +64,12 @@
 								<p><strong>Hints</strong>: {{hint}}</p>
 								{% endfor %}
 
+								{% for attachment in challenge.attachments.all %}
+								<p><strong>Attachement</strong>: 
+								<button type="button" class="btn btn-primary">{{attachment.file}}</button></p>
+
+								{% endfor %}
+
 
 
 								</div>
