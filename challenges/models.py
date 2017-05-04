@@ -15,7 +15,7 @@ class Challenge(models.Model):
 
 class Hint(models.Model):
     challenge = models.ForeignKey('challenges.Challenge')
-    text = models.TextField
+    text = models.TextField()
 
 
 class Attachment(models.Model):
