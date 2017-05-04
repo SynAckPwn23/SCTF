@@ -13,3 +13,6 @@ class Team(models.Model):
 
 class UserProfile(models.Model):
     team = models.ForeignKey('sctf.Team')
+
+
+
