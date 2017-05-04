@@ -7,5 +7,5 @@ from django.shortcuts import render
 def index(request):
     parameters = {}
 
-    return render(request, 'index.html', parameters)
+    return render(request, 'challenges/index.html', parameters)
 

@@ -11,5 +11,5 @@ def index(request):
         'users_count': get_user_model().objects.count(),
         'teams_count': Team.objects.count(),
     }
-    return render(request, 'base.html', parameters)
+    return render(request, 'sctf/base.html', parameters)
 
