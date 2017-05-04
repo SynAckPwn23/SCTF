@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -14,6 +15,10 @@ class Challenge(models.Model):
     description = models.TextField()
     key = models.CharField(max_length=256)
     points = models.IntegerField()
+
+    solved_by = models.ManyToManyField(get_user_model(),
+                                       related_name='solved_challenges',
+                                       through='challenges.ChallengeSolved')
 
     def __str__(self):
         return self.name
@@ -35,3 +40,12 @@ class Attachment(models.Model):
     challenge = models.ForeignKey('challenges.Challenge', related_name='attachments')
     description = models.TextField()
     file = models.FileField(upload_to='challenges')
+
+    def __str__(self):
+        return self.name
+
+
+class ChallengeSolved(models.Model):
+    user = models.ForeignKey(get_user_model())
+    challenge = models.ForeignKey('challenges.Challenge')
+    datetime = models.DateTimeField(auto_now_add=True)
