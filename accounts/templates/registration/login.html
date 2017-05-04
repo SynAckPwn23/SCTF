@@ -5,9 +5,6 @@
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
 
-{% if form.errors %}
-<p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
-{% endif %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -250,23 +247,31 @@
                      
                       
                         </div>
+{% if form.errors %}
+<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</li></ul>
+{% endif %}
+
+
                       </div>
 
-<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
-    <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</p>
+<div style="float:left;">{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
+    <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</div>
+
+	
 
                       <div class="form-group">
                       
                       </div>
                       <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
-						  <button class="btn btn-primary" type="reset">Reset</button>
+                      
+<div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                          <button class="btn btn-primary" type="reset">Cancel</button>
                           <button type="submit" value="{% trans "login" %}" class="btn btn-success">Submit</button>
 <input type="hidden" name="next" value="{{ next }}" />
                         </div>
                       </div>
+	
 
                     </form>
                   </div>
@@ -277,6 +282,8 @@
             </div>
           </div>
         </div>
+
+
         <!-- /page content -->
 
         <!-- footer content -->
