@@ -2,3 +2,7 @@ django
 
 django-registration
 django-registration-defaults
+
+djangorestframework
+markdown
+django-filter
