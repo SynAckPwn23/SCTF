@@ -4,102 +4,102 @@
 {% load static %}
 {% block content %}
 
-	<!-- page content -->
-	<div class="right_col" role="main">
-		<div class="">
-			<div class="page-title">
-				<div class="title_left">
-					<h3>Registration Page</h3>
-				</div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="">
+		<div class="page-title">
+			<div class="title_left">
+				<h3>Registration Page</h3>
 			</div>
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>Please insert your data <small>required filds are idetified by *</small></h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-						<div class="x_content">
+		</div>
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Please insert your data <small>required filds are idetified by *</small></h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+							<li></li>
+							<li></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
 
-							<br />
-							<form method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
-										<p class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
-									</div>
-									
+						<br />
+						<form method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
+									<p class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
 								</div>
 
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email: <span class="required">*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input class="form-control col-md-7 col-xs-12" type="text" name="email" required="required" id="id_email" type="email">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password: <span class="required">*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input class="form-control col-md-7 col-xs-12" type="password" name="password1" required="required" id="id_password1" type="password">
-										<span class="helptext">
-											<ul>
-												<li>Your password can't be too similar to your other personal information.</li>
-												<li>Your password must contain at least 8 characters.</li>
-												<li>Your password can't be a commonly used password.</li>
-												<li>Your password can't be entirely numeric.</li>
-											</ul>
-										</span>
-									</div>
-									
-								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span class="required">*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input class="form-control col-md-7 col-xs-12" type="password" name="password2" required="required" id="id_password2" type="password">
-										<p class="helptext">Enter the same password as before, for verification.</p>
-
-									</div>
-								</div>
 							</div>
-							{% if form.errors %}
-							<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li></ul>
-							{% endif %}
-						</div>
-						<div style="float:left;">
-							<a href="{% url 'auth_login' %}">
-                                {% blocktrans %}Already an account, Log-In?{% endblocktrans %}
-                            </a>
+
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email: <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="email" required="required" id="id_email" type="email">
+								</div>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password: <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" required="required" id="id_password1" type="password">
+									<span class="helptext">
+										<ul>
+											<li>Your password can't be too similar to your other personal information.</li>
+											<li>Your password must contain at least 8 characters.</li>
+											<li>Your password can't be a commonly used password.</li>
+											<li>Your password can't be entirely numeric.</li>
+										</ul>
+									</span>
+								</div>
+
 							</div>
-							<div class="ln_solid"></div>
-							<div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-									<button class="btn btn-primary" type="reset">Cancel</button>
-									<button type="submit" value="{% trans "Send activation email" %}" class="btn btn-success">Seand Activation Mail</button>
-									<input type="hidden" name="next" value="{{ next }}" />
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password2" required="required" id="id_password2" type="password">
+									<p class="helptext">Enter the same password as before, for verification.</p>
+
 								</div>
 							</div>
-						</form>
+						</div>
+						{% if form.errors %}
+						<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li></ul>
+						{% endif %}
 					</div>
-				</div>
+					<div style="float:left;">
+						<a href="{% url 'auth_login' %}">
+							{% blocktrans %}Already an account, Log-In?{% endblocktrans %}
+						</a>
+					</div>
+					<div class="form-group">
+					</div>
+					<div class="ln_solid"></div>
+					<div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+							<button class="btn btn-primary" type="reset">Cancel</button>
+							<button type="submit" value="{% trans "Send activation email" %}" class="btn btn-success">Seand Activation Mail</button>
+							<input type="hidden" name="next" value="{{ next }}" />
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<!--</div>
 </div>
 </div>
+</div>-->
 <!-- /page content -->
 
 {% endblock %}
