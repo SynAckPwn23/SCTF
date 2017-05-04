@@ -49,41 +49,61 @@
 									<h4 class="modal-title" id="myModalLabel">{{challenge.name}} - Points: {{challenge.points}}</h4>
 								</div>
 								<div class="modal-body">
-									<p><strong>Description</strong>: {{challenge.description}}</p>
+									<p><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description}}</p>
+									<br>
 									{% for hint in challenge.hints.all %}
-									<p><strong>Hints</strong>: {{hint}}</p>
-									{% endfor %}
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="x_panel">
+											<div class="x_title">
+												<h2><i class="fa fa-bolt"></i> Hint {{forloop.counter}}</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+													</li>
 
-									{% for attachment in challenge.attachments.all %}
-									<p><strong>Attachement</strong>: 
-										<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
-									</p>
-									{% endfor %}
+												</ul>
+												<div class="clearfix"></div>
+											</div>
+											<div class="x_content" style="display: none;">
+												<p>{{hint}}</p>
+												</div>
+												</div>
+												</div>
+												{% endfor %}
+												<br>
 
-									<p style="margin-bottom: 50px;"><strong>Key</strong>: 
-										<input class="form-control col-md-7 col-xs-12" type="text" name="key" required="required" id="key" type="text">
-									</p>
+												{% for attachment in challenge.attachments.all %}
+
+												<p style="float:left;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>: 
+													<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
+												</p>
+
+												{% endfor %}
+												<div class="clearfix"></div>
+
+												<p style="margin-bottom: 50px;"><i class="fa fa-key"></i><strong> Key</strong>: 
+													<input class="form-control col-md-7 col-xs-12" type="text" name="key" required="required" id="key" type="text">
+												</p>
 
 
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">Send Key</button>
+											</div>
+
+										</div>
 									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Send Key</button>
-									</div>
-
 								</div>
+								{% endfor %}
+								<!-- /modals -->
 							</div>
 						</div>
-						{% endfor %}
-						<!-- /modals -->
 					</div>
+					{% endfor %}
 				</div>
+				<div class="clearfix"></div>
 			</div>
-			{% endfor %}
+			<!-- /page content -->
 		</div>
-		<div class="clearfix"></div>
-	</div>
-	<!-- /page content -->
-</div>
-<!-- /page content -->
-{% endblock %}
+		<!-- /page content -->
+		{% endblock %}
