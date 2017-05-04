@@ -2,3 +2,4 @@ venv
 .idea
 db.sqlite3
 *.pyc
+uploaded_media
