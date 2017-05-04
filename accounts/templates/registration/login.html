@@ -4,233 +4,202 @@
 {% block content %}
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
-
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	  
-    <title>Gentelella Alela! | </title>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap -->
-    <link href="{% static "sctf/vendors/bootstrap/dist/css/bootstrap.min.css"%}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{% static "sctf/vendors/font-awesome/css/font-awesome.min.css"%}" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="{% static "sctf/vendors/nprogress/nprogress.css"%}" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="{% static "sctf/vendors/iCheck/skins/flat/green.css"%}" rel="stylesheet">
-    <!-- bootstrap-wysiwyg -->
-    <link href="{% static "sctf/vendors/google-code-prettify/bin/prettify.min.css"%}" rel="stylesheet">
-    <!-- Select2 -->
-    <link href="{% static "sctf/vendors/select2/dist/css/select2.min.css"%}" rel="stylesheet">
-    <!-- Switchery -->
-    <link href="{% static "sctf/vendors/switchery/dist/switchery.min.css"%}" rel="stylesheet">
-    <!-- starrr -->
-    <link href="{% static "sctf/vendors/starrr/dist/starrr.css"%}" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.css"%}" rel="stylesheet">
+  <title>Security CTF | Login</title>
 
-    <!-- Custom Theme Style -->
-    <link href="{% static "sctf/build/css/custom.min.css"%}" rel="stylesheet">
-  </head>
+  <!-- Bootstrap -->
+  <link href="{% static "sctf/vendors/bootstrap/dist/css/bootstrap.min.css"%}" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="{% static "sctf/vendors/font-awesome/css/font-awesome.min.css"%}" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="{% static "sctf/vendors/nprogress/nprogress.css"%}" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="{% static "sctf/vendors/iCheck/skins/flat/green.css"%}" rel="stylesheet">
+  <!-- bootstrap-wysiwyg -->
+  <link href="{% static "sctf/vendors/google-code-prettify/bin/prettify.min.css"%}" rel="stylesheet">
+  <!-- Select2 -->
+  <link href="{% static "sctf/vendors/select2/dist/css/select2.min.css"%}" rel="stylesheet">
+  <!-- Switchery -->
+  <link href="{% static "sctf/vendors/switchery/dist/switchery.min.css"%}" rel="stylesheet">
+  <!-- starrr -->
+  <link href="{% static "sctf/vendors/starrr/dist/starrr.css"%}" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.css"%}" rel="stylesheet">
 
-  <body class="nav-sm">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
-            </div>
+  <!-- Custom Theme Style -->
+  <link href="{% static "sctf/build/css/custom.min.css"%}" rel="stylesheet">
+</head>
 
-            <div class="clearfix"></div>
-
-           
-
-            <br />
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+<body class="nav-sm">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
           </div>
+          <div class="clearfix"></div>
+          <br />
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
         </div>
+      </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-             
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <img src="images/img.jpg" alt="">Welcome
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- /top navigation -->
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Welcome
-
-                  </a>
-                  
-                </li>
-
-               
-                  </ul>
-                </li>
+  <!-- page content -->
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>Login Page</h3>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Please insert your credentials <small>required filds are idetified by *</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li></li>
+                <li></li>
               </ul>
-            </nav>
-          </div>
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Login Page</h3>
-              </div>
-
-              
+              <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Please insert your credentials <small>required filds are idetified by *</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li></li>
-		      <li></li>
-                    </ul>
-                    <div class="clearfix"></div>
+            <div class="x_content">
+              <br />
+              <form method="post" action="{% url 'auth_login' %}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
                   </div>
-                  <div class="x_content">
-                    <br />
-                    <form method="post" action="{% url 'auth_login' %}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          
-<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">{% trans form.password.label_tag %} <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                         
-<input class="form-control col-md-7 col-xs-12" type="password" name="password" required="required" id="id_password" type="password">
-                        </div>
-                      </div>
-                     
-                      
-                        </div>
-{% if form.errors %}
-<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</li></ul>
-{% endif %}
-
-
-                      </div>
-
-<div style="float:left;">{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
-    <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</div>
-
-	
-
-                      <div class="form-group">
-                      
-                      </div>
-                      <div class="ln_solid"></div>
-                      
-<div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                          <button class="btn btn-primary" type="reset">Cancel</button>
-                          <button type="submit" value="{% trans "login" %}" class="btn btn-success">Submit</button>
-<input type="hidden" name="next" value="{{ next }}" />
-                        </div>
-                      </div>
-	
-
-                    </form>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">{% trans form.password.label_tag %} <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" type="password" name="password" required="required" id="id_password" type="password">
                   </div>
                 </div>
               </div>
+              {% if form.errors %}
+              <ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</li></ul>
+              {% endif %}
             </div>
+            <div style="float:left;">{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
+              <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</div>
+              <div class="form-group">
               </div>
-            </div>
+              <div class="ln_solid"></div>
+              <div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                  <button class="btn btn-primary" type="reset">Cancel</button>
+                  <button type="submit" value="{% trans "login" %}" class="btn btn-success">Submit</button>
+                  <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-
-
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
       </div>
     </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- /page content -->
 
-    <!-- jQuery -->
-    <script src="{% static "sctf/vendors/jquery/dist/jquery.min.js"%}"></script>
-    <!-- Bootstrap -->
-    <script src="{% static "sctf/vendors/bootstrap/dist/js/bootstrap.min.js"%}"></script>
-    <!-- FastClick -->
-    <script src="{% static "sctf/vendors/fastclick/lib/fastclick.js"%}"></script>
-    <!-- NProgress -->
-    <script src="{% static "sctf/vendors/nprogress/nprogress.js"%}"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="{% static "sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"%}"></script>
-    <!-- iCheck -->
-    <script src="{% static "sctf/vendors/iCheck/icheck.min.js"%}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{% static "sctf/vendors/moment/min/moment.min.js"%}"></script>
-    <script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js"%}"></script>
-    <!-- bootstrap-wysiwyg -->
-    <script src="{% static "sctf/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"%}"></script>
-    <script src="{% static "sctf/vendors/jquery.hotkeys/jquery.hotkeys.js"%}"></script>
-    <script src="{% static "sctf/vendors/google-code-prettify/src/prettify.js"%}"></script>
-    <!-- jQuery Tags Input -->
-    <script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js"%}"></script>
-    <!-- Switchery -->
-    <script src="{% static "sctf/vendors/switchery/dist/switchery.min.js"%}"></script>
-    <!-- Select2 -->
-    <script src="{% static "sctf/vendors/select2/dist/js/select2.full.min.js"%}"></script>
-    <!-- Parsley -->
-    <script src="{% static "sctf/vendors/parsleyjs/dist/parsley.min.js"%}"></script>
-    <!-- Autosize -->
-    <script src="{% static "sctf/vendors/autosize/dist/autosize.min.js"%}"></script>
-    <!-- jQuery autocomplete -->
-    <script src="{% static "sctf/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"%}"></script>
-    <!-- starrr -->
-    <script src="{% static "sctf/vendors/starrr/dist/starrr.js"%}"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="{% static "sctf/build/js/custom.min.js"%}"></script>
-	
-  </body>
+<!-- footer content -->
+<footer>
+  <div class="pull-right">
+    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+  </div>
+  <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="{% static "sctf/vendors/jquery/dist/jquery.min.js"%}"></script>
+<!-- Bootstrap -->
+<script src="{% static "sctf/vendors/bootstrap/dist/js/bootstrap.min.js"%}"></script>
+<!-- FastClick -->
+<script src="{% static "sctf/vendors/fastclick/lib/fastclick.js"%}"></script>
+<!-- NProgress -->
+<script src="{% static "sctf/vendors/nprogress/nprogress.js"%}"></script>
+<!-- bootstrap-progressbar -->
+<script src="{% static "sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"%}"></script>
+<!-- iCheck -->
+<script src="{% static "sctf/vendors/iCheck/icheck.min.js"%}"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="{% static "sctf/vendors/moment/min/moment.min.js"%}"></script>
+<script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js"%}"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="{% static "sctf/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"%}"></script>
+<script src="{% static "sctf/vendors/jquery.hotkeys/jquery.hotkeys.js"%}"></script>
+<script src="{% static "sctf/vendors/google-code-prettify/src/prettify.js"%}"></script>
+<!-- jQuery Tags Input -->
+<script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js"%}"></script>
+<!-- Switchery -->
+<script src="{% static "sctf/vendors/switchery/dist/switchery.min.js"%}"></script>
+<!-- Select2 -->
+<script src="{% static "sctf/vendors/select2/dist/js/select2.full.min.js"%}"></script>
+<!-- Parsley -->
+<script src="{% static "sctf/vendors/parsleyjs/dist/parsley.min.js"%}"></script>
+<!-- Autosize -->
+<script src="{% static "sctf/vendors/autosize/dist/autosize.min.js"%}"></script>
+<!-- jQuery autocomplete -->
+<script src="{% static "sctf/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"%}"></script>
+<!-- starrr -->
+<script src="{% static "sctf/vendors/starrr/dist/starrr.js"%}"></script>
+<!-- Custom Theme Scripts -->
+<script src="{% static "sctf/build/js/custom.min.js"%}"></script>
+
+</body>
 </html>
 {% endblock %}
