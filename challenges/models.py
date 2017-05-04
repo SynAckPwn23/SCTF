@@ -20,7 +20,7 @@ class Challenge(models.Model):
 
 
 class Hint(models.Model):
-    challenge = models.ForeignKey('challenges.Challenge')
+    challenge = models.ForeignKey('challenges.Challenge', related_name='hints')
     text = models.TextField()
 
     class Meta:
@@ -31,6 +31,6 @@ class Hint(models.Model):
 
 
 class Attachment(models.Model):
-    challenge = models.ForeignKey('challenges.Challenge')
+    challenge = models.ForeignKey('challenges.Challenge', related_name='attachments')
     description = models.TextField()
     file = models.FileField(upload_to='challenges')

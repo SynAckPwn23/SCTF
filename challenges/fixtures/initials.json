@@ -133,5 +133,54 @@
       "points": 90,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
     }
+  },
+
+  {
+    "model": "challenges.hint",
+    "pk": 1,
+    "fields": {
+      "text": "hint 1",
+      "challenge": 1
+    }
+  },
+  {
+    "model": "challenges.hint",
+    "pk": 2,
+    "fields": {
+      "text": "hint 2",
+      "challenge": 1
+    }
+  },
+  {
+    "model": "challenges.hint",
+    "pk": 3,
+    "fields": {
+      "text": "hint 3",
+      "challenge": 1
+    }
+  },
+  {
+    "model": "challenges.hint",
+    "pk": 4,
+    "fields": {
+      "text": "hint 1",
+      "challenge": 2
+    }
+  },
+  {
+    "model": "challenges.hint",
+    "pk": 5,
+    "fields": {
+      "text": "hint 2",
+      "challenge": 2
+    }
+  },
+  {
+    "model": "challenges.hint",
+    "pk": 6,
+    "fields": {
+      "text": "hint 3",
+      "challenge": 2
+    }
   }
 ]
