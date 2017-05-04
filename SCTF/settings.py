@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+from django.urls.base import reverse_lazy
 from registration_defaults.settings import *
 
 
@@ -129,3 +130,4 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = reverse_lazy('auth_login')
