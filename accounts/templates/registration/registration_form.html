@@ -157,9 +157,11 @@
 							<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li></ul>
 							{% endif %}
 						</div>
-						<div style="float:left;">{% blocktrans %}
-							<a href="{% url 'auth_login' %}">Already an account, Log-In</a>?
-							{% endblocktrans %}</div>
+						<div style="float:left;">
+							<a href="{% url 'auth_login' %}">
+                                {% blocktrans %}Already an account, Log-In?{% endblocktrans %}
+                            </a>
+							</div>
 							<div class="form-group">
 							</div>
 							<div class="ln_solid"></div>
