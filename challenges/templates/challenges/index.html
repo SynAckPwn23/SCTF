@@ -49,8 +49,8 @@
 									<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}} - <span class="count green">Points: {{challenge.points}}</span></strong></h2>
 								</div>
 								<div class="modal-body">
-									<p><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description}}</p>
-									<br>
+									<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description}}</p>
+									
 									{% for hint in challenge.hints.all %}
 									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="x_panel">
@@ -69,11 +69,11 @@
 												</div>
 												</div>
 												{% endfor %}
-												<br>
+
 
 												{% for attachment in challenge.attachments.all %}
 
-												<p style="float:left;margin-right:15px;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>: 
+												<p style="float:left;margin-right:15px;margin-top:15px;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>: 
 													<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
 												</p>
 
