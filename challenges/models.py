@@ -2,7 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Challenge(models.Model):
@@ -12,10 +15,19 @@ class Challenge(models.Model):
     key = models.CharField(max_length=256)
     points = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Hint(models.Model):
     challenge = models.ForeignKey('challenges.Challenge')
     text = models.TextField()
+
+    class Meta:
+        unique_together = ('challenge', 'text')
+
+    def __str__(self):
+        return self.text
 
 
 class Attachment(models.Model):
