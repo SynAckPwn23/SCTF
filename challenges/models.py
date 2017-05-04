@@ -31,6 +31,7 @@ class Hint(models.Model):
 
 
 class Attachment(models.Model):
+    name = models.CharField(max_length=256)
     challenge = models.ForeignKey('challenges.Challenge', related_name='attachments')
     description = models.TextField()
     file = models.FileField(upload_to='challenges')
