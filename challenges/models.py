@@ -10,7 +10,7 @@ class Category(models.Model):
 
 class Challenge(models.Model):
     name = models.CharField(max_length=256)
-    category = models.ForeignKey('challenges.Category')
+    category = models.ForeignKey('challenges.Category', related_name='challenges')
     description = models.TextField()
     key = models.CharField(max_length=256)
     points = models.IntegerField()
