@@ -73,7 +73,7 @@
 
 												{% for attachment in challenge.attachments.all %}
 
-												<p style="float:left;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>: 
+												<p style="float:left;margin-right:15px;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>: 
 													<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
 												</p>
 
