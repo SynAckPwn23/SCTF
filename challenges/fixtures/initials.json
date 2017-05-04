@@ -1,0 +1,37 @@
+[
+  {
+    "model": "challenges.category",
+    "pk": 1,
+    "fields": {
+      "name": "Scripting"
+    }
+  },
+  {
+    "model": "challenges.category",
+    "pk": 2,
+    "fields": {
+      "name": "Cryptography"
+    }
+  },
+  {
+    "model": "challenges.category",
+    "pk": 3,
+    "fields": {
+      "name": "Web"
+    }
+  },
+  {
+    "model": "challenges.category",
+    "pk": 4,
+    "fields": {
+      "name": "Networking"
+    }
+  },
+  {
+    "model": "challenges.category",
+    "pk": 5,
+    "fields": {
+      "name": "Exploitation"
+    }
+  }
+]
