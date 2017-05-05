@@ -1,0 +1,42 @@
+aaa
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/SCTF/templates/sctf/COMMIT_EDITMSG.COMMIT_EDITMSG b/SCTF/templates/sctf/COMMIT_EDITMSG.COMMIT_EDITMSG
+new file mode 100644
+index 0000000..fb95bfe
+--- /dev/null
++++ b/SCTF/templates/sctf/COMMIT_EDITMSG.COMMIT_EDITMSG
+@@ -0,0 +1,17 @@
++test
++
++# --------------
++# Please enter the commit message for your changes. Everything below
++# this paragraph is ignored, and an empty message aborts the commit.
++# Just close the window to accept your message.
++diff --git a/sctf/templates/sctf/base.html b/sctf/templates/sctf/base.html
++index a2b9a82..6803241 100644
++--- a/sctf/templates/sctf/base.html
+++++ b/sctf/templates/sctf/base.html
++@@ -937,6 +937,5 @@
++                    }
++               });
++                 </script>
++-
++               </body>
++               </html>
+\ No newline at end of file
+diff --git a/sctf/templates/sctf/base.html b/sctf/templates/sctf/base.html
+index a2b9a82..3a2bb45 100644
+--- a/sctf/templates/sctf/base.html
++++ b/sctf/templates/sctf/base.html
+@@ -937,6 +937,6 @@
+                    }
+               });
+                 </script>
+-
++                test
+               </body>
+               </html>
