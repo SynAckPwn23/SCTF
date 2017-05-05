@@ -24,4 +24,5 @@ router = routers.SimpleRouter()
 # Include REST
 urlpatterns.append(url(r'^api/', include(router.urls)))
 
-urlpatterns.append(url(r'^api/challenges/', include('challenges.api_urls')))
+urlpatterns.append(url(r'^api/challenges/',
+                       include('challenges.api_urls', namespace='api-challenge')))
