@@ -118,15 +118,10 @@
 <script>
 
 	function solve(id){
-		key = $('#key_'+id).val();
-		if($.trim(key).length == 0){
-			alert('Empty KEY');
-			return;
-		}
 		$.ajax({
 			type: 'post',
 			url: '{% url "api-challenge:solve-challenge-list" %}',
-			data: {challenge: id, key: key},
+			data: {challenge: id, key: $('#key_'+id).val()},
 			complete: function (data) {
 				alert(data.responseText);
 			}
