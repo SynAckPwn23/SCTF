@@ -39,7 +39,7 @@
 					<!-- Large modal -->
 					{% for challenge in category.challenges.all %}
 
-					<button type="button" class="btn {% btn_challenge_class user challenge %}" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}</button>
+					<button id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}</button>
 
 					<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
@@ -121,7 +121,8 @@
 			url: '{% url "api-challenge:solve-challenge-list" %}',
 			data: {challenge: id, key: $('#key_'+id).val()},
 			success: function (data) {
-				p.text(data.responseText);
+				p.text(data);
+				$("challenge_button_id_"+id).switchClass("btn-primary","btn-success");
 			},
 			error: function (data) {
 				if(data.status == "417"){ // wrong key
