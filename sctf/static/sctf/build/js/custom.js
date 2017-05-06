@@ -2278,7 +2278,7 @@ if (typeof NProgress != 'undefined') {
 			  
 			  var ctx = document.getElementById("canvasRadar");
 			  var data = {
-				labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+				labels: ["AAA", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
 				datasets: [{
 				  label: "My First dataset",
 				  backgroundColor: "rgba(3, 88, 106, 0.2)",
