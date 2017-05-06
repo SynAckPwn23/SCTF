@@ -29,18 +29,14 @@
 					<ul class="nav navbar-right panel_toolbox">
 						<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 						</li>
-						
 					</ul>
 					<div class="clearfix"></div>
 				</div>
 				<div class="x_content">
-
 					<!-- modals -->
 					<!-- Large modal -->
 					{% for challenge in category.challenges.all %}
-
 					<button id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}</button>
-
 					<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
@@ -84,23 +80,15 @@
 									<span style="margin-bottom: 50px;" class="count green"><i class="fa fa-key"></i><strong> Key</strong>:
 									</span>
 									<input style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key" required="required" id="key_{{ challenge.id }}" type="text">
-
 									<p id="message_key_{{ challenge.id }}"></p>
-
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 										<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
-
 									</div>	
-
 								</div>
-
-
-
 							</div>
 						</div>
 					</div>
-
 					{% endfor %}
 					<!-- /modals -->
 				</div>
@@ -113,7 +101,6 @@
 <!-- /page content -->
 
 <script>
-
 	function solve(id){
 		p = $('#message_key_'+id);
 		$.ajax({
@@ -132,15 +119,8 @@
 					p.text(data.responseText);
 				}
 			},
-			/*complete: function (data) {
-				alert(data.responseText);
-			}*/
 		});
 		return false;
 	}
-
-
 </script>
-
-
 {% endblock %}
