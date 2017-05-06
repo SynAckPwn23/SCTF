@@ -85,6 +85,8 @@
 									</span>
 									<input style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key" required="required" id="key_{{ challenge.id }}" type="text">
 
+									<p id="pippo"></p>
+
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 										<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
@@ -117,9 +119,21 @@
 			type: 'post',
 			url: '{% url "api-challenge:solve-challenge-list" %}',
 			data: {challenge: id, key: $('#key_'+id).val()},
-			complete: function (data) {
+			success: function (data) {
+				//alert(data.responseText);
+				$('#pippo').html(data.responseText);
+			},
+			error: function (data) {
+				if(data.status == "417"){ // wrong key
+				$('#pippo').html(data.responseText);
+				}
+				else if(data.status == "412"){ // already solved
+				$('#pippo').html(data.responseText);
+				}
+			},
+			/*complete: function (data) {
 				alert(data.responseText);
-			}
+			}*/
 		});
 		return false;
 	}
