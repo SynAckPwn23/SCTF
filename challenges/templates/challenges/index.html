@@ -42,7 +42,7 @@
 							<div class="modal-content">
 
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+									<button type="button" class="close" data-dismiss="modal" onclick="redirect()"><span aria-hidden="true">×</span>
 									</button>
 									{% challenge_is_solved as solved %}
 									{% if solved %}
@@ -85,14 +85,14 @@
 
 									{% challenge_is_solved as solved %}
 									{% if solved %}
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
 									{% else %}
 									<span style="margin-bottom: 50px;" class="count green"><i class="fa fa-key"></i><strong> Key</strong>:
 									</span>
 									<input id="key_{{ challenge.id }}" style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key" required="required"  type="text">
 									<ul id="message_{{ challenge.id }}" class="parsley-errors-list" id="parsley-id-5"><li class="parsley-required"></li></ul>
 									<div style="padding: 0px;" class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
 										<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
 									</div>	
 									{% endif %}
@@ -140,6 +140,12 @@
 		});
 			return false;
 		}
+	}
+
+	// TODO: Capire come gestire il fatto che se non faccio redirect l'if sul solved non funziona (ovviamente) mostrando i bottoni.
+	function redirect(){
+		window.location.href="{% url 'challenges' %}";
+		return false;
 	}
 </script>
 {% endblock %}
