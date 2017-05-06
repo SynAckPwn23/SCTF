@@ -13,7 +13,6 @@ from challenges.serializers import ChallengeSolvedSerializer
 @login_required
 def index(request):
     parameters = {
-        'challenges': Challenge.objects.all(),
         'categories': Category.objects.all()
     }
 

@@ -115,20 +115,20 @@
 <script>
 
 	function solve(id){
+		p = $('#message_key_'+id);
 		$.ajax({
 			type: 'post',
 			url: '{% url "api-challenge:solve-challenge-list" %}',
 			data: {challenge: id, key: $('#key_'+id).val()},
 			success: function (data) {
-				//alert(data.responseText);
-				$('#message_key_'+id).html(data.responseText);
+				p.text(data.responseText);
 			},
 			error: function (data) {
 				if(data.status == "417"){ // wrong key
-				$('#message_key_'+id).html(data.responseText);
+					p.text(data.responseText);
 				}
 				else if(data.status == "412"){ // already solved
-				$('#message_key_'+id).html(data.responseText);
+					p.text(data.responseText);
 				}
 			},
 			/*complete: function (data) {
