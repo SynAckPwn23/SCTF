@@ -27,11 +27,45 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content"><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-						<canvas id="canvas" width="593" height="296" style="width: 593px; height: 296px;"></canvas>
+						<canvas id="canvasRadar" width="593" height="296" style="width: 593px; height: 296px;"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<script type="text/javascript">
+			var data = {
+				labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+				datasets: [
+				{
+					label: "My First dataset",
+					backgroundColor: "rgba(179,181,198,0.2)",
+					borderColor: "rgba(179,181,198,1)",
+					pointBackgroundColor: "rgba(179,181,198,1)",
+					pointBorderColor: "#fff",
+					pointHoverBackgroundColor: "#fff",
+					pointHoverBorderColor: "rgba(179,181,198,1)",
+					data: [65, 59, 90, 81, 56, 55, 40]
+				},
+				{
+					label: "My Second dataset",
+					backgroundColor: "rgba(255,99,132,0.2)",
+					borderColor: "rgba(255,99,132,1)",
+					pointBackgroundColor: "rgba(255,99,132,1)",
+					pointBorderColor: "#fff",
+					pointHoverBackgroundColor: "#fff",
+					pointHoverBorderColor: "rgba(255,99,132,1)",
+					data: [28, 48, 40, 19, 96, 27, 100]
+				}
+				]
+			};
+
+			var myRadarChart = new Chart(ctx, {
+				type: 'radar',
+				data: data,
+				options: options
+			});
+		</script>
 
 		{% for category in categories %}
 		<div class="clearfix"></div>
