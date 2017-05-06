@@ -85,7 +85,7 @@
 									</span>
 									<input style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key" required="required" id="key_{{ challenge.id }}" type="text">
 
-									<p id="pippo"></p>
+									<p id="message_key_{{ challenge.id }}"></p>
 
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -121,14 +121,14 @@
 			data: {challenge: id, key: $('#key_'+id).val()},
 			success: function (data) {
 				//alert(data.responseText);
-				$('#pippo').html(data.responseText);
+				$('#message_key_'+id).html(data.responseText);
 			},
 			error: function (data) {
 				if(data.status == "417"){ // wrong key
-				$('#pippo').html(data.responseText);
+				$('#message_key_'+id).html(data.responseText);
 				}
 				else if(data.status == "412"){ // already solved
-				$('#pippo').html(data.responseText);
+				$('#message_key_'+id).html(data.responseText);
 				}
 			},
 			/*complete: function (data) {
