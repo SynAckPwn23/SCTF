@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from challenges.forms import HintForm
-from challenges.models import Challenge, Category, Hint, Attachment
+from challenges.models import Challenge, Category, Hint, Attachment, ChallengeSolved
 
 
 class HintAdmin(admin.TabularInline):
@@ -22,4 +22,9 @@ class AttachmentAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ChallengeSolved)
+class ChallengeSolvedAdmin(admin.ModelAdmin):
     pass

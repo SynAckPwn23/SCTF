@@ -49,3 +49,6 @@ class ChallengeSolved(models.Model):
     user = models.ForeignKey(get_user_model())
     challenge = models.ForeignKey('challenges.Challenge')
     datetime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'User: {}, Challange: {}'.format(self.user.username, self.challenge.name)
