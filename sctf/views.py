@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from sctf.models import Team
+from accounts.models import Team
 
 
 @login_required

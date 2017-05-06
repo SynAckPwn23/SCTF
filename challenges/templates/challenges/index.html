@@ -36,6 +36,13 @@
 					<!-- modals -->
 					<!-- Large modal -->
 					{% for challenge in category.challenges.all %}
+					{% challenge_is_solved as solved %}
+					{% if solved %}
+						RISOLTO
+					{% else %}
+						DA RISOLVERE
+					{% endif %}
+
 					<button id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}</button>
 					<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
