@@ -2274,30 +2274,34 @@ if (typeof NProgress != 'undefined') {
 
 			  // Radar chart
 			  
-			if ($('#canvasRadar').length ){ 
+			if ($('#canvasRadarChall').length ){ 
 			  
-			  var ctx = document.getElementById("canvasRadar");
+			  var ctx = document.getElementById("canvasRadarChall");
 			  var data = {
-				labels: ["AAA", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-				datasets: [{
-				  label: "My First dataset",
-				  backgroundColor: "rgba(3, 88, 106, 0.2)",
-				  borderColor: "rgba(3, 88, 106, 0.80)",
-				  pointBorderColor: "rgba(3, 88, 106, 0.80)",
-				  pointBackgroundColor: "rgba(3, 88, 106, 0.80)",
-				  pointHoverBackgroundColor: "#fff",
-				  pointHoverBorderColor: "rgba(220,220,220,1)",
-				  data: [65, 59, 90, 81, 56, 55, 40]
-				}, {
-				  label: "My Second dataset",
+				labels: ["Scripting", "Cryptography", "Web", "Networking", "Exploitation", "Jolly"],
+				datasets: [
+				
+				{
+				  label: "Total Chalenges",
 				  backgroundColor: "rgba(38, 185, 154, 0.2)",
 				  borderColor: "rgba(38, 185, 154, 0.85)",
 				  pointColor: "rgba(38, 185, 154, 0.85)",
 				  pointStrokeColor: "#fff",
 				  pointHighlightFill: "#fff",
 				  pointHighlightStroke: "rgba(151,187,205,1)",
-				  data: [28, 48, 40, 19, 96, 27, 100]
-				}]
+				  data: [10, 5, 3, 1, 2, 7]
+				},
+				{
+				  label: "Completed Challenges",
+				  backgroundColor: "rgba(3, 88, 106, 0.2)",
+				  borderColor: "rgba(3, 88, 106, 0.80)",
+				  pointBorderColor: "rgba(3, 88, 106, 0.80)",
+				  pointBackgroundColor: "rgba(3, 88, 106, 0.80)",
+				  pointHoverBackgroundColor: "#fff",
+				  pointHoverBorderColor: "rgba(220,220,220,1)",
+				  data: [5, 3, 1, 0, 0, 2]
+				}
+				]
 			  };
 
 			  var canvasRadar = new Chart(ctx, {

@@ -9,7 +9,7 @@
 
 <div class="right_col" role="main">
 	<br />
-	<div class="">
+	<div class="row">
 		<div class="page-title">
 			<div class="title_left">
 				<h3>Challenges Categories</h3>
@@ -19,7 +19,7 @@
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Radar <small>Sessions</small></h2>
+						<h2>Total <div style="display:inline;" class="count green">vs</div> Completed Challenges</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>			
@@ -27,10 +27,57 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content"><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-						<canvas id="canvasRadar" width="593" height="296" style="width: 593px; height: 296px;"></canvas>
+						<canvas id="canvasRadarChall" width="593" height="296" style="width: 593px; height: 296px;"></canvas>
 					</div>
 				</div>
 			</div>
+
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Team Components - <div style="display:inline;" class="count green">Team Name</div></h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content" style="display: block;">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Username</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+								</tr>
+								<tr>
+									<th scope="row">2</th>
+									<td>Jacob</td>
+									<td>Thornton</td>
+									<td>@fat</td>
+								</tr>
+								<tr>
+									<th scope="row">3</th>
+									<td>Larry</td>
+									<td>the Bird</td>
+									<td>@twitter</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 		{% for category in categories %}
@@ -70,11 +117,11 @@
 									{% else %}
 									<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}} - <span class="count green">Points: {{challenge.points}}</span></strong></h2>
 									{% endif %}
-									
+
 								</div>
 								<div class="modal-body">
 									<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description}}</p>
-									
+
 									{% for hint in challenge.hints.all %}
 									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="x_panel">
@@ -135,7 +182,7 @@
 	function solve(id){
 		key = $('#key_'+id);
 		message = $('#message_'+id);
-		
+
 		if(key.val() == ""){
 			key.addClass('parsley-error');
 			message.text('This value is required.');
@@ -168,5 +215,9 @@
 		return false;
 	}
 </script>
+
+
 {% endblock %}
+
+
 
