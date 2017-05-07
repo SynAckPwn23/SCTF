@@ -289,13 +289,16 @@
 				data: {challenge: id, key: $('#key_'+id).val()},
 				success: function (data) {
 					message.html("<span class='green'>OK</span>");
+					key.removeClass('parsley-error');
 					$("#challenge_button_id_"+id).removeClass('btn-primary').addClass('btn-success');
 				},
 				error: function (data) {
 				if(data.status == "417"){ // wrong key
+					key.addClass('parsley-error');
 					message.text("Wrong Key!");
 				}
 				else if(data.status == "412"){ // already solved
+					key.addClass('parsley-error');
 					message.text("Already Solved!");
 				}
 			},
