@@ -16,7 +16,7 @@ def index(request):
         'users_count': get_user_model().objects.count(),
         'teams_count': Team.objects.count(),
         'challenges_count': Challenge.objects.count(),
-        'points_count': Challenge.objects.aggregate(Sum('points')).values(),
+        'points_count': Challenge.objects.aggregate(Sum('points'))['points__sum'],
     }
     return render(request, 'sctf/base.html', parameters)
 
