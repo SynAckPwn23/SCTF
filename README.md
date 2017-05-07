@@ -1,6 +1,6 @@
 # SCTF
 Security Capture the Flag Platform.
-Template based on: https://github.com/puikinsh/gentelella
+Template based on Colorlib and Aigars Silkalns work: https://github.com/puikinsh/gentelella
 
 # Install
 pip install -r requirements.txt
