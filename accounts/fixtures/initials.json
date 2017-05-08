@@ -12,5 +12,33 @@
     "fields": {
       "name": "Team 2"
     }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 3,
+    "fields": {
+      "name": "Team 3"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 4,
+    "fields": {
+      "name": "Team 4"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 5,
+    "fields": {
+      "name": "Team 5"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 6,
+    "fields": {
+      "name": "Team 6"
+    }
   }
 ]
