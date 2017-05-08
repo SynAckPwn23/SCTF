@@ -8,13 +8,14 @@ pip install -r requirements.txt
 Insert Description
 
 # License Information
-SCTF is licensed under the GNU General Public License v3.0
+<b>SCTF is licensed under the GNU General Public License v3.0</b>
+Copyright (c) [2017] [Daniele Votta, Filippo Schiavio
 
 Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
 
-Permissions: Commercial use, Modification, Distribution, Patent use, Private use.
+<b>Permissions</b>: Commercial use, Modification, Distribution, Patent use, Private use.
 
-Conditions: License and copyright notice, State changes, Disclose source, Same License.
+<b>Conditions</b>: License and copyright notice, State changes, Disclose source, Same License.
 
 <b>Limitations</b>: Liability, Warranty.
 
