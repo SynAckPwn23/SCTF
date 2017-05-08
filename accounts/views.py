@@ -12,3 +12,13 @@ def index(request):
 
     return render(request, 'accounts/teams.html', parameters)
 
+
+@login_required
+def team(request, pk=None):
+    team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
+    parameters = {
+        'team': team
+    }
+
+    return render(request, 'accounts/team.html', parameters)
+
