@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^', include('sctf.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^challenges/', include('challenges.urls')),
+    url(r'^scoreboard/', include('scoreboard.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
