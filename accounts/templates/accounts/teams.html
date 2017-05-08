@@ -55,7 +55,7 @@
                       <tbody>
                       {% for team in teams %}
                         <tr>
-                          <td>{{team.name}}</td>
+                          <td><a href="{% url 'team' pk=team.pk %}">{{team.name}}</a></td>
                           <td>{{team.num_users}}</td>
                         </tr>
                         {% endfor %}
