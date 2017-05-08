@@ -48,43 +48,27 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>First Name</th>
-									<th>Last Name</th>
 									<th>Username</th>
+									<th>Name</th>
+									<th>Surname</th>
+									<th>Email</th>
+									<th>Total Points</th>
 								</tr>
 							</thead>
+
 							<tbody>
+								{% for user in team.users.all %}
 								<tr>
-									<th scope="row">1</th>
-									<td>ssdf</td>
-									<td>Otto</td>
-									<td>@mdo</td>
+									<td>{{user}}</td>
+									<td></td>
+									<td></td>
+									<td>{{user.email}}</td>
+									<td></td>
+
 								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Tom</td>
-									<td>Base</td>
-									<td>@rit</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>Jerry</td>
-									<td>the Shadow</td>
-									<td>@jgd</td>
-								</tr>
+								{% endfor %}
 							</tbody>
+							
 						</table>
 					</div>
 				</div>
