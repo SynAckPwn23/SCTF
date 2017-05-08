@@ -5,10 +5,7 @@
 {% load static %}
 
 
-<!-- page content 
-{% for team in teams %}
-{{team.name}}
-{% endfor %}-->
+<!-- page content -->
 
  
 <div class="right_col" role="main" style="min-height: 5364px;">
@@ -69,12 +66,14 @@
                       </thead>
 
 
+
                       <tbody>
+                      {% for team in teams %}
                         <tr>
-                          <td>Tiger Nixon</td>
-                          <td>3</td>
+                          <td>{{team.name}}</td>
+                          <td>{{team.num_users}}</td>
                         </tr>
-                        
+                        {% endfor %}-->
                       </tbody>
                     </table>
                   </div>
