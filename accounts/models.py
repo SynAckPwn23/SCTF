@@ -8,11 +8,16 @@ User = get_user_model()
 
 class Team(models.Model):
     name = models.CharField(max_length=256)
+    users = models.ManyToManyField(User, through='accounts.userprofile')
 
     @property
     def solved_challenges(self):
         from challenges.models import Challenge
         return Challenge.objects.filter(solved_by__profile__team=self).distinct()
+
+    @property
+    def num_users(self):
+        return self.users.count()
 
     def __str__(self):
         return self.name
@@ -21,6 +26,9 @@ class Team(models.Model):
 class UserProfile(models.Model):
     team = models.ForeignKey('accounts.Team')
     user = models.OneToOneField(User, related_name='profile')
+
+    def __str__(self):
+        return '{}, Team: {}'.format(self.user.username, self.team.name)
 
 
 @receiver(post_save, sender=User)
