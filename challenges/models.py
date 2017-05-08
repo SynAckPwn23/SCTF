@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Sum
 
 
 class Category(models.Model):
@@ -9,7 +10,15 @@ class Category(models.Model):
         return self.name
 
 
+class ChallengeQuerySet(models.QuerySet):
+
+    def total_points(self):
+        return self.aggregate(Sum('points'))['points__sum']
+
+
 class Challenge(models.Model):
+    objects = ChallengeQuerySet.as_manager()
+
     name = models.CharField(max_length=256)
     category = models.ForeignKey('challenges.Category', related_name='challenges')
     description = models.TextField()

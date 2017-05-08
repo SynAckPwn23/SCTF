@@ -12,11 +12,13 @@ from challenges.models import Challenge
 
 @login_required
 def index(request):
+    user = request.user
     parameters = {
         'users_count': get_user_model().objects.count(),
         'teams_count': Team.objects.count(),
         'challenges_count': Challenge.objects.count(),
-        'points_count': Challenge.objects.aggregate(Sum('points'))['points__sum'],
+        'total_points_count': Challenge.objects.total_points(),
+        'user_points_count': user.solved_challenges.total_points(),
     }
     return render(request, 'sctf/base.html', parameters)
 
