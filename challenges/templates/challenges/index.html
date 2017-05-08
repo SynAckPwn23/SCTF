@@ -56,7 +56,7 @@
 							<tbody>
 								<tr>
 									<th scope="row">1</th>
-									<td>Mark</td>
+									<td>ssdf</td>
 									<td>Otto</td>
 									<td>@mdo</td>
 								</tr>
@@ -141,13 +141,13 @@
 									<div class="x_content">
 										<div class="" role="tabpanel" data-example-id="togglable-tabs">
 											<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-												<li role="presentation" class="active"><a href="#tab_content1_{{forloop.counter}}" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Challenge</a>
+												<li role="presentation" class="active"><a href="#tab_content1_{{ challenge.id }}" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Challenge</a>
 												</li>
-												<li role="presentation" class=""><a href="#tab_content2_{{forloop.counter}}" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Solves</a>
+												<li role="presentation" class=""><a href="#tab_content2_{{ challenge.id }}" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Solves</a>
 												</li>                        
 											</ul>
 											<div id="myTabContent" class="tab-content">
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content1_{{forloop.counter}}" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content1_{{ challenge.id }}" aria-labelledby="home-tab">
 													
 													<div class="modal-body">
 														<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description}}</p>
@@ -194,7 +194,7 @@
 														{% endif %}
 													</div>
 												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tab_content2_{{forloop.counter}}" aria-labelledby="profile-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content2_{{ challenge.id }}" aria-labelledby="profile-tab">
 													<div class="x_panel">
 														<div class="x_title">
 															<h2>Solves - <div style="display:inline;" class="count green">list</div></h2>

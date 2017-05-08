@@ -14,6 +14,7 @@ from challenges.serializers import ChallengeSolvedSerializer
 def index(request):
     parameters = {
         'categories': Category.objects.all()
+
     }
 
     return render(request, 'challenges/index.html', parameters)
