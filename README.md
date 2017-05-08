@@ -16,7 +16,7 @@ Permissions: Commercial use, Modification, Distribution, Patent use, Private use
 
 Conditions: License and copyright notice, State changes, Disclose source, Same License.
 
-Limitations: Liability, Warranty.
+<b>Limitations</b>: Liability, Warranty.
 
 Project is developed and maintained by Daniele Votta and Filippo Schiavio.
 Template is based on Colorlib and Aigars Silkalns work: https://github.com/puikinsh/gentelella
