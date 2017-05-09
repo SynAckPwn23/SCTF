@@ -10,6 +10,7 @@ from challenges.models import Challenge
 
 
 
+
 @login_required
 def index(request):
     user = request.user

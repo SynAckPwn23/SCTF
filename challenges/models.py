@@ -10,6 +10,8 @@ class Category(models.Model):
         return self.name
 
 
+
+
 class ChallengeQuerySet(models.QuerySet):
 
     def total_points(self):
