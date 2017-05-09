@@ -406,11 +406,11 @@ if (typeof NProgress != 'undefined') {
     // Page home - Network Activities
     var arr_data2 = [
     [gd(2012, 1, 1), 100],
-    [gd(2012, 1, 2), 8],
+    [gd(2012, 1, 2), 80],
     [gd(2012, 1, 3), 7],
-    [gd(2012, 1, 4), 9],
+    [gd(2012, 1, 4), 19],
     [gd(2012, 1, 5), 20],
-    [gd(2012, 1, 6), 25],
+    [gd(2012, 1, 6), 55],
     [gd(2012, 1, 7), 75]
     ];
 
@@ -2483,6 +2483,34 @@ if (typeof NProgress != 'undefined') {
 					}
 				};
 
+				// Page scoreboard - Ranking Table
+				var handleDataTableButtonsScoreboard_Ranking = function() {
+					if ($("#datatable-buttons-scoreboard-ranking-list").length) {
+						$("#datatable-buttons-scoreboard-ranking-list").DataTable({
+							dom: "Bfrtip",
+							buttons: [
+							{
+								extend: "copy",
+								className: "btn-sm"
+							},
+							{
+								extend: "csv",
+								className: "btn-sm"
+							},
+							{
+								extend: "excel",
+								className: "btn-sm"
+							},
+							{
+								extend: "print",
+								className: "btn-sm"
+							},
+							],
+							responsive: true
+						});
+					}
+				};
+
 				TableManageButtons = function() {
 					"use strict";
 					return {
@@ -2493,6 +2521,8 @@ if (typeof NProgress != 'undefined') {
 							handleDataTableButtonsTeam_Solves();
 							// Page team - Team Components Table
 							handleDataTableButtonsTeam_TeamComponents();
+							// Page scoreboard - Ranking Table
+							handleDataTableButtonsScoreboard_Ranking()
 						}
 					};
 				}();
