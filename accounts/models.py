@@ -9,6 +9,7 @@ User = get_user_model()
 class Team(models.Model):
     name = models.CharField(max_length=256)
     users = models.ManyToManyField(User, through='accounts.userprofile')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def solved_challenges(self):
@@ -39,6 +40,7 @@ class Team(models.Model):
 class UserProfile(models.Model):
     team = models.ForeignKey('accounts.Team', null=True)
     user = models.OneToOneField(User, related_name='profile')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
