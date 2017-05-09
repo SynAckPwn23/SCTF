@@ -1,5 +1,7 @@
 {% extends "sctf/base.html" %}
 {% load challenges_tags %}
+{% load static %}
+
 
 {% block content %}
 
@@ -17,55 +19,7 @@
 
 		<div class="row">
 
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="x_panel tile fixed_height_320">
-					<div class="x_title">
-						<h2>Challenge % Complete</h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content">
-						<div class="widget_summary">
-							<div class="w_left w_25">
-								<span>Team 1</span>
-							</div>
-							<div class="w_center w_55">
-								<div class="progress">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-									</div>
-								</div>
-							</div>
-							<div class="w_right w_20">
-								<span>66%</span>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-
-						<div class="widget_summary">
-							<div class="w_left w_25">
-								<span>Team 2</span>
-							</div>
-							<div class="w_center w_55">
-								<div class="progress">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-									</div>
-								</div>
-							</div>
-							<div class="w_right w_20">
-								<span>45%</span>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="clearfix"></div>
-
-			<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Ranking</h2>
@@ -76,36 +30,117 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<p class="text-muted font-13 m-b-30">
-							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-						</p>
-						<table id="datatable-buttons-scoreboard-ranking-list" class="table table-striped table-bordered">
+
+						<p>Simple table with project listing with progress and editing options</p>
+						<!-- start project list -->
+						<table id="datatable-buttons-scoreboard-ranking-list" class="table table-striped table-bordered projects">
 							<thead>
 								<tr>
-									<th>Place</th>
-									<th>Team</th>
-									<th>Score</th>
+									<th style="width: 1%">#</th>
+									<th>Team Name</th>
+									<th>Team Members</th>
+									<th>Team Photos</th>
+									<th>Challenges Progress</th>
+									<th>Total Points</th>
 								</tr>
+
 							</thead>
 							<tbody>
-								{% for user in team.users.all %} <!-- da cambiare -->
 								<tr>
-									<td>TODO</td>
-									<td>TODO</td>
-									<td>TODO</td>
+									<td>1</td>
+									<td>
+										<a>BBBB</a>
+										<br />
+										<small>Created 01.01.2015</small>
+									</td>
+									<td>
+										<ul class="list-inline">
+											<li>
+												4
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul class="list-inline">
+
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+										</ul>
+									</td>
+									<td class="project_progress">
+										<div class="progress progress_sm">
+											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
+										</div>
+										<small>57% Complete</small>
+									</td>
+									<td>
+										<a>5555</a>
+
+									</td>
+
 								</tr>
-								{% endfor %}
+
+								
+
+								<tr>
+									<td>2</td>
+									<td>
+										<a>AAA</a>
+										<br />
+										<small>Created 01.01.2015</small>
+									</td>
+									<td>
+										<ul class="list-inline">
+											<li>
+												3
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul class="list-inline">
+
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+											
+										</ul>
+									</td>
+									<td class="project_progress">
+										<div class="progress progress_sm">
+											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
+										</div>
+										<small>47% Complete</small>
+									</td>
+									<td>
+										<a>4444</a>
+									</td>
+								</tr>
 							</tbody>
 						</table>
+						<!-- end project list -->
 					</div>
 				</div>
 			</div>
-
+			<div class="clearfix"></div>		
 		</div>
 	</div>
 </div>
-
-
 {% endblock %}
 
 
