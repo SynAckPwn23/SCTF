@@ -39,6 +39,7 @@
 						<table id="datatable-buttons-team-list" class="table table-striped table-bordered">
 							<thead>
 								<tr>
+									<th># Index</th>
 									<th>Name</th>
 									<th>Components</th>
 
@@ -47,6 +48,7 @@
 							<tbody>
 								{% for team in teams %}
 								<tr>
+									<td>{{forloop.counter}}</td>
 									<td><a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a></td>
 									<td>{{team.num_users}}</td>
 								</tr>

@@ -40,5 +40,40 @@
     "fields": {
       "name": "Team 6"
     }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 7,
+    "fields": {
+      "name": "Team 7"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 8,
+    "fields": {
+      "name": "Team 8"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 9,
+    "fields": {
+      "name": "Team 9"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 10,
+    "fields": {
+      "name": "Team 10"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 11,
+    "fields": {
+      "name": "Team 11"
+    }
   }
 ]
