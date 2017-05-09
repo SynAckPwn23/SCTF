@@ -129,19 +129,20 @@
 
 							</thead>
 							<tbody>
+								{% for user in users %}
 
 
 
 								<tr>
 									<td><h2 class="count green">#1</h2></td>
 									<td>
-										<a>AAA</a>
+										<a>{{user.username}}</a>
 										<br />
 										<small>Created 01.01.2015</small>
 									</td>
-									<td>Name</td>
-									<td>Surname</td>
-									<td>Email</td>
+									<td>{{user.name}}</td>
+									<td>{{user.surname}}</td>
+									<td>{{user.email}}</td>
 									<td>
 										<ul class="list-inline">
 
@@ -153,16 +154,18 @@
 									</td>
 									<td class="project_progress">
 										<div class="progress progress_sm">
-											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="27"></div>
+											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{user.progress}}"></div>
 										</div>
-										<small>27% Complete</small>
+										<small>{{user.progress}}% Complete</small>
 									</td>
 									<td>
-										<a>2233</a>
+										<a>{{user.total_points}}</a>
 
 									</td>
 
 								</tr>
+								{% endfor %}
+
 								
 							</tbody>
 						</table>
