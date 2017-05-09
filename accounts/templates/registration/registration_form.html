@@ -30,7 +30,7 @@
 						<br />
 						<form method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">{% trans form.username.label_tag %} <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
@@ -40,14 +40,28 @@
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="email" required="required" id="id_email" type="email">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name: <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="first-name" required="required" id="id_first_name" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name: <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="last-name" required="required" id="id_last_name" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" required="required" id="id_password1" type="password">
