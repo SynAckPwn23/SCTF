@@ -335,7 +335,7 @@ if (typeof NProgress != 'undefined') {
 	  	return new Date(year, month - 1, day).getTime();
 	  }
 	  
-
+/*
 	  function init_flot_chart(){
 
 	  	if( typeof ($.plot) === 'undefined'){ return; }
@@ -354,7 +354,7 @@ if (typeof NProgress != 'undefined') {
 	  	[gd(2012, 1, 7), 7]
 	  	];
 
-/*
+
 	  	var arr_data2 = [
 	  	[gd(2012, 1, 1), 82],
 	  	[gd(2012, 1, 2), 23],
@@ -364,7 +364,7 @@ if (typeof NProgress != 'undefined') {
 	  	[gd(2012, 1, 6), 6],
 	  	[gd(2012, 1, 7), 9]
 	  	];
-*/
+
 	  	var arr_data3 = [
 	  	[0, 1],
 	  	[1, 9],
@@ -549,7 +549,7 @@ if (typeof NProgress != 'undefined') {
     if ($("#chart_plot_01").length){
     	console.log('Plot1');
 
-    	$.plot( $("#chart_plot_01"), [ arr_data1/*, arr_data2 */],  chart_plot_01_settings );
+    	$.plot( $("#chart_plot_01"), [ arr_data1, arr_data2 ],  chart_plot_01_settings );
     }
 
 
@@ -587,6 +587,7 @@ if (typeof NProgress != 'undefined') {
     };
 
 } 
+*/
 
 
 /* STARRR */
@@ -680,7 +681,7 @@ function init_JQVmap(){
 
 	}  
 
-
+/*
 	function init_chart_doughnut(){
 
 		if( typeof (Chart) === 'undefined'){ return; }
@@ -734,7 +735,7 @@ function init_JQVmap(){
 		}  
 
 	}
-
+*/
 	function init_gauge() {
 
 		if( typeof (Gauge) === 'undefined'){ return; }
@@ -2233,7 +2234,7 @@ function init_JQVmap(){
 			  
 
 			  // Doughnut chart 1
-			  
+			  /*
 			  if ($('#canvasDoughnut1').length ){ 
 
 			  	var ctx = document.getElementById("canvasDoughnut1");
@@ -2303,7 +2304,7 @@ function init_JQVmap(){
 				  		data: data
 				  	});
 
-				  } 
+				  } */
 
 			  // Radar chart
 			  
@@ -2539,7 +2540,7 @@ function init_JQVmap(){
 			};
 
 			/* DATA TABLES */
-			
+			/*
 			function init_DataTables() {
 				
 				console.log('run_datatables');
@@ -2547,9 +2548,40 @@ function init_JQVmap(){
 				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
 				console.log('init_DataTables');
 				
-				var handleDataTableButtons = function() {
-					if ($("#datatable-buttons").length) {
-						$("#datatable-buttons").DataTable({
+				var handleDataTableButtons1 = function() {
+					if ($("#datatable-buttons1").length) {
+						$("#datatable-buttons1").DataTable({
+							dom: "Bfrtip",
+							buttons: [
+							{
+								extend: "copy",
+								className: "btn-sm"
+							},
+							{
+								extend: "csv",
+								className: "btn-sm"
+							},
+							{
+								extend: "excel",
+								className: "btn-sm"
+							},
+							{
+								extend: "pdfHtml5",
+								className: "btn-sm"
+							},
+							{
+								extend: "print",
+								className: "btn-sm"
+							},
+							],
+							responsive: true
+						});
+					}
+				};
+
+				var handleDataTableButtons2 = function() {
+					if ($("#datatable-buttons2").length) {
+						$("#datatable-buttons2").DataTable({
 							dom: "Bfrtip",
 							buttons: [
 							{
@@ -2582,7 +2614,8 @@ function init_JQVmap(){
 					"use strict";
 					return {
 						init: function() {
-							handleDataTableButtons();
+							handleDataTableButtons1();
+							handleDataTableButtons2();
 						}
 					};
 				}();
@@ -2624,6 +2657,7 @@ function init_JQVmap(){
 				TableManageButtons.init();
 				
 			};
+			*/
 
 			/* CHART - MORRIS  */
 
@@ -5064,8 +5098,13 @@ function init_JQVmap(){
 
 $(document).ready(function() {
 
-	init_sparklines();
+	init_chart_doughnut();
 	init_flot_chart();
+	init_DataTables();
+
+
+
+	init_sparklines();
 	init_sidebar();
 	init_wysiwyg();
 	init_InputMask();
@@ -5088,8 +5127,7 @@ $(document).ready(function() {
 	init_skycons();
 	init_select2();
 	init_validator();
-	init_DataTables();
-	init_chart_doughnut();
+	
 	init_gauge();
 	init_PNotify();
 	init_starrr();

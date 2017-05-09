@@ -28,18 +28,7 @@
 					<div class="x_title">
 						<h2>Key Percentage - Fail vs Solves</h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Settings 1</a>
-									</li>
-									<li><a href="#">Settings 2</a>
-									</li>
-								</ul>
-							</li>
-							<li><a class="close-link"><i class="fa fa-close"></i></a>
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -55,18 +44,7 @@
 					<div class="x_title">
 						<h2>Category Breakdown</h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Settings 1</a>
-									</li>
-									<li><a href="#">Settings 2</a>
-									</li>
-								</ul>
-							</li>
-							<li><a class="close-link"><i class="fa fa-close"></i></a>
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -77,25 +55,12 @@
 				</div>
 			</div>
 
-
-
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-					<h2>Score Over Time</h2>
+						<h2>Score Over Time</h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Settings 1</a>
-									</li>
-									<li><a href="#">Settings 2</a>
-									</li>
-								</ul>
-							</li>
-							<li><a class="close-link"><i class="fa fa-close"></i></a>
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -119,7 +84,7 @@
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div id="chart_plot_01" class="demo-placeholder"></div>
 								</div>
-							
+
 
 								<div class="clearfix"></div>
 							</div>
@@ -145,7 +110,7 @@
 						<p class="text-muted font-13 m-b-30">
 							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 						</p>
-						<table id="datatable-buttons" class="table table-striped table-bordered">
+						<table id="datatable-buttons-solves" class="table table-striped table-bordered">
 							<thead>
 								<tr>
 									<th>Challenge</th>
@@ -185,7 +150,7 @@
 						<p class="text-muted font-13 m-b-30">
 							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 						</p>
-						<table id="datatable-buttons" class="table table-striped table-bordered">
+						<table id="datatable-buttons-team-components" class="table table-striped table-bordered">
 							<thead>
 								<tr>
 									<th>Username</th>
@@ -216,7 +181,260 @@
 	</div>
 </div>
 
+<!-- Chart Plot (Score Over Time) init -->
+<script type="text/javascript">
+	function init_flot_chart(){
+
+		if( typeof ($.plot) === 'undefined'){ return; }
+		console.log('init_flot_chart');
+
+		var arr_data1 = [
+		[gd(2012, 1, 1), 17],
+		[gd(2012, 1, 2), 86],
+		[gd(2012, 1, 3), -17],
+		[gd(2012, 1, 4), 39],
+		[gd(2012, 1, 5), 20],
+		[gd(2012, 1, 6), 85],
+		[gd(2012, 1, 7), 7]
+		];
+
+		var chart_plot_01_settings = {
+	  		series: {
+	  			lines: {
+	  				show: false,
+	  				fill: true
+	  			},
+	  			splines: {
+	  				show: true,
+	  				tension: 0.4,
+	  				lineWidth: 1,
+	  				fill: 0.4
+	  			},
+	  			points: {
+	  				radius: 0,
+	  				show: true
+	  			},
+	  			shadowSize: 2
+	  		},
+	  		grid: {
+	  			verticalLines: true,
+	  			hoverable: true,
+	  			clickable: true,
+	  			tickColor: "#d5d5d5",
+	  			borderWidth: 1,
+	  			color: '#fff'
+	  		},
+	  		colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+	  		xaxis: {
+	  			tickColor: "rgba(51, 51, 51, 0.06)",
+	  			mode: "time",
+	  			tickSize: [1, "day"],
+            //tickLength: 10,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+        },
+        yaxis: {
+        	ticks: 8,
+        	tickColor: "rgba(51, 51, 51, 0.06)",
+        },
+        tooltip: false
+    }
+
+     if ($("#chart_plot_01").length){
+    	console.log('Plot1');
+
+    	$.plot( $("#chart_plot_01"), [ arr_data1],  chart_plot_01_settings );
+    }
+
+	}
+</script>
+
+<!-- Doughnut (Key Percentage, Category Breakdown) init -->
+<script type="text/javascript">
+
+	function init_chart_doughnut(){
+
+		if( typeof (Chart) === 'undefined'){ return; }
+		
+		console.log('init_chart_doughnut');
+
+		if ($('#canvasDoughnut1').length){
+			
+			var chart_doughnut_settings = {
+				type: 'doughnut',
+				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+				data: {
+					labels: [
+					"Symbian",
+					"Blackberry",
+					"Other",
+					"Android",
+					"IOS"
+					],
+					datasets: [{
+						data: [15, 20, 30, 10, 30],
+						backgroundColor: [
+						"#BDC3C7",
+						"#9B59B6",
+						"#E74C3C",
+						"#26B99A",
+						"#3498DB"
+						],
+						hoverBackgroundColor: [
+						"#CFD4D8",
+						"#B370CF",
+						"#E95E4F",
+						"#36CAAB",
+						"#49A9EA"
+						]
+					}]
+				},
+				options: { 
+					legend: true, 
+					responsive: true 
+				}
+			}
+
+			$('#canvasDoughnut1').each(function(){
+				
+				var chart_element = $(this);
+				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+				
+			});			
+
+		}  
+
+		if ($('#canvasDoughnut2').length){
+			
+			var chart_doughnut_settings = {
+				type: 'doughnut',
+				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+				data: {
+					labels: [
+					"Symbian",
+					"Blackberry",
+					"Other",
+					"Android",
+					"IOS"
+					],
+					datasets: [{
+						data: [15, 20, 30, 10, 30],
+						backgroundColor: [
+						"#BDC3C7",
+						"#9B59B6",
+						"#E74C3C",
+						"#26B99A",
+						"#3498DB"
+						],
+						hoverBackgroundColor: [
+						"#CFD4D8",
+						"#B370CF",
+						"#E95E4F",
+						"#36CAAB",
+						"#49A9EA"
+						]
+					}]
+				},
+				options: { 
+					legend: true, 
+					responsive: true 
+				}
+			}
+
+			$('#canvasDoughnut2').each(function(){
+				
+				var chart_element = $(this);
+				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+				
+			});			
+
+		}  
+
+	}
+</script>
+
+
+<!-- Tables (Solves, Team Components) init -->
+<script type="text/javascript">
+	function init_DataTables() {
+		console.log('run_datatables');
+		if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+		console.log('init_DataTables');
+		
+		var handleDataTableButtonsSolves = function() {
+			if ($("#datatable-buttons-solves").length) {
+				$("#datatable-buttons-solves").DataTable({
+					dom: "Bfrtip",
+					buttons: [
+					{
+						extend: "copy",
+						className: "btn-sm"
+					},
+					{
+						extend: "csv",
+						className: "btn-sm"
+					},
+					{
+						extend: "excel",
+						className: "btn-sm"
+					},
+					{
+						extend: "print",
+						className: "btn-sm"
+					},
+					],
+					responsive: true
+				});
+			}
+		};
+
+		var handleDataTableButtonsTeamComponents = function() {
+			if ($("#datatable-buttons-team-components").length) {
+				$("#datatable-buttons-team-components").DataTable({
+					dom: "Bfrtip",
+					buttons: [
+					{
+						extend: "copy",
+						className: "btn-sm"
+					},
+					{
+						extend: "csv",
+						className: "btn-sm"
+					},
+					{
+						extend: "excel",
+						className: "btn-sm"
+					},
+					{
+						extend: "print",
+						className: "btn-sm"
+					},
+					],
+					responsive: true
+				});
+			}
+		};
+
+		TableManageButtons = function() {
+			"use strict";
+			return {
+				init: function() {
+					handleDataTableButtonsSolves();
+					handleDataTableButtonsTeamComponents();
+				}
+			};
+		}();
+
+		TableManageButtons.init();
+
+	};
+</script>
+
 {% endblock %}
+
 
 
 
