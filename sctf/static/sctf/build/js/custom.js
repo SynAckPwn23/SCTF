@@ -2459,6 +2459,7 @@ if (typeof NProgress != 'undefined') {
 				var handleDataTableButtonsTeam_TeamComponents = function() {
 					if ($("#datatable-buttons-team-components").length) {
 						$("#datatable-buttons-team-components").DataTable({
+							
 							dom: "Bfrtip",
 							buttons: [
 							{
@@ -2482,6 +2483,7 @@ if (typeof NProgress != 'undefined') {
 						});
 					}
 				};
+
 
 				// Page scoreboard - Ranking Table
 				var handleDataTableButtonsScoreboard_Ranking = function() {
@@ -2522,7 +2524,7 @@ if (typeof NProgress != 'undefined') {
 							// Page team - Team Components Table
 							handleDataTableButtonsTeam_TeamComponents();
 							// Page scoreboard - Ranking Table
-							handleDataTableButtonsScoreboard_Ranking()
+							handleDataTableButtonsScoreboard_Ranking();
 						}
 					};
 				}();
