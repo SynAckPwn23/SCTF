@@ -5127,7 +5127,6 @@ $(document).ready(function() {
 	init_skycons();
 	init_select2();
 	init_validator();
-	
 	init_gauge();
 	init_PNotify();
 	init_starrr();

@@ -288,39 +288,38 @@
 <script src="{% static "sctf/vendors/moment/min/moment.min.js" %}"></script>
 <script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
 
-                  <!-- Custom Theme Scripts 
-                  <script src="{% static "sctf/build/js/custom.min.js" %}"></script> -->
+<!-- Custom Theme Scripts 
+  <script src="{% static "sctf/build/js/custom.min.js" %}"></script> -->
 
-                  <script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatabless.net-responsive-bs/js/responsive.bootstrap.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/jszip/dist/jszip.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js"%}" ></script>
-                  <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatabless.net-responsive-bs/js/responsive.bootstrap.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/jszip/dist/jszip.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js"%}" ></script>
+  <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js"%}" ></script>
 
+  <!-- Custom Theme Scripts -->
+  <script src="{% static "sctf/build/js/custom.js" %}"></script>
 
-                  <!-- Custom Theme Scripts -->
-                  <script src="{% static "sctf/build/js/custom.js" %}"></script>
-
-                  <!-- Datatables -->
-                  <script>
-                    $.ajaxSetup({
-                     beforeSend: function(xhr, settings) {
-                       function getCookie(name) {
-                         var cookieValue = null;
-                         if (document.cookie && document.cookie != '') {
-                           var cookies = document.cookie.split(';');
-                           for (var i = 0; i < cookies.length; i++) {
-                             var cookie = jQuery.trim(cookies[i]);
+  <!-- Datatables -->
+  <script>
+    $.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+       function getCookie(name) {
+         var cookieValue = null;
+         if (document.cookie && document.cookie != '') {
+           var cookies = document.cookie.split(';');
+           for (var i = 0; i < cookies.length; i++) {
+             var cookie = jQuery.trim(cookies[i]);
                                    // Does this cookie string begin with the name we want?
                                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
                                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
