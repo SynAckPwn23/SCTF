@@ -2485,10 +2485,39 @@ if (typeof NProgress != 'undefined') {
 				};
 
 
-				// Page scoreboard - Ranking Table
-				var handleDataTableButtonsScoreboard_Ranking = function() {
+				// Page scoreboard - Ranking Teams Table
+				var handleDataTableButtonsScoreboard_RankingTeam = function() {
 					if ($("#datatable-buttons-scoreboard-ranking-list").length) {
 						$("#datatable-buttons-scoreboard-ranking-list").DataTable({
+							dom: "Bfrtip",
+							buttons: [
+							{
+								extend: "copy",
+								className: "btn-sm"
+							},
+							{
+								extend: "csv",
+								className: "btn-sm"
+							},
+							{
+								extend: "excel",
+								className: "btn-sm"
+							},
+							{
+								extend: "print",
+								className: "btn-sm"
+							},
+							],
+							responsive: true
+						});
+					}
+				};
+
+				
+				// Page scoreboard - Ranking Table User
+				var handleDataTableButtonsScoreboard_RankingUser = function() {
+					if ($("#datatable-buttons-scoreboard-ranking-list-user").length) {
+						$("#datatable-buttons-scoreboard-ranking-list-user").DataTable({
 							dom: "Bfrtip",
 							buttons: [
 							{
@@ -2523,8 +2552,10 @@ if (typeof NProgress != 'undefined') {
 							handleDataTableButtonsTeam_Solves();
 							// Page team - Team Components Table
 							handleDataTableButtonsTeam_TeamComponents();
-							// Page scoreboard - Ranking Table
-							handleDataTableButtonsScoreboard_Ranking();
+							// Page scoreboard - Ranking Team Table
+							handleDataTableButtonsScoreboard_RankingTeam();
+							// Page scoreboard - Ranking User Table
+							handleDataTableButtonsScoreboard_RankingUser();
 						}
 					};
 				}();
