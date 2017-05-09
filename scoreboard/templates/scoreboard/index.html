@@ -46,17 +46,19 @@
 
 							</thead>
 							<tbody>
+								{% for team in teams %}
+								
 								<tr>
-									<td><h2 class="count green">#1</h2></td>
+									<td><h2 class="count green">#{{team.position}}</h2></td>
 									<td>
-										<a>AAA</a>
+										<a>{{team.name}}</a>
 										<br />
 										<small>Created 01.01.2015</small>
 									</td>
 									<td>
 										<ul class="list-inline">
 											<li>
-												4
+												{{num_users}}
 											</li>
 										</ul>
 									</td>
@@ -84,85 +86,14 @@
 										<small>57% Complete</small>
 									</td>
 									<td>
-										<a>5555</a>
+										<a>{{total_points}}</a>
 
 									</td>
 
 								</tr>
-								<tr>
-									<td><h2 class="count green">#2</h2></td>
-									<td>
-										<a>BBB</a>
-										<br />
-										<small>Created 01.01.2015</small>
-									</td>
-									<td>
-										<ul class="list-inline">
-											<li>
-												3
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul class="list-inline">
+								{% endfor %}
 
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											
-										</ul>
-									</td>
-									<td class="project_progress">
-										<div class="progress progress_sm">
-											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-										</div>
-										<small>47% Complete</small>
-									</td>
-									<td>
-										<a>4444</a>
-									</td>
-								</tr>
-								<tr>
-									<td><h2 class="count green">#3</h2></td>
-									<td>
-										<a>CCC</a>
-										<br />
-										<small>Created 01.01.2015</small>
-									</td>
-									<td>
-										<ul class="list-inline">
-											<li>
-												2
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul class="list-inline">
-
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>										
-										</ul>
-									</td>
-									<td class="project_progress">
-										<div class="progress progress_sm">
-											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="37"></div>
-										</div>
-										<small>37% Complete</small>
-									</td>
-									<td>
-										<a>3333</a>
-									</td>
-								</tr>
+								
 							</tbody>
 						</table>
 						<!-- end project list -->
@@ -198,6 +129,9 @@
 
 							</thead>
 							<tbody>
+
+
+
 								<tr>
 									<td><h2 class="count green">#1</h2></td>
 									<td>
