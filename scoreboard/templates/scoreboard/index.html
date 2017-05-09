@@ -64,19 +64,12 @@
 									</td>
 									<td>
 										<ul class="list-inline">
+										{% for user in team.users.all %}
+											<li>
+												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+											</li>
+										{% endfor %}
 
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
-											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
-											</li>
 										</ul>
 									</td>
 									<td class="project_progress">
