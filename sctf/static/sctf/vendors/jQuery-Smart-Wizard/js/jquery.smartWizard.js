@@ -22,8 +22,8 @@ function SmartWizard(target, options) {
     this.loader = $('<div>Loading</div>').addClass("loader");
     this.buttons = {
         next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("buttonNext"),
-        previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("buttonPrevious"),
-        finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("buttonFinish")
+        previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("buttonPrevious")/*,
+        finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("buttonFinish","collapse-link")*/
     };
 
     /*
@@ -284,6 +284,7 @@ function SmartWizard(target, options) {
             }
         }
         // Finish Button
+
         if (! $this.steps.hasClass('disabled') || $this.options.enableFinishButton){
             $($this.buttons.finish).removeClass("buttonDisabled");
             if ($this.options.hideButtonsOnDisabled) {
@@ -296,6 +297,7 @@ function SmartWizard(target, options) {
             }
         }
     };
+
 
     /*
      * Public methods
