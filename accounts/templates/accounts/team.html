@@ -181,21 +181,111 @@
 	</div>
 </div>
 
-<!-- Chart Plot (Score Over Time) init -->
-<script type="text/javascript">
-	
-</script>
-
-<!-- Doughnut (Key Percentage, Category Breakdown) init -->
-<script type="text/javascript">
-
-	
-</script>
 
 
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
-	
+	$(document).ready(function() {
+	init_chart_doughnut();
+});	
+</script>
+
+<script type="text/javascript">
+	function init_chart_doughnut(){
+
+		if( typeof (Chart) === 'undefined'){ return; }
+		
+		console.log('init_chart_doughnut');
+
+		// Page team - Key Percentage
+		if ($('#canvasDoughnut_key_percentage').length){
+			
+			var chart_doughnut_settings = {
+				type: 'doughnut',
+				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+				data: {
+					labels: [
+					"Solved",
+					"Failed",
+					"Never Tried"
+					],
+					datasets: [{
+						data: [15, 20, 30],
+						backgroundColor: [
+						"#26B99A",
+						"#E74C3C",
+						"#BDC3C7"
+						],
+						hoverBackgroundColor: [
+						"#36CAAB",
+						"#E95E4F",
+						"#CFD4D8"
+						]
+					}]
+				},
+				options: { 
+					legend: true, 
+					responsive: true 
+				}
+			}
+
+			$('#canvasDoughnut_key_percentage').each(function(){
+				
+				var chart_element = $(this);
+				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+				
+			});			
+
+		}  
+
+		// Page team - Category Breakdown
+		if ($('#canvasDoughnut_category_breakdown').length){
+			
+			var chart_doughnut_settings = {
+				type: 'doughnut',
+				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+				data: {
+					labels: [
+					"Symbian",
+					"Blackberry",
+					"Other",
+					"Android",
+					"IOS"
+					],
+					datasets: [{
+						data: [15, 20, 30, 10, 30],
+						backgroundColor: [
+						"#BDC3C7",
+						"#9B59B6",
+						"#E74C3C",
+						"#26B99A",
+						"#3498DB"
+						],
+						hoverBackgroundColor: [
+						"#CFD4D8",
+						"#B370CF",
+						"#E95E4F",
+						"#36CAAB",
+						"#49A9EA"
+						]
+					}]
+				},
+				options: { 
+					legend: true, 
+					responsive: true 
+				}
+			}
+
+			$('#canvasDoughnut_category_breakdown').each(function(){
+				
+				var chart_element = $(this);
+				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+				
+			});			
+
+		}  
+
+	}
 </script>
 
 {% endblock %}
