@@ -4997,8 +4997,7 @@ if (typeof NProgress != 'undefined') {
 
 
 $(document).ready(function() {
-
-	init_chart_doughnut();
+	//init_chart_doughnut();
 	init_flot_chart();
 	init_DataTables();
 
