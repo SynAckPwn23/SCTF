@@ -336,52 +336,53 @@ if (typeof NProgress != 'undefined') {
 	  }
 	  
 
-function init_flot_chart(){
+	  function init_flot_chart(){
 
-	if( typeof ($.plot) === 'undefined'){ return; }
-	console.log('init_flot_chart');
+	  	if( typeof ($.plot) === 'undefined'){ return; }
+	  	console.log('init_flot_chart');
 
-	var arr_data1 = [
-	[gd(2012, 1, 1), 17],
-	[gd(2012, 1, 2), 86],
-	[gd(2012, 1, 3), -17],
-	[gd(2012, 1, 4), 39],
-	[gd(2012, 1, 5), 20],
-	[gd(2012, 1, 6), 85],
-	[gd(2012, 1, 7), 7]
-	];
+    // Page team - Score Over Time Table
+    var arr_data1 = [
+    [gd(2012, 1, 1), 12],
+    [gd(2012, 1, 2), 86],
+    [gd(2012, 1, 3), -17],
+    [gd(2012, 1, 4), 39],
+    [gd(2012, 1, 5), 20],
+    [gd(2012, 1, 6), 85],
+    [gd(2012, 1, 7), 7]
+    ];
 
-	var chart_plot_01_settings = {
-		series: {
-			lines: {
-				show: false,
-				fill: true
-			},
-			splines: {
-				show: true,
-				tension: 0.4,
-				lineWidth: 1,
-				fill: 0.4
-			},
-			points: {
-				radius: 0,
-				show: true
-			},
-			shadowSize: 2
-		},
-		grid: {
-			verticalLines: true,
-			hoverable: true,
-			clickable: true,
-			tickColor: "#d5d5d5",
-			borderWidth: 1,
-			color: '#fff'
-		},
-		colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-		xaxis: {
-			tickColor: "rgba(51, 51, 51, 0.06)",
-			mode: "time",
-			tickSize: [1, "day"],
+    var teamScoreOverTime_settings = {
+    	series: {
+    		lines: {
+    			show: false,
+    			fill: true
+    		},
+    		splines: {
+    			show: true,
+    			tension: 0.4,
+    			lineWidth: 1,
+    			fill: 0.4
+    		},
+    		points: {
+    			radius: 0,
+    			show: true
+    		},
+    		shadowSize: 2
+    	},
+    	grid: {
+    		verticalLines: true,
+    		hoverable: true,
+    		clickable: true,
+    		tickColor: "#d5d5d5",
+    		borderWidth: 1,
+    		color: '#fff'
+    	},
+    	colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+    	xaxis: {
+    		tickColor: "rgba(51, 51, 51, 0.06)",
+    		mode: "time",
+    		tickSize: [1, "day"],
             //tickLength: 10,
             axisLabel: "Date",
             axisLabelUseCanvas: true,
@@ -396,40 +397,102 @@ function init_flot_chart(){
         tooltip: false
     }
 
-    if ($("#chart_plot_01").length){
-    	console.log('Plot1');
+    if ($("#teamScoreOverTime").length){
+    	console.log('Plot_teamScoreOverTime');
+ 		// Page team - Score Over Time Table
+ 		$.plot( $("#teamScoreOverTime"), [ arr_data1],  teamScoreOverTime_settings );
+ 	}
 
-    	$.plot( $("#chart_plot_01"), [ arr_data1],  chart_plot_01_settings );
+    // Page home - Network Activities
+    var arr_data2 = [
+    [gd(2012, 1, 1), 100],
+    [gd(2012, 1, 2), 8],
+    [gd(2012, 1, 3), 7],
+    [gd(2012, 1, 4), 9],
+    [gd(2012, 1, 5), 20],
+    [gd(2012, 1, 6), 25],
+    [gd(2012, 1, 7), 75]
+    ];
+
+    var homeNetworkActivities_settings = {
+    	series: {
+    		lines: {
+    			show: false,
+    			fill: true
+    		},
+    		splines: {
+    			show: true,
+    			tension: 0.4,
+    			lineWidth: 1,
+    			fill: 0.4
+    		},
+    		points: {
+    			radius: 0,
+    			show: true
+    		},
+    		shadowSize: 2
+    	},
+    	grid: {
+    		verticalLines: true,
+    		hoverable: true,
+    		clickable: true,
+    		tickColor: "#d5d5d5",
+    		borderWidth: 1,
+    		color: '#fff'
+    	},
+    	colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+    	xaxis: {
+    		tickColor: "rgba(51, 51, 51, 0.06)",
+    		mode: "time",
+    		tickSize: [1, "day"],
+            //tickLength: 10,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+        },
+        yaxis: {
+        	ticks: 8,
+        	tickColor: "rgba(51, 51, 51, 0.06)",
+        },
+        tooltip: false
     }
 
-}
+    if ($("#homeNetworkActivities").length){
+    	console.log('Plot_homeNetworkActivities');
+ 		// Page team - Score Over Time Table
+ 		$.plot( $("#homeNetworkActivities"), [ arr_data2],  homeNetworkActivities_settings );
+ 	}
+
+ }
 
 
-/* STARRR */
+ /* STARRR */
 
-function init_starrr() {
+ function init_starrr() {
 
-	if( typeof (starrr) === 'undefined'){ return; }
-	console.log('init_starrr');
+ 	if( typeof (starrr) === 'undefined'){ return; }
+ 	console.log('init_starrr');
 
-	$(".stars").starrr();
+ 	$(".stars").starrr();
 
-	$('.stars-existing').starrr({
-		rating: 4
-	});
+ 	$('.stars-existing').starrr({
+ 		rating: 4
+ 	});
 
-	$('.stars').on('starrr:change', function (e, value) {
-		$('.stars-count').html(value);
-	});
+ 	$('.stars').on('starrr:change', function (e, value) {
+ 		$('.stars-count').html(value);
+ 	});
 
-	$('.stars-existing').on('starrr:change', function (e, value) {
-		$('.stars-count-existing').html(value);
-	});
+ 	$('.stars-existing').on('starrr:change', function (e, value) {
+ 		$('.stars-count-existing').html(value);
+ 	});
 
-};
+ };
 
 
-function init_JQVmap(){
+ function init_JQVmap(){
 
 		//console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );	
 		
@@ -503,7 +566,8 @@ function init_JQVmap(){
 		
 		console.log('init_chart_doughnut');
 
-		if ($('#canvasDoughnut1').length){
+		// Page team - Key Percentage
+		if ($('#canvasDoughnut_key_percentage').length){
 			
 			var chart_doughnut_settings = {
 				type: 'doughnut',
@@ -540,7 +604,7 @@ function init_JQVmap(){
 				}
 			}
 
-			$('#canvasDoughnut1').each(function(){
+			$('#canvasDoughnut_key_percentage').each(function(){
 				
 				var chart_element = $(this);
 				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
@@ -549,7 +613,8 @@ function init_JQVmap(){
 
 		}  
 
-		if ($('#canvasDoughnut2').length){
+		// Page team - Category Breakdown
+		if ($('#canvasDoughnut_category_breakdown').length){
 			
 			var chart_doughnut_settings = {
 				type: 'doughnut',
@@ -586,7 +651,7 @@ function init_JQVmap(){
 				}
 			}
 
-			$('#canvasDoughnut2').each(function(){
+			$('#canvasDoughnut_category_breakdown').each(function(){
 				
 				var chart_element = $(this);
 				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
@@ -2094,78 +2159,6 @@ function init_JQVmap(){
 			  } 
 			  
 
-			  // Doughnut chart 1
-			  /*
-			  if ($('#canvasDoughnut1').length ){ 
-
-			  	var ctx = document.getElementById("canvasDoughnut1");
-			  	var data = {
-			  		labels: [
-			  		"Fail",
-			  		"Solves",
-			  		],
-			  		datasets: [{
-			  			data: [60, 40],
-			  			backgroundColor: [
-			  			"#BDC3C7",
-			  			"#26B99A"
-			  			],
-			  			hoverBackgroundColor: [
-			  			"#CFD4D8",
-			  			"#36CAAB"
-			  			]
-
-			  		}]
-			  	};
-
-			  	var canvasDoughnut = new Chart(ctx, {
-			  		type: 'doughnut',
-			  		tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-			  		data: data
-			  	});
-
-			  } 
-
-				  // Doughnut chart 2
-
-				  if ($('#canvasDoughnut2').length ){ 
-
-				  	var ctx = document.getElementById("canvasDoughnut2");
-				  	var data = {
-				  		labels: [
-				  		"Dark Grey",
-				  		"Purple Color",
-				  		"Gray Color",
-				  		"Green Color",
-				  		"Blue Color"
-				  		],
-				  		datasets: [{
-				  			data: [50, 120, 180, 140 , 100, 12],
-				  			backgroundColor: [
-				  			"#455C73",
-				  			"#9B59B6",
-				  			"#BDC3C7",
-				  			"#26B99A",
-				  			"#3498DB"
-				  			],
-				  			hoverBackgroundColor: [
-				  			"#34495E",
-				  			"#B370CF",
-				  			"#CFD4D8",
-				  			"#36CAAB",
-				  			"#49A9EA"
-				  			]
-
-				  		}]
-				  	};
-
-				  	var canvasDoughnut = new Chart(ctx, {
-				  		type: 'doughnut',
-				  		tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-				  		data: data
-				  	});
-
-				  } */
 
 			  // Radar chart
 			  
@@ -2494,8 +2487,11 @@ function init_JQVmap(){
 					"use strict";
 					return {
 						init: function() {
+							// Page teams - Teams List Table
 							handleDataTableButtonsTeams_Teams_List();
+							// Page team - Solves Table
 							handleDataTableButtonsTeam_Solves();
+							// Page team - Team Components Table
 							handleDataTableButtonsTeam_TeamComponents();
 						}
 					};
