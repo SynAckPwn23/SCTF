@@ -53,7 +53,7 @@
 									<td>
 										<a>{{team.name}}</a>
 										<br />
-										<small>Created {{team.created}}</small>
+										<small>Created {{team.created_at}}</small>
 									</td>
 									<td>
 										<ul class="list-inline">
@@ -131,14 +131,12 @@
 							<tbody>
 								{% for user in users %}
 
-
-
 								<tr>
 									<td><h2 class="count green">#{{user.profile.position}}</h2></td>
 									<td>
 										<a>{{user.username}}</a>
 										<br />
-										<small>Created {{user.profile.created}}</small>
+										<small>Created {{user.profile.created_at}}</small>
 									</td>
 									<td>{{user.first_name}}</td>
 									<td>{{user.last_name}}</td>
