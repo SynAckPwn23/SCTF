@@ -1,8 +1,9 @@
 # SCTF
 Security Capture the Flag Platform.
 
-# Install
+# Install & Start
 pip install -r requirements.txt
+python manage.py runserver <port>
 
 # Live Demo
 Insert Description
