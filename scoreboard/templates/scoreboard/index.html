@@ -53,7 +53,7 @@
 									<td>
 										<a>{{team.name}}</a>
 										<br />
-										<small>Created 01.01.2015</small>
+										<small>Created {{team.created}}</small>
 									</td>
 									<td>
 										<ul class="list-inline">
@@ -134,11 +134,11 @@
 
 
 								<tr>
-									<td><h2 class="count green">#1</h2></td>
+									<td><h2 class="count green">#{{user.position}}</h2></td>
 									<td>
 										<a>{{user.username}}</a>
 										<br />
-										<small>Created 01.01.2015</small>
+										<small>Created {{user.created}}</small>
 									</td>
 									<td>{{user.name}}</td>
 									<td>{{user.surname}}</td>
