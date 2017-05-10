@@ -4,7 +4,7 @@ Security Capture the Flag Platform.
 # Install & Start
 <b>Install</b>: pip install -r requirements.txt
 
-<b>Start</b>: python manage.py runserver [port]
+<b>Start</b>: python manage.py runserver <[port]>
 
 # Live Demo
 Insert Description
