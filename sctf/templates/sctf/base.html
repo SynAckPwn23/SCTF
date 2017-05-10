@@ -397,6 +397,8 @@
   <!-- Custom Theme Scripts -->
   <script src="{% static "sctf/build/js/custom.js" %}"></script>
 
+  {% block extra_js %}{% endblock %}
+
   <!-- Datatables -->
   <script>
     $.ajaxSetup({

@@ -182,24 +182,31 @@
 </div>
 
 
+{% endblock %}
+
+
+
+
+{% block extra_js %}
 
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
 	$(document).ready(function() {
-	init_chart_doughnut();
-});	
+		console.log('aa');
+		init_chart_doughnut();
+	});
 </script>
 
 <script type="text/javascript">
 	function init_chart_doughnut(){
 
 		if( typeof (Chart) === 'undefined'){ return; }
-		
+
 		console.log('init_chart_doughnut');
 
 		// Page team - Key Percentage
 		if ($('#canvasDoughnut_key_percentage').length){
-			
+
 			var chart_doughnut_settings = {
 				type: 'doughnut',
 				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
@@ -227,24 +234,24 @@
 						]
 					}]
 				},
-				options: { 
-					legend: true, 
-					responsive: true 
+				options: {
+					legend: true,
+					responsive: true
 				}
 			}
 
 			$('#canvasDoughnut_key_percentage').each(function(){
-				
+
 				var chart_element = $(this);
 				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-				
-			});			
 
-		}  
+			});
+
+		}
 
 		// Page team - Category Breakdown
 		if ($('#canvasDoughnut_category_breakdown').length){
-			
+
 			var chart_doughnut_settings = {
 				type: 'doughnut',
 				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
@@ -274,26 +281,21 @@
 						]
 					}]
 				},
-				options: { 
-					legend: true, 
-					responsive: true 
+				options: {
+					legend: true,
+					responsive: true
 				}
 			}
 
 			$('#canvasDoughnut_category_breakdown').each(function(){
-				
+
 				var chart_element = $(this);
 				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-				
-			});			
 
-		}  
+			});
+
+		}
 
 	}
 </script>
-
 {% endblock %}
-
-
-
-
