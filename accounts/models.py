@@ -61,6 +61,14 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
         return '{}, Team: {}'.format(self.user.username, self.team)
 
     @property
+    def solved_challenges(self):
+        return self.user.solved_challenges
+
+    @property
+    def failed_challenges(self):
+        return self.user.failed_challenges
+
+    @property
     def position(self):
         return sorted(UserProfile.objects.all(), key=lambda t: -t.total_points).index(self) + 1
 
