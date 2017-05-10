@@ -1,17 +1,15 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-
-from challenges.models import Challenge
+from accounts.models import Team
 
 
 @login_required
 def index(request):
-    user = request.user
     parameters = {
-        'challenges_count': Challenge.objects.count(),
-        'total_points_count': Challenge.objects.total_points(),
-        'user_points_count': user.solved_challenges.total_points(),
+        'teams': Team.objects.all(),
+        'users': get_user_model().objects.all(),
     }
     return render(request, 'scoreboard/index.html', parameters)
 
