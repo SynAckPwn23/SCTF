@@ -20,6 +20,14 @@ class StatsFromChallengesMixin:
         return self.failed_challenges.count() or 0
 
     @property
+    def num_failed_challenges(self):
+        return self.failed_challenges.distinct.count() or 0
+
+    def num_never_tried_challenges(self):
+        from challenges.models import Challenge
+        return Challenge.objects.count() - self.num_success - self.num_failed_challenges
+
+    @property
     def progress(self):
         from challenges.models import Challenge
         return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
