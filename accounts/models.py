@@ -24,7 +24,7 @@ class Team(models.Model):
 
 
 class UserProfile(models.Model):
-    team = models.ForeignKey('accounts.Team')
+    team = models.ForeignKey('accounts.Team', null=True)
     user = models.OneToOneField(User, related_name='profile')
 
     def __str__(self):
