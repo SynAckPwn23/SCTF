@@ -1,7 +1,10 @@
+from operator import or_
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from functools import reduce
 
 User = get_user_model()
 
@@ -32,6 +35,15 @@ class StatsFromChallengesMixin:
         from challenges.models import Challenge
         return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
 
+    @property
+    def position(self):
+        def compare_key(element):
+            return (
+                -element.total_points,
+                getattr(element.challengesolved_set.last(), 'datetime', 0)
+            )
+        return sorted(type(self).objects.all(), key=compare_key).index(self) + 1
+
 
 class Team(models.Model, StatsFromChallengesMixin):
     name = models.CharField(max_length=256)
@@ -41,6 +53,12 @@ class Team(models.Model, StatsFromChallengesMixin):
     @property
     def num_users(self):
         return self.users.count()
+
+    @property
+    def challengesolved_set(self):
+        return reduce(or_,
+                      (u.challengesolved_set.all() for u in self.users.all()),
+                      Team.objects.none())
 
     @property
     def solved_challenges(self):
@@ -55,11 +73,6 @@ class Team(models.Model, StatsFromChallengesMixin):
             .distinct()\
             .exclude(pk__in=self.solved_challenges.all())
 
-
-    @property
-    def position(self):
-        return sorted(Team.objects.all(), key=lambda t: -t.total_points).index(self) + 1
-
     def __str__(self):
         return self.name
 
@@ -73,6 +86,10 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
         return '{}, Team: {}'.format(self.user.username, self.team)
 
     @property
+    def challengesolved_set(self):
+        return self.user.challengesolved_set
+
+    @property
     def solved_challenges(self):
         return self.user.solved_challenges
 
@@ -80,10 +97,6 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     def failed_challenges(self):
         return self.user.failed_challenges\
             .exclude(pk__in=self.solved_challenges.all())
-
-    @property
-    def position(self):
-        return sorted(UserProfile.objects.all(), key=lambda t: -t.total_points).index(self) + 1
 
 
 @receiver(post_save, sender=User)
