@@ -21,7 +21,7 @@ class StatsFromChallengesMixin:
 
     @property
     def num_failed_challenges(self):
-        return self.failed_challenges.distinct.count() or 0
+        return self.failed_challenges.distinct().count() or 0
 
     def num_never_tried_challenges(self):
         from challenges.models import Challenge

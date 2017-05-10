@@ -210,7 +210,11 @@
 					"Never Tried"
 					],
 					datasets: [{
-						data: [15, 20, 30],
+						data: [
+							{{ team.num_success }},
+							{{ team.num_failed_challenges }},
+							{{ team.num_never_tried_challenges }}
+						],
 						backgroundColor: [
 						"#26B99A",
 						"#E74C3C",
