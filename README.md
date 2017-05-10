@@ -1,3 +1,5 @@
+https://travis-ci.org/SynAckPwn23/SCTF.svg?branch=master
+
 # SCTF
 Security Capture the Flag Platform.
 
