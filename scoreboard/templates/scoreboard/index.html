@@ -49,7 +49,7 @@
 								{% for team in teams %}
 								
 								<tr>
-									<td><h2 class="count green">#{{team.position}}</h2></td>
+									<td><h4 class="count green">#{{team.position}}</h4></td>
 									<td>
 										<a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
 										<br />
@@ -76,7 +76,7 @@
 										<div class="progress progress_sm">
 											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{team.progress}}"></div>
 										</div>
-										<small>{{team.progress}}% Complete</small>
+										<small><span class="green">{{team.progress}}%</span> Complete</small>
 									</td>
 									<td>
 										<a>{{team.total_points}}</a>
@@ -125,7 +125,7 @@
 								{% for user in users %}
 
 								<tr>
-									<td><h2 class="count green">#{{user.profile.position}}</h2></td>
+									<td><h4 class="count green">#{{user.profile.position}}</h4></td>
 									<td>
 										<a class="count green" href="#">{{user.username}}</a>
 										<br />
@@ -147,7 +147,7 @@
 										<div class="progress progress_sm">
 											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{user.profile.progress}}"></div>
 										</div>
-										<small>{{user.profile.progress}}% Complete</small>
+										<small><span class="green">{{user.profile.progress}}%</span> Complete</small>
 									</td>
 									<td>
 										<a>{{user.profile.total_points}}</a>
