@@ -27,6 +27,11 @@ class Team(models.Model):
     def num_users(self):
         return self.users.count()
 
+    @property
+    def progress(self):
+        from challenges.models import Challenge
+        return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
+
     def __str__(self):
         return self.name
 
@@ -45,6 +50,11 @@ class UserProfile(models.Model):
     @property
     def position(self):
         return sorted(UserProfile.objects.all(), key=lambda t: -t.total_points).index(self) + 1
+
+    @property
+    def progress(self):
+        from challenges.models import Challenge
+        return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
 
 
 @receiver(post_save, sender=User)
