@@ -28,7 +28,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
 
     def __str__(self):
-        return '{}, Team: {}'.format(self.user.username, self.team.name)
+        return '{}, Team: {}'.format(self.user.username, self.team)
 
 
 @receiver(post_save, sender=User)
