@@ -10,8 +10,6 @@ class Category(models.Model):
         return self.name
 
 
-
-
 class ChallengeQuerySet(models.QuerySet):
 
     def total_points(self):
@@ -30,6 +28,10 @@ class Challenge(models.Model):
     solved_by = models.ManyToManyField(get_user_model(),
                                        related_name='solved_challenges',
                                        through='challenges.ChallengeSolved')
+
+    failed_by = models.ManyToManyField(get_user_model(),
+                                       related_name='failed_challenges',
+                                       through='challenges.ChallengeFail')
 
     def __str__(self):
         return self.name

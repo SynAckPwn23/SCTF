@@ -6,10 +6,33 @@ from django.db.models.signals import post_save
 User = get_user_model()
 
 
-class Team(models.Model):
+class StatsFromChallengesMixin:
+    @property
+    def total_points(self):
+        return self.solved_challenges.total_points() or 0
+
+    @property
+    def num_success(self):
+        return self.solved_challenges.count() or 0
+
+    @property
+    def num_fails(self):
+        return self.failed_challenges.count() or 0
+
+    @property
+    def progress(self):
+        from challenges.models import Challenge
+        return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
+
+
+class Team(models.Model, StatsFromChallengesMixin):
     name = models.CharField(max_length=256)
     users = models.ManyToManyField(User, through='accounts.userprofile')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def num_users(self):
+        return self.users.count()
 
     @property
     def solved_challenges(self):
@@ -17,27 +40,19 @@ class Team(models.Model):
         return Challenge.objects.filter(solved_by__profile__team=self).distinct()
 
     @property
-    def total_points(self):
-        return self.solved_challenges.total_points() or 0
+    def failed_challenges(self):
+        from challenges.models import Challenge
+        return Challenge.objects.filter(failed_by__profile__team=self).distinct()
 
     @property
     def position(self):
         return sorted(Team.objects.all(), key=lambda t: -t.total_points).index(self) + 1
 
-    @property
-    def num_users(self):
-        return self.users.count()
-
-    @property
-    def progress(self):
-        from challenges.models import Challenge
-        return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
-
     def __str__(self):
         return self.name
 
 
-class UserProfile(models.Model):
+class UserProfile(models.Model, StatsFromChallengesMixin):
     team = models.ForeignKey('accounts.Team', null=True)
     user = models.OneToOneField(User, related_name='profile')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -46,17 +61,8 @@ class UserProfile(models.Model):
         return '{}, Team: {}'.format(self.user.username, self.team)
 
     @property
-    def total_points(self):
-        return self.user.solved_challenges.total_points() or 0
-
-    @property
     def position(self):
         return sorted(UserProfile.objects.all(), key=lambda t: -t.total_points).index(self) + 1
-
-    @property
-    def progress(self):
-        from challenges.models import Challenge
-        return int(self.user.solved_challenges.count() / Challenge.objects.count() * 100)
 
 
 @receiver(post_save, sender=User)
