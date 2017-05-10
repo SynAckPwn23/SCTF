@@ -50,7 +50,11 @@ class Team(models.Model, StatsFromChallengesMixin):
     @property
     def failed_challenges(self):
         from challenges.models import Challenge
-        return Challenge.objects.filter(failed_by__profile__team=self).distinct()
+        return Challenge.objects\
+            .filter(failed_by__profile__team=self)\
+            .distinct()\
+            .exclude(pk__in=self.solved_challenges.all())
+
 
     @property
     def position(self):
@@ -74,7 +78,8 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
 
     @property
     def failed_challenges(self):
-        return self.user.failed_challenges
+        return self.user.failed_challenges\
+            .exclude(pk__in=self.solved_challenges.all())
 
     @property
     def position(self):
