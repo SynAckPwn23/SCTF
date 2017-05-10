@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_417_EXPECTATION_FAILED, HTTP_412_PRECONDITION_FAILED
 from rest_framework.viewsets import GenericViewSet
 
-from challenges.models import Challenge, Category, ChallengeSolved
+from challenges.models import Challenge, Category, ChallengeSolved, ChallengeFail
 from challenges.serializers import ChallengeSolvedSerializer
 
 
@@ -36,4 +36,5 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
         if key == challenge.key:
             ChallengeSolved.objects.create(user=user, challenge=challenge)
             return Response('OK')
+        ChallengeFail.objects.create(user=user, challenge=challenge)
         return Response('Wrong KEY', status=HTTP_417_EXPECTATION_FAILED)
