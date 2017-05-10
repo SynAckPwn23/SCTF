@@ -16,6 +16,14 @@ class Team(models.Model):
         return Challenge.objects.filter(solved_by__profile__team=self).distinct()
 
     @property
+    def total_points(self):
+        return self.solved_challenges.total_points() or 0
+
+    @property
+    def position(self):
+        return sorted(Team.objects.all(), key=lambda t: -t.total_points).index(self) + 1
+
+    @property
     def num_users(self):
         return self.users.count()
 
@@ -29,6 +37,14 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
+
+    @property
+    def total_points(self):
+        return self.user.solved_challenges.total_points() or 0
+
+    @property
+    def position(self):
+        return sorted(UserProfile.objects.all(), key=lambda t: -t.total_points).index(self) + 1
 
 
 @receiver(post_save, sender=User)
