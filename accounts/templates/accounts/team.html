@@ -7,18 +7,28 @@
 
 <!-- page content -->
 
-<!-- page content -->
-
-
 <div class="right_col" role="main" style="min-height: 5364px;">
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
 				<h3>Team Statistic </h3>
 			</div>
-
-			
 		</div>
+		<div class="clearfix"></div>
+
+		 <!-- top tiles -->
+      <div class="row tile_count">
+        <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+          <span class="count_top"><i class="fa fa-user"></i> Team Place</span>
+          <div class="count green">#{{team.position}}</div>
+          <span class="count_bottom"><i class="fa fa-group"></i> Of {{teams_count}} Teams</span>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+          <span class="count_top"><i class="fa fa-magic"></i> Total Points Gained</span>
+          <div class="count green">{{team.total_points}}</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{total_points_count}} </i>Total Points Available</span>
+        </div>
+      </div>
 
 		<div class="clearfix"></div>
 
