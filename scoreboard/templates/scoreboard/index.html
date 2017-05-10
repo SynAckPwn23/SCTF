@@ -37,7 +37,7 @@
 							<thead>
 								<tr>
 									<th style="width: 1%">Position</th>
-									<th style="width: 20%">Team Name</th>
+									<th style="width: 21%">Team Name</th>
 									<th>Team Members</th>
 									<th>Team Photos</th>
 									<th style="width: 20%">Challenges Progress</th>
@@ -51,9 +51,9 @@
 								<tr>
 									<td><h2 class="count green">#{{team.position}}</h2></td>
 									<td>
-										<a>{{team.name}}</a>
+										<a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
 										<br />
-										<small>Created {{team.created_at}}</small>
+										<small>Created on {{team.created_at}}</small>
 									</td>
 									<td>
 										<ul class="list-inline">
@@ -111,7 +111,7 @@
 							<thead>
 								<tr>
 									<th style="width: 1%">Position</th>
-									<th style="width: 20%">Username</th>
+									<th style="width: 21%">Username</th>
 									<th>Name</th>
 									<th>Surname</th>
 									<th>Email</th>
@@ -129,7 +129,7 @@
 									<td>
 										<a>{{user.username}}</a>
 										<br />
-										<small>Created {{user.profile.created_at}}</small>
+										<small>Created on {{user.profile.created_at}}</small>
 									</td>
 									<td>{{user.first_name}}</td>
 									<td>{{user.last_name}}</td>
