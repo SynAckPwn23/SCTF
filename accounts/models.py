@@ -56,7 +56,7 @@ class UserProfile(models.Model):
     @property
     def progress(self):
         from challenges.models import Challenge
-        return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
+        return int(self.user.solved_challenges.count() / Challenge.objects.count() * 100)
 
 
 @receiver(post_save, sender=User)
