@@ -5,8 +5,6 @@
 
 
 <!-- page content -->
-
-
 <div class="right_col" role="main">
 	<br />
 	<div class="row">
@@ -20,60 +18,29 @@
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Total <div style="display:inline;" class="count green">vs</div> Completed Challenges</h2>
+						<h2>Challenges Solved for Category</small></h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>			
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content"><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-						<canvas id="canvasRadarChall" width="593" height="296" style="width: 593px; height: 296px;"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="x_panel">
-					<div class="x_title">
-						<h2>Team Components - <div style="display:inline;" class="count green">Team Name</div></h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Settings 1</a>
+									</li>
+									<li><a href="#">Settings 2</a>
+									</li>
+								</ul>
+							</li>
+							<li><a class="close-link"><i class="fa fa-close"></i></a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content" style="display: block;">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Username</th>
-									<th>Name</th>
-									<th>Surname</th>
-									<th>Email</th>
-									<th>Total Points</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								{% for user in team.users.all %}
-								<tr>
-									<td>{{user}}</td>
-									<td></td>
-									<td></td>
-									<td>{{user.email}}</td>
-									<td></td>
-
-								</tr>
-								{% endfor %}
-							</tbody>
-							
-						</table>
+					<div class="x_content">
+						<canvas id="challengesSolvedForCategory"></canvas>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		{% for category in categories %}
@@ -300,5 +267,61 @@
 
 {% endblock %}
 
+{% block extra_js %}
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		console.log('aa');
+		init_charts();
+	});
+</script>
+
+<script type="text/javascript">
+	function init_charts() {
+
+		console.log('run_charts  typeof [' + typeof (Chart) + ']');
+		if( typeof (Chart) === 'undefined'){ return; }
+		console.log('init_charts');
+
+		Chart.defaults.global.legend = {
+			enabled: false
+		};
+
+		  // challengesSolvedForCategory chart
+
+		  if ($('#challengesSolvedForCategory').length ){ 
+
+		  	var ctx = document.getElementById("challengesSolvedForCategory");
+		  	var mybarChart = new Chart(ctx, {
+		  		type: 'bar',
+		  		data: {
+		  			labels: ["Scripting", "Cryptography", "Web", "Netwprking", "Exploitation", "Jolly"],
+		  			datasets: [{
+		  				label: '# Total',
+		  				backgroundColor: "#03586A",
+		  				data: [3, 1, 1, 2, 2, 1]
+		  			}, {
+		  				label: '# Resolved',
+		  				backgroundColor: "#26B99A",
+		  				data: [1, 1, 0, 0, 0, 0]
+		  			}]
+		  		},
+
+		  		options: {
+		  			scales: {
+		  				yAxes: [{
+		  					stacked:false,
+		  					ticks: {
+		  						beginAtZero: true
+		  					}
+		  				}]
+		  			},
+		  		}
+		  	});
+
+		  } 
+		}
+	</script>
+
+	{% endblock %}
 
