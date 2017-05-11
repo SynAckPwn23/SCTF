@@ -46,16 +46,18 @@
     <div class="main_container ">
       <div class="col-md-3 left_col menu_fixed">
         <div class="left_col scroll-view">
+          
           <div class="navbar nav_title" style="border: 0;">
-            <a href="{% url 'index' %}" class="site_title"><img style="width:30px;margin:0px 20px 0px 10px;" src="/static/sctf/images/logo.png" alt=""><!--<img style="height: 15px;" src="{% static "sctf/images/acn-logo.png" %}">--><span>Security CTF</span></a>
+            <a href="{% url 'index' %}" class="site_title"><img style="width:30px;margin:0px 20px 0px 10px;" src="/static/sctf/images/logo.png" alt=""><span>Security CTF</span></a>
           </div>
+          
 
           <div class="clearfix"></div>
 
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="{% static "sctf/images/user.png" %}"alt="..." class="img-circle profile_img">
+              <img src="{% static "sctf/images/user.png" %}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -111,6 +113,8 @@
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
+                         <p style="text-align:center;"> <img style="width:85%;" src="{% static "sctf/images/acn-logo.png"%}" alt=""></p>
+
           <a data-toggle="tooltip" data-placement="top" title="Settings">
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
           </a>
@@ -123,12 +127,16 @@
           <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
           </a>
+
         </div>
         <!-- /menu footer buttons -->
       </div>
     </div>
+
     <!-- top navigation -->
     <div class="top_nav">
+            <div style="color:#fff;text-align: center;background-color:#2A3F54;padding:5px;" class="white">Accenture Security - <span class="green">Capture the Flag Platform</span></div>
+
       <div class="nav_menu">
         <nav>
           <div class="nav toggle">
@@ -136,6 +144,7 @@
           </div>
 
           <ul class="nav navbar-nav navbar-right">
+
             <li class="">
               <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <img src="{% static "sctf/images/user.png" %}" alt="">{{user.username}}
@@ -148,7 +157,10 @@
             </li>
           </ul>
         </nav>
+
       </div>
+
+
     </div>
     <!-- /top navigation -->
     {% block content %}
