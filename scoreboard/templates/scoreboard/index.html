@@ -11,7 +11,7 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-				<h3>Scoreboard</h3>
+				<!--<h3>Scoreboard</h3>-->
 			</div>
 		</div>
 
@@ -22,7 +22,7 @@
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Ranking Teams</h2>
+						<h2 class="green">TEAMS RANKING</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -64,11 +64,12 @@
 									</td>
 									<td>
 										<ul class="list-inline">
-										{% for user in team.users.all %}
+											{% for user in team.users.all %}
 											<li>
 												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+												<a class="green" href="#"><font size="0" style="display:block;" >{{user.username}}</font></a>
 											</li>
-										{% endfor %}
+											{% endfor %}
 
 										</ul>
 									</td>
@@ -96,7 +97,7 @@
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Ranking Users</h2>
+						<h2 class="green">USERS RANKING</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -139,6 +140,7 @@
 
 											<li>
 												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+												<a class="green" href="#"><font size="0" style="display:block;" >{{user.username}}</font></a>
 											</li>
 											
 										</ul>
