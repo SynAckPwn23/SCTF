@@ -46,7 +46,7 @@
     <div class="main_container ">
       <div class="col-md-3 left_col menu_fixed">
         <div class="left_col scroll-view">
-          
+
           <div class="navbar nav_title" style="border: 0;">
             <a href="{% url 'index' %}" class="site_title"><img style="width:30px;margin:0px 20px 0px 10px;" src="/static/sctf/images/logo.png" alt=""><span>Security CTF</span></a>
           </div>
@@ -113,235 +113,216 @@
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-                         <p style="text-align:center;"> <img style="width:85%;" src="{% static "sctf/images/acn-logo.png"%}" alt=""></p>
+         <p style="text-align:center;"> <img style="width:85%;" src="{% static "sctf/images/acn-logo.png"%}" alt=""></p>
 
-          <a data-toggle="tooltip" data-placement="top" title="Settings">
-            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="Lock">
-            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
-            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-          </a>
+         <a data-toggle="tooltip" data-placement="top" title="Settings">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+          <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Lock">
+          <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
+          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+        </a>
 
-        </div>
-        <!-- /menu footer buttons -->
       </div>
+      <!-- /menu footer buttons -->
+    </div>
+  </div>
+
+  <!-- top navigation -->
+  <div class="top_nav">
+    <div style="color:#fff;text-align: center;background-color:#2A3F54;padding:5px;" class="white">Accenture Security - <span class="green">Capture the Flag Platform</span></div>
+
+    <div class="nav_menu">
+      <nav>
+        <div class="nav toggle">
+          <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="">
+            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <img src="{% static "sctf/images/user.png" %}" alt="">{{user.username}}
+              <span class=" fa fa-angle-down"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-usermenu pull-right">
+              <li><a href="javascript:;"> Profile</a></li>
+              <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
     </div>
 
-    <!-- top navigation -->
-    <div class="top_nav">
-            <div style="color:#fff;text-align: center;background-color:#2A3F54;padding:5px;" class="white">Accenture Security - <span class="green">Capture the Flag Platform</span></div>
 
-      <div class="nav_menu">
-        <nav>
-          <div class="nav toggle">
-            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-          </div>
+  </div>
+  <!-- /top navigation -->
+  {% block content %}
+  <!-- page content -->
+  <div class="right_col" role="main">
+    <!-- top tiles -->
+    <div class="row tile_count">
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+        <div class="count">{{users_count}}</div>
+        <span class="count_bottom"><i class="fa fa-user"></i><!--<i class="green">4% </i> From last Week--> TODO</span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-group"></i> Total Teams</span>
+        <div class="count">{{teams_count}}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-group"></i> TODO </i>Components [AVG]</span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-bug"></i> Total Challenges</span>
+        <div class="count">{{challenges_count}}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Categories</span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-magic"></i> Total Points Available</span>
+        <div class="count">{{total_points_count}}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{user_points_count}} </i> Gained</span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-key"></i> Wrong Keys Submitted</span>
+        <div class="count red">2315</div>
+        <span class="count_bottom"><i class="red"><i class="fa fa-bug"></i> TODO </i> Most Failed</span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-key"></i> Right Keys Submitted</span>
+        <div class="count green">7325</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Most Successful</span>
+      </div>
 
-          <ul class="nav navbar-nav navbar-right">
+    </div>
 
-            <li class="">
-              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="{% static "sctf/images/user.png" %}" alt="">{{user.username}}
-                <span class=" fa fa-angle-down"></span>
-              </a>
-              <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="javascript:;"> Profile</a></li>
-                <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-              </ul>
+    <!-- /top tiles -->
+    <div class="row">
+     <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Welcome, please read all of the instructions before doing anything!</h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
           </ul>
-        </nav>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <!-- Smart Wizard -->
+          <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
+          <div id="wizard" class="form_wizard wizard_horizontal">
+            <ul class="wizard_steps">
+              <li>
+                <a href="#step-1">
+                  <span class="step_no">1</span>
+                  <span class="step_descr">
+                    Step 1<br />
+                    <small class="green">Choose Your Team</small>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#step-2">
+                  <span class="step_no">2</span>
+                  <span class="step_descr">
+                    Step 2<br />
+                    <small class="green">Resolve Challenges</small>
+                  </span>
+                </a>
+              </li>
 
-      </div>
-
-
-    </div>
-    <!-- /top navigation -->
-    {% block content %}
-    <!-- page content -->
-    <div class="right_col" role="main">
-      <!-- top tiles -->
-      <div class="row tile_count">
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-          <div class="count">{{users_count}}</div>
-          <span class="count_bottom"><i class="fa fa-user"></i><!--<i class="green">4% </i> From last Week--> TODO</span>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-group"></i> Total Teams</span>
-          <div class="count">{{teams_count}}</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-group"></i> TODO </i>Components [AVG]</span>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-bug"></i> Total Challenges</span>
-          <div class="count">{{challenges_count}}</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Categories</span>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-magic"></i> Total Points Available</span>
-          <div class="count">{{total_points_count}}</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{user_points_count}} </i> Gained</span>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-key"></i> Wrong Keys Submitted</span>
-          <div class="count red">2315</div>
-          <span class="count_bottom"><i class="red"><i class="fa fa-bug"></i> TODO </i> Most Failed</span>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-key"></i> Right Keys Submitted</span>
-          <div class="count green">7325</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Most Successful</span>
-        </div>
-
-      </div>
-
-      <!-- /top tiles -->
-      <div class="row">
-       <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>Welcome, please read all of the instructions before doing anything!</h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              <li>
+                <a href="#step-3">
+                  <span class="step_no">3</span>
+                  <span class="step_descr">
+                    Step 3<br />
+                    <small class="green">Go For Victory!</small>
+                  </span>
+                </a>
               </li>
             </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-            <!-- Smart Wizard -->
-            <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
-            <div id="wizard" class="form_wizard wizard_horizontal">
-              <ul class="wizard_steps">
-                <li>
-                  <a href="#step-1">
-                    <span class="step_no">1</span>
-                    <span class="step_descr">
-                      Step 1<br />
-                      <small class="green">Choose Your Team</small>
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#step-2">
-                    <span class="step_no">2</span>
-                    <span class="step_descr">
-                      Step 2<br />
-                      <small class="green">Resolve Challenges</small>
-                    </span>
-                  </a>
-                </li>
-             
-                <li>
-                  <a href="#step-3">
-                    <span class="step_no">3</span>
-                    <span class="step_descr">
-                      Step 3<br />
-                      <small class="green">Go For Victory!</small>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-              <div id="step-1">
-                <h2 class="StepTitle">Step 1 Content</h2>
-                <p>
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-              <div id="step-2">
-                <h2 class="StepTitle">Step 2 Content</h2>
-                <p>
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-              <div id="step-3">
-                <h2 class="StepTitle">Step 3 Content</h2>
-                <p>
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-             
-
+            <div id="step-1">
+              <h2 class="StepTitle">Step 1 - Choose Your Team</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              </p>
             </div>
-            <!-- End SmartWizard Content -->
-
-
+            <div id="step-2">
+              <h2 class="StepTitle">Step 2 - Resolve Challenges</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              </p>
+            </div>
+            <div id="step-3">
+              <h2 class="StepTitle">Step 3 - Go For Victory!</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              </p>
             </div>
           </div>
+          <!-- End SmartWizard Content -->
         </div>
+      </div>
+    </div>
 
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>Network Activities</h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-              </ul>
-              <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="dashboard_graph">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Network Activities</h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph">
 
-                  <div class="row x_title">
-                    <div class="col-md-6">
-                      <h3>Network Activities <small>Graph title sub-title</small></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                      </div>
-                    </div>
+              <div class="row x_title">
+                <div class="col-md-6">
+                  <h3>Network Activities <small>Graph title sub-title</small></h3>
+                </div>
+                <div class="col-md-6">
+                  <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
                   </div>
-
-                  <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div id="homeNetworkActivities" class="demo-placeholder"></div>
-                  </div>
-
-
-                  <div class="clearfix"></div>
                 </div>
               </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="homeNetworkActivities" class="demo-placeholder"></div>
+              </div>
+
+
+              <div class="clearfix"></div>
             </div>
           </div>
         </div>
       </div>
-      <br />
     </div>
-    <!-- /page content -->
-    {% endblock %}
-
-    <!-- footer content -->
-    <footer>
-      <div class="pull-right">
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-      </div>
-      <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->
   </div>
+  <br />
+</div>
+<!-- /page content -->
+{% endblock %}
+
+<!-- footer content -->
+<footer>
+  <div class="pull-right">
+    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+  </div>
+  <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
 </div>
 
 

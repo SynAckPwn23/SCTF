@@ -138,6 +138,18 @@
 														</span>
 														<input id="key_{{ challenge.id }}" style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key" required="required"  type="text">
 														<ul id="message_{{ challenge.id }}" class="parsley-errors-list" id="parsley-id-5"><li class="parsley-required"></li></ul>
+
+
+
+														<div class="x_content bs-example-popovers_{{ challenge.id }}">	
+															<div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
+																<p id="alert_message_{{ challenge.id }}"></p>
+															</div>
+														</div>
+
+
+
+
 														<div style="padding: 0px;" class="modal-footer">
 															<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
 															<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
@@ -227,6 +239,8 @@
 	function solve(id){
 		key = $('#key_'+id);
 		message = $('#message_'+id);
+		alert = $('#alert_'+id);
+		alert_message = $('#alert_message_'+id);
 
 		if(key.val() == ""){
 			key.addClass('parsley-error');
@@ -238,18 +252,24 @@
 				url: '{% url "api-challenge:solve-challenge-list" %}',
 				data: {challenge: id, key: $('#key_'+id).val()},
 				success: function (data) {
-					message.html("<span class='green'>OK</span>");
 					key.removeClass('parsley-error');
 					$("#challenge_button_id_"+id).removeClass('btn-primary').addClass('btn-success');
+					alert.removeClass('alert-danger alert-warning').addClass('alert-success');
+					alert_message.text('OK');
+					alert.show();
 				},
 				error: function (data) {
 				if(data.status == "417"){ // wrong key
 					key.addClass('parsley-error');
-					message.text("Wrong Key!");
+					$('#alert_message_'+id).text('Wrong Key!');
+					$('#alert_'+id).removeClass('alert-success alert-warning').addClass('alert-danger');
+					$('#alert_'+id).show();
 				}
 				else if(data.status == "412"){ // already solved
-					key.addClass('parsley-error');
-					message.text("Already Solved!");
+					key.addClass('parsley-error');			
+					$('#alert_message_'+id).text('Already Solved!');
+					$('#alert_'+id).removeClass('alert-success alert-danger').addClass('alert-warning');
+					$('#alert_'+id).show();
 				}
 			},
 		});
@@ -271,7 +291,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log('aa');
 		init_charts();
 	});
 </script>
@@ -288,9 +307,7 @@
 		};
 
 		  // challengesSolvedForCategory chart
-
 		  if ($('#challengesSolvedForCategory').length ){ 
-
 		  	var ctx = document.getElementById("challengesSolvedForCategory");
 		  	var mybarChart = new Chart(ctx, {
 		  		type: 'bar',
