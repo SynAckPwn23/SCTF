@@ -15,14 +15,21 @@ from challenges.serializers import ChallengeSolvedSerializer
 @login_required
 def index(request):
     categories = Category.objects.all()
+    user = request.user
+    team = user.profile.team
     categories_num_done_user = [
-        c.challenges.filter(solved_by=request.user).distinct().count()
+        c.challenges.filter(solved_by=user).distinct().count()
         for c in categories
     ]
     categories_num_done_team = [
-        c.challenges.filter(solved_by__team=request.user.profile.team).distinct().count()
+        c.challenges.filter(solved_by__team=team).distinct().count()
         for c in categories
     ]
+
+    last_team_solutions = ChallengeSolved.objects\
+        .filter(user__profile__team=team)\
+        .order_by('-datetime')\
+        .all()
 
     parameters = {
         'categories': categories,
@@ -30,6 +37,7 @@ def index(request):
         'categories_num_done_user': categories_num_done_user,
         'categories_num_done_team': categories_num_done_team,
         'categories_num_total': [c.challenges.count() for c in categories],
+        'last_team_solutions': last_team_solutions
     }
 
     return render(request, 'challenges/index.html', parameters)

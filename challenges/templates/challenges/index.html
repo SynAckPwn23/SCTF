@@ -59,41 +59,19 @@
 								<tr>
 									<th>#</th>
 									<th>Username</th>
-									<th>Team</th>
+									<th>Challenge</th>
 									<th>Date</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>November 8, 2016 5:39 AM</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Tom</td>
-									<td>Base</td>
-									<td>November 8, 2016 5:39 AM</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>November 8, 2016 5:39 AM</td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>November 8, 2016 5:39 AM</td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>Jerry</td>
-									<td>the Shadow</td>
-									<td>November 8, 2016 5:39 AM</td>
-								</tr>
+								{% for solution in last_team_solutions %}
+									<tr>
+										<th scope="row">{{forloop.counter}}</th>
+										<td>{{solution.user}}</td>
+										<td>{{solution.challenge.name}}</td>
+										<td>{{solution.datetime}}</td>
+									</tr>
+								{% endfor %}
 							</tbody>
 						</table>
 
