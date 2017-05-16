@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from rest_framework.generics import get_object_or_404
@@ -12,10 +14,22 @@ from challenges.serializers import ChallengeSolvedSerializer
 
 @login_required
 def index(request):
-    parameters = {
-        'categories': Category.objects.all(),
-        
+    categories = Category.objects.all()
+    categories_num_done_user = [
+        c.challenges.filter(solved_by=request.user).distinct().count()
+        for c in categories
+    ]
+    categories_num_done_team = [
+        c.challenges.filter(solved_by__team=request.user.profile.team).distinct().count()
+        for c in categories
+    ]
 
+    parameters = {
+        'categories': categories,
+        'categories_names': json.dumps([c.name for c in categories]),
+        'categories_num_done_user': categories_num_done_user,
+        'categories_num_done_team': categories_num_done_team,
+        'categories_num_total': [c.challenges.count() for c in categories],
     }
 
     return render(request, 'challenges/index.html', parameters)

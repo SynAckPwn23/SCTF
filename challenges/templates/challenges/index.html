@@ -291,23 +291,23 @@
 		  if ($('#challengesSolvedForCategory').length ){ 
 		  	var ctx = document.getElementById("challengesSolvedForCategory");
 		  	var mybarChart = new Chart(ctx, {
-		  		type: 'bar',
+		  		type: 'horizontalBar',
 		  		data: {
-		  			labels: ["Scripting", "Cryptography", "Web", "Networking", "Exploitation", "Jolly"],
+					labels: JSON.parse("{{ categories_names | escapejs }}"),
 		  			datasets: [{
 		  				label: '# Total',
 		  				backgroundColor: "#03586A",
-		  				data: [3, 1, 1, 2, 2, 1]
+		  				data: {{ categories_num_total | escapejs }}
 		  			},
 		  			{
-		  				label: '# Team Reolved',
+		  				label: '# Team Resolved',
 		  				backgroundColor: "#3498DB",
-		  				data: [3, 1, 1, 2, 2, 1]
+		  				data: {{ categories_num_done_team | escapejs }}
 		  			},
 		  			{
 		  				label: '# You Resolved',
 		  				backgroundColor: "#26B99A",
-		  				data: [1, 1, 0, 0, 0, 0]
+		  				data: {{ categories_num_done_user | escapejs }}
 		  			}]
 		  		},
 
