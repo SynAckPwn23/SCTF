@@ -291,7 +291,7 @@
 		  if ($('#challengesSolvedForCategory').length ){ 
 		  	var ctx = document.getElementById("challengesSolvedForCategory");
 		  	var mybarChart = new Chart(ctx, {
-		  		type: 'horizontalBar',
+		  		type: 'bar',
 		  		data: {
 					labels: JSON.parse("{{ categories_names | escapejs }}"),
 		  			datasets: [{
@@ -301,7 +301,7 @@
 		  			},
 		  			{
 		  				label: '# Team Resolved',
-		  				backgroundColor: "#3498DB",
+		  				backgroundColor: "#5bc0de",
 		  				data: {{ categories_num_done_team | escapejs }}
 		  			},
 		  			{
