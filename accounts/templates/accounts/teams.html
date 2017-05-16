@@ -79,53 +79,61 @@
 
 {% block extra_js %}
 <!-- Tables (Solves, Team Components) init -->
+
 <script type="text/javascript">
-	function init_DataTables() {
+	$(document).ready(function() {
+		init_TeamBuddyList();
+	});
+</script>
+
+<script type="text/javascript">
+	/* DATA TABLES */
+	function init_TeamBuddyList() {
 		console.log('run_datatables');
 		if( typeof ($.fn.DataTable) === 'undefined'){ return; }
 		console.log('init_DataTables');
 
-		var handleDataTableButtonsTeams = function() {
-			if ($("#datatable-buttons-team-list").length) {
-				$("#datatable-buttons-team-list").DataTable({
-					dom: "Bfrtip",
-					buttons: [
-					{
-						extend: "copy",
-						className: "btn-sm"
-					},
-					{
-						extend: "csv",
-						className: "btn-sm"
-					},
-					{
-						extend: "excel",
-						className: "btn-sm"
-					},
-					{
-						extend: "print",
-						className: "btn-sm"
-					},
-					],
-					responsive: true
-				});
-			}
-		};
+			// Page challenges - Team Solves 
+			var createTable_TeamList = function() {
 
-		TableManageButtons = function() {
-			"use strict";
-			return {
-				init: function() {
-					handleDataTableButtonsTeams();
+				if ($("#datatable-buttons-team-list").length) {
+					$("#datatable-buttons-team-list").DataTable({
+						dom: "Bfrtip",
+						buttons: [
+						{
+							extend: "copy",
+							className: "btn-sm"
+						},
+						{
+							extend: "csv",
+							className: "btn-sm"
+						},
+						{
+							extend: "print",
+							className: "btn-sm"
+						},
+						],
+						responsive: true
+					});
 				}
 			};
-		}();
 
-		TableManageButtons.init();
+			TableManageButtons = function() {
+				"use strict";
+				return {
+					init: function() {
+							// Page challenges - Team Solves Table
+							createTable_TeamList();
 
-	};
-</script>
-{% endblock %}
+						}
+					};
+				}();
+
+				TableManageButtons.init();
+			}
+		</script>
+
+		{% endblock %}
 
 
 

@@ -1,6 +1,5 @@
 {% extends "sctf/base.html" %}
 {% block title %}Security CTF | Scoreboard{% endblock %}
-
 {% load challenges_tags %}
 {% load static %}
 
@@ -162,6 +161,113 @@
 	</div>
 </div>
 {% endblock %}
+
+{% block extra_js %}
+
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			init_TeamsRanking();
+			init_UserRanking();
+		});
+	</script>
+
+	<script type="text/javascript">
+		/* DATA TABLES */
+		function init_UserRanking() {
+			console.log('run_datatables');
+			if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+			console.log('init_DataTables');
+
+			// Page challenges - Team Solves 
+			var createTable_UserRanking = function() {
+
+				if ($("#datatable-buttons-scoreboard-ranking-list-user").length) {
+					$("#datatable-buttons-scoreboard-ranking-list-user").DataTable({
+						dom: "Bfrtip",
+						buttons: [
+						{
+							extend: "copy",
+							className: "btn-sm"
+						},
+						{
+							extend: "csv",
+							className: "btn-sm"
+						},
+						{
+							extend: "print",
+							className: "btn-sm"
+						},
+						],
+						responsive: true
+					});
+				}
+			};
+
+
+			TableManageButtons = function() {
+				"use strict";
+				return {
+					init: function() {
+							// Page challenges - Team Solves Table
+							createTable_UserRanking();
+
+
+						}
+					};
+				}();
+
+				TableManageButtons.init();
+			}
+
+				/* DATA TABLES */
+		function init_TeamsRanking() {
+			console.log('run_datatables');
+			if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+			console.log('init_DataTables');
+
+			// Page challenges - Team Solves 
+			var createTable_TeamRanking = function() {
+
+				if ($("#datatable-buttons-scoreboard-ranking-list").length) {
+					$("#datatable-buttons-scoreboard-ranking-list").DataTable({
+						dom: "Bfrtip",
+						buttons: [
+						{
+							extend: "copy",
+							className: "btn-sm"
+						},
+						{
+							extend: "csv",
+							className: "btn-sm"
+						},
+						{
+							extend: "print",
+							className: "btn-sm"
+						},
+						],
+						responsive: true
+					});
+				}
+			};
+
+			TableManageButtons = function() {
+				"use strict";
+				return {
+					init: function() {
+							// Page challenges - Team Solves Table
+							createTable_TeamRanking();
+
+
+						}
+					};
+				}();
+
+				TableManageButtons.init();
+			}
+		</script>
+
+		{% endblock %}
 
 
 

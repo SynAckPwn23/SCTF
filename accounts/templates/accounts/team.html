@@ -16,19 +16,19 @@
 		</div>
 		<div class="clearfix"></div>
 
-		 <!-- top tiles -->
-      <div class="row tile_count">
-        <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Team Place</span>
-          <div class="count green">#{{team.position}}</div>
-          <span class="count_bottom"><i class="fa fa-group"></i> Of {{teams_count}} Teams</span>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
-          <span class="count_top"><i class="fa fa-magic"></i> Total Points Gained</span>
-          <div class="count green">{{team.total_points}}</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{total_points_count}} </i>Total Points Available</span>
-        </div>
-      </div>
+		<!-- top tiles -->
+		<div class="row tile_count">
+			<div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+				<span class="count_top"><i class="fa fa-user"></i> Team Place</span>
+				<div class="count green">#{{team.position}}</div>
+				<span class="count_bottom"><i class="fa fa-group"></i> Of {{teams_count}} Teams</span>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+				<span class="count_top"><i class="fa fa-magic"></i> Total Points Gained</span>
+				<div class="count green">{{team.total_points}}</div>
+				<span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{total_points_count}} </i>Total Points Available</span>
+			</div>
+		</div>
 
 		<div class="clearfix"></div>
 
@@ -194,21 +194,19 @@
 
 {% endblock %}
 
-
-
-
 {% block extra_js %}
 
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log('aa');
-		init_chart_doughnut();
+		init_TeamPercentageBreakdown();
+		init_TeamSolves();
+		init_TeamComponents();
 	});
 </script>
 
 <script type="text/javascript">
-	function init_chart_doughnut(){
+	function init_TeamPercentageBreakdown(){
 
 		if( typeof (Chart) === 'undefined'){ return; }
 
@@ -228,9 +226,9 @@
 					],
 					datasets: [{
 						data: [
-							{{ team.num_success }},
-							{{ team.num_failed_challenges }},
-							{{ team.num_never_tried_challenges }}
+						{{ team.num_success }},
+						{{ team.num_failed_challenges }},
+						{{ team.num_never_tried_challenges }}
 						],
 						backgroundColor: [
 						"#26B99A",
@@ -308,4 +306,98 @@
 
 	}
 </script>
-{% endblock %}
+
+<script type="text/javascript">
+	/* DATA TABLES */
+	function init_TeamSolves() {
+		console.log('run_datatables');
+		if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+		console.log('init_DataTables');
+
+			// Page challenges - Team Solves 
+			var createTable_TeamSolves = function() {
+
+				if ($("#datatable-buttons-solves").length) {
+					$("#datatable-buttons-solves").DataTable({
+						dom: "Bfrtip",
+						buttons: [
+						{
+							extend: "copy",
+							className: "btn-sm"
+						},
+						{
+							extend: "csv",
+							className: "btn-sm"
+						},
+						{
+							extend: "print",
+							className: "btn-sm"
+						},
+						],
+						responsive: true
+					});
+				}
+			};
+
+			TableManageButtons = function() {
+				"use strict";
+				return {
+					init: function() {
+							// Page challenges - Team Solves Table
+							createTable_TeamSolves();
+
+						}
+					};
+				}();
+
+				TableManageButtons.init();
+			}
+		</script>
+
+		<script type="text/javascript">
+			/* DATA TABLES */
+			function init_TeamComponents() {
+				console.log('run_datatables');
+				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+				console.log('init_DataTables');
+
+			// Page challenges - Team Solves 
+			var createTable_TeamComponents = function() {
+
+				if ($("#datatable-buttons-team-components").length) {
+					$("#datatable-buttons-team-components").DataTable({
+						dom: "Bfrtip",
+						buttons: [
+						{
+							extend: "copy",
+							className: "btn-sm"
+						},
+						{
+							extend: "csv",
+							className: "btn-sm"
+						},
+						{
+							extend: "print",
+							className: "btn-sm"
+						},
+						],
+						responsive: true
+					});
+				}
+			};
+
+			TableManageButtons = function() {
+				"use strict";
+				return {
+					init: function() {
+							// Page challenges - Team Solves Table
+							createTable_TeamComponents();
+
+						}
+					};
+				}();
+
+				TableManageButtons.init();
+			}
+		</script>
+		{% endblock %}
