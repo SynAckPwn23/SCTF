@@ -2537,6 +2537,36 @@ if (typeof NProgress != 'undefined') {
 					}
 				};
 
+				
+
+				// Page challenges - Team Solves 
+				var handleDataTableButtonsChallenges_TeamSolves = function() {
+					if ($("#datatable-buttons-challenges-team-solve").length) {
+						$("#datatable-buttons-challenges-team-solve").DataTable({
+							dom: "Bfrtip",
+							buttons: [
+							{
+								extend: "copy",
+								className: "btn-sm"
+							},
+							{
+								extend: "csv",
+								className: "btn-sm"
+							},
+							{
+								extend: "excel",
+								className: "btn-sm"
+							},
+							{
+								extend: "print",
+								className: "btn-sm"
+							},
+							],
+							responsive: true
+						});
+					}
+				};
+
 				TableManageButtons = function() {
 					"use strict";
 					return {
@@ -2551,6 +2581,8 @@ if (typeof NProgress != 'undefined') {
 							handleDataTableButtonsScoreboard_RankingTeam();
 							// Page scoreboard - Ranking User Table
 							handleDataTableButtonsScoreboard_RankingUser();
+							// Page challenges - Team SOlves Table
+							handleDataTableButtonsChallenges_TeamSolves();
 						}
 					};
 				}();
