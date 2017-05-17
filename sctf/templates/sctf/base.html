@@ -8,9 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>{% block title %}Security CTF | Home{% endblock %}</title>
-
   <!-- Bootstrap -->
   <link href="{% static "sctf/vendors/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
   <!-- Font Awesome -->
@@ -19,26 +17,20 @@
   <link href="{% static "sctf/vendors/nprogress/nprogress.css" %}" rel="stylesheet">
   <!-- iCheck -->
   <link href="{% static "sctf/vendors/iCheck/skins/flat/green.css" %}" rel="stylesheet">
-
   <!-- bootstrap-progressbar -->
   <link href="{% static "sctf/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" %}" rel="stylesheet">
   <!-- JQVMap -->
   <link href="{% static "sctf/vendors/jqvmap/dist/jqvmap.min.css" %}" rel="stylesheet"/>
   <!-- bootstrap-daterangepicker -->
   <link href="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.css" %}" rel="stylesheet">
-
   <!-- Datatables -->
   <link href="{% static "sctf/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"%}"  rel="stylesheet">
   <link href="{% static "sctf/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"%}"  rel="stylesheet">
   <link href="{% static "sctf/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"%}"  rel="stylesheet">
   <link href="{% static "sctf/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"%}"  rel="stylesheet">
   <link href="{% static "sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"%}"  rel="stylesheet">
-
   <!-- Custom Theme Style -->
   <link href="{% static "sctf/build/css/custom.min.css" %}" rel="stylesheet">
-
-
-
 </head>
 
 <body class="nav-md">
@@ -46,14 +38,10 @@
     <div class="main_container ">
       <div class="col-md-3 left_col menu_fixed">
         <div class="left_col scroll-view">
-
           <div class="navbar nav_title" style="border: 0;">
             <a href="{% url 'index' %}" class="site_title"><img style="width:30px;margin:0px 20px 0px 10px;" src="/static/sctf/images/logo.png" alt=""><span>Security CTF</span></a>
           </div>
-          
-
           <div class="clearfix"></div>
-
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
@@ -67,7 +55,6 @@
           <!-- /menu profile quick info -->
 
           <br />
-
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
@@ -89,7 +76,6 @@
                   <li><a href="{% url 'challenges' %}">Categories</a></li>
                 </ul>
               </li>
-
             </ul>
           </div>
           <div class="menu_section">
@@ -107,7 +93,6 @@
               </li>
             </ul>
           </div>
-
         </div>
         <!-- /sidebar menu -->
 
@@ -127,7 +112,6 @@
         <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
           <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
-
       </div>
       <!-- /menu footer buttons -->
     </div>
@@ -135,16 +119,14 @@
 
   <!-- top navigation -->
   <div class="top_nav">
-    <div style="color:#fff;text-align: center;background-color:#2A3F54;padding:5px;" class="white">Accenture Security - <span class="green">Capture the Flag Platform</span></div>
-
+    <div style="color:#fff;text-align: center;background-color:#2A3F54;padding:5px;" class="white">Accenture Security - <span class="green">Capture the Flag Platform</span>
+    </div>
     <div class="nav_menu">
       <nav>
         <div class="nav toggle">
           <a id="menu_toggle"><i class="fa fa-bars"></i></a>
         </div>
-
         <ul class="nav navbar-nav navbar-right">
-
           <li class="">
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="{% static "sctf/images/user.png" %}" alt="">{{user.username}}
@@ -157,10 +139,7 @@
           </li>
         </ul>
       </nav>
-
     </div>
-
-
   </div>
   <!-- /top navigation -->
   {% block content %}
@@ -198,9 +177,7 @@
         <div class="count green">7325</div>
         <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Most Successful</span>
       </div>
-
     </div>
-
     <!-- /top tiles -->
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -266,65 +243,24 @@
               </p>
             </div>
           </div>
-          <!-- End SmartWizard Content -->
         </div>
+        <!-- End SmartWizard Content -->
       </div>
+      <br />
     </div>
+    <!-- /page content -->
+    {% endblock %}
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>Network Activities</h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="dashboard_graph">
-
-              <div class="row x_title">
-                <div class="col-md-6">
-                  <h3>Network Activities <small>Graph title sub-title</small></h3>
-                </div>
-                <div class="col-md-6">
-                  <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div id="homeNetworkActivities" class="demo-placeholder"></div>
-              </div>
-
-
-              <div class="clearfix"></div>
-            </div>
-          </div>
-        </div>
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
       </div>
-    </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
   </div>
-  <br />
 </div>
-<!-- /page content -->
-{% endblock %}
-
-<!-- footer content -->
-<footer>
-  <div class="pull-right">
-    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-  </div>
-  <div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
-</div>
-</div>
-
 
 <!-- jQuery -->
 <script src="{% static "sctf/vendors/jquery/dist/jquery.min.js" %}" ></script>
@@ -364,89 +300,38 @@
 <script src="{% static "sctf/vendors/moment/min/moment.min.js" %}"></script>
 <script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
 
-<!-- Custom Theme Scripts 
-  <script src="{% static "sctf/build/js/custom.min.js" %}"></script> -->
+<!-- Custom Theme Scripts --> 
+<!-- <script src="{% static "sctf/build/js/custom.min.js" %}"></script> -->
+<script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"%}" ></script>
+<script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/jszip/dist/jszip.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js"%}" ></script>
+<script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js"%}" ></script>
+<!-- jQuery Smart Wizard -->
+<script src="{% static "sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"%}"></script>
+<!-- Custom Theme Scripts -->
+<script src="{% static "sctf/build/js/custom.js" %}"></script>
 
-  <script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/jszip/dist/jszip.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js"%}" ></script>
+{% block extra_js %}{% endblock %}
 
-  <!-- jQuery Smart Wizard -->
-  <script src="{% static "sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"%}"></script>
+<!-- Cookie -->
+<script type="text/javascript">
+  $.ajaxSetup({beforeSend:function(a,b){function c(a){var b=null;if(document.cookie&&""!=document.cookie)for(var c=document.cookie.split(";"),d=0;d<c.length;d++){var e=jQuery.trim(c[d]);if(e.substring(0,a.length+1)==a+"="){b=decodeURIComponent(e.substring(a.length+1));break}}return b}/^http:.*/.test(b.url)||/^https:.*/.test(b.url)||a.setRequestHeader("X-CSRFToken",c("csrftoken"))}});
+</script>
+<!-- Full Screen -->
+<script type="text/javascript">
+  function toggleFullscreen(a){a=a||document.documentElement,document.fullscreenElement||document.mozFullScreenElement||document.webkitFullscreenElement||document.msFullscreenElement?document.exitFullscreen?document.exitFullscreen():document.msExitFullscreen?document.msExitFullscreen():document.mozCancelFullScreen?document.mozCancelFullScreen():document.webkitExitFullscreen&&document.webkitExitFullscreen():(a.requestFullscreen?a.requestFullscreen():a.msRequestFullscreen?a.msRequestFullscreen():a.mozRequestFullScreen?a.mozRequestFullScreen():a.webkitRequestFullscreen&&a.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT),b)}
+</script>
 
-
-  <!-- Custom Theme Scripts -->
-  <script src="{% static "sctf/build/js/custom.js" %}"></script>
-
-  <script type="text/javascript">
-    function toggleFullscreen(elem) {
-      elem = elem || document.documentElement;
-      if (!document.fullscreenElement && !document.mozFullScreenElement &&
-        !document.webkitFullscreenElement && !document.msFullscreenElement) {
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          elem.msRequestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-          elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-          elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        }
-      }
-    }
-  </script>
-
-  {% block extra_js %}{% endblock %}
-
-  <!-- Datatables -->
-  <script>
-    $.ajaxSetup({
-     beforeSend: function(xhr, settings) {
-       function getCookie(name) {
-         var cookieValue = null;
-         if (document.cookie && document.cookie != '') {
-           var cookies = document.cookie.split(';');
-           for (var i = 0; i < cookies.length; i++) {
-             var cookie = jQuery.trim(cookies[i]);
-                                   // Does this cookie string begin with the name we want?
-                                   if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                     break;
-                                   }
-                                 }
-                               }
-                               return cookieValue;
-                             }
-                             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                           // Only send the token to relative URLs i.e. locally.
-                           xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-                         }
-                       }
-                     });
-                   </script>
-
-
-                 </body>
-                 </html>
+</body>
+</html>

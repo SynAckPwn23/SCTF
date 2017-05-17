@@ -336,7 +336,7 @@ if (typeof NProgress != 'undefined') {
 	  }
 	  
 
-	  function init_flot_chart(){
+	 /* function init_flot_chart(){
 
 	  	if( typeof ($.plot) === 'undefined'){ return; }
 	  	console.log('init_flot_chart');
@@ -466,6 +466,7 @@ if (typeof NProgress != 'undefined') {
  	}
 
  }
+ */
 
 
  /* STARRR */
@@ -4825,7 +4826,7 @@ if (typeof NProgress != 'undefined') {
 }  
 
 $(document).ready(function() {
-	init_flot_chart();
+	//init_flot_chart();
 
 	init_sparklines();
 	init_sidebar();
