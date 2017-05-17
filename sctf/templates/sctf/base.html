@@ -68,20 +68,21 @@ body{-ms-overflow-style:none;}
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-home"></i> Teams <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-group"></i> All Teams <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="{% url 'teams' %}">Info</a></li>
+                    <li><a href="{% url 'teams' %}"><i class="fa fa-database"></i>Info</a></li>
                   </ul>
                 </li>                    
               </li>
-              <li><a><i class="fa fa-edit"></i> Scoreboard <span class="fa fa-chevron-down"></span></a>
+              
+              <li><a><i class="fa fa-bug"></i> All Challenges <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="{% url 'scoreboard' %}">Ranking</a></li>
+                  <li><a href="{% url 'challenges' %}"><i class="fa fa-tags"></i>Categories</a></li>
                 </ul>
               </li>
-              <li><a><i class="fa fa-desktop"></i> Challenges <span class="fa fa-chevron-down"></span></a>
+              <li><a><i class="fa fa-edit"></i> Scoreboard <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="{% url 'challenges' %}">Categories</a></li>
+                  <li><a href="{% url 'scoreboard' %}"><i class="fa fa-sort-amount-desc"></i> Ranking</a></li>
                 </ul>
               </li>
             </ul>
@@ -89,14 +90,14 @@ body{-ms-overflow-style:none;}
           <div class="menu_section">
             <h3>Personal</h3>
             <ul class="nav side-menu">
-              <li><a><i class="fa fa-bug"></i> Team <span class="fa fa-chevron-down"></span></a>
+              <li><a><i class="fa fa-group"></i> My Team <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="{% url 'team' %}">Info</a></li>
+                  <li><a href="{% url 'team' %}"><i class="fa fa-pie-chart"></i> Statistics</a></li>
                 </ul>
               </li>
-              <li><a><i class="fa fa-windows"></i> Profile <span class="fa fa-chevron-down"></span></a>
+              <li><a><i class="fa fa-user"></i> My Profile <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="#">Details</a></li>
+                  <li><a href="#"><i class="fa fa-tasks"></i>Details</a></li>
                 </ul>
               </li>
             </ul>
@@ -283,7 +284,7 @@ body{-ms-overflow-style:none;}
     <!-- footer content -->
     <footer>
       <div class="pull-right">
-        Capture The Flag Platform by <a href="#" class="green">Daniele Votta</a> & <a href="#" class="green">Filippo Schiavio</a>
+        Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
       </div>
       <div class="clearfix"></div>
     </footer>
