@@ -11,31 +11,20 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-				<h3>Team Statistic </h3>
+				<!--<h3>Team Statistic </h3>-->
 			</div>
 		</div>
 		<div class="clearfix"></div>
 
 		<!-- top tiles -->
-		<div class="row tile_count">
-			<div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
-				<span class="count_top"><i class="fa fa-user"></i> Team Place</span>
-				<div class="count green">#{{team.position}}</div>
-				<span class="count_bottom"><i class="fa fa-group"></i> Of {{teams_count}} Teams</span>
-			</div>
-			<div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
-				<span class="count_top"><i class="fa fa-magic"></i> Total Points Gained</span>
-				<div class="count green">{{team.total_points}}</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{total_points_count}} </i>Total Points Available</span>
-			</div>
-		</div>
-				<div class="row">
+		
+		<div class="row">
 
 
-		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Daily active users <small>Sessions</small></h2>
+						<h2 class="green">TEAM STATISTICS</small></h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -45,8 +34,23 @@
 					<div class="x_content">
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron">
-								<h1>Hello, world!</h1>
-								<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+								<h1 style="text-align: center;">{{team.name}}</h1>
+								
+								<div class="row tile_count">
+								
+									<div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+										<span class="count_top"><i class="fa fa-user"></i> Team Place</span>
+										<div class="count green">#{{team.position}}</div>
+										<span class="count_bottom"><i class="fa fa-group"></i> Of {{teams_count}} Teams</span>
+									</div>
+									
+									<div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+										<span class="count_top"><i class="fa fa-magic"></i> Total Points Gained</span>
+										<div class="count green">{{team.total_points}}</div>
+										<span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{total_points_count}} </i>Total Points Available</span>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -54,7 +58,7 @@
 			</div>
 
 
-		<div class="clearfix"></div>
+			<div class="clearfix"></div>
 
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<div class="x_panel">

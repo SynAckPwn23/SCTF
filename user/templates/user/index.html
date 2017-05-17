@@ -90,6 +90,23 @@
               <!-- end of skills -->
 
             </div>
+
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2 class="green">YOUR STRENGTHS</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <canvas id="canvasRadar"></canvas>
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-9 col-sm-9 col-xs-12">
 
               <div class="profile_title">
@@ -105,8 +122,6 @@
               </div>
               <!-- start of user-activity-graph -->
               <div id="graph_bar" style="width:100%; height:280px;"></div>
-              <!-- end of user-activity-graph -->
-
               
             </div>
           </div>
@@ -117,4 +132,90 @@
 </div>
 <!-- /page content -->
 
+{% endblock %}
+
+{% block extra_js %}
+
+<!-- Tables (Solves, Team Components) init -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    init_morris_charts();
+    init_Radar();
+    
+  });
+</script>
+
+<script type="text/javascript">
+ function init_Radar() {
+  console.log('run_charts  typeof [' + typeof (Chart) + ']');
+  if( typeof (Chart) === 'undefined'){ return; }
+  console.log('init_charts');
+  Chart.defaults.global.legend = {
+    enabled: false
+  };
+
+   // Radar chart
+
+   if ($('#canvasRadar').length ){ 
+
+    var ctx = document.getElementById("canvasRadar");
+    var data = {
+      labels: JSON.parse("{{ categories_names | escapejs }}"),
+      datasets: [{
+        label: "My Second dataset",
+        backgroundColor: "rgba(38, 185, 154, 0.2)",
+        borderColor: "rgba(38, 185, 154, 0.85)",
+        pointColor: "rgba(38, 185, 154, 0.85)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: JSON.parse("{{ categories_num_done_user | escapejs }}")
+      }]
+    };
+
+    var canvasRadar = new Chart(ctx, {
+      type: 'radar',
+      data: data,
+    });
+
+  }
+}
+</script>
+
+<script type="text/javascript">
+  function init_morris_charts() {
+
+    if( typeof (Morris) === 'undefined'){ return; }
+    console.log('init_morris_charts');
+
+    if ($('#graph_bar').length){ 
+
+      Morris.Bar({
+        element: 'graph_bar',
+        data: [
+        {device: 'iPhone 4', geekbench: 380},
+        {device: 'iPhone 4S', geekbench: 655},
+        {device: 'iPhone 3GS', geekbench: 275},
+        {device: 'iPhone 5', geekbench: 1571},
+        {device: 'iPhone 5S', geekbench: 655},
+        {device: 'iPhone 6', geekbench: 2154},
+        {device: 'iPhone 6 Plus', geekbench: 1144},
+        {device: 'iPhone 6S', geekbench: 2371},
+        {device: 'iPhone 6S Plus', geekbench: 1471},
+        {device: 'Other', geekbench: 1371}
+        ],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Geekbench'],
+        barRatio: 0.4,
+        barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+      });
+
+    } 
+
+  }
+</script>
 {% endblock %}

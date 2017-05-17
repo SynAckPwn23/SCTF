@@ -2390,7 +2390,7 @@ if (typeof NProgress != 'undefined') {
 			};
 
 			/* CHART - MORRIS  */
-
+/*
 			function init_morris_charts() {
 
 				if( typeof (Morris) === 'undefined'){ return; }
@@ -2545,7 +2545,7 @@ if (typeof NProgress != 'undefined') {
 				}
 
 			};
-
+*/
 
 
 			/* ECHRTS */
@@ -4847,7 +4847,7 @@ $(document).ready(function() {
 	init_EasyPieChart();
 	init_charts();
 	init_echarts();
-	init_morris_charts();
+	//init_morris_charts();
 	init_skycons();
 	init_select2();
 	init_validator();
