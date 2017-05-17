@@ -5,6 +5,7 @@ from django.db.models import Sum
 
 class Category(models.Model):
     name = models.CharField(max_length=256, unique=True)
+    description = models.TextField()
 
     def __str__(self):
         return self.name
@@ -52,7 +53,7 @@ class Attachment(models.Model):
     name = models.CharField(max_length=256)
     challenge = models.ForeignKey('challenges.Challenge', related_name='attachments')
     description = models.TextField()
-    file = models.FileField(upload_to='challenges')
+    file = models.ImageField(upload_to='challenges')
 
     def __str__(self):
         return self.name

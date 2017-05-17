@@ -6,3 +6,4 @@ django-registration-defaults
 djangorestframework
 markdown
 django-filter
+Pillow

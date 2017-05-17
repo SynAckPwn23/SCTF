@@ -81,6 +81,7 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     team = models.ForeignKey('accounts.Team', null=True)
     user = models.OneToOneField(User, related_name='profile')
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.FileField(upload_to='accounts/')
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
