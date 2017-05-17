@@ -16,7 +16,30 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
+
+
 		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Daily active users <small>Sessions</small></h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<div class="bs-example" data-example-id="simple-jumbotron">
+							<div class="jumbotron">
+								<h1>Hello, world!</h1>
+								<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -30,35 +53,28 @@
 					<div class="x_content">
 						<p>Simple table with project listing with progress and editing options</p>
 						<!-- start project list -->
-						<table data-order='[[ 5, "desc" ]]' data-page-length='10' id="datatable-buttons-scoreboard-ranking-list" class="table table-striped table-bordered projects">
+						<table data-order='[[ 4, "desc" ]]' data-page-length='10' id="datatable-buttons-scoreboard-ranking-list" class="table table-striped table-bordered projects">
 							<thead>
 								<tr>
-									<th style="width: 1%">Position</th>
-									<th style="width: 21%">Team Name</th>
-									<th>Team Members</th>
-									<th>Team Photos</th>
-									<th style="width: 20%">Challenges Progress</th>
-									<th style="width: 1%">Total Points</th>
+									<th style="width: 8%; text-align: center;">Position</th>
+									<th style="width: 22%; text-align: center;">Team Name</th>
+									<th style="text-align: center;">Team Members</th>
+									<th style="width: 21%; text-align: center;">Challenges Progress</th>
+									<th style="width: 8%; text-align: center;">Total Points</th>
 								</tr>
 							</thead>
 							<tbody>
 								{% for team in teams %}
 								
 								<tr>
-									<td><h4 class="count green">#{{team.position}}</h4></td>
-									<td>
+									<td style="text-align: center;"><h4 class="count green">#{{team.position}}</h4></td>
+									<td style="text-align: center;">
 										<a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
 										<br />
 										<small>Created on {{team.created_at}}</small>
 									</td>
-									<td>
-										<ul class="list-inline">
-											<li>
-												{{team.num_users}}
-											</li>
-										</ul>
-									</td>
-									<td>
+									
+									<td style="text-align: center;">
 										<ul class="list-inline">
 											{% for user in team.users.all %}
 											<li>
@@ -69,13 +85,13 @@
 
 										</ul>
 									</td>
-									<td class="project_progress">
+									<td style="text-align: center;" class="project_progress">
 										<div class="progress progress_sm">
 											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{team.progress}}"></div>
 										</div>
 										<small><span class="green">{{team.progress}}%</span> Complete</small>
 									</td>
-									<td>
+									<td style="text-align: center;">
 										<a>{{team.total_points}}</a>
 									</td>
 								</tr>
@@ -103,14 +119,14 @@
 						<table data-order='[[ 7, "desc" ]]' data-page-length='10' id="datatable-buttons-scoreboard-ranking-list-user" class="table table-striped table-bordered projects">
 							<thead>
 								<tr>
-									<th style="width: 1%">Position</th>
-									<th style="width: 21%">Username</th>
-									<th>Name</th>
-									<th>Surname</th>
-									<th>Email</th>
-									<th style="width: 1%">User Photo</th>
-									<th style="width: 20%">Challenges Progress</th>
-									<th style="width: 1%">Total Points</th>
+									<th style="width: 8%;text-align: center;">Position</th>
+									<th style="width: 22%;text-align: center;">Username</th>
+									<th style="text-align: center;">Name</th>
+									<th style="text-align: center;">Surname</th>
+									<th style="text-align: center;">Email</th>
+									<th style="text-align: center;">Photo</th>
+									<th style="width: 21%;text-align: center;">Challenges Progress</th>
+									<th style="width: 8%;text-align: center;">Total Points</th>
 								</tr>
 
 							</thead>
@@ -118,16 +134,16 @@
 								{% for user in users %}
 
 								<tr>
-									<td><h4 class="count green">#{{user.profile.position}}</h4></td>
-									<td>
+									<td style="text-align: center;"><h4 class="count green">#{{user.profile.position}}</h4></td>
+									<td style="text-align: center;">
 										<a class="count green" href="#">{{user.username}}</a>
 										<br />
 										<small>Created on {{user.profile.created_at}}</small>
 									</td>
-									<td>{{user.first_name}}</td>
-									<td>{{user.last_name}}</td>
-									<td>{{user.email}}</td>
-									<td>
+									<td style="text-align: center;">{{user.first_name}}</td>
+									<td style="text-align: center;">{{user.last_name}}</td>
+									<td style="text-align: center;">{{user.email}}</td>
+									<td style="text-align: center;">
 										<ul class="list-inline">
 
 											<li>
@@ -137,13 +153,13 @@
 											
 										</ul>
 									</td>
-									<td class="project_progress">
+									<td style="text-align: center;" class="project_progress">
 										<div class="progress progress_sm">
 											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{user.profile.progress}}"></div>
 										</div>
 										<small><span class="green">{{user.profile.progress}}%</span> Complete</small>
 									</td>
-									<td>
+									<td style="text-align: center;">
 										<a>{{user.profile.total_points}}</a>
 
 									</td>

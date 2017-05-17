@@ -12,14 +12,32 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-			</div>
-
-			
+			</div>			
 		</div>
-
 		<div class="clearfix"></div>
 
 		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Daily active users <small>Sessions</small></h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<div class="bs-example" data-example-id="simple-jumbotron">
+							<div class="jumbotron">
+								<h1>Hello, world!</h1>
+								<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
@@ -38,23 +56,20 @@
 						<table data-order='[[ 0, "asc" ]]' id="datatable-buttons-team-list" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th style="width:1%;"># Index</th>
-									<th style="width: 21%;">Team Name</th>
-									<th>Team Members</th>
-									<th>Team Photos</th>
+									<th style="width:1%;">Index</th>
+									<th style="width:49%;text-align: center;">Team Name</th>
+									<th style="text-align: center;">Team Members</th>
 								</tr>
 							</thead>
 							<tbody>
 								{% for team in teams %}
 								<tr>
-									<td>{{forloop.counter}}</td>
-									<td><a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
+									<td style="text-align: center;">{{forloop.counter}}</td>
+									<td style="text-align: center;"><a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
 										<br />
 										<small>Created on {{team.created_at}}</small>
 									</td>
-
-									<td>{{team.num_users}}</td>
-									<td>
+									<td style="text-align: center;">
 										<ul class="list-inline">
 											{% for user in team.users.all %}
 											<li>
