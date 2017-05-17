@@ -67,14 +67,15 @@
 									<td style="text-align: center;">{{forloop.counter}}</td>
 									<td style="text-align: center;"><a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
 										<br />
-										<small>Created on {{team.created_at}}</small>
+										
+										<small>Created on {{team.created_at}}</small><br>
 									</td>
 									<td style="text-align: center;">
 										<ul class="list-inline">
 											{% for user in team.users.all %}
 											<li>
 												<img src="/{{ user.profile.image.url }}" class="avatar" alt="Avatar">
-												<a class="green" href="#"><font size="0" style="display:block;" >{{user.username}}</font></a>
+												<a class="green" href="{% url 'user' %}"><font size="0" style="display:block;" >{{user.username}}</font></a>
 											</li>
 											{% endfor %}
 										</ul>
