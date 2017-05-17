@@ -3,77 +3,105 @@
     "model": "accounts.team",
     "pk": 1,
     "fields": {
-      "name": "Team 1"
+      "name": "Stumbling White Gazelles"
     }
   },
   {
     "model": "accounts.team",
     "pk": 2,
     "fields": {
-      "name": "Team 2"
+      "name": "Former Bean Toddlers"
     }
   },
   {
     "model": "accounts.team",
     "pk": 3,
     "fields": {
-      "name": "Team 3"
+      "name": "Hard Streakers"
     }
   },
   {
     "model": "accounts.team",
     "pk": 4,
     "fields": {
-      "name": "Team 4"
+      "name": "Northern Rebels"
     }
   },
   {
     "model": "accounts.team",
     "pk": 5,
     "fields": {
-      "name": "Team 5"
+      "name": "The Bush Turtles"
     }
   },
   {
     "model": "accounts.team",
     "pk": 6,
     "fields": {
-      "name": "Team 6"
+      "name": "Hard Diamond Girls"
     }
   },
   {
     "model": "accounts.team",
     "pk": 7,
     "fields": {
-      "name": "Team 7"
+      "name": "Purple Lunatic Einsteins"
     }
   },
   {
     "model": "accounts.team",
     "pk": 8,
     "fields": {
-      "name": "Team 8"
+      "name": "Le Gaffers"
     }
   },
   {
     "model": "accounts.team",
     "pk": 9,
     "fields": {
-      "name": "Team 9"
+      "name": "Scalding Vanguard"
     }
   },
   {
     "model": "accounts.team",
     "pk": 10,
     "fields": {
-      "name": "Team 10"
+      "name": "Giant Net Cockrats"
     }
   },
   {
     "model": "accounts.team",
     "pk": 11,
     "fields": {
-      "name": "Team 11"
+      "name": "Nile Turf Piranhas"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 12,
+    "fields": {
+      "name": "Grumbling Fire Cockpits"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 13,
+    "fields": {
+      "name": "Shooting Grunting Easterners"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 14,
+    "fields": {
+      "name": "Bottom Gang"
+    }
+  },
+  {
+    "model": "accounts.team",
+    "pk": 15,
+    "fields": {
+      "name": "The Dope Beatniks"
     }
   }
 ]
