@@ -129,9 +129,15 @@
 									</button>
 									{% challenge_is_solved as solved %}
 									{% if solved %}
-									<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}} - <span class="count green">Points: {{challenge.points}} - SOLVED</span></strong></h2>
+									<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
+									<span class="label label-warning">{{challenge.category}}</span>
+									<span class="label label-info">Points: {{challenge.points}}</span>
+									<span class="label label-success">SOLVED</span>
 									{% else %}
-									<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}} - <span class="count green">Points: {{challenge.points}}</span></strong></h2>
+									<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
+									<span class="label label-warning">{{challenge.category}}</span>
+									<span class="label label-info">Points: {{challenge.points}}</span>
+									<span class="label label-primary">NOT SOLVED</span>
 									{% endif %}
 
 								</div>
