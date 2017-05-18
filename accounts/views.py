@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from accounts.models import Team
-from challenges.models import Challenge, ChallengeSolved
+from challenges.models import Challenge, ChallengeSolved, Category
 
 import json
 
@@ -27,13 +27,18 @@ def team(request, pk=None):
         points += solved.challenge.points
         time_points.append([int(solved.datetime.timestamp())*1000, points])
 
+    category_solved = {
+        c.name: team.solved_challenges.filter(category=c).count()
+        for c in Category.objects.all()
+    }
+
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
         'teams_count': Team.objects.count(),
 
         'time_points': json.dumps(time_points),
-
+        'category_solved': json.dumps(category_solved)
     }
 
     return render(request, 'accounts/team.html', parameters)

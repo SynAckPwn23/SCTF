@@ -250,19 +250,16 @@
 				}
 			}
 
+			var category_solved= JSON.parse("{{ category_solved | escapejs }}");
+
+
 			var chart2_settings = {
 				type: 'doughnut',
 				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
 				data: {
-					labels: [
-					"Symbian",
-					"Blackberry",
-					"Other",
-					"Android",
-					"IOS"
-					],
+					labels: Object.keys(category_solved),
 					datasets: [{
-						data: [14, 20, 30, 10, 30],
+						data: Object.keys(category_solved).map(k=>category_solved[k]),
 						backgroundColor: [
 						"#BDC3C7",
 						"#9B59B6",
@@ -307,28 +304,15 @@
 		console.log('init_flot_chart');
 
     // Page team - Score Over Time Table
-    var arr_data1_timestamp = JSON.parse("{{ time_points | escapejs }}");
-   	var arr_data1 = arr_data1_timestamp.map(a => [new Date(a[0]).getTime(), a[1]]);
-
+    var arr_data1= JSON.parse("{{ time_points | escapejs }}");
 
 
     var teamScoreOverTime_settings = {
     	series: {
     		lines: {
-    			show: false,
-    			fill: true
-    		},
-    		splines: {
     			show: true,
-    			tension: 0.4,
-    			lineWidth: 1,
-    			fill: 0.4
+    			fill: 0.4,
     		},
-    		points: {
-    			radius: 0,
-    			show: true
-    		},
-    		shadowSize: 2
     	},
     	grid: {
     		verticalLines: true,
