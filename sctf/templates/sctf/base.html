@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-{% load static %}
+<!DOCTYPE html> {% load static %}
 
 <html lang="en">
 <head>
@@ -20,24 +19,28 @@
   <!-- bootstrap-progressbar -->
   <link href="{% static "sctf/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" %}" rel="stylesheet">
   <!-- JQVMap -->
-  <link href="{% static "sctf/vendors/jqvmap/dist/jqvmap.min.css" %}" rel="stylesheet"/>
+  <link href="{% static "sctf/vendors/jqvmap/dist/jqvmap.min.css" %}" rel="stylesheet" />
   <!-- bootstrap-daterangepicker -->
   <link href="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.css" %}" rel="stylesheet">
   <!-- Datatables -->
-  <link href="{% static "sctf/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"%}"  rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"%}"  rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"%}"  rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"%}"  rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"%}"  rel="stylesheet">
+  <link href="{% static "sctf/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "sctf/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "sctf/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "sctf/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="{% static "sctf/build/css/custom.min.css" %}" rel="stylesheet">
 </head>
 
 <style type="text/css">
   /* Hide Scrollbars in Google Chrome */
-  body::-webkit-scrollbar {display:none;}
+  body::-webkit-scrollbar {
+    display: none;
+  }
   /* Hide Scrollbars in IE 10+ */
-  body{-ms-overflow-style:none;}
+  body {
+    -ms-overflow-style: none;
+  }
   /* No solution for Firefox */
 </style>
 
@@ -61,248 +64,253 @@
             </div>
           </div>
           <!-- /menu profile quick info -->
-
-          <br />
+          <br>
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-group"></i> All Teams <span class="fa fa-chevron-down"></span></a>
+                <li>
+                  <a><i class="fa fa-group"></i> All Teams <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{% url 'teams' %}"><i class="fa fa-database"></i>Info</a></li>
                   </ul>
-                </li>                    
-              </li>
-              
-              <li><a><i class="fa fa-bug"></i> All Challenges <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                  <li><a href="{% url 'challenges' %}"><i class="fa fa-tags"></i>Categories</a></li>
-                </ul>
-              </li>
-              <li><a><i class="fa fa-edit"></i> Scoreboard <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                  <li><a href="{% url 'scoreboard' %}"><i class="fa fa-sort-amount-desc"></i> Ranking</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div class="menu_section">
-            <h3>Personal</h3>
-            <ul class="nav side-menu">
-              <li><a><i class="fa fa-group"></i> My Team <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                  <li><a href="{% url 'team' %}"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-                </ul>
-              </li>
-              <li><a><i class="fa fa-user"></i> My Profile <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                  <li><a href="{% url 'user' %}"><i class="fa fa-tasks"></i>Details</a></li>
-                </ul>
-              </li>
-            </ul>
+                </li>
+                <li>
+                  <a><i class="fa fa-bug"></i> All Challenges <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{% url 'challenges' %}"><i class="fa fa-tags"></i>Categories</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-edit"></i> Scoreboard <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{% url 'scoreboard' %}"><i class="fa fa-sort-amount-desc"></i> Ranking</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <h3>Personal</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-group"></i> My Team <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{% url 'team' %}"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-user"></i> My Profile <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{% url 'user' %}"><i class="fa fa-tasks"></i>Details</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <!-- /sidebar menu -->
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-         <p style="text-align:center;"> <img style="width:85%;" src="{% static "sctf/images/acn-logo.png"%}" alt=""></p>
-
-         <a data-toggle="tooltip" data-placement="top" title="Settings">
+          <p style="text-align:center;"> <img style="width:85%;" src="{% static " sctf/images/acn-logo.png "%}" alt=""></p>
+          <a data-toggle="tooltip" data-placement="top" title="Settings">
           <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="FullScreen" onclick="toggleFullscreen()">
+          <a data-toggle="tooltip" data-placement="top" title="FullScreen" onclick="toggleFullscreen()">
           <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="Lock">
+          <a data-toggle="tooltip" data-placement="top" title="Lock">
           <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
+          <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
           <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
-      </div>
-      <!-- /menu footer buttons -->
-    </div>
-  </div>
-
-  <!-- top navigation -->
-  <div class="top_nav">
-
-    <div class="nav_menu">
-      <nav>
-        <div class="nav toggle">
-          <a id="menu_toggle"><i class="fa fa-bars"></i></a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="">
-            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <!-- /menu footer buttons -->
+      </div>
+    </div>
+
+    <!-- top navigation -->
+    <div class="top_nav">
+
+      <div class="nav_menu">
+        <nav>
+          <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="">
+              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="/{{ user.profile.image.url }}" alt="">{{user.username}}
               <span class=" fa fa-angle-down"></span>
             </a>
-            <ul class="dropdown-menu dropdown-usermenu pull-right">
-              <li><a href="javascript:;"> Profile</a></li>
-              <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <!-- /top navigation -->
-  {% block content %}
-  <!-- page content -->
-  <div class="right_col" role="main">
-    <!-- top tiles -->
-    <div class="row tile_count">
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-        <div class="count">{{users_count}}</div>
-        <span class="count_bottom"><i class="fa fa-user"></i><!--<i class="green">4% </i> From last Week--> TODO</span>
-      </div>
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-group"></i> Total Teams</span>
-        <div class="count">{{teams_count}}</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-group"></i> TODO </i>Components [AVG]</span>
-      </div>
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-bug"></i> Total Challenges</span>
-        <div class="count">{{challenges_count}}</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Categories</span>
-      </div>
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-flag"></i> Total Points Available</span>
-        <div class="count">{{total_points_count}}</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-flag"></i> {{user_points_count}} </i> Gained</span>
-      </div>
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-key"></i> Wrong Keys Submitted</span>
-        <div class="count red">2315</div>
-        <span class="count_bottom"><i class="red"><i class="fa fa-bug"></i> TODO </i> Most Failed</span>
-      </div>
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-key"></i> Right Keys Submitted</span>
-        <div class="count green">7325</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Most Successful</span>
+              <ul class="dropdown-menu dropdown-usermenu pull-right">
+                <li><a href="javascript:;"> Profile</a></li>
+                <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-    <!-- /top tiles -->
-    <div class="row">
+    <!-- /top navigation -->
+    {% block content %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+      <!-- top tiles -->
+      <div class="row tile_count">
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+          <div class="count">{{users_count}}</div>
+          <span class="count_bottom"><i class="fa fa-user"></i><!--<i class="green">4% </i> From last Week--> TODO</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-group"></i> Total Teams</span>
+          <div class="count">{{teams_count}}</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-group"></i> TODO </i>Components [AVG]</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-bug"></i> Total Challenges</span>
+          <div class="count">{{challenges_count}}</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Categories</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-flag"></i> Total Points Available</span>
+          <div class="count">{{total_points_count}}</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-flag"></i> {{user_points_count}} </i> Gained</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-key"></i> Wrong Keys Submitted</span>
+          <div class="count red">2315</div>
+          <span class="count_bottom"><i class="red"><i class="fa fa-bug"></i> TODO </i> Most Failed</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-key"></i> Right Keys Submitted</span>
+          <div class="count green">7325</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-bug"></i> TODO </i> Most Successful</span>
+        </div>
+      </div>
+      <!-- /top tiles -->
+      <div class="row">
 
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>Daily active users <small>Sessions</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-            <div class="bs-example" data-example-id="simple-jumbotron">
-              <div class="jumbotron">
-                <h1>Hello, world!</h1>
-                <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Daily active users <small>Sessions</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <div class="bs-example" data-example-id="simple-jumbotron">
+                <div class="jumbotron">
+                  <h1>Hello, world!</h1>
+                  <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
+                    content or information.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>Welcome, please read all of the instructions before doing anything!</h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-            <!-- Smart Wizard -->
-            <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
-            <div id="wizard" class="form_wizard wizard_horizontal">
-              <ul class="wizard_steps">
-                <li>
-                  <a href="#step-1">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Welcome, please read all of the instructions before doing anything!</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <!-- Smart Wizard -->
+              <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
+              <div id="wizard" class="form_wizard wizard_horizontal">
+                <ul class="wizard_steps">
+                  <li>
+                    <a href="#step-1">
                     <span class="step_no">1</span>
                     <span class="step_descr">
                       Step 1<br />
                       <small class="green">Choose Your Team</small>
                     </span>
                   </a>
-                </li>
-                <li>
-                  <a href="#step-2">
+                  </li>
+                  <li>
+                    <a href="#step-2">
                     <span class="step_no">2</span>
                     <span class="step_descr">
                       Step 2<br />
                       <small class="green">Resolve Challenges</small>
                     </span>
                   </a>
-                </li>
+                  </li>
 
-                <li>
-                  <a href="#step-3">
+                  <li>
+                    <a href="#step-3">
                     <span class="step_no">3</span>
                     <span class="step_descr">
                       Step 3<br />
                       <small class="green">Go For Victory!</small>
                     </span>
                   </a>
-                </li>
-              </ul>
-              <div id="step-1">
-                <h2 class="StepTitle">Step 1 - Choose Your Team</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
-              </div>
-              <div id="step-2">
-                <h2 class="StepTitle">Step 2 - Resolve Challenges</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
-              </div>
-              <div id="step-3">
-                <h2 class="StepTitle">Step 3 - Go For Victory!</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
+                  </li>
+                </ul>
+                <div id="step-1">
+                  <h2 class="StepTitle">Step 1 - Choose Your Team</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+                <div id="step-2">
+                  <h2 class="StepTitle">Step 2 - Resolve Challenges</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+                <div id="step-3">
+                  <h2 class="StepTitle">Step 3 - Go For Victory!</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
               </div>
             </div>
+            <!-- End SmartWizard Content -->
           </div>
-          <!-- End SmartWizard Content -->
+          <br />
         </div>
-        <br />
-      </div>
-      <!-- /page content -->
-      {% endblock %}
+        <!-- /page content -->
+        {% endblock %}
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
     </div>
   </div>
 
   <!-- jQuery -->
-  <script src="{% static "sctf/vendors/jquery/dist/jquery.min.js" %}" ></script>
+  <script src="{% static "sctf/vendors/jquery/dist/jquery.min.js" %}"></script>
   <!-- Bootstrap -->
   <script src="{% static "sctf/vendors/bootstrap/dist/js/bootstrap.min.js" %}"></script>
   <!-- FastClick -->
   <script src="{% static "sctf/vendors/fastclick/lib/fastclick.js" %}"></script>
   <!-- NProgress -->
   <script src="{% static "sctf/vendors/nprogress/nprogress.js" %}"></script>
-  <!-- morris.js -->
+  <!-- morris.js 
   <script src="{% static "sctf/vendors/raphael/raphael.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/morris.js/morris.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/morris.js/morris.min.js" %}"></script> 
+  -->
   <!-- Chart.js -->
   <script src="{% static "sctf/vendors/Chart.js/dist/Chart.min.js" %}"></script>
   <!-- gauge.js -->
@@ -333,25 +341,25 @@
   <script src="{% static "sctf/vendors/moment/min/moment.min.js" %}"></script>
   <script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
 
-  <!-- Custom Theme Scripts --> 
+  <!-- Custom Theme Scripts -->
   <!-- <script src="{% static "sctf/build/js/custom.min.js" %}"></script> -->
-  <script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"%}" ></script>
-  <script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/jszip/dist/jszip.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js"%}" ></script>
-  <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js"%}" ></script>
+  <script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}"></script>
+  <script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/jszip/dist/jszip.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js" %}"></script>
+  <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js" %}"></script>
   <!-- jQuery Smart Wizard -->
-  <script src="{% static "sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"%}"></script>
+  <script src="{% static "sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js" %}"></script>
   <!-- Custom Theme Scripts -->
   <script src="{% static "sctf/build/js/custom.js" %}"></script>
 
@@ -359,11 +367,11 @@
 
   <!-- Cookie -->
   <script type="text/javascript">
-    $.ajaxSetup({beforeSend:function(a,b){function c(a){var b=null;if(document.cookie&&""!=document.cookie)for(var c=document.cookie.split(";"),d=0;d<c.length;d++){var e=jQuery.trim(c[d]);if(e.substring(0,a.length+1)==a+"="){b=decodeURIComponent(e.substring(a.length+1));break}}return b}/^http:.*/.test(b.url)||/^https:.*/.test(b.url)||a.setRequestHeader("X-CSRFToken",c("csrftoken"))}});
+    $.ajaxSetup({ beforeSend: function (a, b) { function c(a) { var b = null; if (document.cookie && "" != document.cookie) for (var c = document.cookie.split(";"), d = 0; d < c.length; d++) { var e = jQuery.trim(c[d]); if (e.substring(0, a.length + 1) == a + "=") { b = decodeURIComponent(e.substring(a.length + 1)); break } } return b } /^http:.*/.test(b.url) || /^https:.*/.test(b.url) || a.setRequestHeader("X-CSRFToken", c("csrftoken")) } });
   </script>
   <!-- Full Screen -->
   <script type="text/javascript">
-    function toggleFullscreen(a){a=a||document.documentElement,document.fullscreenElement||document.mozFullScreenElement||document.webkitFullscreenElement||document.msFullscreenElement?document.exitFullscreen?document.exitFullscreen():document.msExitFullscreen?document.msExitFullscreen():document.mozCancelFullScreen?document.mozCancelFullScreen():document.webkitExitFullscreen&&document.webkitExitFullscreen():(a.requestFullscreen?a.requestFullscreen():a.msRequestFullscreen?a.msRequestFullscreen():a.mozRequestFullScreen?a.mozRequestFullScreen():a.webkitRequestFullscreen&&a.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT),b)}
+    function toggleFullscreen(a) { a = a || document.documentElement, document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : (a.requestFullscreen ? a.requestFullscreen() : a.msRequestFullscreen ? a.msRequestFullscreen() : a.mozRequestFullScreen ? a.mozRequestFullScreen() : a.webkitRequestFullscreen && a.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT), b) }
   </script>
 
 </body>
