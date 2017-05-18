@@ -3,7 +3,6 @@
 {% block content %}
 {% load static %}
 
-
 <!-- page content -->
 <div class="right_col" role="main">
   <div class="">
@@ -12,10 +11,7 @@
       </div>      
     </div>
     <div class="clearfix"></div>
-    
-    
     <div class="clearfix"></div>
-
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -36,11 +32,9 @@
                 </div>
               </div>
               <h3>{{user}}</h3>
-
               <ul class="list-unstyled user_data">
                 <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
                 </li>
-
                 <li>
                   <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
                 </li>
@@ -55,10 +49,8 @@
                   <a href="http://www.kimlabs.com/profile/" target="_blank">{{user.email}}</a>
                 </li>
               </ul>
-
               <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
               <br />
-
               <!-- start skills -->
               <h4>Skills</h4>
               <ul class="list-unstyled user_data">
@@ -88,9 +80,7 @@
                 </li>
               </ul>
               <!-- end of skills -->
-
             </div>
-
             <div class="col-md-9 col-sm-9 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
@@ -106,23 +96,28 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-md-9 col-sm-9 col-xs-12">
-
-              <div class="profile_title">
-                <div class="col-md-6">
-                  <h2>User Activity Report</h2>
+            <div class="clearfix"></div><br>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2 class="green">SCORE OVER TIME</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
                 </div>
-                <div class="col-md-6">
-                  <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                <div class="x_content">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="dashboard_graph">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div id="teamScoreOverTime" class="demo-placeholder"></div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- start of user-activity-graph -->
-              <div id="graph_bar" style="width:100%; height:280px;"></div>
-              
             </div>
           </div>
         </div>
@@ -133,14 +128,12 @@
 <!-- /page content -->
 
 {% endblock %}
-
 {% block extra_js %}
-
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
   $(document).ready(function() {
-    init_morris_charts();
     init_Radar();
+    init_flot_chart();
     
   });
 </script>
@@ -153,11 +146,8 @@
   Chart.defaults.global.legend = {
     enabled: false
   };
-
    // Radar chart
-
    if ($('#canvasRadar').length ){ 
-
     var ctx = document.getElementById("canvasRadar");
     var data = {
       labels: JSON.parse("{{ categories_names | escapejs }}"),
@@ -172,7 +162,6 @@
         data: JSON.parse("{{ categories_num_done_user | escapejs }}")
       }]
     };
-
     var canvasRadar = new Chart(ctx, {
       type: 'radar',
       data: data,
@@ -183,39 +172,71 @@
 </script>
 
 <script type="text/javascript">
-  function init_morris_charts() {
+  function init_flot_chart(){
+    if( typeof ($.plot) === 'undefined'){ return; }
+    console.log('init_flot_chart');
 
-    if( typeof (Morris) === 'undefined'){ return; }
-    console.log('init_morris_charts');
+    // Page team - Score Over Time Table
+    var arr_data1 = [
+    [gd(2012, 1, 1), 10],
+    [gd(2013, 2, 2), 30],
+    [gd(2014, 3, 3), 45],
+    [gd(2015, 4, 4), 60],
+    [gd(2016, 5, 5), 70],
+    [gd(2017, 6, 6), 95],
+    [gd(2018, 7, 7), 150]
+    ];
 
-    if ($('#graph_bar').length){ 
+    var teamScoreOverTime_settings = {
+      series: {
+        lines: {
+          show: false,
+          fill: true
+        },
+        splines: {
+          show: true,
+          tension: 0.4,
+          lineWidth: 1,
+          fill: 0.4
+        },
+        points: {
+          radius: 0,
+          show: true
+        },
+        shadowSize: 2
+      },
+      grid: {
+        verticalLines: true,
+        hoverable: true,
+        clickable: true,
+        tickColor: "#d5d5d5",
+        borderWidth: 1,
+        color: '#fff'
+      },
+      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+      xaxis: {
+        tickColor: "rgba(51, 51, 51, 0.06)",
+        mode: "time",
+        //tickSize: [1, "month"],
+            //tickLength: 10,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+          },
+          yaxis: {
+            ticks: 8,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        }
 
-      Morris.Bar({
-        element: 'graph_bar',
-        data: [
-        {device: 'iPhone 4', geekbench: 380},
-        {device: 'iPhone 4S', geekbench: 655},
-        {device: 'iPhone 3GS', geekbench: 275},
-        {device: 'iPhone 5', geekbench: 1571},
-        {device: 'iPhone 5S', geekbench: 655},
-        {device: 'iPhone 6', geekbench: 2154},
-        {device: 'iPhone 6 Plus', geekbench: 1144},
-        {device: 'iPhone 6S', geekbench: 2371},
-        {device: 'iPhone 6S Plus', geekbench: 1471},
-        {device: 'Other', geekbench: 1371}
-        ],
-        xkey: 'device',
-        ykeys: ['geekbench'],
-        labels: ['Geekbench'],
-        barRatio: 0.4,
-        barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-        xLabelAngle: 35,
-        hideHover: 'auto',
-        resize: true
-      });
-
-    } 
-
+        if ($("#teamScoreOverTime").length){
+          console.log('Plot_teamScoreOverTime');
+    // Page team - Score Over Time Table
+    $.plot( $("#teamScoreOverTime"), [ arr_data1],  teamScoreOverTime_settings );
   }
+}
 </script>
 {% endblock %}
