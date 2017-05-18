@@ -27,9 +27,8 @@ def team(request, pk=None):
         points += solved.challenge.points
         time_points.append([int(solved.datetime.timestamp())*1000, points])
 
-    c_count = Category.objects.count()
     category_solved = {
-        c.name: int(team.solved_challenges.filter(category=c).count() / c_count * 100)
+        c.name: int(team.solved_challenges.filter(category=c).count() / (c.challenges.count() or 1) * 100)
         for c in Category.objects.all()
     }
 
