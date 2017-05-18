@@ -228,6 +228,7 @@
 		init_flot_chart();
 		init_TeamSolves();
 		init_TeamComponents();
+
 	});
 </script>
 <script type="text/javascript">
@@ -250,7 +251,7 @@
 
 					],
 					datasets: [{
-						data: [1,2,3], // qui ci andava Never Tried vs Solved vs Failed come era fatto?!
+						data: [{{ team.num_never_tried_challenges }},{{ team.num_success }},{{ team.num_failed_challenges }}], 
 						backgroundColor: [
 						"#BDC3C7",
 						"#26B99A",
@@ -266,7 +267,7 @@
 					}]
 				},
 				options: { 
-					legend: false, 
+					legend: true,
 					responsive: true 
 				}
 			}
