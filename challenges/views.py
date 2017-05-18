@@ -10,11 +10,14 @@ from rest_framework.viewsets import GenericViewSet
 
 from challenges.models import Challenge, Category, ChallengeSolved, ChallengeFail
 from challenges.serializers import ChallengeSolvedSerializer
+from accounts.models import Team
+
 
 
 @login_required
 def index(request):
     categories = Category.objects.all()
+    
     user = request.user
     team = user.profile.team
     categories_num_done_user = [
@@ -32,12 +35,16 @@ def index(request):
         .all()
 
     parameters = {
+        'team': team,
+        'challenges_count': Challenge.objects.count(),
+        'categories_num': categories.count(),
         'categories': categories,
         'categories_names': json.dumps([c.name for c in categories]),
         'categories_num_done_user': categories_num_done_user,
         'categories_num_done_team': categories_num_done_team,
         'categories_num_total': [c.challenges.count() for c in categories],
-        'last_team_solutions': last_team_solutions
+        'last_team_solutions': last_team_solutions,
+                
     }
 
     return render(request, 'challenges/index.html', parameters)
