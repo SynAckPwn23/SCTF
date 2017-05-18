@@ -24,16 +24,18 @@ def team(request, pk=None):
 
 
 
-    time_points = defaultdict(lambda : 0)
-    for solved in ChallengeSolved.objects.filter(user__profile__team=team):
-        time_points[solved.datetime.timestamp()] += solved.challenge.points
+    time_points = []
+    points = 0
+    for solved in ChallengeSolved.objects.filter(user__profile__team=team).order_by('datetime'):
+        points += solved.challenge.points
+        time_points.append([solved.datetime.timestamp()*1000, points])
 
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
         'teams_count': Team.objects.count(),
 
-        'time_points': json.dumps(sorted(time_points.items())),
+        'time_points': json.dumps(time_points),
 
     }
 
