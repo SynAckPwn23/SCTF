@@ -27,8 +27,9 @@ def team(request, pk=None):
         points += solved.challenge.points
         time_points.append([int(solved.datetime.timestamp())*1000, points])
 
+    c_count = Category.objects.count()
     category_solved = {
-        c.name: team.solved_challenges.filter(category=c).count()
+        c.name: int(team.solved_challenges.filter(category=c).count() / c_count * 100)
         for c in Category.objects.all()
     }
 
@@ -38,7 +39,7 @@ def team(request, pk=None):
         'teams_count': Team.objects.count(),
 
         'time_points': json.dumps(time_points),
-        'category_solved': json.dumps(category_solved)
+        'category_solved': category_solved
     }
 
     return render(request, 'accounts/team.html', parameters)
