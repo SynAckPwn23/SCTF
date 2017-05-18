@@ -34,23 +34,7 @@
 					<div class="x_content">
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron">
-								<h1 style="text-align: center;">{{team.name}}</h1>
-								
-								<div class="row tile_count">
-								
-									<div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
-										<span class="count_top"><i class="fa fa-user"></i> Team Place</span>
-										<div class="count green">#{{team.position}}</div>
-										<span class="count_bottom"><i class="fa fa-group"></i> Of {{teams_count}} Teams</span>
-									</div>
-									
-									<div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
-										<span class="count_top"><i class="fa fa-magic"></i> Total Points Gained</span>
-										<div class="count green">{{team.total_points}}</div>
-										<span class="count_bottom"><i class="green"><i class="fa fa-magic"></i> {{total_points_count}} </i>Total Points Available</span>
-									</div>
-								</div>
-
+								<h1 style="text-align: center;"><span class="green"><i class="fa fa-group"></i> {{team.name}}</span><br><br><i class="fa fa-rocket"></i> Position:<span class="green"> #{{team.position}}</span> | <i class="fa fa-flag"></i> Points:<span class="green"> #{{team.total_points}}</span></h1>
 							</div>
 						</div>
 					</div>
