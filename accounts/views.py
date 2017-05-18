@@ -21,14 +21,11 @@ def index(request):
 def team(request, pk=None):
     team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
 
-
-
-
     time_points = []
     points = 0
-    for solved in ChallengeSolved.objects.filter(user__profile__team=team).order_by('datetime'):
+    for solved in ChallengeSolved.objects.filter(user__profile__team=team).distinct().order_by('datetime'):
         points += solved.challenge.points
-        time_points.append([solved.datetime.timestamp()*1000, points])
+        time_points.append([int(solved.datetime.timestamp())*1000, points])
 
     parameters = {
         'team': team,
