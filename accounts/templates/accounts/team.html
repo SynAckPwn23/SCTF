@@ -61,7 +61,7 @@
 			</div>
 
 <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="x_panel tile fixed_height_320">
+              <div class="x_panel tile"> <!--fixed_height_320-->
                 <div class="x_title">
                   <h2 class="green">CATEGORY BREAKDOWN</h2>
                   <ul class="nav navbar-right panel_toolbox">
@@ -73,7 +73,7 @@
                 <div class="x_content">
                   <h4>App Usage across versions</h4>
 
-					{% for category, solved in category_solved.items %}
+          {% for category, solved in category_solved.items %}
                   <div class="widget_summary">
                     <div class="w_left w_25">
                       <span>{{category}}</span>
@@ -90,28 +90,15 @@
                     </div>
                     <div class="clearfix"></div>
                   </div>
-					{% endfor %}
+                                      <div class="clearfix"></div>
+
+          {% endfor %}
                 
               
                 </div>
               </div>
             </div>
-
-			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="x_panel">
-					<div class="x_title">
-						<h2 class="green">CATEGORY BREAKDOWN</h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content">
-						<canvas id="canvasDoughnut_category_breakdown"></canvas>
-					</div>
-				</div>
-			</div>
+			
 
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
@@ -237,102 +224,66 @@
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		init_TeamPercentageBreakdown();
+		init_chart_doughnut();
 		init_flot_chart();
 		init_TeamSolves();
 		init_TeamComponents();
 	});
 </script>
-
 <script type="text/javascript">
-	function init_TeamPercentageBreakdown(){
-
-		if( typeof (Chart) === 'undefined'){ return; }
-		var graph1 = $('#canvasDoughnut_key_percentage');
-		var graph2 = $('#canvasDoughnut_category_breakdown');
-
-		// Page team - Key Percentage & Cat Breakdown
-		if (graph1.length && graph2.length){
-
-			var chart1_settings = {
-				type: 'doughnut',
-				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-				data: {
-					labels: [
-					"Solved",
-					"Failed",
-					"Never Tried"
-					],
-					datasets: [{
-						data: [
-						{{ team.num_success }},
-						{{ team.num_failed_challenges }},
-						{{ team.num_never_tried_challenges }}
-						],
-						backgroundColor: [
-						"#26B99A",
-						"#E74C3C",
-						"#BDC3C7"
-						],
-						hoverBackgroundColor: [
-						"#36CAAB",
-						"#E95E4F",
-						"#CFD4D8"
-						]
-					}]
-				},
-				options: {
-					legend: true,
-					responsive: true,
-				}
-			}
-
-			var category_solved= JSON.parse("{{ category_solved | escapejs }}");
-
-
-			var chart2_settings = {
-				type: 'doughnut',
-				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-				data: {
-					labels: Object.keys(category_solved),
-					datasets: [{
-						data: [1,2,3,4],
-						backgroundColor: [
-						"#BDC3C7",
-						"#9B59B6",
-						"#E74C3C",
-						"#26B99A",
-						"#3498DB",
-						"FE4A67"
-						],
-						hoverBackgroundColor: [
-						"#CFD4D8",
-						"#B370CF",
-						"#E95E4F",
-						"#36CAAB",
-						"#49A9EA",
-						"#e4425c"
-						]
-					}]
-				},
-				options: {
-					legend: true,
-					responsive: true
-				}
-			}
-
-			graph1.each(function(){
-
-				var chart_element = $(this);
-				var chart_doughnut = new Chart( chart_element, chart1_settings);
-			});
-
-			graph2.each(function(){
-				var chart_element = $(this);
-				var chart_doughnut = new Chart( chart_element, chart2_settings);
-			});
-		}
-	}
+function init_chart_doughnut(){
+                
+        if( typeof (Chart) === 'undefined'){ return; }
+        
+        console.log('init_chart_doughnut');
+     
+        if ($('#canvasDoughnut_key_percentage').length){
+            
+        var chart_doughnut_settings = {
+                type: 'doughnut',
+                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                data: {
+                    labels: [
+                        "Symbian",
+                        "Blackberry",
+                        "Other",
+                        "Android",
+                        "IOS"
+                    ],
+                    datasets: [{
+                        data: [15, 20, 30, 10, 30],
+                        backgroundColor: [
+                            "#BDC3C7",
+                            "#9B59B6",
+                            "#E74C3C",
+                            "#26B99A",
+                            "#3498DB"
+                        ],
+                        hoverBackgroundColor: [
+                            "#CFD4D8",
+                            "#B370CF",
+                            "#E95E4F",
+                            "#36CAAB",
+                            "#49A9EA"
+                        ]
+                    }]
+                },
+                options: { 
+                    legend: false, 
+                    responsive: true 
+                }
+            }
+        
+            $('#canvasDoughnut_key_percentage').each(function(){
+                
+                var chart_element = $(this);
+                var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+                
+            });         
+        
+        }  
+       
+    }
 </script>
 
 <script type="text/javascript">
