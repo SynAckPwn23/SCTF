@@ -60,44 +60,44 @@
 				</div>
 			</div>
 
-<div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="x_panel tile"> <!--fixed_height_320-->
-                <div class="x_title">
-                  <h2 class="green">CATEGORY BREAKDOWN</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <h4>App Usage across versions</h4>
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="x_panel tile"> <!--fixed_height_320-->
+					<div class="x_title">
+						<h2 class="green">CATEGORY BREAKDOWN</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<h4>App Usage across versions</h4>
 
-          {% for category, solved in category_solved.items %}
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>{{category}}</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{solved}}" aria-valuemin="0" aria-valuemax="100" style="width: {{solved}}%;">
-                          <span class="sr-only">{{solved}}% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>{{solved}}%</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                                      <div class="clearfix"></div>
+						{% for category, solved in category_solved.items %}
+						<div class="widget_summary">
+							<div class="w_left w_25">
+								<span>{{category}}</span>
+							</div>
+							<div class="w_center w_55">
+								<div class="progress">
+									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{solved}}" aria-valuemin="0" aria-valuemax="100" style="width: {{solved}}%;">
+										<span class="sr-only">{{solved}}% Complete</span>
+									</div>
+								</div>
+							</div>
+							<div class="w_right w_20">
+								<span>{{solved}}%</span>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="clearfix"></div>
 
-          {% endfor %}
-                
-              
-                </div>
-              </div>
-            </div>
+						{% endfor %}
+
+
+					</div>
+				</div>
+			</div>
 			
 
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -231,59 +231,56 @@
 	});
 </script>
 <script type="text/javascript">
-function init_chart_doughnut(){
-                
-        if( typeof (Chart) === 'undefined'){ return; }
-        
-        console.log('init_chart_doughnut');
-     
-        if ($('#canvasDoughnut_key_percentage').length){
-            
-        var chart_doughnut_settings = {
-                type: 'doughnut',
-                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-                data: {
-                    labels: [
-                        "Symbian",
-                        "Blackberry",
-                        "Other",
-                        "Android",
-                        "IOS"
-                    ],
-                    datasets: [{
-                        data: [15, 20, 30, 10, 30],
-                        backgroundColor: [
-                            "#BDC3C7",
-                            "#9B59B6",
-                            "#E74C3C",
-                            "#26B99A",
-                            "#3498DB"
-                        ],
-                        hoverBackgroundColor: [
-                            "#CFD4D8",
-                            "#B370CF",
-                            "#E95E4F",
-                            "#36CAAB",
-                            "#49A9EA"
-                        ]
-                    }]
-                },
-                options: { 
-                    legend: false, 
-                    responsive: true 
-                }
-            }
-        
-            $('#canvasDoughnut_key_percentage').each(function(){
-                
-                var chart_element = $(this);
-                var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-                
-            });         
-        
-        }  
-       
-    }
+	function init_chart_doughnut(){
+
+		if( typeof (Chart) === 'undefined'){ return; }
+
+		console.log('init_chart_doughnut');
+
+		if ($('#canvasDoughnut_key_percentage').length){
+
+			var chart_doughnut_settings = {
+				type: 'doughnut',
+				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+				data: {
+					labels: [
+					"Never Tried",
+					"Solved",
+					"Other",
+
+					],
+					datasets: [{
+						data: [1,2,3], // qui ci andava Never Tried vs Solved vs Failed come era fatto?!
+						backgroundColor: [
+						"#BDC3C7",
+						"#26B99A",
+						"#E74C3C"
+
+						],
+						hoverBackgroundColor: [
+						"#CFD4D8",
+						"#36CAAB",
+						"#E95E4F"
+
+						]
+					}]
+				},
+				options: { 
+					legend: false, 
+					responsive: true 
+				}
+			}
+
+			$('#canvasDoughnut_key_percentage').each(function(){
+
+				var chart_element = $(this);
+				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+
+			});         
+
+		}  
+
+	}
 </script>
 
 <script type="text/javascript">
