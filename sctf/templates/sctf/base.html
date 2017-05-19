@@ -8,7 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Security CTF | Home{% endblock %}</title>
-  <!-- Bootstrap -->
+  
+  
+  <link href="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css" %}" rel="stylesheet">
+
+
   <link href="{% static "sctf/vendors/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="{% static "sctf/vendors/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
@@ -30,6 +34,8 @@
   <link href="{% static "sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="{% static "sctf/build/css/custom.min.css" %}" rel="stylesheet">
+    <link href="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css" %}" rel="stylesheet">
+
 </head>
 
 <style type="text/css">
@@ -377,6 +383,11 @@
   <script src="{% static "sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" %}"></script>
   <!-- iCheck -->
   <script src="{% static "sctf/vendors/iCheck/icheck.min.js" %}"></script>
+
+ 
+    <!-- jQuery Tags Input -->
+    <script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js" %}"></script>
+
   <!-- Skycons -->
   <script src="{% static "sctf/vendors/skycons/skycons.js" %}"></script>
   <!-- Flot -->
@@ -419,6 +430,9 @@
   <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js" %}"></script>
   <!-- jQuery Smart Wizard -->
   <script src="{% static "sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js" %}"></script>
+
+  <script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js" %}"/>
+
   <!-- Custom Theme Scripts -->
   <script src="{% static "sctf/build/js/custom.js" %}"></script>
 
