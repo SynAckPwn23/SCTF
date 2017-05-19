@@ -4,7 +4,7 @@
 Security Capture the Flag Platform.
 
 # Install & Start
-<b>Strongly Suggested</b>: Virtualenv
+<b>Strongly Suggested</b>: Virtual Environment
 	
 	$ pyvenv-3.5 venv
 	$ source venv/bin/activate
