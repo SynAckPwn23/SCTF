@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'accounts',
     'sctf',
     'challenges',
-    'scoreboard',
 
     'rest_framework',
 

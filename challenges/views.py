@@ -1,7 +1,5 @@
 import json
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
@@ -10,12 +8,18 @@ from rest_framework.viewsets import GenericViewSet
 
 from challenges.models import Challenge, Category, ChallengeSolved, ChallengeFail
 from challenges.serializers import ChallengeSolvedSerializer
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
 from accounts.models import Team
 
 
 
+
 @login_required
-def index(request):
+def challenges(request):
     categories = Category.objects.all()
     
     user = request.user
@@ -67,3 +71,13 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
             return Response('OK')
         ChallengeFail.objects.create(user=user, challenge=challenge)
         return Response('Wrong KEY', status=HTTP_417_EXPECTATION_FAILED)
+
+
+@login_required
+def scoreboard(request):
+    parameters = {
+        'teams': Team.objects.all(),
+        'users': get_user_model().objects.all(),
+    }
+    return render(request, 'scoreboard/index.html', parameters)
+
