@@ -6,3 +6,5 @@ markdown
 django-filter
 Pillow
 django-cities-light
+
+django-autofixture

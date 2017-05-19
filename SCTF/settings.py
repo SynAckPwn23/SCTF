@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'cities_light',
+    'autofixture',
 ]
 
 MIDDLEWARE = [
