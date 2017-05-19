@@ -11,11 +11,11 @@ Security Capture the Flag Platform.
 
 <b>Install Requirements</b>:
 
-	pip install -r requirements.txt
+	$ pip install -r requirements.txt
 
 <b>Start Application</b>:
 	
-	python manage.py runserver <[port]>
+	$ python manage.py runserver <[port]>
 
 # Live Demo
 Insert Description
