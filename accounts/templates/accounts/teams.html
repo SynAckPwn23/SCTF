@@ -74,7 +74,7 @@
 										<ul class="list-inline">
 											{% for user in team.users.all %}
 											<li>
-												<img src="/{{ user.profile.image.url }}" class="avatar" alt="Avatar">
+												<img src="/{{user.profile.image.url}}" class="avatar" alt="Avatar">
 												<a class="green" href="{% url 'user' %}"><font size="0" style="display:block;" >{{user.username}}</font></a>
 											</li>
 											{% endfor %}

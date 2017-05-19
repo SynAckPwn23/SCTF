@@ -147,7 +147,7 @@
 										<ul class="list-inline">
 
 											<li>
-												<img src="{% static "sctf/images/user.png" %}" class="avatar" alt="Avatar">
+												<img src=src="/{{user.profile.image.url}}" class="avatar" alt="Avatar">
 												<a class="green" href="{% url 'user' pk=user.pk %}"><font size="0" style="display:block;" >{{user.username}}</font></a>
 											</li>
 											
