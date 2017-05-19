@@ -4,9 +4,18 @@
 Security Capture the Flag Platform.
 
 # Install & Start
-<b>Install</b>: pip install -r requirements.txt
+<b>Strongly Suggested</b>: Virtualenv
+	
+	$ pyvenv-3.5 venv
+	$ source venv/bin/activate
 
-<b>Start</b>: python manage.py runserver <[port]>
+<b>Install Requirements</b>:
+
+	pip install -r requirements.txt
+
+<b>Start Application</b>:
+	
+	python manage.py runserver <[port]>
 
 # Live Demo
 Insert Description
