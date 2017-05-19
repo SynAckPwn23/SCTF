@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/SynAckPwn23/SCTF.svg?branch=master)](https://travis-ci.org/SynAckPwn23/SCTF)
 
+<%= octicon "logo-github" %>
+
 # SCTF
 Security Capture the Flag Platform.
 
