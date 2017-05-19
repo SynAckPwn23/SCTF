@@ -65,6 +65,31 @@
 								</div>
 							</div>
 							<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="select2_group form-control" required="required">
+							  {% for value, name in profile_form.fields.country.choices %}
+							<option value="{{value}}">{{name}}</option>
+							{% endfor %}
+                          </select>
+                        </div>
+                      </div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Gender: <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+								<p>
+									<p class="helptext">Male:
+									<input type="radio" class="flat" name="gender" id="genderM" value="M" required="required" /> Female:
+									<input type="radio" class="flat" name="gender" id="genderF" value="F" required="required"/></p>
+								</p>
+								</div>
+							</div>
+							
+
+							<div class="form-group">
+=======
+>>>>>>> 00e3b4bfdf06bfbacbe889b6c46c1465d911a0b1
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 								<input class="form-control col-md-7 col-xs-12" type="file" id="image"  name="image"/>
