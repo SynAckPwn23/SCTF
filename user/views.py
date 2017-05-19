@@ -21,7 +21,7 @@ def index(request, pk=None):
     parameters = {
         'categories_names': json.dumps([c.name for c in categories]),
         'categories_num_done_user': categories_num_done_user,
-
+        'user_detail_page': user
 
     }
     return render(request, 'user/index.html', parameters)
