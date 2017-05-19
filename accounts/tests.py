@@ -59,6 +59,9 @@ class RegistrationTestCase(TestCase):
             'password1': 'u1u2u3u4',
             'password2': 'u1u2u3u4',
             })
+        # Created
+        self.assertEqual(response.status_code, 302)
+
         u = get_user_model().objects.first()
         # Correct username
         self.assertEqual(u.username, 'username')
@@ -68,11 +71,6 @@ class RegistrationTestCase(TestCase):
         self.assertEqual(u.first_name, 'FirstName')
         # Correct last_name
         self.assertEqual(u.last_name, 'LastName')
-        # Correct password1
-        self.assertEqual(u.password1, 'u1u2u3u4')
-        # Correct pasword2
-        self.assertEqual(u.password2, 'u1u2u3u4')
-        self.assertEqual(response.status_code, 200)
 
     #Test User Registration Empty
     def test_register_empty(self):
