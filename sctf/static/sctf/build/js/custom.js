@@ -336,137 +336,7 @@ if (typeof NProgress != 'undefined') {
 	  }
 	  
 
-	 /* function init_flot_chart(){
-
-	  	if( typeof ($.plot) === 'undefined'){ return; }
-	  	console.log('init_flot_chart');
-
-    // Page team - Score Over Time Table
-    var arr_data1 = [
-    [gd(2012, 1, 1), 12],
-    [gd(2012, 1, 2), 86],
-    [gd(2012, 1, 3), -17],
-    [gd(2012, 1, 4), 39],
-    [gd(2012, 1, 5), 20],
-    [gd(2012, 1, 6), 85],
-    [gd(2012, 1, 7), 7]
-    ];
-
-    var teamScoreOverTime_settings = {
-    	series: {
-    		lines: {
-    			show: false,
-    			fill: true
-    		},
-    		splines: {
-    			show: true,
-    			tension: 0.4,
-    			lineWidth: 1,
-    			fill: 0.4
-    		},
-    		points: {
-    			radius: 0,
-    			show: true
-    		},
-    		shadowSize: 2
-    	},
-    	grid: {
-    		verticalLines: true,
-    		hoverable: true,
-    		clickable: true,
-    		tickColor: "#d5d5d5",
-    		borderWidth: 1,
-    		color: '#fff'
-    	},
-    	colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-    	xaxis: {
-    		tickColor: "rgba(51, 51, 51, 0.06)",
-    		mode: "time",
-    		tickSize: [1, "day"],
-            //tickLength: 10,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
-        },
-        yaxis: {
-        	ticks: 8,
-        	tickColor: "rgba(51, 51, 51, 0.06)",
-        },
-        tooltip: false
-    }
-
-    if ($("#teamScoreOverTime").length){
-    	console.log('Plot_teamScoreOverTime');
- 		// Page team - Score Over Time Table
- 		$.plot( $("#teamScoreOverTime"), [ arr_data1],  teamScoreOverTime_settings );
- 	}
-
-    // Page home - Network Activities
-    var arr_data2 = [
-    [gd(2012, 1, 1), 100],
-    [gd(2012, 1, 2), 80],
-    [gd(2012, 1, 3), 7],
-    [gd(2012, 1, 4), 19],
-    [gd(2012, 1, 5), 20],
-    [gd(2012, 1, 6), 55],
-    [gd(2012, 1, 7), 75]
-    ];
-
-    var homeNetworkActivities_settings = {
-    	series: {
-    		lines: {
-    			show: false,
-    			fill: true
-    		},
-    		splines: {
-    			show: true,
-    			tension: 0.4,
-    			lineWidth: 1,
-    			fill: 0.4
-    		},
-    		points: {
-    			radius: 0,
-    			show: true
-    		},
-    		shadowSize: 2
-    	},
-    	grid: {
-    		verticalLines: true,
-    		hoverable: true,
-    		clickable: true,
-    		tickColor: "#d5d5d5",
-    		borderWidth: 1,
-    		color: '#fff'
-    	},
-    	colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-    	xaxis: {
-    		tickColor: "rgba(51, 51, 51, 0.06)",
-    		mode: "time",
-    		tickSize: [1, "day"],
-            //tickLength: 10,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
-        },
-        yaxis: {
-        	ticks: 8,
-        	tickColor: "rgba(51, 51, 51, 0.06)",
-        },
-        tooltip: false
-    }
-
-    if ($("#homeNetworkActivities").length){
-    	console.log('Plot_homeNetworkActivities');
- 		// Page team - Score Over Time Table
- 		$.plot( $("#homeNetworkActivities"), [ arr_data2],  homeNetworkActivities_settings );
- 	}
-
- }
- */
+	
 
 
  /* STARRR */
@@ -493,51 +363,6 @@ if (typeof NProgress != 'undefined') {
  };
 
 
- function init_JQVmap(){
-
-		//console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );	
-		
-		if(typeof (jQuery.fn.vectorMap) === 'undefined'){ return; }
-		
-		console.log('init_JQVmap');
-
-		if ($('#world-map-gdp').length ){
-
-			$('#world-map-gdp').vectorMap({
-				map: 'world_en',
-				backgroundColor: null,
-				color: '#ffffff',
-				hoverOpacity: 0.7,
-				selectedColor: '#666666',
-				enableZoom: true,
-				showTooltip: true,
-				values: sample_data,
-				scaleColors: ['#E6F2F0', '#149B7E'],
-				normalizeFunction: 'polynomial'
-			});
-			
-		}
-
-		if ($('#usa_map').length ){
-			
-			$('#usa_map').vectorMap({
-				map: 'usa_en',
-				backgroundColor: null,
-				color: '#ffffff',
-				hoverOpacity: 0.7,
-				selectedColor: '#666666',
-				enableZoom: true,
-				showTooltip: true,
-				values: sample_data,
-				scaleColors: ['#E6F2F0', '#149B7E'],
-				normalizeFunction: 'polynomial'
-			});
-			
-		}
-
-	};
-
-
 	function init_skycons(){
 
 		if( typeof (Skycons) === 'undefined'){ return; }
@@ -560,103 +385,7 @@ if (typeof NProgress != 'undefined') {
 
 	}  
 
-/*
-	function init_chart_doughnut(){
 
-		if( typeof (Chart) === 'undefined'){ return; }
-		
-		console.log('init_chart_doughnut');
-
-		// Page team - Key Percentage
-		if ($('#canvasDoughnut_key_percentage').length){
-			
-			var chart_doughnut_settings = {
-				type: 'doughnut',
-				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-				data: {
-					labels: [
-					"Solved",
-					"Failed",
-					"Never Tried"
-					],
-					datasets: [{
-						data: [15, 20, 30],
-						backgroundColor: [
-						"#26B99A",
-						"#E74C3C",
-						"#BDC3C7"
-						],
-						hoverBackgroundColor: [
-						"#36CAAB",
-						"#E95E4F",
-						"#CFD4D8"
-						]
-					}]
-				},
-				options: { 
-					legend: true, 
-					responsive: true 
-				}
-			}
-
-			$('#canvasDoughnut_key_percentage').each(function(){
-				
-				var chart_element = $(this);
-				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-				
-			});			
-
-		}  
-
-		// Page team - Category Breakdown
-		if ($('#canvasDoughnut_category_breakdown').length){
-			
-			var chart_doughnut_settings = {
-				type: 'doughnut',
-				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-				data: {
-					labels: [
-					"Symbian",
-					"Blackberry",
-					"Other",
-					"Android",
-					"IOS"
-					],
-					datasets: [{
-						data: [15, 20, 30, 10, 30],
-						backgroundColor: [
-						"#BDC3C7",
-						"#9B59B6",
-						"#E74C3C",
-						"#26B99A",
-						"#3498DB"
-						],
-						hoverBackgroundColor: [
-						"#CFD4D8",
-						"#B370CF",
-						"#E95E4F",
-						"#36CAAB",
-						"#49A9EA"
-						]
-					}]
-				},
-				options: { 
-					legend: true, 
-					responsive: true 
-				}
-			}
-
-			$('#canvasDoughnut_category_breakdown').each(function(){
-				
-				var chart_element = $(this);
-				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-				
-			});			
-
-		}  
-
-	}
-	*/
 
 	function init_gauge() {
 
@@ -2389,163 +2118,6 @@ if (typeof NProgress != 'undefined') {
 				
 			};
 
-			/* CHART - MORRIS  */
-/*
-			function init_morris_charts() {
-
-				if( typeof (Morris) === 'undefined'){ return; }
-				console.log('init_morris_charts');
-
-				if ($('#graph_bar').length){ 
-
-					Morris.Bar({
-						element: 'graph_bar',
-						data: [
-						{device: 'iPhone 4', geekbench: 380},
-						{device: 'iPhone 4S', geekbench: 655},
-						{device: 'iPhone 3GS', geekbench: 275},
-						{device: 'iPhone 5', geekbench: 1571},
-						{device: 'iPhone 5S', geekbench: 655},
-						{device: 'iPhone 6', geekbench: 2154},
-						{device: 'iPhone 6 Plus', geekbench: 1144},
-						{device: 'iPhone 6S', geekbench: 2371},
-						{device: 'iPhone 6S Plus', geekbench: 1471},
-						{device: 'Other', geekbench: 1371}
-						],
-						xkey: 'device',
-						ykeys: ['geekbench'],
-						labels: ['Geekbench'],
-						barRatio: 0.4,
-						barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-						xLabelAngle: 35,
-						hideHover: 'auto',
-						resize: true
-					});
-
-				}	
-
-				if ($('#graph_bar_group').length ){
-
-					Morris.Bar({
-						element: 'graph_bar_group',
-						data: [
-						{"period": "2016-10-01", "licensed": 807, "sorned": 660},
-						{"period": "2016-09-30", "licensed": 1251, "sorned": 729},
-						{"period": "2016-09-29", "licensed": 1769, "sorned": 1018},
-						{"period": "2016-09-20", "licensed": 2246, "sorned": 1461},
-						{"period": "2016-09-19", "licensed": 2657, "sorned": 1967},
-						{"period": "2016-09-18", "licensed": 3148, "sorned": 2627},
-						{"period": "2016-09-17", "licensed": 3471, "sorned": 3740},
-						{"period": "2016-09-16", "licensed": 2871, "sorned": 2216},
-						{"period": "2016-09-15", "licensed": 2401, "sorned": 1656},
-						{"period": "2016-09-10", "licensed": 2115, "sorned": 1022}
-						],
-						xkey: 'period',
-						barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-						ykeys: ['licensed', 'sorned'],
-						labels: ['Licensed', 'SORN'],
-						hideHover: 'auto',
-						xLabelAngle: 60,
-						resize: true
-					});
-
-				}
-
-				if ($('#graphx').length ){
-
-					Morris.Bar({
-						element: 'graphx',
-						data: [
-						{x: '2015 Q1', y: 2, z: 3, a: 4},
-						{x: '2015 Q2', y: 3, z: 5, a: 6},
-						{x: '2015 Q3', y: 4, z: 3, a: 2},
-						{x: '2015 Q4', y: 2, z: 4, a: 5}
-						],
-						xkey: 'x',
-						ykeys: ['y', 'z', 'a'],
-						barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-						hideHover: 'auto',
-						labels: ['Y', 'Z', 'A'],
-						resize: true
-					}).on('click', function (i, row) {
-						console.log(i, row);
-					});
-
-				}
-
-				if ($('#graph_area').length ){
-
-					Morris.Area({
-						element: 'graph_area',
-						data: [
-						{period: '2014 Q1', iphone: 2666, ipad: null, itouch: 2647},
-						{period: '2014 Q2', iphone: 2778, ipad: 2294, itouch: 2441},
-						{period: '2014 Q3', iphone: 4912, ipad: 1969, itouch: 2501},
-						{period: '2014 Q4', iphone: 3767, ipad: 3597, itouch: 5689},
-						{period: '2015 Q1', iphone: 6810, ipad: 1914, itouch: 2293},
-						{period: '2015 Q2', iphone: 5670, ipad: 4293, itouch: 1881},
-						{period: '2015 Q3', iphone: 4820, ipad: 3795, itouch: 1588},
-						{period: '2015 Q4', iphone: 15073, ipad: 5967, itouch: 5175},
-						{period: '2016 Q1', iphone: 10687, ipad: 4460, itouch: 2028},
-						{period: '2016 Q2', iphone: 8432, ipad: 5713, itouch: 1791}
-						],
-						xkey: 'period',
-						ykeys: ['iphone', 'ipad', 'itouch'],
-						lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-						labels: ['iPhone', 'iPad', 'iPod Touch'],
-						pointSize: 2,
-						hideHover: 'auto',
-						resize: true
-					});
-
-				}
-
-				if ($('#graph_donut').length ){
-
-					Morris.Donut({
-						element: 'graph_donut',
-						data: [
-						{label: 'Jam', value: 25},
-						{label: 'Frosted', value: 40},
-						{label: 'Custard', value: 25},
-						{label: 'Sugar', value: 10}
-						],
-						colors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-						formatter: function (y) {
-							return y + "%";
-						},
-						resize: true
-					});
-
-				}
-
-				if ($('#graph_line').length ){
-
-					Morris.Line({
-						element: 'graph_line',
-						xkey: 'year',
-						ykeys: ['value'],
-						labels: ['Value'],
-						hideHover: 'auto',
-						lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-						data: [
-						{year: '2012', value: 20},
-						{year: '2013', value: 10},
-						{year: '2014', value: 5},
-						{year: '2015', value: 5},
-						{year: '2016', value: 20}
-						],
-						resize: true
-					});
-
-					$MENU_TOGGLE.on('click', function() {
-						$(window).resize();
-					});
-
-				}
-
-			};
-*/
 
 
 			/* ECHRTS */
@@ -4826,18 +4398,15 @@ if (typeof NProgress != 'undefined') {
 }  
 
 $(document).ready(function() {
-	//init_flot_chart();
 
 	init_sparklines();
 	init_sidebar();
 	init_wysiwyg();
 	init_InputMask();
-	init_JQVmap();
 	init_cropper();
 	init_knob();
 	init_IonRangeSlider();
 	init_ColorPicker();
-	//init_TagsInput();
 	init_parsley();
 	init_daterangepicker();
 	init_daterangepicker_right();
@@ -4847,7 +4416,6 @@ $(document).ready(function() {
 	init_EasyPieChart();
 	init_charts();
 	init_echarts();
-	//init_morris_charts();
 	init_skycons();
 	init_select2();
 	init_validator();
