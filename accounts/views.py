@@ -1,19 +1,19 @@
-from collections import defaultdict
-
-from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseBadRequest
-from django.shortcuts import render
 from registration.backends.simple.views import RegistrationView
 
-from accounts.models import Team, UserProfile
-from challenges.models import Challenge, ChallengeSolved, Category
+from accounts.models import Team
+from challenges.models import Challenge, ChallengeSolved
 from accounts.forms import CustomRegistrationForm, UserProfileForm
 
 import json
 
 
-import django.contrib.auth.views
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+
+from challenges.models import Category
+
 
 
 @login_required
@@ -74,3 +74,22 @@ class CustomRegistrationView(RegistrationView):
             'profile_form': UserProfileForm()
         })
         return data
+
+
+@login_required
+def user_detail(request, pk=None):
+    user = request.user if pk is None else get_user_model().objects.get(pk=pk)
+
+    categories = Category.objects.all()
+    categories_num_done_user = [
+        c.challenges.filter(solved_by=user).distinct().count()
+        for c in categories
+    ]
+
+    parameters = {
+        'categories_names': json.dumps([c.name for c in categories]),
+        'categories_num_done_user': categories_num_done_user,
+        'user_detail_page': user
+
+    }
+    return render(request, 'accounts/user.html', parameters)

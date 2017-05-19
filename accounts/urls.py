@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^teams/$', views.index, name='teams'),
     url(r'^team/$', views.team, name='team'),
     url(r'^team/(?P<pk>\w+)$', views.team, name='team'),
+    url(r'^user/$', views.user_detail, name='user'),
+    url(r'^user/(?P<pk>\w+)$', views.user_detail, name='user'),
 ]
