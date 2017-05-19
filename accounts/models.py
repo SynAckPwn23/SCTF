@@ -37,7 +37,7 @@ class StatsFromChallengesMixin:
     @property
     def progress(self):
         from challenges.models import Challenge
-        return int(self.solved_challenges.count() / Challenge.objects.count() * 100)
+        return int(self.solved_challenges.count() / (Challenge.objects.count() or 1) * 100)
 
     @property
     def position(self):
@@ -52,7 +52,8 @@ class StatsFromChallengesMixin:
 class Team(models.Model, StatsFromChallengesMixin):
     name = models.CharField(max_length=256)
     users = models.ManyToManyField(User, through='accounts.userprofile')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+
 
     @property
     def num_users(self):
