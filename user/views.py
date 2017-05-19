@@ -9,8 +9,9 @@ from challenges.models import Category
 
 # Create your views here.
 @login_required
-def index(request):
-	user = request.user
+def index(request, pk=None):
+	user = request.user if pk is None else get_user_model().objects.get(pk=pk)
+
 	categories = Category.objects.all()
 	categories_num_done_user = [
         c.challenges.filter(solved_by=user).distinct().count()
