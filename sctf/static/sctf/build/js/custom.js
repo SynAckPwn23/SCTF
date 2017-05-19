@@ -936,7 +936,7 @@ if (typeof NProgress != 'undefined') {
 			alert("Changed a tag: " + tag);
 		}
 
-			  //tags input
+			/*  //tags input
 			  function init_TagsInput() {
 
 			  	if(typeof $.fn.tagsInput !== 'undefined'){	
@@ -948,7 +948,7 @@ if (typeof NProgress != 'undefined') {
 			  	}
 
 			  };
-
+*/
 			  /* SELECT2 */
 
 			  function init_select2() {
@@ -4837,7 +4837,7 @@ $(document).ready(function() {
 	init_knob();
 	init_IonRangeSlider();
 	init_ColorPicker();
-	init_TagsInput();
+	//init_TagsInput();
 	init_parsley();
 	init_daterangepicker();
 	init_daterangepicker_right();
