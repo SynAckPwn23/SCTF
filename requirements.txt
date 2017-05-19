@@ -5,3 +5,4 @@ djangorestframework
 markdown
 django-filter
 Pillow
+django-cities-light

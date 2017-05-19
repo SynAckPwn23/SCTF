@@ -1,6 +1,7 @@
 from operator import or_
 
 import registration.signals
+from cities_light.models import Country
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.dispatch import receiver
@@ -85,6 +86,8 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     user = models.OneToOneField(User, related_name='profile')
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.FileField(upload_to='accounts/', default='accounts/user.png')
+    job = models.CharField(max_length=255)
+    country = models.ForeignKey(Country)
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)

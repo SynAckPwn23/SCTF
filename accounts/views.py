@@ -67,3 +67,10 @@ class CustomRegistrationView(RegistrationView):
         profile.save()
         return new_user
 
+
+    def get_context_data(self):
+        data = super(CustomRegistrationView, self).get_context_data()
+        data.update({
+            'profile_form': UserProfileForm()
+        })
+        return data
