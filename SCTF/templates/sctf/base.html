@@ -1,5 +1,4 @@
-<!DOCTYPE html> 
-{% load static %}
+<!DOCTYPE html> {% load static %}
 
 <html lang="en">
 
@@ -111,16 +110,15 @@
                 </li>
               </ul>
             </div>
-             <div class="menu_section">
+            <div class="menu_section">
               <h3>Report</h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-star"></i> Final Results <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-shield"></i> Final Results <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="#"><i class="fa fa-star"></i> Team Report</a></li>
-                    <li><a href="#"><i class="fa fa-star"></i> My Report</a></li>
+                    <li><a href="#"><i class="fa fa-trophy"></i> Team Report</a></li>
+                    <li><a href="#"><i class="fa fa-trophy"></i> My Report</a></li>
                   </ul>
                 </li>
-               
               </ul>
             </div>
           </div>
@@ -129,7 +127,7 @@
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-          <p style="text-align:center;"> <img style="width:85%;" src="{% static " sctf/images/acn-logo.png " %}" alt=""></p>
+          <p style="text-align:center;"> <img style="width:85%;" src="{% static 'sctf/images/acn-logo.png' %}" alt=""></p>
           <a data-toggle="tooltip" data-placement="top" title="Settings">
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
           </a>
@@ -231,9 +229,6 @@
             </div>
           </div>
         </div>
-
-     
-
         <div class="clearfix"></div>
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
@@ -260,7 +255,6 @@
               <div class="dashboard-widget-content">
                 <div class="col-md-4 hidden-small">
                   <h2 class="line_30">125.7k Views from 60 countries</h2>
-
                   <table class="countries_list">
                     <tbody>
                       <tr>
@@ -293,7 +287,6 @@
         </div>
         <!-- /page content -->
         {% endblock %}
-
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -313,10 +306,6 @@
   <script src="{% static 'sctf/vendors/fastclick/lib/fastclick.js' %}"></script>
   <!-- NProgress -->
   <script src="{% static 'sctf/vendors/nprogress/nprogress.js' %}"></script>
-  <!-- morris.js 
-  <script src="{% static 'sctf/vendors/raphael/raphael.min.js' %}"></script>
-  <script src="{% static 'sctf/vendors/morris.js/morris.min.js' %}"></script> 
-  -->
   <!-- Chart.js -->
   <script src="{% static 'sctf/vendors/Chart.js/dist/Chart.min.js' %}"></script>
   <!-- gauge.js -->
@@ -344,9 +333,6 @@
   <!-- JQVMap -->
   <script src="{% static 'sctf/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
   <script src="{% static 'sctf/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
-  <!-- 
-  <script src="{% static 'sctf/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
-  -->
   <!-- bootstrap-daterangepicker -->
   <script src="{% static 'sctf/vendors/moment/min/moment.min.js' %}"></script>
   <script src="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
@@ -369,14 +355,12 @@
   <script src="{% static 'sctf/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
   <!-- jQuery Smart Wizard -->
   <script src="{% static 'sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js' %}"></script>
-
+  <!-- Tags input -->
   <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}" /></script>
-
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
 
   {% block extra_js %}{% endblock %}
-
   <!-- Cookie -->
   <script type="text/javascript">
     $.ajaxSetup({
@@ -407,17 +391,11 @@
           a.mozRequestFullScreen ? a.mozRequestFullScreen() : a.webkitRequestFullscreen && a.webkitRequestFullscreen(
             Element.ALLOW_KEYBOARD_INPUT), b)
     }
-  </script>
 
-  <script>
     $(document).ready(function () {
-
       init_JQVmap();
-
     });
-  </script>
-
-  <script>
+ 
     var sample_data = {
       "af": "16.63",
       "al": "11.58",
@@ -448,7 +426,7 @@
       "bi": "1.47",
       "kh": "11.36",
       "cm": "21.88",
-      "ca": "1563.66",
+      "ca": "20000.66",
       "cv": "1.57",
       "cf": "2.11",
       "td": "7.59",
@@ -499,7 +477,7 @@
       "iq": "84.14",
       "ie": "204.14",
       "il": "201.25",
-      "it": "2036.69",
+      "it": "30036.69",
       "jm": "13.74",
       "jp": "5390.9",
       "jo": "27.13",
@@ -605,17 +583,12 @@
     };
 
     function init_JQVmap() {
-
       //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );  
-
       if (typeof (jQuery.fn.vectorMap) === 'undefined') {
         return;
       }
-
       console.log('init_JQVmap');
-
       if ($('#world-map-gdp').length) {
-
         $('#world-map-gdp').vectorMap({
           map: 'world_en',
           backgroundColor: null,
@@ -628,14 +601,9 @@
           scaleColors: ['#E6F2F0', '#149B7E'],
           normalizeFunction: 'polynomial'
         });
-
       }
-
-
-
     };
   </script>
-
 </body>
 
 </html>
