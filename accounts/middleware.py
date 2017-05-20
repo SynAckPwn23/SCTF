@@ -40,8 +40,6 @@ class LoginRequiredMiddleware(FilterRequestMiddlewareMixin):
 
 
 class LoggedInUserWithoutProfileMiddleware(FilterRequestMiddlewareMixin):
-    redirect_url = reverse('no_profile')
-
     allowed_paths = [
         reverse('auth_logout')
     ]
