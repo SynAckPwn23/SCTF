@@ -7,41 +7,56 @@ from django.http import HttpResponseRedirect
 from django.utils.deprecation import MiddlewareMixin
 
 
-class LoggedInUserWithoutProfileMiddleware(MiddlewareMixin):
+class FilterRequestMiddlewareMixin(MiddlewareMixin):
+    redirect_url = ''
+
+    allowed_paths = []
+
+    def base_filter(self, request):
+        return 'admin' not in request.path and \
+               'accounts/registration' not in request.path and \
+               request.path not in self.allowed_paths
+
+    def custom_filter(self, request):
+        return True
+
+    def filter(self, request):
+        return self.base_filter(request) and self.custom_filter(request)
+
+    def response(self, request):
+        return HttpResponseRedirect(self.redirect_url)
+
+    def process_request(self, request):
+        if self.filter(request):
+            return self.response(request)
+
+
+class LoginRequiredMiddleware(FilterRequestMiddlewareMixin):
+
+    redirect_url = reverse('auth_login')
+
+    def custom_filter(self, request):
+        return not request.user.is_authenticated()
+
+
+class LoggedInUserWithoutProfileMiddleware(FilterRequestMiddlewareMixin):
     redirect_url = reverse('no_profile')
 
-    def process_request(self, request):
-        if request.user.is_authenticated() and \
-                not hasattr(request.user, 'profile') and \
-                request.path not in (self.redirect_url, reverse('auth_logout')):
-            handler500 = curry(server_error, template_name='accounts/500_no_profile.html')
-            return handler500(request)
-
-
-class LoginRequiredMiddleware(MiddlewareMixin):
-
     allowed_paths = [
+        reverse('auth_logout')
     ]
 
-    def process_request(self, request):
-        if not request.user.is_authenticated() and \
-                'admin' not in request.path and \
-                'accounts/registration' not in request.path and \
-                request.path not in self.allowed_paths:
-            return HttpResponseRedirect(reverse('auth_login'))
+    def custom_filter(self, request):
+        return not hasattr(request.user, 'profile')
+
+    def response(self, request):
+        return curry(server_error,
+                     template_name='accounts/500_no_profile.html')(request)
 
 
-class LoggedInUserWithoutTeamMiddleware(MiddlewareMixin):
+class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     redirect_url = reverse('no_team')
 
     allowed_paths = [
         reverse('no_team')
     ]
-
-    def process_request(self, request):
-        if request.user.is_authenticated() and \
-                'admin' not in request.path and \
-                'accounts/registration' not in request.path and \
-                request.path not in self.allowed_paths:
-            return HttpResponseRedirect(self.redirect_url)
-
