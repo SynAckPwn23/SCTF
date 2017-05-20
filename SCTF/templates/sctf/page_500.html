@@ -8,9 +8,7 @@
     <div class="text-center">
       <h1 class="error-number">500</h1>
       <h2>Internal Server Error</h2>
-      <p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.
-        <a href="#">Report this?</a>
-      </p>
+      <p>{% block message %}{% endblock %}</p>
       <div class="mid_center">
         <h3>Search</h3>
         <form>
