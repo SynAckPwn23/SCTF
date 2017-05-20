@@ -34,14 +34,14 @@ class LoginRequiredMiddleware(MiddlewareMixin):
 class LoggedInUserWithoutTeamMiddleware(MiddlewareMixin):
     redirect_url = reverse('no_team')
 
-    disallowed_paths = [
-        reverse('no_profile'),
-        reverse('no_team'),
-        # TODO set pages allowed to users without team (ie: manage user profile)
+    allowed_paths = [
+        reverse('no_team')
     ]
 
     def process_request(self, request):
-        if request.path in self.disallowed_paths and \
-                request.user.is_authenticated() and \
-                request.user.profile.team is None:
+        if request.user.is_authenticated() and \
+                'admin' not in request.path and \
+                'accounts/registration' not in request.path and \
+                request.path not in self.allowed_paths:
             return HttpResponseRedirect(self.redirect_url)
+
