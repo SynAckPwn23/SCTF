@@ -1,12 +1,10 @@
-{% extends "sctf/base.html" %}
+{% extends "sctf/base.html" %} 
 {% block title %}Security CTF | Team{% endblock %}
-{% load challenges_tags %}
+{% load challenges_tags %} 
 {% block content %}
 {% load static %}
 
-
 <!-- page content -->
-
 <div class="right_col" role="main" style="min-height: 5364px;">
 	<div class="">
 		<div class="page-title">
@@ -15,16 +13,13 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-
 		<!-- top tiles -->
-		
 		<div class="row">
-
-
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">TEAM STATISTICS</small></h2>
+						<h2 class="green">TEAM STATISTICS</small>
+						</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -35,16 +30,13 @@
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron">
 								<h1 style="text-align: center;"><span class="green"><i class="fa fa-group"></i> {{team.name}}</span></h1><br>
-								<h3 style="text-align:center;"><i class="fa fa-rocket"></i> Position:<span class="green"> #{{team.position}}</span> | <i class="fa fa-flag"></i> Points:<span class="green"> #{{team.total_points}}</span></h3>
+								<h3 style="text-align:center;"><i class="fa fa-rocket"></i> Position:<span class="green"> #{{team.position}}</span> | <i class="fa fa-flag"></i>									Points:<span class="green"> #{{team.total_points}}</span></h3>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 			<div class="clearfix"></div>
-
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -60,9 +52,9 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="x_panel tile"> <!--fixed_height_320-->
+				<div class="x_panel tile">
+					<!--fixed_height_320-->
 					<div class="x_title">
 						<h2 class="green">CATEGORY BREAKDOWN</h2>
 						<ul class="nav navbar-right panel_toolbox">
@@ -73,7 +65,6 @@
 					</div>
 					<div class="x_content">
 						<h4>App Usage across versions</h4>
-
 						{% for category, solved in category_solved.items %}
 						<div class="widget_summary">
 							<div class="w_left w_25">
@@ -92,15 +83,10 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="clearfix"></div>
-
 						{% endfor %}
-
-
 					</div>
 				</div>
 			</div>
-			
-
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -114,24 +100,17 @@
 					<div class="x_content">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="dashboard_graph">
-
-								
-
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div id="teamScoreOverTime" class="demo-placeholder"></div>
 								</div>
-
-
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<br />
 			<div class="clearfix"></div>
-
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -144,7 +123,8 @@
 					</div>
 					<div class="x_content">
 						<p class="text-muted font-13 m-b-30">
-							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
+							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
+							that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 						</p>
 						<table id="datatable-buttons-solves" class="table table-striped table-bordered">
 							<thead>
@@ -156,13 +136,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% for user in team.users.all %} <!-- da cambiare -->
+								{% for user in team.users.all %}
+								<!-- da cambiare -->
 								<tr>
 									<td>TODO</td>
 									<td>TODO</td>
 									<td>TODO</td>
 									<td>TODO</td>
-
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -170,8 +150,6 @@
 					</div>
 				</div>
 			</div>
-
-
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -184,7 +162,8 @@
 					</div>
 					<div class="x_content">
 						<p class="text-muted font-13 m-b-30">
-							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
+							The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
+							that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 						</p>
 						<table id="datatable-buttons-team-components" class="table table-striped table-bordered">
 							<thead>
@@ -205,7 +184,6 @@
 									<td>{{user.last_name}}</td>
 									<td>{{user.email}}</td>
 									<td>TODO</td>
-
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -216,15 +194,11 @@
 		</div>
 	</div>
 </div>
-
-
-{% endblock %}
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(function () {
 		init_chart_doughnut();
 		init_flot_chart();
 		init_TeamSolves();
@@ -233,130 +207,112 @@
 	});
 </script>
 <script type="text/javascript">
-	function init_chart_doughnut(){
-
-		if( typeof (Chart) === 'undefined'){ return; }
-
+	function init_chart_doughnut() {
+		if (typeof (Chart) === 'undefined') {
+			return;
+		}
 		console.log('init_chart_doughnut');
-
-		if ($('#canvasDoughnut_key_percentage').length){
-
+		if ($('#canvasDoughnut_key_percentage').length) {
 			var chart_doughnut_settings = {
 				type: 'doughnut',
 				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
 				data: {
 					labels: [
-					"Never Tried",
-					"Solved",
-					"Failed",
-
+						"Never Tried",
+						"Solved",
+						"Failed",
 					],
 					datasets: [{
-						data: [{{ team.num_never_tried_challenges }},{{ team.num_success }},{{ team.num_failed_challenges }}], 
+						data: [{{team.num_never_tried_challenges}},{{team.num_success}},{{team.num_failed_challenges}}],
 						backgroundColor: [
-						"#BDC3C7",
-						"#26B99A",
-						"#E74C3C"
-
+							"#BDC3C7",
+							"#26B99A",
+							"#E74C3C"
 						],
 						hoverBackgroundColor: [
-						"#CFD4D8",
-						"#36CAAB",
-						"#E95E4F"
-
+							"#CFD4D8",
+							"#36CAAB",
+							"#E95E4F"
 						]
-					}]
+					}],
 				},
-				options: { 
+				options: {
 					legend: true,
-					responsive: true 
+					responsive: true
 				}
 			}
-
-			$('#canvasDoughnut_key_percentage').each(function(){
-
+			$('#canvasDoughnut_key_percentage').each(function () {
 				var chart_element = $(this);
-				var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-
-			});         
-
-		}  
-
+				var chart_doughnut = new Chart(chart_element, chart_doughnut_settings);
+			});
+		}
+	}
+</script>
+<script type="text/javascript">
+	function init_flot_chart() {
+		if (typeof ($.plot) === 'undefined') {
+			return;
+		}
+		console.log('init_flot_chart');
+		// Page team - Score Over Time Table
+		var arr_data1 = JSON.parse("{{ time_points | escapejs }}");
+		var teamScoreOverTime_settings = {
+			series: {
+				lines: {
+					show: true,
+					fill: 0.4,
+				},
+			},
+			grid: {
+				verticalLines: true,
+				hoverable: true,
+				clickable: true,
+				tickColor: "#d5d5d5",
+				borderWidth: 1,
+				color: '#fff'
+			},
+			colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+			xaxis: {
+				tickColor: "rgba(51, 51, 51, 0.06)",
+				mode: "time",
+				//tickLength: 10,
+				axisLabel: "Date",
+				axisLabelUseCanvas: true,
+				axisLabelFontSizePixels: 12,
+				axisLabelFontFamily: 'Verdana, Arial',
+				axisLabelPadding: 10
+			},
+			yaxis: {
+				ticks: 8,
+				tickColor: "rgba(51, 51, 51, 0.06)",
+			},
+			tooltip: false
+		}
+		if ($("#teamScoreOverTime").length) {
+			console.log('Plot_teamScoreOverTime');
+			// Page team - Score Over Time Table
+			$.plot($("#teamScoreOverTime"), [arr_data1], teamScoreOverTime_settings);
+		}
 	}
 </script>
 
-<script type="text/javascript">
-	
-	function init_flot_chart(){
-
-		if( typeof ($.plot) === 'undefined'){ return; }
-		console.log('init_flot_chart');
-
-    // Page team - Score Over Time Table
-    var arr_data1= JSON.parse("{{ time_points | escapejs }}");
-
-
-    var teamScoreOverTime_settings = {
-    	series: {
-    		lines: {
-    			show: true,
-    			fill: 0.4,
-    		},
-    	},
-    	grid: {
-    		verticalLines: true,
-    		hoverable: true,
-    		clickable: true,
-    		tickColor: "#d5d5d5",
-    		borderWidth: 1,
-    		color: '#fff'
-    	},
-    	colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-    	xaxis: {
-    		tickColor: "rgba(51, 51, 51, 0.06)",
-    		mode: "time",
-            //tickLength: 10,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
-        },
-        yaxis: {
-        	ticks: 8,
-        	tickColor: "rgba(51, 51, 51, 0.06)",
-        },
-        tooltip: false
-    }
-
-    if ($("#teamScoreOverTime").length){
-    	console.log('Plot_teamScoreOverTime');
- 		// Page team - Score Over Time Table
- 		$.plot( $("#teamScoreOverTime"), [ arr_data1],  teamScoreOverTime_settings );
- 	}
- }
- 
- /* Minified example - After finish see: https://jscompress.com/ - To Restore: http://unminify.com/
+<!-- Minified example - After finish see: https://jscompress.com/ - To Restore: http://unminify.com/
 function init_flot_chart(){if(void 0!==$.plot){console.log("init_flot_chart");var a=[[gd(2012,1,1),10],[gd(2012,1,2),30],[gd(2012,1,3),45],[gd(2012,1,4),60],[gd(2012,1,5),70],[gd(2012,1,6),95],[gd(2012,1,7),150]],b={series:{lines:{show:!1,fill:!0},splines:{show:!0,tension:.4,lineWidth:1,fill:.4},points:{radius:0,show:!0},shadowSize:2},grid:{verticalLines:!0,hoverable:!0,clickable:!0,tickColor:"#d5d5d5",borderWidth:1,color:"#fff"},colors:["rgba(38, 185, 154, 0.38)","rgba(3, 88, 106, 0.38)"],xaxis:{tickColor:"rgba(51, 51, 51, 0.06)",mode:"time",tickSize:[1,"day"],axisLabel:"Date",axisLabelUseCanvas:!0,axisLabelFontSizePixels:12,axisLabelFontFamily:"Verdana, Arial",axisLabelPadding:10},yaxis:{ticks:8,tickColor:"rgba(51, 51, 51, 0.06)"},tooltip:!1};$("#teamScoreOverTime").length&&(console.log("Plot_teamScoreOverTime"),$.plot($("#teamScoreOverTime"),[a],b))}}
-*/
-</script>
-
-
+-->
 <script type="text/javascript">
 	/* DATA TABLES */
 	function init_TeamSolves() {
 		console.log('run_datatables');
-		if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+		if (typeof ($.fn.DataTable) === 'undefined') {
+			return;
+		}
 		console.log('init_DataTables');
-
-			// Page challenges - Team Solves 
-			var createTable_TeamSolves = function() {
-
-				if ($("#datatable-buttons-solves").length) {
-					$("#datatable-buttons-solves").DataTable({
-						dom: "Bfrtip",
-						buttons: [
-						{
+		// Page challenges - Team Solves 
+		var createTable_TeamSolves = function () {
+			if ($("#datatable-buttons-solves").length) {
+				$("#datatable-buttons-solves").DataTable({
+					dom: "Bfrtip",
+					buttons: [{
 							extend: "copy",
 							className: "btn-sm"
 						},
@@ -368,43 +324,39 @@ function init_flot_chart(){if(void 0!==$.plot){console.log("init_flot_chart");va
 							extend: "print",
 							className: "btn-sm"
 						},
-						],
-						responsive: true
-					});
+					],
+					responsive: true
+				});
+			}
+		};
+		TableManageButtons = function () {
+			"use strict";
+			return {
+				init: function () {
+					// Page challenges - Team Solves Table
+					createTable_TeamSolves();
+
 				}
 			};
+		}();
 
-			TableManageButtons = function() {
-				"use strict";
-				return {
-					init: function() {
-							// Page challenges - Team Solves Table
-							createTable_TeamSolves();
-
-						}
-					};
-				}();
-
-				TableManageButtons.init();
-			}
-		</script>
-
-		<script type="text/javascript">
-			/* DATA TABLES */
-			function init_TeamComponents() {
-				console.log('run_datatables');
-				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-				console.log('init_DataTables');
-
-			// Page challenges - Team Solves 
-			var createTable_TeamComponents = function() {
-
-
-				if ($("#datatable-buttons-team-components").length) {
-					$("#datatable-buttons-team-components").DataTable({
-						dom: "Bfrtip",
-						buttons: [
-						{
+		TableManageButtons.init();
+	}
+</script>
+<script type="text/javascript">
+	/* DATA TABLES */
+	function init_TeamComponents() {
+		console.log('run_datatables');
+		if (typeof ($.fn.DataTable) === 'undefined') {
+			return;
+		}
+		console.log('init_DataTables');
+		// Page challenges - Team Solves 
+		var createTable_TeamComponents = function () {
+			if ($("#datatable-buttons-team-components").length) {
+				$("#datatable-buttons-team-components").DataTable({
+					dom: "Bfrtip",
+					buttons: [{
 							extend: "copy",
 							className: "btn-sm"
 						},
@@ -416,24 +368,21 @@ function init_flot_chart(){if(void 0!==$.plot){console.log("init_flot_chart");va
 							extend: "print",
 							className: "btn-sm"
 						},
-						],
-						responsive: true
-					});
+					],
+					responsive: true
+				});
+			}
+		};
+		TableManageButtons = function () {
+			"use strict";
+			return {
+				init: function () {
+					// Page challenges - Team Solves Table
+					createTable_TeamComponents();
 				}
 			};
-
-			TableManageButtons = function() {
-				"use strict";
-				return {
-					init: function() {
-							// Page challenges - Team Solves Table
-							createTable_TeamComponents();
-
-						}
-					};
-				}();
-
-				TableManageButtons.init();
-			}
-		</script>
-		{% endblock %}
+		}();
+		TableManageButtons.init();
+	}
+</script>
+{% endblock %}
