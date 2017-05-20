@@ -1,15 +1,23 @@
+from cities_light.models import Country
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client, SimpleTestCase
+from django.urls.base import reverse
 
 
 class RegistrationTestCase(TestCase, SimpleTestCase):
     def setUp(self):
         self.client = Client()
+        self.user = get_user_model().objects.create_user(
+            'username',
+            'username@username.it',
+            'u1u2u3u4'
+        )
         self.tmp_user = get_user_model().objects.create_user(
             'temporary',
             'temporary@gmail.com',
             'temporary'
         )
+        self.country = Country.objects.create(name='Italy')
 
 
     #Test User Login
@@ -17,11 +25,10 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
         response = self.client.post('/accounts/login/', {
             'username': 'username',
             'password': 'u1u2u3u4',
-            })
+        })
         u = get_user_model().objects.first()
         # Correct username and password
         self.assertEqual(u.username, 'username')
-        self.assertEqual(u.password, 'u1u2u3u4')
         self.assertEqual(response.status_code, 200)
 
     #Test User Login Empty
@@ -58,26 +65,30 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
 
     #Test User Registration
     def test_register(self):
-        response = self.client.post('/accounts/register/', {
-            'username': 'username',
-            'email': 'username@username.it',
+        response = self.client.post(reverse('registration_register'), {
+            'username': 'new_username',
+            'email': 'newusername@newusername.it',
             'first_name': 'FirstName',
             'last_name': 'LastName',
             'password1': 'u1u2u3u4',
             'password2': 'u1u2u3u4',
+            'job': 'job',
+            'country': 1,
             })
         # Created
         self.assertEqual(response.status_code, 302)
 
-        u = get_user_model().objects.last()
+        u = get_user_model().objects.get(username='new_username')
         # Correct username
-        self.assertEqual(u.username, 'username')
+        self.assertEqual(u.username, 'new_username')
         # Correct email
-        self.assertEqual(u.email, 'username@username.it')
+        self.assertEqual(u.email, 'newusername@newusername.it')
         # Correct first_name
         self.assertEqual(u.first_name, 'FirstName')
         # Correct last_name
         self.assertEqual(u.last_name, 'LastName')
+        # Correct country
+        self.assertEqual(u.profile.country, self.country)
 
 
     #Test User Registration Empty
