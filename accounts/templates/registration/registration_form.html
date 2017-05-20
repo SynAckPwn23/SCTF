@@ -67,7 +67,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-								  <select class="select2_group form-control" >
+								  <select name="country" class="select2_group form-control" >
 									  {% for value, name in profile_form.fields.country.choices %}
 										<option value="{{value}}">{{name}}</option>
 									  {% endfor %}
@@ -95,10 +95,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job_title">Job Title: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job">Job Title: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="job_title"  id="job_title" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="job"  id="job" type="text">
 								</div>
 							</div>
 							  <div class="control-group">
