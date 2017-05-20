@@ -23,7 +23,33 @@ def index(request):
     return render(request, 'accounts/teams.html', parameters)
 
 
-def team(request, pk=None):
+class CustomRegistrationView(RegistrationView):
+    form_class = CustomRegistrationForm
+    profile_form = None
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        self.profile_form = UserProfileForm(request.POST)
+
+        if form.is_valid() and self.profile_form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def register(self, form):
+        new_user = super(CustomRegistrationView, self).register(form)
+
+        profile = self.profile_form.save(commit=False)
+        profile.user = new_user
+        profile.save()
+        return new_user
+
+    def get_context_data(self, **kwargs):
+        kwargs['profile_form'] = self.profile_form or UserProfileForm()
+        return super(CustomRegistrationView, self).get_context_data(**kwargs)
+
+
+def team_detail(request, pk=None):
     team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
 
     time_points = []
@@ -47,30 +73,6 @@ def team(request, pk=None):
     }
 
     return render(request, 'accounts/team.html', parameters)
-
-
-
-class CustomRegistrationView(RegistrationView):
-    form_class = CustomRegistrationForm
-
-    def register(self, form):
-        profile_form = UserProfileForm(self.request.POST)
-        if not profile_form.is_valid():
-            raise HttpResponseBadRequest()
-        new_user = super(CustomRegistrationView, self).register(form)
-
-        profile = profile_form.save(commit=False)
-        profile.user = new_user
-        profile.save()
-        return new_user
-
-
-    def get_context_data(self):
-        data = super(CustomRegistrationView, self).get_context_data()
-        data.update({
-            'profile_form': UserProfileForm()
-        })
-        return data
 
 
 def user_detail(request, pk=None):
