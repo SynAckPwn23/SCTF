@@ -5,6 +5,7 @@ from rest_framework.reverse import reverse
 
 class LoggedInUserWithoutProfileMiddleware(MiddlewareMixin):
     redirect_url = reverse('no_profile')
+
     def process_request(self, request):
         if request.user.is_authenticated() and \
                 not hasattr(request.user, 'profile') and \
