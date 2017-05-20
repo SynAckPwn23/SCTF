@@ -63,13 +63,19 @@ def team_detail(request, pk=None):
         for c in Category.objects.all()
     }
 
+    last_team_solutions = ChallengeSolved.objects\
+        .filter(user__profile__team=team)\
+        .order_by('-datetime')\
+        .all()
+
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
         'teams_count': Team.objects.count(),
 
         'time_points': json.dumps(time_points),
-        'category_solved': category_solved
+        'category_solved': category_solved,
+         'last_team_solutions': last_team_solutions,
     }
 
     return render(request, 'accounts/team.html', parameters)
