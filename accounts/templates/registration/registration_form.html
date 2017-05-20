@@ -33,7 +33,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">{% trans form.username.label_tag %} <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus=""  id="id_username" maxlength="254" type="text">
 									<p class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
 								</div>
 							</div>
@@ -41,7 +41,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="email" required="required" id="id_email" type="email">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="email"  id="id_email" type="email">
 								</div>
 							</div>
 							<div class="form-group">
@@ -54,20 +54,20 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">First Name: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name" required="required" id="id_first_name" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name"  id="id_first_name" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Last Name: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name" required="required" id="id_last_name" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name"  id="id_last_name" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-								  <select class="select2_group form-control" required="required">
+								  <select class="select2_group form-control" >
 									  {% for value, name in profile_form.fields.country.choices %}
 										<option value="{{value}}">{{name}}</option>
 									  {% endfor %}
@@ -80,8 +80,8 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 								<p>
 									<p class="helptext">
-                                    Male:<input type="radio" class="flat" name="gender" id="genderM" value="M" required="required" />
-                                    Female:<input type="radio" class="flat" name="gender" id="genderF" value="F" required="required"/>
+                                    Male:<input type="radio" class="flat" name="gender" id="genderM" value="M"  />
+                                    Female:<input type="radio" class="flat" name="gender" id="genderF" value="F" />
                                     </p>
 								</p>
 								</div>
@@ -98,7 +98,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job_title">Job Title: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="job_title" required="required" id="job_title" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="job_title"  id="job_title" type="text">
 								</div>
 							</div>
 							  <div class="control-group">
@@ -116,7 +116,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" required="required" id="id_password1" type="password">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password1"  id="id_password1" type="password">
 									<span class="helptext">
 										<ul>
 											<li>Your password can't be too similar to your other personal information.</li>
@@ -132,7 +132,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="password" name="password2" required="required" id="id_password2" type="password">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password2"  id="id_password2" type="password">
 									<p class="helptext">Enter the same password as before, for verification.</p>
 
 								</div>
@@ -140,7 +140,11 @@
 						</div>
 						{% if form.errors %}
 						<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li></ul>
-						{% endif %}
+					{{ form.errors }}
+					{% endif %}
+					{% if profile_form.errors %}
+					{{ profile_form.errors }}
+					{% endif %}
 					</div>
 					<div style="float:left;">
 						<a href="{% url 'auth_login' %}">
