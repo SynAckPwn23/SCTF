@@ -5,7 +5,6 @@ from django.db.models import Sum
 from accounts.models import Team
 from challenges.models import Challenge
 
-@login_required
 def index(request):
     user = request.user
     parameters = {

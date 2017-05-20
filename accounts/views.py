@@ -15,8 +15,6 @@ from django.contrib.auth import get_user_model
 from challenges.models import Category
 
 
-
-@login_required
 def index(request):
     parameters = {
         'teams': Team.objects.all()
@@ -25,7 +23,6 @@ def index(request):
     return render(request, 'accounts/teams.html', parameters)
 
 
-@login_required
 def team(request, pk=None):
     team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
 
@@ -76,7 +73,6 @@ class CustomRegistrationView(RegistrationView):
         return data
 
 
-@login_required
 def user_detail(request, pk=None):
     user = request.user if pk is None else get_user_model().objects.get(pk=pk)
 

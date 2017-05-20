@@ -1,9 +1,16 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
+from django.test import TestCase, Client, SimpleTestCase
 
-class RegistrationTestCase(TestCase):
+
+class RegistrationTestCase(TestCase, SimpleTestCase):
     def setUp(self):
         self.client = Client()
+        self.tmp_user = get_user_model().objects.create_user(
+            'temporary',
+            'temporary@gmail.com',
+            'temporary'
+        )
+
 
     #Test User Login
     def test_login(self):
@@ -62,7 +69,7 @@ class RegistrationTestCase(TestCase):
         # Created
         self.assertEqual(response.status_code, 302)
 
-        u = get_user_model().objects.first()
+        u = get_user_model().objects.last()
         # Correct username
         self.assertEqual(u.username, 'username')
         # Correct email
@@ -71,6 +78,7 @@ class RegistrationTestCase(TestCase):
         self.assertEqual(u.first_name, 'FirstName')
         # Correct last_name
         self.assertEqual(u.last_name, 'LastName')
+
 
     #Test User Registration Empty
     def test_register_empty(self):
@@ -97,11 +105,11 @@ class RegistrationTestCase(TestCase):
         self.assertEqual(u.password2, '')
         self.assertIn('This value is required.', response.content)
 
-   
 
-      
+    def test_login_without_profile(self):
+        self.client.login(username='temporary', password='temporary')
+        response = self.client.get('/', follow=True)
+        self.assertEqual(response.status_code, 500)
+        self.assertIn('User without profile', response.content)
 
-   
 
-
-    

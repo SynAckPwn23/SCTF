@@ -17,8 +17,6 @@ from accounts.models import Team
 
 
 
-
-@login_required
 def challenges(request):
     categories = Category.objects.all()
     
@@ -73,7 +71,6 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
         return Response('Wrong KEY', status=HTTP_417_EXPECTATION_FAILED)
 
 
-@login_required
 def scoreboard(request):
     parameters = {
         'teams': Team.objects.all(),
