@@ -1,6 +1,8 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html> 
+{% load static %}
 
 <html lang="en">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
@@ -8,42 +10,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Security CTF | Home{% endblock %}</title>
-  
-  
-  <link href="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css" %}" rel="stylesheet">
 
-
-  <link href="{% static "sctf/vendors/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
   <!-- Font Awesome -->
-  <link href="{% static "sctf/vendors/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
   <!-- NProgress -->
-  <link href="{% static "sctf/vendors/nprogress/nprogress.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
   <!-- iCheck -->
-  <link href="{% static "sctf/vendors/iCheck/skins/flat/green.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
   <!-- bootstrap-progressbar -->
-  <link href="{% static "sctf/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
   <!-- JQVMap -->
-  <link href="{% static "sctf/vendors/jqvmap/dist/jqvmap.min.css" %}" rel="stylesheet" />
+  <link href="{% static 'sctf/vendors/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet" />
   <!-- bootstrap-daterangepicker -->
-  <link href="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
   <!-- Datatables -->
-  <link href="{% static "sctf/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}" rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}" rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}" rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}" rel="stylesheet">
-  <link href="{% static "sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
   <!-- Custom Theme Style -->
-  <link href="{% static "sctf/build/css/custom.min.css" %}" rel="stylesheet">
-    <link href="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css" %}" rel="stylesheet">
+  <link href="{% static 'sctf/build/css/custom.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css' %}" rel="stylesheet">
 
 </head>
 
 <style type="text/css">
   /* Hide Scrollbars in Google Chrome */
+
   body::-webkit-scrollbar {
     display: none;
   }
   /* Hide Scrollbars in IE 10+ */
+
   body {
     -ms-overflow-style: none;
   }
@@ -116,19 +117,19 @@
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-          <p style="text-align:center;"> <img style="width:85%;" src="{% static "sctf/images/acn-logo.png" %}" alt=""></p>
+          <p style="text-align:center;"> <img style="width:85%;" src="{% static " sctf/images/acn-logo.png " %}" alt=""></p>
           <a data-toggle="tooltip" data-placement="top" title="Settings">
-          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        </a>
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          </a>
           <a data-toggle="tooltip" data-placement="top" title="FullScreen" onclick="toggleFullscreen()">
-          <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-        </a>
+            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+          </a>
           <a data-toggle="tooltip" data-placement="top" title="Lock">
-          <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-        </a>
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+          </a>
           <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
-          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-        </a>
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          </a>
         </div>
         <!-- /menu footer buttons -->
       </div>
@@ -145,9 +146,9 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="">
               <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <img src="/{{ user.profile.image.url }}" alt="">{{user.username}}
-              <span class=" fa fa-angle-down"></span>
-            </a>
+                <img src="/{{ user.profile.image.url }}" alt="">{{user.username}}
+                <span class=" fa fa-angle-down"></span>
+              </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
                 <li><a href="javascript:;"> Profile</a></li>
                 <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
@@ -236,31 +237,31 @@
                 <ul class="wizard_steps">
                   <li>
                     <a href="#step-1">
-                    <span class="step_no">1</span>
-                    <span class="step_descr">
+                      <span class="step_no">1</span>
+                      <span class="step_descr">
                       Step 1<br />
                       <small class="green">Choose Your Team</small>
                     </span>
-                  </a>
+                    </a>
                   </li>
                   <li>
                     <a href="#step-2">
-                    <span class="step_no">2</span>
-                    <span class="step_descr">
+                      <span class="step_no">2</span>
+                      <span class="step_descr">
                       Step 2<br />
                       <small class="green">Resolve Challenges</small>
                     </span>
-                  </a>
+                    </a>
                   </li>
 
                   <li>
                     <a href="#step-3">
-                    <span class="step_no">3</span>
-                    <span class="step_descr">
+                      <span class="step_no">3</span>
+                      <span class="step_descr">
                       Step 3<br />
                       <small class="green">Go For Victory!</small>
                     </span>
-                  </a>
+                    </a>
                   </li>
                 </ul>
                 <div id="step-1">
@@ -291,63 +292,63 @@
           <br />
         </div>
 
-         <div class="clearfix"></div>
- <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Visitors location <small>geo-presentation</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <div class="dashboard-widget-content">
-                        <div class="col-md-4 hidden-small">
-                          <h2 class="line_30">125.7k Views from 60 countries</h2>
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Visitors location <small>geo-presentation</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <div class="dashboard-widget-content">
+                <div class="col-md-4 hidden-small">
+                  <h2 class="line_30">125.7k Views from 60 countries</h2>
 
-                          <table class="countries_list">
-                            <tbody>
-                              <tr>
-                                <td>United States</td>
-                                <td class="fs15 fw700 text-right">33%</td>
-                              </tr>
-                              <tr>
-                                <td>France</td>
-                                <td class="fs15 fw700 text-right">27%</td>
-                              </tr>
-                              <tr>
-                                <td>Germany</td>
-                                <td class="fs15 fw700 text-right">16%</td>
-                              </tr>
-                              <tr>
-                                <td>Spain</td>
-                                <td class="fs15 fw700 text-right">11%</td>
-                              </tr>
-                              <tr>
-                                <td>Britain</td>
-                                <td class="fs15 fw700 text-right">10%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:430px;"></div>
-                      </div>
-                    </div>
-                  </div>
+                  <table class="countries_list">
+                    <tbody>
+                      <tr>
+                        <td>United States</td>
+                        <td class="fs15 fw700 text-right">33%</td>
+                      </tr>
+                      <tr>
+                        <td>France</td>
+                        <td class="fs15 fw700 text-right">27%</td>
+                      </tr>
+                      <tr>
+                        <td>Germany</td>
+                        <td class="fs15 fw700 text-right">16%</td>
+                      </tr>
+                      <tr>
+                        <td>Spain</td>
+                        <td class="fs15 fw700 text-right">11%</td>
+                      </tr>
+                      <tr>
+                        <td>Britain</td>
+                        <td class="fs15 fw700 text-right">10%</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+                <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:430px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- /page content -->
         {% endblock %}
 
@@ -364,130 +365,339 @@
   </div>
 
   <!-- jQuery -->
-  <script src="{% static "sctf/vendors/jquery/dist/jquery.min.js" %}"></script>
+  <script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
   <!-- Bootstrap -->
-  <script src="{% static "sctf/vendors/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+  <script src="{% static 'sctf/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
   <!-- FastClick -->
-  <script src="{% static "sctf/vendors/fastclick/lib/fastclick.js" %}"></script>
+  <script src="{% static 'sctf/vendors/fastclick/lib/fastclick.js' %}"></script>
   <!-- NProgress -->
-  <script src="{% static "sctf/vendors/nprogress/nprogress.js" %}"></script>
+  <script src="{% static 'sctf/vendors/nprogress/nprogress.js' %}"></script>
   <!-- morris.js 
-  <script src="{% static "sctf/vendors/raphael/raphael.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/morris.js/morris.min.js" %}"></script> 
+  <script src="{% static 'sctf/vendors/raphael/raphael.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/morris.js/morris.min.js' %}"></script> 
   -->
   <!-- Chart.js -->
-  <script src="{% static "sctf/vendors/Chart.js/dist/Chart.min.js" %}"></script>
+  <script src="{% static 'sctf/vendors/Chart.js/dist/Chart.min.js' %}"></script>
   <!-- gauge.js -->
-  <script src="{% static "sctf/vendors/gauge.js/dist/gauge.min.js" %}"></script>
+  <script src="{% static 'sctf/vendors/gauge.js/dist/gauge.min.js' %}"></script>
   <!-- bootstrap-progressbar -->
-  <script src="{% static "sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" %}"></script>
+  <script src="{% static 'sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
   <!-- iCheck -->
-  <script src="{% static "sctf/vendors/iCheck/icheck.min.js" %}"></script>
+  <script src="{% static 'sctf/vendors/iCheck/icheck.min.js' %}"></script>
 
- 
-    <!-- jQuery Tags Input -->
-    <script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js" %}"></script>
+
+  <!-- jQuery Tags Input -->
+  <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
 
   <!-- Skycons -->
-  <script src="{% static "sctf/vendors/skycons/skycons.js" %}"></script>
+  <script src="{% static 'sctf/vendors/skycons/skycons.js' %}"></script>
   <!-- Flot -->
-  <script src="{% static "sctf/vendors/Flot/jquery.flot.js" %}"></script>
-  <script src="{% static "sctf/vendors/Flot/jquery.flot.pie.js" %}"></script>
-  <script src="{% static "sctf/vendors/Flot/jquery.flot.time.js" %}"></script>
-  <script src="{% static "sctf/vendors/Flot/jquery.flot.stack.js" %}"></script>
-  <script src="{% static "sctf/vendors/Flot/jquery.flot.resize.js" %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.pie.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.time.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.stack.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.resize.js' %}"></script>
   <!-- Flot plugins -->
-  <script src="{% static "sctf/vendors/flot.orderbars/js/jquery.flot.orderBars.js" %}"></script>
-  <script src="{% static "sctf/vendors/flot-spline/js/jquery.flot.spline.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/flot.curvedlines/curvedLines.js" %}"></script>
+  <script src="{% static 'sctf/vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+  <script src="{% static 'sctf/vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/flot.curvedlines/curvedLines.js' %}"></script>
   <!-- DateJS -->
-  <script src="{% static "sctf/vendors/DateJS/build/date.js" %}"></script>
+  <script src="{% static 'sctf/vendors/DateJS/build/date.js' %}"></script>
   <!-- JQVMap -->
-  <script src="{% static "sctf/vendors/jqvmap/dist/jquery.vmap.js" %}"></script>
-  <script src="{% static "sctf/vendors/jqvmap/dist/maps/jquery.vmap.world.js" %}"></script>
+  <script src="{% static 'sctf/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
+  <script src="{% static 'sctf/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
   <!-- 
-  <script src="{% static "sctf/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js" %}"></script>
+  <script src="{% static 'sctf/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
   -->
   <!-- bootstrap-daterangepicker -->
-  <script src="{% static "sctf/vendors/moment/min/moment.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
+  <script src="{% static 'sctf/vendors/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
   <!-- Custom Theme Scripts -->
-  <!-- <script src="{% static "sctf/build/js/custom.min.js" %}"></script> -->
-  <script src="{% static "sctf/vendors/datatables.net/js/jquery.dataTables.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-buttons/js/buttons.print.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}"></script>
-  <script src="{% static "sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/jszip/dist/jszip.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/pdfmake/build/pdfmake.min.js" %}"></script>
-  <script src="{% static "sctf/vendors/pdfmake/build/vfs_fonts.js" %}"></script>
+  <!-- <script src="{% static 'sctf/build/js/custom.min.js' %}"></script> -->
+  <script src="{% static 'sctf/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/jszip/dist/jszip.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
   <!-- jQuery Smart Wizard -->
-  <script src="{% static "sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js" %}"></script>
+  <script src="{% static 'sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js' %}"></script>
 
-  <script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js" %}"/></script>
+  <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}" /></script>
 
   <!-- Custom Theme Scripts -->
-  <script src="{% static "sctf/build/js/custom.js" %}"></script>
+  <script src="{% static 'sctf/build/js/custom.js' %}"></script>
 
   {% block extra_js %}{% endblock %}
 
   <!-- Cookie -->
   <script type="text/javascript">
-    $.ajaxSetup({ beforeSend: function (a, b) { function c(a) { var b = null; if (document.cookie && "" != document.cookie) for (var c = document.cookie.split(";"), d = 0; d < c.length; d++) { var e = jQuery.trim(c[d]); if (e.substring(0, a.length + 1) == a + "=") { b = decodeURIComponent(e.substring(a.length + 1)); break } } return b } /^http:.*/.test(b.url) || /^https:.*/.test(b.url) || a.setRequestHeader("X-CSRFToken", c("csrftoken")) } });
+    $.ajaxSetup({
+      beforeSend: function (a, b) {
+        function c(a) {
+          var b = null;
+          if (document.cookie && "" != document.cookie)
+            for (var c = document.cookie.split(";"), d = 0; d < c.length; d++) {
+              var e = jQuery.trim(c[d]);
+              if (e.substring(0, a.length + 1) == a + "=") {
+                b = decodeURIComponent(e.substring(a.length + 1));
+                break
+              }
+            }
+          return b
+        }
+        /^http:.*/.test(b.url) || /^https:.*/.test(b.url) || a.setRequestHeader("X-CSRFToken", c("csrftoken"))
+      }
+    });
   </script>
   <!-- Full Screen -->
   <script type="text/javascript">
-    function toggleFullscreen(a) { a = a || document.documentElement, document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : (a.requestFullscreen ? a.requestFullscreen() : a.msRequestFullscreen ? a.msRequestFullscreen() : a.mozRequestFullScreen ? a.mozRequestFullScreen() : a.webkitRequestFullscreen && a.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT), b) }
+    function toggleFullscreen(a) {
+      a = a || document.documentElement, document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ||
+        document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ?
+        document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen &&
+        document.webkitExitFullscreen() : (a.requestFullscreen ? a.requestFullscreen() : a.msRequestFullscreen ? a.msRequestFullscreen() :
+          a.mozRequestFullScreen ? a.mozRequestFullScreen() : a.webkitRequestFullscreen && a.webkitRequestFullscreen(
+            Element.ALLOW_KEYBOARD_INPUT), b)
+    }
   </script>
 
+  <script>
+    $(document).ready(function () {
 
-<script>
-  $(document).ready(function() {
-  
-  init_JQVmap();
-  
-}); 
-</script>
+      init_JQVmap();
+
+    });
+  </script>
 
   <script>
-    var sample_data = {"af":"16.63","al":"11.58","dz":"158.97","ao":"85.81","ag":"1.1","ar":"351.02","am":"8.83","au":"1219.72","at":"366.26","az":"52.17","bs":"7.54","bh":"21.73","bd":"105.4","bb":"3.96","by":"52.89","be":"461.33","bz":"1.43","bj":"6.49","bt":"1.4","bo":"19.18","ba":"16.2","bw":"12.5","br":"2023.53","bn":"11.96","bg":"44.84","bf":"8.67","bi":"1.47","kh":"11.36","cm":"21.88","ca":"1563.66","cv":"1.57","cf":"2.11","td":"7.59","cl":"199.18","cn":"5745.13","co":"283.11","km":"0.56","cd":"12.6","cg":"11.88","cr":"35.02","ci":"22.38","hr":"59.92","cy":"22.75","cz":"195.23","dk":"304.56","dj":"1.14","dm":"0.38","do":"50.87","ec":"61.49","eg":"216.83","sv":"21.8","gq":"14.55","er":"2.25","ee":"19.22","et":"30.94","fj":"3.15","fi":"231.98","fr":"2555.44","ga":"12.56","gm":"1.04","ge":"11.23","de":"3305.9","gh":"18.06","gr":"305.01","gd":"0.65","gt":"40.77","gn":"4.34","gw":"0.83","gy":"2.2","ht":"6.5","hn":"15.34","hk":"226.49","hu":"132.28","is":"12.77","in":"1430.02","id":"695.06","ir":"337.9","iq":"84.14","ie":"204.14","il":"201.25","it":"2036.69","jm":"13.74","jp":"5390.9","jo":"27.13","kz":"129.76","ke":"32.42","ki":"0.15","kr":"986.26","undefined":"5.73","kw":"117.32","kg":"4.44","la":"6.34","lv":"23.39","lb":"39.15","ls":"1.8","lr":"0.98","ly":"77.91","lt":"35.73","lu":"52.43","mk":"9.58","mg":"8.33","mw":"5.04","my":"218.95","mv":"1.43","ml":"9.08","mt":"7.8","mr":"3.49","mu":"9.43","mx":"1004.04","md":"5.36","mn":"5.81","me":"3.88","ma":"91.7","mz":"10.21","mm":"35.65","na":"11.45","np":"15.11","nl":"770.31","nz":"138","ni":"6.38","ne":"5.6","ng":"206.66","no":"413.51","om":"53.78","pk":"174.79","pa":"27.2","pg":"8.81","py":"17.17","pe":"153.55","ph":"189.06","pl":"438.88","pt":"223.7","qa":"126.52","ro":"158.39","ru":"1476.91","rw":"5.69","ws":"0.55","st":"0.19","sa":"434.44","sn":"12.66","rs":"38.92","sc":"0.92","sl":"1.9","sg":"217.38","sk":"86.26","si":"46.44","sb":"0.67","za":"354.41","es":"1374.78","lk":"48.24","kn":"0.56","lc":"1","vc":"0.58","sd":"65.93","sr":"3.3","sz":"3.17","se":"444.59","ch":"522.44","sy":"59.63","tw":"426.98","tj":"5.58","tz":"22.43","th":"312.61","tl":"0.62","tg":"3.07","to":"0.3","tt":"21.2","tn":"43.86","tr":"729.05","tm":0,"ug":"17.12","ua":"136.56","ae":"239.65","gb":"2258.57","us":"14624.18","uy":"40.71","uz":"37.72","vu":"0.72","ve":"285.21","vn":"101.99","ye":"30.02","zm":"15.69","zw":"5.57"};
+    var sample_data = {
+      "af": "16.63",
+      "al": "11.58",
+      "dz": "158.97",
+      "ao": "85.81",
+      "ag": "1.1",
+      "ar": "351.02",
+      "am": "8.83",
+      "au": "1219.72",
+      "at": "366.26",
+      "az": "52.17",
+      "bs": "7.54",
+      "bh": "21.73",
+      "bd": "105.4",
+      "bb": "3.96",
+      "by": "52.89",
+      "be": "461.33",
+      "bz": "1.43",
+      "bj": "6.49",
+      "bt": "1.4",
+      "bo": "19.18",
+      "ba": "16.2",
+      "bw": "12.5",
+      "br": "2023.53",
+      "bn": "11.96",
+      "bg": "44.84",
+      "bf": "8.67",
+      "bi": "1.47",
+      "kh": "11.36",
+      "cm": "21.88",
+      "ca": "1563.66",
+      "cv": "1.57",
+      "cf": "2.11",
+      "td": "7.59",
+      "cl": "199.18",
+      "cn": "5745.13",
+      "co": "283.11",
+      "km": "0.56",
+      "cd": "12.6",
+      "cg": "11.88",
+      "cr": "35.02",
+      "ci": "22.38",
+      "hr": "59.92",
+      "cy": "22.75",
+      "cz": "195.23",
+      "dk": "304.56",
+      "dj": "1.14",
+      "dm": "0.38",
+      "do": "50.87",
+      "ec": "61.49",
+      "eg": "216.83",
+      "sv": "21.8",
+      "gq": "14.55",
+      "er": "2.25",
+      "ee": "19.22",
+      "et": "30.94",
+      "fj": "3.15",
+      "fi": "231.98",
+      "fr": "2555.44",
+      "ga": "12.56",
+      "gm": "1.04",
+      "ge": "11.23",
+      "de": "3305.9",
+      "gh": "18.06",
+      "gr": "305.01",
+      "gd": "0.65",
+      "gt": "40.77",
+      "gn": "4.34",
+      "gw": "0.83",
+      "gy": "2.2",
+      "ht": "6.5",
+      "hn": "15.34",
+      "hk": "226.49",
+      "hu": "132.28",
+      "is": "12.77",
+      "in": "1430.02",
+      "id": "695.06",
+      "ir": "337.9",
+      "iq": "84.14",
+      "ie": "204.14",
+      "il": "201.25",
+      "it": "2036.69",
+      "jm": "13.74",
+      "jp": "5390.9",
+      "jo": "27.13",
+      "kz": "129.76",
+      "ke": "32.42",
+      "ki": "0.15",
+      "kr": "986.26",
+      "undefined": "5.73",
+      "kw": "117.32",
+      "kg": "4.44",
+      "la": "6.34",
+      "lv": "23.39",
+      "lb": "39.15",
+      "ls": "1.8",
+      "lr": "0.98",
+      "ly": "77.91",
+      "lt": "35.73",
+      "lu": "52.43",
+      "mk": "9.58",
+      "mg": "8.33",
+      "mw": "5.04",
+      "my": "218.95",
+      "mv": "1.43",
+      "ml": "9.08",
+      "mt": "7.8",
+      "mr": "3.49",
+      "mu": "9.43",
+      "mx": "1004.04",
+      "md": "5.36",
+      "mn": "5.81",
+      "me": "3.88",
+      "ma": "91.7",
+      "mz": "10.21",
+      "mm": "35.65",
+      "na": "11.45",
+      "np": "15.11",
+      "nl": "770.31",
+      "nz": "138",
+      "ni": "6.38",
+      "ne": "5.6",
+      "ng": "206.66",
+      "no": "413.51",
+      "om": "53.78",
+      "pk": "174.79",
+      "pa": "27.2",
+      "pg": "8.81",
+      "py": "17.17",
+      "pe": "153.55",
+      "ph": "189.06",
+      "pl": "438.88",
+      "pt": "223.7",
+      "qa": "126.52",
+      "ro": "158.39",
+      "ru": "1476.91",
+      "rw": "5.69",
+      "ws": "0.55",
+      "st": "0.19",
+      "sa": "434.44",
+      "sn": "12.66",
+      "rs": "38.92",
+      "sc": "0.92",
+      "sl": "1.9",
+      "sg": "217.38",
+      "sk": "86.26",
+      "si": "46.44",
+      "sb": "0.67",
+      "za": "354.41",
+      "es": "1374.78",
+      "lk": "48.24",
+      "kn": "0.56",
+      "lc": "1",
+      "vc": "0.58",
+      "sd": "65.93",
+      "sr": "3.3",
+      "sz": "3.17",
+      "se": "444.59",
+      "ch": "522.44",
+      "sy": "59.63",
+      "tw": "426.98",
+      "tj": "5.58",
+      "tz": "22.43",
+      "th": "312.61",
+      "tl": "0.62",
+      "tg": "3.07",
+      "to": "0.3",
+      "tt": "21.2",
+      "tn": "43.86",
+      "tr": "729.05",
+      "tm": 0,
+      "ug": "17.12",
+      "ua": "136.56",
+      "ae": "239.65",
+      "gb": "2258.57",
+      "us": "14624.18",
+      "uy": "40.71",
+      "uz": "37.72",
+      "vu": "0.72",
+      "ve": "285.21",
+      "vn": "101.99",
+      "ye": "30.02",
+      "zm": "15.69",
+      "zw": "5.57"
+    };
 
-     function init_JQVmap(){
+    function init_JQVmap() {
 
-    //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );  
-    
-    if(typeof (jQuery.fn.vectorMap) === 'undefined'){ return; }
-    
-    console.log('init_JQVmap');
+      //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );  
 
-    if ($('#world-map-gdp').length ){
+      if (typeof (jQuery.fn.vectorMap) === 'undefined') {
+        return;
+      }
 
-      $('#world-map-gdp').vectorMap({
-        map: 'world_en',
-        backgroundColor: null,
-        color: '#ffffff',
-        hoverOpacity: 0.7,
-        selectedColor: '#666666',
-        enableZoom: true,
-        showTooltip: true,
-        values: sample_data,
-        scaleColors: ['#E6F2F0', '#149B7E'],
-        normalizeFunction: 'polynomial'
-      });
-      
-    }
+      console.log('init_JQVmap');
 
-   
+      if ($('#world-map-gdp').length) {
 
-  };
+        $('#world-map-gdp').vectorMap({
+          map: 'world_en',
+          backgroundColor: null,
+          color: '#ffffff',
+          hoverOpacity: 0.7,
+          selectedColor: '#666666',
+          enableZoom: true,
+          showTooltip: true,
+          values: sample_data,
+          scaleColors: ['#E6F2F0', '#149B7E'],
+          normalizeFunction: 'polynomial'
+        });
+
+      }
+
+
+
+    };
   </script>
 
 </body>
+
 </html>
