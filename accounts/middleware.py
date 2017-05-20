@@ -21,13 +21,12 @@ class LoggedInUserWithoutProfileMiddleware(MiddlewareMixin):
 class LoginRequiredMiddleware(MiddlewareMixin):
 
     allowed_paths = [
-        reverse('registration_register'),
-        reverse('auth_login')
     ]
 
     def process_request(self, request):
         if not request.user.is_authenticated() and \
                 'admin' not in request.path and \
+                'accounts/registration' not in request.path and \
                 request.path not in self.allowed_paths:
             return HttpResponseRedirect(reverse('auth_login'))
 

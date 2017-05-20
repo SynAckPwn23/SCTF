@@ -1,8 +1,5 @@
 from django.conf.urls import include, url
 from django.views.generic import TemplateView
-from registration.views import RegistrationView
-
-from accounts.forms import CustomRegistrationForm
 from accounts.views import CustomRegistrationView
 from . import views
 
@@ -11,8 +8,8 @@ urlpatterns = [
         CustomRegistrationView.as_view(),
         name='registration_register'
     ),
-    url(r'^', include('registration.backends.simple.urls')),
-    url(r'^', include('registration.auth_urls')),
+    url(r'^registration/', include('registration.backends.simple.urls')),
+    url(r'^registration/', include('registration.auth_urls')),
     url(r'^teams/$', views.index, name='teams'),
     url(r'^team/$', views.team, name='team'),
     url(r'^team/(?P<pk>\w+)$', views.team, name='team'),
