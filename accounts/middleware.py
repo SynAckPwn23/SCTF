@@ -60,3 +60,6 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     allowed_paths = [
         reverse('no_team')
     ]
+
+    def custom_filter(self, request):
+        return request.user.profile.team is None
