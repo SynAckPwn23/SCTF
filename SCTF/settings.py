@@ -35,8 +35,8 @@ ALLOWED_HOSTS = ['127.0.0.1','192.168.1.15','localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'SCTF',
     'accounts',
-    'sctf',
     'challenges',
 
     'rest_framework',
