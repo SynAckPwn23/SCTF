@@ -13,10 +13,10 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^challenges/', include('challenges.urls')),
 
-    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
-
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    url(r'^tinymce/', include('tinymce.urls')),
 
 ]
 
