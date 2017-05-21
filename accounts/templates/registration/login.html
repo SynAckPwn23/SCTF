@@ -18,7 +18,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Please insert your credentials <small>required filds are idetified by *</small></h2>
+            <h2 class="green">PLEASE INSERT YOUR CREDENTIALS <small>required filds are idetified by *</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             </ul>
@@ -47,6 +47,8 @@
                 <li class="parsley-required">{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</li>
               </ul>
               {% endif %}
+              		<div class="form-group">
+							</div>
               <div class="ln_solid"></div>
               <div style="float:left;">{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot your password?</a> |
                 <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</div>
