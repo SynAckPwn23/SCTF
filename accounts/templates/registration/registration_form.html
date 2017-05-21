@@ -53,7 +53,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" id="id_username" maxlength="254"
-									    type="text">
+									    type="text" required="required">
 									<div class="clearfix"></div>
 									<span class="helptext">
 										<ul>
@@ -66,7 +66,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="email" id="id_email" type="email">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="email" id="id_email" type="email" required="required">
 								</div>
 							</div>
 							<div class="form-group">
@@ -79,20 +79,20 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">First Name: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name" id="id_first_name" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name" id="id_first_name" type="text" required="required">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Last Name: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name" id="id_last_name" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name" id="id_last_name" type="text" required="required">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select name="country" class="select2_group form-control">
+									<select name="country" class="select2_group form-control" required="required">
 									  {% for value, name in profile_form.fields.country.choices %}
 										<option value="{{value}}">{{name}}</option>
 									  {% endfor %}
@@ -105,8 +105,8 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<p>
 										<p class="helptext">
-											Male: <input type="radio" class="flat" name="gender" id="genderM" value="M" /> Female: 
-											<input type="radio" class="flat" name="gender" id="genderF" value="F" />
+											Male: <input type="radio" class="flat" name="gender" id="genderM" value="M" required="required" /> Female: 
+											<input type="radio" class="flat" name="gender" id="genderF" value="F" required="required" />
 										</p>
 									</p>
 								</div>
@@ -114,14 +114,14 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="file" id="image" name="image" />
+									<input class="form-control col-md-7 col-xs-12" type="file" id="image" name="image"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job">Job Title: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="job" id="job" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="job" id="job" type="text" required="required">
 								</div>
 							</div>
 							<div class="control-group">
@@ -142,7 +142,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" id="id_password1" type="password">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" id="id_password1" type="password" required="required">
 									<div class="clearfix"></div>
 									<span class="helptext">
 										<ul>
@@ -158,7 +158,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="password" name="password2" id="id_password2" type="password">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password2" id="id_password2" type="password" required="required">
 									<div class="clearfix"></div>
 									<span class="helptext">
 										<ul>
