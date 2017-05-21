@@ -1,4 +1,3 @@
-from cities_light.models import Country
 from django import forms
 from django.forms.models import ModelForm
 from registration.forms import RegistrationForm
@@ -16,9 +15,6 @@ class CustomRegistrationForm(RegistrationForm):
 
 
 class UserProfileForm(ModelForm):
-    image = forms.ImageField(required=False)
-    country = forms.ModelChoiceField(queryset=Country.objects.all())
-
     class Meta:
         model = UserProfile
-        fields = ['image', 'country']
+        exclude = ['user', 'team']
