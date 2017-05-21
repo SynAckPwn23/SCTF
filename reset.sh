@@ -31,3 +31,11 @@ UserProfile.objects.create(
     team=team
 );
 " | python manage.py shell
+
+
+# Challenges Categories
+python manage.py loaddata categories.json
+
+# Challenges
+
+
