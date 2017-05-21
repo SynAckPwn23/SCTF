@@ -1,7 +1,5 @@
 from django.contrib import admin
 from tinymce import TinyMCE
-
-from challenges.forms import HintForm
 from challenges.models import Hint, Attachment, ChallengeSolved, Challenge, Category
 from django import forms
 
@@ -26,22 +24,26 @@ class CategoryAdminForm(forms.ModelForm):
 
 class HintAdmin(admin.TabularInline):
     model = Hint
-    form = HintForm
+    fieldsets = (None, {'fields': ('text',)}),
+    can_delete = True
+
+
+class AttachmentAdmin(admin.TabularInline):
+    model = Attachment
+    fieldsets = (None, {'fields': ('name', 'description', 'file')}),
     can_delete = True
 
 
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
-    inlines = (HintAdmin,)
     form = ChallengeAdminForm
+    inlines = (HintAdmin, AttachmentAdmin)
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     form = CategoryAdminForm
 
-@admin.register(Attachment)
-class AttachmentAdmin(admin.ModelAdmin):
-    pass
 
 @admin.register(ChallengeSolved)
 class ChallengeSolvedAdmin(admin.ModelAdmin):
