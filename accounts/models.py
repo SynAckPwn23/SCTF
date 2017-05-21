@@ -96,6 +96,7 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     image = models.FileField(upload_to='accounts/', default='accounts/user.png')
     job = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=(('M', 'Male'), ('F','Female')))
+    website = models.CharField(max_length=255, null=True, blank=True)
     country = models.ForeignKey(Country)
 
     def __str__(self):
