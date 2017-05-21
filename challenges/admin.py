@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from accounts.forms import ChallengeAdminForm
+from accounts.forms import ChallengeAdminForm, CategoryAdminForm
 from challenges.forms import HintForm
 from challenges.models import Challenge, Category, Hint, Attachment, ChallengeSolved
 
@@ -23,7 +23,7 @@ class AttachmentAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    form = CategoryAdminForm
 
 
 @admin.register(ChallengeSolved)

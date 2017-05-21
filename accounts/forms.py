@@ -4,7 +4,7 @@ from registration.forms import RegistrationForm
 from tinymce import TinyMCE
 
 from accounts.models import UserProfile
-from challenges.models import Challenge
+from challenges.models import Challenge, Category
 
 
 class CustomRegistrationForm(RegistrationForm):
@@ -26,6 +26,15 @@ class UserProfileForm(ModelForm):
 class ChallengeAdminForm(forms.ModelForm):
     class Meta:
         model = Challenge
+        widgets = {
+           'description': TinyMCE(mce_attrs={'width': 800})
+        }
+        fields = '__all__'
+
+
+class CategoryAdminForm(forms.ModelForm):
+    class Meta:
+        model = Category
         widgets = {
            'description': TinyMCE(mce_attrs={'width': 800})
         }
