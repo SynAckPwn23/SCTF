@@ -141,6 +141,7 @@
 						{% if form.errors %}
 						<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li></ul>
 					{{ form.errors }}
+					<!-- Dopo il test lato server ripristinare val lato client required="required" su ogni input -->
 					{% endif %}
 					{% if profile_form.errors %}
 					{{ profile_form.errors }}
