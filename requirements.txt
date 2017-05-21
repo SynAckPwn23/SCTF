@@ -8,4 +8,4 @@ Pillow
 django-cities-light
 
 django-autofixture
-django-grappelli
+django-tinymce4-lite
