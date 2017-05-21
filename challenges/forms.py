@@ -15,3 +15,5 @@ class HintForm(forms.ModelForm):
     class Meta:
         model = Hint
         fields = ('text',)
+
+
