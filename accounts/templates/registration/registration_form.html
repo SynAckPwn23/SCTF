@@ -1,7 +1,7 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
 {% block title %}Security CTF | Register{% endblock %}
-{% load static %}
+{% load static %} 
 {% block content %}
 
 <!-- page content -->
@@ -9,7 +9,6 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-				<h3>Registration Page</h3>
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -17,31 +16,34 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Please insert your data <small>required filds are idetified by *</small></h2>
+						<h2 class="green">PLEASE INSERT YOUR DATA <small>required filds are idetified by *</small></h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-							<li></li>
-							<li></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-
-						<br />
+						<br>
 						<form method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">{% trans form.username.label_tag %} <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus=""  id="id_username" maxlength="254" type="text">
-									<p class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" id="id_username" maxlength="254"
+									    type="text">
+									<div class="clearfix"></div>
+									<span class="helptext">
+										<ul>
+											<li>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>
+										</ul>
+									</span>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="email"  id="id_email" type="email">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="email" id="id_email" type="email">
 								</div>
 							</div>
 							<div class="form-group">
@@ -54,69 +56,71 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">First Name: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name"  id="id_first_name" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name" id="id_first_name" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Last Name: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name"  id="id_last_name" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name" id="id_last_name" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-								  <select name="country" class="select2_group form-control" >
+									<select name="country" class="select2_group form-control">
 									  {% for value, name in profile_form.fields.country.choices %}
 										<option value="{{value}}">{{name}}</option>
 									  {% endfor %}
 								  </select>
 								</div>
-						  	</div>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Gender: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-								<p>
-									<p class="helptext">
-                                    Male:<input type="radio" class="flat" name="gender" id="genderM" value="M"  />
-                                    Female:<input type="radio" class="flat" name="gender" id="genderF" value="F" />
-                                    </p>
-								</p>
+									<p>
+										<p class="helptext">
+											Male: <input type="radio" class="flat" name="gender" id="genderM" value="M" /> Female: 
+											<input type="radio" class="flat" name="gender" id="genderF" value="F" />
+										</p>
+									</p>
 								</div>
 							</div>
-							
-
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-								<input class="form-control col-md-7 col-xs-12" type="file" id="image"  name="image"/>
+									<input class="form-control col-md-7 col-xs-12" type="file" id="image" name="image" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job">Job Title: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="text" name="job"  id="job" type="text">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="job" id="job" type="text">
 								</div>
 							</div>
-							  <div class="control-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tags">Main Skills:</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="tags_1" type="text" name="tags" class="tags form-control" value="" />
-                          <p class="helptext">Write skill and press Enter to add.</p>
-                          <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
-                        </div>
-                      </div>
-					                <div class="clearfix"></div>
-
-						
+							<div class="control-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tags">Main Skills:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input id="tags_1" type="text" name="tags" class="tags form-control" value="" />
+									<div class="clearfix"></div>
+									<span class="helptext">
+										<ul>
+											<li>Write skill and press Enter to add.</li>
+										</ul>
+									</span>
+									<!--<div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>-->
+								</div>
+							</div>
+							<div class="clearfix"></div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="password" name="password1"  id="id_password1" type="password">
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" id="id_password1" type="password">
+									<div class="clearfix"></div>
 									<span class="helptext">
 										<ul>
 											<li>Your password can't be too similar to your other personal information.</li>
@@ -126,77 +130,63 @@
 										</ul>
 									</span>
 								</div>
-
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input class="form-control col-md-7 col-xs-12" type="password" name="password2"  id="id_password2" type="password">
-									<p class="helptext">Enter the same password as before, for verification.</p>
-
+									<input class="form-control col-md-7 col-xs-12" type="password" name="password2" id="id_password2" type="password">
+									<div class="clearfix"></div>
+									<span class="helptext">
+										<ul>
+											<li>Enter the same password as before, for verification.</li>
+										</ul>
+									</span>
 								</div>
 							</div>
-						</div>
-						{% if form.errors %}
-						<ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li></ul>
-					{{ form.errors }}
-					<!-- Dopo il test lato server ripristinare val lato client required="required" su ogni input -->
-					{% endif %}
-					{% if profile_form.errors %}
-					{{ profile_form.errors }}
-					{% endif %}
-					</div>
-					<div style="float:left;">
-						<a href="{% url 'auth_login' %}">
+							{% if form.errors %}
+							<ul id="parsley-id-5" class="parsley-errors-list filled">
+								<li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li>
+							</ul>
+							{{ form.errors }}
+							<!-- Dopo il test lato server ripristinare val lato client required="required" su ogni input -->
+							{% endif %} {% if profile_form.errors %} {{ profile_form.errors }} {% endif %}
+							<div class="form-group">
+							</div>
+							<div class="ln_solid"></div>
+							<div style="float:left;">
+								<a href="{% url 'auth_login' %}">
 							{% blocktrans %}Already an account, Log-In?{% endblocktrans %}
-						</a>
+								</a>
+							</div>
+							<div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+									<button class="btn btn-primary" type="reset">Cancel</button>
+									<button type="submit" value="{% trans " Send activation email " %}" class="btn btn-success">Send Activation Mail</button>
+									<input type="hidden" name="next" value="{{next}}" />
+								</div>
+							</div>
+						</form>
 					</div>
-					<div class="form-group">
-					</div>
-					<div class="ln_solid"></div>
-					<div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
-						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-							<button class="btn btn-primary" type="reset">Cancel</button>
-							<button type="submit" value="{% trans "Send activation email" %}" class="btn btn-success">Send Activation Mail</button>
-							<input type="hidden" name="next" value="{{next}}" />
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!--</div>
-</div>
-</div>
-</div>-->
 <!-- /page content -->
-
-{% endblock %}
-
-{% block extra_js %}
-
+{% endblock %} {% block extra_js %}
 
 <script>
+	$(document).ready(function () {
+		init_TagsInput();
+	});
 
-$(document).ready(function() {
-	init_TagsInput();
-});	
-</script>
-
-<script>
-		function init_TagsInput() {
-
-			if (typeof $.fn.tagsInput !== 'undefined') {
-
-				$('#tags_1').tagsInput({
-					width: 'auto'
-				});
-
-			}
-
-		};
+	function init_TagsInput() {
+		if (typeof $.fn.tagsInput !== 'undefined') {
+			$('#tags_1').tagsInput({
+				width: 'auto'
+			});
+		}
+	};
 </script>
 {% endblock %}
-
