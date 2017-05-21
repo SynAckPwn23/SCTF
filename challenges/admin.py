@@ -35,16 +35,13 @@ class ChallengeAdmin(admin.ModelAdmin):
     inlines = (HintAdmin,)
     form = ChallengeAdminForm
 
-
-@admin.register(Attachment)
-class AttachmentAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     form = CategoryAdminForm
 
+@admin.register(Attachment)
+class AttachmentAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(ChallengeSolved)
 class ChallengeSolvedAdmin(admin.ModelAdmin):
