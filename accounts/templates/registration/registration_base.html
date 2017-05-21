@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n %} 
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
 {% load static %}
@@ -11,39 +11,37 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>{% block title %}{% endblock %}</title>
-
 	<!-- Bootstrap -->
-	<link href="{% static "sctf/vendors/bootstrap/dist/css/bootstrap.min.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 	<!-- Font Awesome -->
-	<link href="{% static "sctf/vendors/font-awesome/css/font-awesome.min.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
 	<!-- NProgress -->
-	<link href="{% static "sctf/vendors/nprogress/nprogress.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
 	<!-- iCheck -->
-	<link href="{% static "sctf/vendors/iCheck/skins/flat/green.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
 	<!-- bootstrap-wysiwyg -->
-	<link href="{% static "sctf/vendors/google-code-prettify/bin/prettify.min.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/google-code-prettify/bin/prettify.min.css' %}" rel="stylesheet">
 	<!-- Select2 -->
-	<link href="{% static "sctf/vendors/select2/dist/css/select2.min.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/select2/dist/css/select2.min.css' %}" rel="stylesheet">
 	<!-- Switchery -->
-	<link href="{% static "sctf/vendors/switchery/dist/switchery.min.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/switchery/dist/switchery.min.css' %}" rel="stylesheet">
 	<!-- starrr -->
-	<link href="{% static "sctf/vendors/starrr/dist/starrr.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/vendors/starrr/dist/starrr.css' %}" rel="stylesheet">
 	<!-- bootstrap-daterangepicker -->
-	<link href="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.css"%}" rel="stylesheet">
-
+	<link href="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
 	<!-- Custom Theme Style -->
-	<link href="{% static "sctf/build/css/custom.min.css"%}" rel="stylesheet">
+	<link href="{% static 'sctf/build/css/custom.min.css' %}" rel="stylesheet">
 </head>
-
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
 			<div class="col-md-3 left_col menu_fixed">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="{% url 'index' %}" class="site_title"><img style="width:30px;margin:0px 20px 0px 10px;" src="/static/sctf/images/logo.png" alt=""></i> <span>Gentelella Alela!</span></a>
+						<a href="{% url 'index' %}" class="site_title">
+							<img style="width:30px;margin:0px 20px 0px 10px;" src="/static/sctf/images/logo.png" alt="">
+						</a>
 					</div>
 					<div class="clearfix"></div>
 					<br />
@@ -65,10 +63,9 @@
 					<!-- /menu footer buttons -->
 				</div>
 			</div>
-
 			<!-- top navigation -->
 			<div class="top_nav">
-			
+
 				<div class="nav_menu">
 					<nav>
 						<ul class="nav navbar-nav navbar-right">
@@ -78,61 +75,53 @@
 								</a>
 							</li>
 						</ul>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-	<!-- /top navigation -->
-
-	{% block content %}{% endblock %}
-
-	<!-- footer content -->
-	  <footer>
-      <div class="pull-right">
-        Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
-      </div>
-      <div class="clearfix"></div>
-    </footer>
-	<!-- /footer content -->
-<!--</div>
-</div>-->
-
-<!-- jQuery -->
-<script src="{% static "sctf/vendors/jquery/dist/jquery.min.js"%}"></script>
-<!-- Bootstrap -->
-<script src="{% static "sctf/vendors/bootstrap/dist/js/bootstrap.min.js"%}"></script>
-<!-- FastClick -->
-<script src="{% static "sctf/vendors/fastclick/lib/fastclick.js"%}"></script>
-<!-- NProgress -->
-<script src="{% static "sctf/vendors/nprogress/nprogress.js"%}"></script>
-<!-- bootstrap-progressbar -->
-<script src="{% static "sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"%}"></script>
-<!-- iCheck -->
-<script src="{% static "sctf/vendors/iCheck/icheck.min.js"%}"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="{% static "sctf/vendors/moment/min/moment.min.js"%}"></script>
-<script src="{% static "sctf/vendors/bootstrap-daterangepicker/daterangepicker.js"%}"></script>
-<!-- bootstrap-wysiwyg -->
-<script src="{% static "sctf/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"%}"></script>
-<script src="{% static "sctf/vendors/jquery.hotkeys/jquery.hotkeys.js"%}"></script>
-<script src="{% static "sctf/vendors/google-code-prettify/src/prettify.js"%}"></script>
-<!-- jQuery Tags Input -->
-<script src="{% static "sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js"%}"></script>
-<!-- Switchery -->
-<script src="{% static "sctf/vendors/switchery/dist/switchery.min.js"%}"></script>
-<!-- Select2 -->
-<script src="{% static "sctf/vendors/select2/dist/js/select2.full.min.js"%}"></script>
-<!-- Parsley -->
-<script src="{% static "sctf/vendors/parsleyjs/dist/parsley.min.js"%}"></script>
-<!-- Autosize -->
-<script src="{% static "sctf/vendors/autosize/dist/autosize.min.js"%}"></script>
-<!-- jQuery autocomplete -->
-<script src="{% static "sctf/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"%}"></script>
-<!-- starrr -->
-<script src="{% static "sctf/vendors/starrr/dist/starrr.js"%}"></script>
-<!-- Custom Theme Scripts -->
-<script src="{% static "sctf/build/js/custom.min.js"%}"></script>
-
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
+			{% block content %}{% endblock %}
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+			<!-- jQuery -->
+			<script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
+			<!-- Bootstrap -->
+			<script src="{% static 'sctf/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+			<!-- FastClick -->
+			<script src="{% static 'sctf/vendors/fastclick/lib/fastclick.js' %}"></script>
+			<!-- NProgress -->
+			<script src="{% static 'sctf/vendors/nprogress/nprogress.js' %}"></script>
+			<!-- bootstrap-progressbar -->
+			<script src="{% static 'sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+			<!-- iCheck -->
+			<script src="{% static 'sctf/vendors/iCheck/icheck.min.js' %}"></script>
+			<!-- bootstrap-daterangepicker -->
+			<script src="{% static 'sctf/vendors/moment/min/moment.min.js' %}"></script>
+			<script src="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+			<!-- bootstrap-wysiwyg -->
+			<script src="{% static 'sctf/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js' %}"></script>
+			<script src="{% static 'sctf/vendors/jquery.hotkeys/jquery.hotkeys.js' %}"></script>
+			<script src="{% static 'sctf/vendors/google-code-prettify/src/prettify.js' %}"></script>
+			<!-- jQuery Tags Input -->
+			<script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
+			<!-- Switchery -->
+			<script src="{% static 'sctf/vendors/switchery/dist/switchery.min.js' %}"></script>
+			<!-- Select2 -->
+			<script src="{% static 'sctf/vendors/select2/dist/js/select2.full.min.js' %}"></script>
+			<!-- Parsley -->
+			<script src="{% static 'sctf/vendors/parsleyjs/dist/parsley.min.js' %}"></script>
+			<!-- Autosize -->
+			<script src="{% static 'sctf/vendors/autosize/dist/autosize.min.js' %}"></script>
+			<!-- jQuery autocomplete -->
+			<script src="{% static 'sctf/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js' %}"></script>
+			<!-- starrr -->
+			<script src="{% static 'sctf/vendors/starrr/dist/starrr.js' %}"></script>
+			<!-- Custom Theme Scripts -->
+			<script src="{% static 'sctf/build/js/custom.min.js' %}"></script>
 </body>
 </html>
