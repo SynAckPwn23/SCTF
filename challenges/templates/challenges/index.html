@@ -93,7 +93,7 @@
 														<div role="tabpanel" class="tab-pane fade active in" id="tab_content1_{{ challenge.id }}" aria-labelledby="home-tab">
 
 															<div class="modal-body">
-																<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description}}</p>
+																<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description|safe}}</p>
 
 																{% for hint in challenge.hints.all %}
 																<div class="col-md-12 col-sm-12 col-xs-12">
