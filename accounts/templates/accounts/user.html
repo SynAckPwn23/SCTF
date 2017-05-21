@@ -8,7 +8,7 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-      </div>      
+      </div>
     </div>
     <div class="clearfix"></div>
     <div class="clearfix"></div>
@@ -16,7 +16,8 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2 class="green">USER PROFILE</small></h2>
+            <h2 class="green">USER PROFILE</small>
+            </h2>
             <ul class="nav navbar-right panel_toolbox">
               <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -94,7 +95,28 @@
                 </div>
               </div>
             </div>
-            <div class="clearfix"></div><br>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Daily active users <small>Sessions</small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="bs-example" data-example-id="simple-jumbotron">
+                    <div class="jumbotron">
+                      <h1>Hello, world!</h1>
+                      <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
+                        content or information.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
@@ -125,64 +147,65 @@
 </div>
 <!-- /page content -->
 
-{% endblock %}
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
     init_Radar();
     init_flot_chart();
-    
+
   });
 </script>
 
 <script type="text/javascript">
- function init_Radar() {
-  console.log('run_charts  typeof [' + typeof (Chart) + ']');
-  if( typeof (Chart) === 'undefined'){ return; }
-  console.log('init_charts');
-  Chart.defaults.global.legend = {
-    enabled: false
-  };
-   // Radar chart
-   if ($('#canvasRadar').length ){ 
-    var ctx = document.getElementById("canvasRadar");
-    var data = {
-      labels: JSON.parse("{{ categories_names | escapejs }}"),
-      datasets: [{
-        label: "My Second dataset",
-        backgroundColor: "rgba(38, 185, 154, 0.2)",
-        borderColor: "rgba(38, 185, 154, 0.85)",
-        pointColor: "rgba(38, 185, 154, 0.85)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
-        data: JSON.parse("{{ categories_num_done_user | escapejs }}")
-      }]
+  function init_Radar() {
+    console.log('run_charts  typeof [' + typeof (Chart) + ']');
+    if (typeof (Chart) === 'undefined') {
+      return;
+    }
+    console.log('init_charts');
+    Chart.defaults.global.legend = {
+      enabled: false
     };
-    var canvasRadar = new Chart(ctx, {
-      type: 'radar',
-      data: data,
-    });
-
+    // Radar chart
+    if ($('#canvasRadar').length) {
+      var ctx = document.getElementById("canvasRadar");
+      var data = {
+        labels: JSON.parse("{{ categories_names | escapejs }}"),
+        datasets: [{
+          label: "My Second dataset",
+          backgroundColor: "rgba(38, 185, 154, 0.2)",
+          borderColor: "rgba(38, 185, 154, 0.85)",
+          pointColor: "rgba(38, 185, 154, 0.85)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          data: JSON.parse("{{ categories_num_done_user | escapejs }}")
+        }]
+      };
+      var canvasRadar = new Chart(ctx, {
+        type: 'radar',
+        data: data,
+      });
+    }
   }
-}
 </script>
 
 <script type="text/javascript">
-  function init_flot_chart(){
-    if( typeof ($.plot) === 'undefined'){ return; }
+  function init_flot_chart() {
+    if (typeof ($.plot) === 'undefined') {
+      return;
+    }
     console.log('init_flot_chart');
-
     // Page team - Score Over Time Table
     var arr_data1 = [
-    [gd(2012, 1, 1), 10],
-    [gd(2013, 2, 2), 30],
-    [gd(2014, 3, 3), 45],
-    [gd(2015, 4, 4), 60],
-    [gd(2016, 5, 5), 70],
-    [gd(2017, 6, 6), 95],
-    [gd(2018, 7, 7), 150]
+      [gd(2012, 1, 1), 10],
+      [gd(2013, 2, 2), 30],
+      [gd(2014, 3, 3), 45],
+      [gd(2015, 4, 4), 60],
+      [gd(2016, 5, 5), 70],
+      [gd(2017, 6, 6), 95],
+      [gd(2018, 7, 7), 150]
     ];
 
     var teamScoreOverTime_settings = {
@@ -216,25 +239,24 @@
         tickColor: "rgba(51, 51, 51, 0.06)",
         mode: "time",
         //tickSize: [1, "month"],
-            //tickLength: 10,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
-          },
-          yaxis: {
-            ticks: 8,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-          },
-          tooltip: false
-        }
-
-        if ($("#teamScoreOverTime").length){
-          console.log('Plot_teamScoreOverTime');
-    // Page team - Score Over Time Table
-    $.plot( $("#teamScoreOverTime"), [ arr_data1],  teamScoreOverTime_settings );
+        //tickLength: 10,
+        axisLabel: "Date",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 10
+      },
+      yaxis: {
+        ticks: 8,
+        tickColor: "rgba(51, 51, 51, 0.06)",
+      },
+      tooltip: false
+    }
+    if ($("#teamScoreOverTime").length) {
+      console.log('Plot_teamScoreOverTime');
+      // Page team - Score Over Time Table
+      $.plot($("#teamScoreOverTime"), [arr_data1], teamScoreOverTime_settings);
+    }
   }
-}
 </script>
 {% endblock %}
