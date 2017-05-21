@@ -12,8 +12,8 @@ python manage.py loaddata locations.json
 
 # Test Data
 python manage.py loadtestdata accounts.Team:30 -u accounts.fixtures.autofixtures.TeamAutoFixture
-python manage.py loadtestdata auth.User:100 -u accounts.fixtures.autofixtures.UserAutoFixture
-python manage.py loadtestdata accounts.UserProfile:100
+python manage.py loadtestdata auth.User:50 -u accounts.fixtures.autofixtures.UserAutoFixture
+python manage.py loadtestdata accounts.UserProfile:50
 
 # Admin
 echo "
