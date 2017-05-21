@@ -144,7 +144,8 @@ html , body{
     padding: 0 0 4px 0
 }
 .left_col {
-    background: #2A3F54
+    /*background: #2A3F54*/
+    background-color: #333
 }
 .nav-sm .container.body .col-md-3.left_col {
     min-height: 100%;
@@ -356,7 +357,8 @@ body .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #2A3F54;
+    /*background: #2A3F54;*/
+    background: #333;
     border-radius: 0;
     height: 57px
 }
@@ -1670,7 +1672,8 @@ span.right {
     padding: 5px 0 0 0;
     position: fixed;
     width: 230px;
-    background: #2A3F54;
+    /*background: #2A3F54;*/
+    background: #333;
 	z-index:999;
 }
 .sidebar-footer a {
@@ -1680,11 +1683,12 @@ span.right {
     font-size: 17px;
     display: block;
     float: left;
-    background: #172D44;
+    /*background: #172D44;*/
+    background-color: #333;
     cursor: pointer;
 }
 .sidebar-footer a:hover {
-    background: #425567
+    background: #e7e7e7
 }
 .tile_count {
     margin-bottom: 20px;
