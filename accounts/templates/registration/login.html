@@ -4,61 +4,56 @@
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
 {% load static %}
-
 {% block content %}
 
-  <!-- page content -->
-  <div class="right_col" role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left">
-          <h3>Login Page</h3>
-        </div>
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
       </div>
-      <div class="clearfix"></div>
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>Please insert your credentials <small>required filds are idetified by *</small></h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                <li></li>
-                <li></li>
-              </ul>
-              <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-              <br />
-              <form method="post" action="{% url 'auth_login' %}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
-                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Please insert your credentials <small>required filds are idetified by *</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br>
+            <form method="post" action="{% url 'auth_login' %}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span class="required">*</span>
                   </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username" maxlength="254" type="text">
-                  </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" required="required" id="id_username"
+                    maxlength="254" type="text">
                 </div>
-                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">{% trans form.password.label_tag %} <span class="required">*</span>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">{% trans form.password.label_tag %} <span class="required">*</span>
                   </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input class="form-control col-md-7 col-xs-12" type="password" name="password" required="required" id="id_password" type="password">
-                  </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" type="password" name="password" required="required" id="id_password" type="password">
                 </div>
               </div>
               {% if form.errors %}
-              <ul id="parsley-id-5" class="parsley-errors-list filled"><li class="parsley-required">{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</li></ul>
+              <ul id="parsley-id-5" class="parsley-errors-list filled">
+                <li class="parsley-required">{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</li>
+              </ul>
               {% endif %}
-            </div>
-            <div style="float:left;">{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
-              <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</div>
-              <div class="form-group">
-              </div>
               <div class="ln_solid"></div>
+              <div style="float:left;">{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot your password?</a> |
+                <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</div>
               <div class="form-group" style="margin-top: -10px;margin-bottom: 75px;">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                   <button class="btn btn-primary" type="reset">Cancel</button>
-                  <button type="submit" value="{% trans "login" %}" class="btn btn-success">Submit</button>
+                  <button type="submit" value="{% trans " login " %}" class="btn btn-success">Submit</button>
                   <input type="hidden" name="next" value="{{ next }}" />
                 </div>
               </div>
@@ -68,8 +63,6 @@
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
 <!-- /page content -->
 {% endblock %}
