@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client, SimpleTestCase
 from django.urls.base import reverse
 
+from accounts.models import UserProfile
+
 
 class RegistrationTestCase(TestCase, SimpleTestCase):
     def setUp(self):
@@ -14,10 +16,21 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
         )
         self.tmp_user = get_user_model().objects.create_user(
             'temporary',
-            'temporary@gmail.com',
+            'temporary@temporary.com',
             'temporary'
         )
+        self.user_no_team = get_user_model().objects.create_user(
+            'user_no_team',
+            'user_no_team@user_no_team.com',
+            'user_no_team'
+        )
         self.country = Country.objects.create(name='Italy')
+        UserProfile.objects.create(
+            user=self.user_no_team,
+            job='job',
+            gender='M',
+            country=self.country
+        )
 
     #Test User Login
     def test_login(self):
@@ -112,5 +125,14 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
         })
         response = self.client.get('/')
         self.assertEqual(response.status_code, 500)
+
+
+    def test_login_without_team(self):
+        self.client.login(
+            username='user_no_team',
+            password='user_no_team'
+        )
+        response = self.client.get('/', follow=True)
+        self.assertContains(response, 'You\'re not part of a team')
 
 
