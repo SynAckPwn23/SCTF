@@ -21,6 +21,15 @@ We would love to see how you use this awesome Platform. You can notify us about 
 <b>Start Application</b>:
 	
 	$ python manage.py runserver <[port]>
+	
+# Features
+
+* Arbitrary categories and challenges.
+* Scoreboard.
+* Challenge hints.
+* Team progress page.
+* Challenge overview page.
+* and more ...
 
 # Live Demo
 Insert Description
