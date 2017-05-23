@@ -12,6 +12,11 @@ We would love to see how you use this awesome Platform. You can notify us about 
 <b>Install Requirements</b>:
 
 	$ pip install -r requirements.txt
+	
+<b>[OPTIONAL] Install Demo Data</b>:
+	
+	$ chmod +x reset.sh
+	$ ./reset.sh
 
 <b>Start Application</b>:
 	
