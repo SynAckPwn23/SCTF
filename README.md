@@ -1,5 +1,7 @@
 # SCTF
-Security Capture the Flag Platform.
+Security Capture the Flag Platform is the best platform for CTF Challenges. You will be able to define Teams, Challenges and access to relative statistics. 
+
+We would love to see how you use this awesome Platform. You can notify us about your site, app or service by mail. 
 
 # Install & Start
 <b>Virtual Environment (Strongly Suggested)</b>: 
