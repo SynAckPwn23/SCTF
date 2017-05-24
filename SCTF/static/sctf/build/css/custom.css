@@ -475,7 +475,8 @@ body .container.body .right_col {
 }
 .container {
     width: 100%;
-    padding: 0
+    padding: 0;
+    background-color: #333;
 }
 .navbar-nav>li>a,
 .navbar-brand,
