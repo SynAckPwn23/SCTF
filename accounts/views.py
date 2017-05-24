@@ -17,7 +17,9 @@ from challenges.models import Category
 
 def index(request):
     parameters = {
-        'teams': Team.objects.all()
+        'teams': Team.objects.all(),
+        'teams_count': Team.objects.count(),
+
     }
 
     return render(request, 'accounts/teams.html', parameters)
@@ -71,8 +73,6 @@ def team_detail(request, pk=None):
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
-        'teams_count': Team.objects.count(),
-
         'time_points': json.dumps(time_points),
         'category_solved': category_solved,
          'last_team_solutions': last_team_solutions,
