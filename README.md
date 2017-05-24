@@ -12,15 +12,20 @@ We would love to see how you use this awesome Platform. You can notify us about 
 <b>Install Requirements</b>:
 
 	$ pip install -r requirements.txt
-	
+
 <b>[OPTIONAL] Install Demo Data</b>:
 	
-	$ chmod +x reset.sh
-	$ ./reset.sh
+	$ chmod +x loaddata.sh
+	$ ./loaddata.sh
 
 <b>Start Application</b>:
 	
 	$ python manage.py runserver <[port]>
+	
+<b>Reset CTF</b>:
+	
+	$ chmod +x reset.sh
+	$ ./reset.sh
 	
 # Features
 
