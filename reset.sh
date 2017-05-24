@@ -9,7 +9,6 @@ python manage.py migrate
 
 python manage.py loaddata locations.json
 
-
 # Test Data
 python manage.py loadtestdata accounts.Team:30 -u accounts.fixtures.autofixtures.TeamAutoFixture
 python manage.py loadtestdata auth.User:50 -u accounts.fixtures.autofixtures.UserAutoFixture
