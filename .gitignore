@@ -5,3 +5,5 @@ db.sqlite3
 *.pyc
 uploaded_media
 coverage
+.coverage
+.coveragerc
