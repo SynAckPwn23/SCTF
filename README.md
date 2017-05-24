@@ -22,7 +22,7 @@ We would love to see how you use this awesome Platform. You can notify us about 
 	
 	$ python manage.py runserver <[port]>
 	
-<b>Reset CTF</b>:
+<b>Reset Application</b>:
 	
 	$ chmod +x reset.sh
 	$ ./reset.sh
