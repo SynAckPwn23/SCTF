@@ -74,7 +74,7 @@
 											<li>
 												<img src="/{{user.profile.image.url}}" class="avatar" alt="Avatar">
 												<a class="green" href="{% url 'user' pk=user.pk %}">
-													<font size="0" id="user" style="display:block;">{{user.username}}</font>
+													<font size="0" id="user_{{user.username}}" style="display:block;">{{user.username}}</font>
 												</a>
 											</li>
 											{% endfor %}
