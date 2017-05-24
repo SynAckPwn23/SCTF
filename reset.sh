@@ -7,13 +7,6 @@ rm db.sqlite3
 python manage.py makemigrations
 python manage.py migrate
 
-python manage.py loaddata locations.json
-
-# Test Data
-python manage.py loadtestdata accounts.Team:30 -u accounts.fixtures.autofixtures.TeamAutoFixture
-python manage.py loadtestdata auth.User:50 -u accounts.fixtures.autofixtures.UserAutoFixture
-python manage.py loadtestdata accounts.UserProfile:50
-
 # Admin
 echo "
 from django.contrib.auth.models import User;
@@ -26,15 +19,7 @@ UserProfile.objects.create(
     user=admin,
     job='job',
     gender='M',
-    country=Country.objects.get(name='Italy'),
+    country=Country.objects.get_or_create(name='Italy')[0],
     team=team
 );
 " | python manage.py shell
-
-
-# Challenges Categories
-python manage.py loaddata categories.json
-
-# Challenges
-
-

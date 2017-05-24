@@ -10,3 +10,5 @@ django-cities-light
 django-autofixture
 django-tinymce4-lite
 pyenchant
+
+requests

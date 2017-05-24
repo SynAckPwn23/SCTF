@@ -1,5 +1,7 @@
 venv
+migrations/
 .idea
 db.sqlite3
 *.pyc
 uploaded_media
+coverage

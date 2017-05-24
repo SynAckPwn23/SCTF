@@ -1,3 +1,8 @@
+import os
+from io import BytesIO
+from itertools import repeat, cycle
+
+import requests
 from autofixture import generators, register, AutoFixture
 from django.contrib.auth import get_user_model
 
@@ -21,7 +26,36 @@ class TeamAutoFixture(AutoFixture):
         'name': generators.ChoicesGenerator(choices=team_names),
     }
 
+
+teams = cycle(iter(Team.objects.exclude(name='admin')))
+
+class UserProfileAutoFixture(AutoFixture):
+
+    field_values = {
+        'team': generators.CallableGenerator(lambda *args, **kwargs: next(teams))
+    }
+
+    def post_process_instance(self, instance, commit=True):
+        gender = 'men' if instance.gender == 'M' else 'women'
+        image_url = 'https://randomuser.me/api/portraits/{}/{}.jpg'.format(gender, instance.id)
+        try:
+            response = requests.get(image_url)
+        except requests.HTTPError as e:
+            print(e)
+            return instance
+
+        instance.image.save(
+            os.path.basename('image_{}.jpg'.format(instance.id)),
+            BytesIO(response.content)
+        )
+
+        if commit:
+            instance.save()
+
+        return instance
+
+
 register(get_user_model(), UserAutoFixture)
-register(UserProfile, AutoFixture)
+register(UserProfile, UserProfileAutoFixture)
 register(Team, TeamAutoFixture)
 
