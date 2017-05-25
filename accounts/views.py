@@ -56,7 +56,7 @@ def team_detail(request, pk=None):
 
     time_points = []
     points = 0
-    for solved in ChallengeSolved.objects.filter(user__profile__team=team).distinct().order_by('datetime'):
+    for solved in ChallengeSolved.objects.filter(user__team=team).distinct().order_by('datetime'):
         points += solved.challenge.points
         time_points.append([int(solved.datetime.timestamp())*1000, points])
 
@@ -66,7 +66,7 @@ def team_detail(request, pk=None):
     }
 
     last_team_solutions = ChallengeSolved.objects\
-        .filter(user__profile__team=team)\
+        .filter(user__team=team)\
         .order_by('-datetime')\
         .all()
 
@@ -86,7 +86,7 @@ def user_detail(request, pk=None):
 
     categories = Category.objects.all()
     categories_num_done_user = [
-        c.challenges.filter(solved_by=user).distinct().count()
+        c.challenges.filter(solved_by=user.profile).distinct().count()
         for c in categories
     ]
 
