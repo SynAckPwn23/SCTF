@@ -403,7 +403,8 @@ body .container.body .right_col {
     max-height: 400px !important
 }
 .blue {
-    color: #3498DB
+    /*color: #3498DB*/
+    color:#00d1ec
 }
 .purple {
     color: #9B59B6
