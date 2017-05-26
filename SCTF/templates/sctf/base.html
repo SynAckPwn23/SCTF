@@ -5,7 +5,6 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Security CTF | Home{% endblock %}</title>
@@ -35,8 +34,6 @@
 	<!--<link href="{% static 'sctf/build/css/custom.min.css' %}" rel="stylesheet">-->
   <link href="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css' %}" rel="stylesheet">
 
-</head>
-
 <style type="text/css">
   /* Hide Scrollbars in Google Chrome */
 
@@ -50,6 +47,9 @@
   }
   /* No solution for Firefox */
 </style>
+</head>
+
+
 
 <body class="nav-md">
   <div class="container body">
@@ -360,7 +360,7 @@
   <!-- jQuery Smart Wizard -->
   <script src="{% static 'sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js' %}"></script>
   <!-- Tags input -->
-  <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}" /></script>
+  <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
 
