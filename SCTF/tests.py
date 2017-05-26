@@ -47,6 +47,6 @@ class UserScoreTest(TestCase):
             self.assertEqual(u.points, sum(c.points for c in self.challenges[:i]))
 
     def test_users_score(self):
-        for i, u in enumerate(UserProfile.objects.ordered_score().all(), 1):
+        for i, u in enumerate(UserProfile.objects.ordered().all(), 1):
             self.assertEqual(u.position, i)
 
