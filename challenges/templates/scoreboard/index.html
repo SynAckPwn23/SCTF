@@ -124,37 +124,37 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% for user in users %}
+								{% for profile in user_profiles %}
 								<tr>
 									<td style="text-align: center;">
-										<h4 class="count green">#{{user.profile.position}}</h4>
+										<h4 class="count green">{{forloop.counter}}</h4>
 									</td>
 									<td style="text-align: center;">
-										<a class="count green" href="#">{{user.username}}</a>
+										<a class="count green" href="#">{{user.profile.username}}</a>
 										<br/>
-										<small>Created on {{user.profile.created_at}}</small>
+										<small>Created on {{profile.created_at}}</small>
 									</td>
-									<td style="text-align: center;">{{user.first_name}}</td>
-									<td style="text-align: center;">{{user.last_name}}</td>
-									<td style="text-align: center;">{{user.email}}</td>
+									<td style="text-align: center;">{{profile.user.first_name}}</td>
+									<td style="text-align: center;">{{profile.user.last_name}}</td>
+									<td style="text-align: center;">{{profile.user.email}}</td>
 									<td style="text-align: center;">
 										<ul class="list-inline">
 											<li>
-												<img src="/{{user.profile.image.url}}" class="avatar" alt="Avatar">
+												<img src="/{{profile.image.url}}" class="avatar" alt="Avatar">
 												<a class="green" href="{% url 'user' pk=user.pk %}">
-													<font size="0" style="display:block;">{{user.username}}</font>	
+													<font size="0" style="display:block;">{{profile.user.username}}</font>
 												</a>
 											</li>
 										</ul>
 									</td>
 									<td style="text-align: center;" class="project_progress">
 										<div class="progress progress_sm">
-											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{user.profile.progress}}"></div>
+											<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{profile.progress}}"></div>
 										</div>
-										<small><span class="green">{{user.profile.progress}}%</span> Complete</small>
+										<small><span class="green">{{profile.progress}}%</span> Complete</small>
 									</td>
 									<td style="text-align: center;">
-										<a>{{user.profile.total_points}}</a>
+										<a>{{profile.total_points}}</a>
 									</td>
 								</tr>
 								{% endfor %}
