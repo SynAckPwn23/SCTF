@@ -1,15 +1,19 @@
 import os
+import random
+from datetime import timedelta, datetime
 from io import BytesIO
 from itertools import repeat, cycle
 
 import requests
 from autofixture import generators, register, AutoFixture
 from django.contrib.auth import get_user_model
+from django.utils.timezone import now
 
 from accounts.models import UserProfile, Team
 from django.contrib.auth.hashers import make_password
 
 from accounts.fixtures.autofixtures_data import user_first_names, user_last_names, team_names, user_usernames
+from challenges.models import Challenge, ChallengeSolved
 
 
 class UserAutoFixture(AutoFixture):
@@ -36,6 +40,19 @@ class UserProfileAutoFixture(AutoFixture):
     }
 
     def post_process_instance(self, instance, commit=True):
+
+        # solved challenges
+        for challenge in Challenge.objects.filter(pk__gt=instance.pk):
+            solved = ChallengeSolved.objects.create(
+                user=instance,
+                challenge=challenge
+            )
+            start = instance.created_at
+            solved.created_at = start + (now() - start) * random.random()
+            solved.save()
+
+
+        # random image
         gender = 'men' if instance.gender == 'M' else 'women'
         image_url = 'https://randomuser.me/api/portraits/{}/{}.jpg'.format(gender, instance.id)
         try:
