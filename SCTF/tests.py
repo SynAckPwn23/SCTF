@@ -6,6 +6,7 @@ from django.test import TestCase
 
 from accounts.models import Team, UserProfile
 from challenges.models import Category, Challenge, ChallengeSolved
+from challenges.utils import annotate_score
 
 
 class UserScoreTest(TestCase):
@@ -43,6 +44,6 @@ class UserScoreTest(TestCase):
 
 
     def test_users_score(self):
-        for i, u in self.users:
+        for i, u in annotate_score(get_user_model().objects).all():
             self.assertEqual(u.points, sum(c.points for c in self.challenges[:i]))
 
