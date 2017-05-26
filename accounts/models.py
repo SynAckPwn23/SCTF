@@ -18,7 +18,7 @@ User = get_user_model()
 class StatsFromChallengesMixin:
     @property
     def total_points(self):
-        return self.solved_challenges.total_points() or 0
+        return self.solved_challenges.total_points()
 
     @property
     def num_success(self):
@@ -128,7 +128,7 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
 
     @property
     def total_points(self):
-        return getattr(self, 'points', None) or self.solved_challenges.total_points() or 0
+        return getattr(self, 'points', None) or self.solved_challenges.total_points()
 
 
 @receiver(post_save, sender=User)

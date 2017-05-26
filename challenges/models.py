@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Sum
-
+from django.db.models.functions.base import Coalesce
 
 RelatedUserModel = 'accounts.UserProfile'
 
@@ -19,7 +19,7 @@ class Category(models.Model):
 class ChallengeQuerySet(models.QuerySet):
 
     def total_points(self):
-        return self.aggregate(Sum('points'))['points__sum']
+        return self.aggregate(_sum=Coalesce(Sum('points'), 0))['_sum']
 
 
 class Challenge(models.Model):
