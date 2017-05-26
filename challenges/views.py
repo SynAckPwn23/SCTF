@@ -23,7 +23,7 @@ def challenges(request):
     user = request.user
     team = user.profile.team
     categories_num_done_user = [
-        c.challenges.filter(solved_by=user).distinct().count()
+        c.challenges.filter(solved_by=user.profile).distinct().count()
         for c in categories
     ]
     categories_num_done_team = [
@@ -32,7 +32,7 @@ def challenges(request):
     ]
 
     last_team_solutions = ChallengeSolved.objects\
-        .filter(user__profile__team=team)\
+        .filter(user__team=team)\
         .order_by('-datetime')\
         .all()
 
