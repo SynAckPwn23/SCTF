@@ -4,25 +4,25 @@ Security Capture the Flag Platform is the best platform for CTF Challenges. You 
 We would love to see how you use this awesome Platform. You can notify us about your site, app or service by mail. 
 
 # Install & Start
-<b>Virtual Environment (Strongly Suggested)</b>: 
+<b>1. [OPTIONAL] Virtual Environment (Strongly Suggested)</b>: 
 	
 	$ pyvenv-3.5 venv
 	$ source venv/bin/activate
 
-<b>Install Requirements</b>:
+<b>2. Install Requirements</b>:
 
 	$ pip install -r requirements.txt
 
-<b>[OPTIONAL] Install Demo Data</b>:
+<b>3. [OPTIONAL] Install Demo Data</b>:
 	
 	$ chmod +x loaddata.sh
 	$ ./loaddata.sh
 
-<b>Start Application</b>:
+<b>4. Start Application</b>:
 	
 	$ python manage.py runserver <[port]>
 	
-<b>Reset Application</b>:
+<b>5. Reset Application</b>:
 	
 	$ chmod +x reset.sh
 	$ ./reset.sh
