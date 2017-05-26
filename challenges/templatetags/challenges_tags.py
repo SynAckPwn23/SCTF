@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.simple_tag
 def btn_challenge_class(current_user, challenge):
-    if current_user.solved_challenges.filter(pk=challenge.pk).exists():
+    if current_user.profile.solved_challenges.filter(pk=challenge.pk).exists():
         return 'btn-success'
     if current_user.profile.team is not None and \
         current_user.profile.team.solved_challenges.filter(pk=challenge.pk).exists():
