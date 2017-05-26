@@ -4,6 +4,8 @@ import registration.signals
 from cities_light.models import Country
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Sum
+from django.db.models.functions import Coalesce
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from functools import reduce
@@ -16,44 +18,32 @@ User = get_user_model()
 class StatsFromChallengesMixin:
     @property
     def total_points(self):
-        return 0
         return self.solved_challenges.total_points() or 0
 
     @property
     def num_success(self):
-        return 50
         return self.solved_challenges.count() or 0
 
     @property
     def num_fails(self):
-        return 0
         return self.failed_challenges.count() or 0
 
     @property
     def num_failed_challenges(self):
-        return 25
         return self.failed_challenges.distinct().count() or 0
 
     def num_never_tried_challenges(self):
-        return 25
         from challenges.models import Challenge
         return Challenge.objects.count() - self.num_success - self.num_failed_challenges
 
     @property
     def progress(self):
-        return 0
         from challenges.models import Challenge
         return int(self.solved_challenges.count() / (Challenge.objects.count() or 1) * 100)
 
     @property
     def position(self):
         return 0
-        def compare_key(element):
-            return (
-                -element.total_points,
-                getattr(element.challengesolved_set.last(), 'datetime', 0)
-            )
-        return sorted(type(self).objects.all(), key=compare_key).index(self) + 1
 
 
 class Team(models.Model, StatsFromChallengesMixin):
@@ -89,7 +79,17 @@ class Team(models.Model, StatsFromChallengesMixin):
         return self.name
 
 
+class UserProfileQuerySet(models.QuerySet):
+    def annotate_score(self):
+        return self.annotate(points=Coalesce(Sum('solved_challenges__points'), 0))
+
+    def ordered_score(self):
+        return self.annotate_score().order_by('-points')
+
+
 class UserProfile(models.Model, StatsFromChallengesMixin):
+    objects = UserProfileQuerySet.as_manager()
+
     team = models.ForeignKey('accounts.Team', null=True)
     user = models.OneToOneField(User, related_name='profile')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -102,6 +102,7 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
 
+    """
     @property
     def challengesolved_set(self):
         return self.user.challengesolved_set
@@ -114,6 +115,20 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     def failed_challenges(self):
         return self.user.failed_challenges\
             .exclude(pk__in=self.solved_challenges.all())
+    """
+
+    @property
+    def failed_challenges(self):
+        return self._all_failed_challenges.exclude(pk__in=self.solved_challenges.all())
+
+    @property
+    def position(self):
+        users = UserProfile.objects.annotate_score()
+        return users.filter(points__gte=users.get(pk=self.pk).points).count()
+
+    @property
+    def total_points(self):
+        return getattr(self, 'points', None) or self.solved_challenges.total_points() or 0
 
 
 @receiver(post_save, sender=User)

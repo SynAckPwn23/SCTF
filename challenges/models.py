@@ -1,6 +1,8 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Sum
+
+
+RelatedUserModel = 'accounts.UserProfile'
 
 
 class Category(models.Model):
@@ -29,12 +31,12 @@ class Challenge(models.Model):
     key = models.CharField(max_length=256)
     points = models.IntegerField()
 
-    solved_by = models.ManyToManyField(get_user_model(),
+    solved_by = models.ManyToManyField(RelatedUserModel,
                                        related_name='solved_challenges',
                                        through='challenges.ChallengeSolved')
 
-    failed_by = models.ManyToManyField(get_user_model(),
-                                       related_name='failed_challenges',
+    failed_by = models.ManyToManyField(RelatedUserModel,
+                                       related_name='_all_failed_challenges',
                                        through='challenges.ChallengeFail')
 
     def __str__(self):
@@ -63,7 +65,7 @@ class Attachment(models.Model):
 
 
 class ChallengeSolved(models.Model):
-    user = models.ForeignKey(get_user_model())
+    user = models.ForeignKey(RelatedUserModel)
     challenge = models.ForeignKey('challenges.Challenge')
     datetime = models.DateTimeField(auto_now_add=True)
 
@@ -72,7 +74,7 @@ class ChallengeSolved(models.Model):
 
 
 class ChallengeFail(models.Model):
-    user = models.ForeignKey(get_user_model())
+    user = models.ForeignKey(RelatedUserModel)
     challenge = models.ForeignKey('challenges.Challenge')
     datetime = models.DateTimeField(auto_now_add=True)
 
