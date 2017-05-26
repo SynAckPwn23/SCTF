@@ -83,8 +83,8 @@ class UserProfileQuerySet(models.QuerySet):
     def annotate_score(self):
         return self.annotate(points=Coalesce(Sum('solved_challenges__points'), 0))
 
-    def ordered_score(self):
-        return self.annotate_score().order_by('-points')
+    def ordered_score(self, *args):
+        return self.annotate_score().order_by('-points', *args)
 
 
 class UserProfile(models.Model, StatsFromChallengesMixin):
@@ -123,8 +123,8 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
 
     @property
     def position(self):
-        users = UserProfile.objects.annotate_score()
-        return users.filter(points__gte=users.get(pk=self.pk).points).count()
+        users = UserProfile.objects.ordered_score('-created_at')
+        return next(i for i, u in enumerate(users, 1) if u.pk == self.pk)
 
     @property
     def total_points(self):
