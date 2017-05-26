@@ -17,7 +17,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">ALL CHALLENGES</small></h2>
+						<h2 class="green">ALL CHALLENGES</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -74,7 +74,7 @@
 											<li>
 												<img src="/{{user.profile.image.url}}" class="avatar" alt="Avatar">
 												<a class="green" href="{% url 'user' pk=user.pk %}">
-													<font size="0" id="user" style="display:block;">{{user.username}}</font>
+													<font size="0" id="user_{{user.username}}" style="display:block;">{{user.username}}</font>
 												</a>
 											</li>
 											{% endfor %}
