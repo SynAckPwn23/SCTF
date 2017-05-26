@@ -65,7 +65,7 @@ class Team(models.Model, StatsFromChallengesMixin):
     @property
     def solved_challenges(self):
         from challenges.models import Challenge
-        return Challenge.objects.filter(solved_by__profile__team=self).distinct()
+        return Challenge.objects.filter(solved_by__team=self).distinct()
 
     @property
     def failed_challenges(self):

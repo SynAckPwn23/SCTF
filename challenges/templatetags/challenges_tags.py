@@ -15,4 +15,4 @@ def btn_challenge_class(current_user, challenge):
 
 @register.assignment_tag(takes_context=True)
 def challenge_is_solved(context, *args):
-    return context['user'].solved_challenges.filter(pk=context['challenge'].pk).exists()
+    return context['user'].profile.solved_challenges.filter(pk=context['challenge'].pk).exists()
