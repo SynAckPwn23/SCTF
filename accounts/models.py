@@ -71,7 +71,7 @@ class Team(models.Model, StatsFromChallengesMixin):
     def failed_challenges(self):
         from challenges.models import Challenge
         return Challenge.objects\
-            .filter(failed_by__profile__team=self)\
+            .filter(failed_by__team=self)\
             .distinct()\
             .exclude(pk__in=self.solved_challenges.all())
 
