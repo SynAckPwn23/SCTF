@@ -72,7 +72,7 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
 
 def scoreboard(request):
     parameters = {
-        'teams': Team.objects.all(),
+        'teams': Team.objects.ordered(),
         'user_profiles': UserProfile.objects.ordered(),
     }
     return render(request, 'scoreboard/index.html', parameters)

@@ -18,7 +18,7 @@ User = get_user_model()
 class StatsFromChallengesMixin:
     @property
     def total_points(self):
-        return self.solved_challenges.total_points()
+        return getattr(self, 'points', None) or self.solved_challenges.total_points()
 
     @property
     def num_success(self):
@@ -43,10 +43,21 @@ class StatsFromChallengesMixin:
 
     @property
     def position(self):
-        return 0
+        elements = self.__class__.objects.ordered()
+        return next(i for i, e in enumerate(elements, 1) if e.pk == self.pk)
+
+
+class TeamQuerySet(models.QuerySet):
+    def annotate_score(self):
+        return self.annotate(points=Coalesce(Sum('userprofile__solved_challenges__points'), 0))
+
+    def ordered(self, *args):
+        return self.annotate_score().order_by('-points', '-created_at')
 
 
 class Team(models.Model, StatsFromChallengesMixin):
+    objects = TeamQuerySet.as_manager()
+
     name = models.CharField(max_length=256)
     users = models.ManyToManyField(User, through='accounts.userprofile')
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
@@ -102,33 +113,11 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
 
-    """
-    @property
-    def challengesolved_set(self):
-        return self.user.challengesolved_set
-
-    @property
-    def solved_challenges(self):
-        return self.user.solved_challenges
-
-    @property
-    def failed_challenges(self):
-        return self.user.failed_challenges\
-            .exclude(pk__in=self.solved_challenges.all())
-    """
-
     @property
     def failed_challenges(self):
         return self._all_failed_challenges.exclude(pk__in=self.solved_challenges.all())
 
-    @property
-    def position(self):
-        users = UserProfile.objects.ordered()
-        return next(i for i, u in enumerate(users, 1) if u.pk == self.pk)
 
-    @property
-    def total_points(self):
-        return getattr(self, 'points', None) or self.solved_challenges.total_points()
 
 
 @receiver(post_save, sender=User)
