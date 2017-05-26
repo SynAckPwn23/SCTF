@@ -12,7 +12,7 @@ def index(request):
         'teams_count': Team.objects.count(),
         'challenges_count': Challenge.objects.count(),
         'total_points_count': Challenge.objects.total_points(),
-        'user_points_count': user.solved_challenges.total_points(),
+        'user_points_count': user.profile.total_points,
     }
     return render(request, 'sctf/base.html', parameters)
 
