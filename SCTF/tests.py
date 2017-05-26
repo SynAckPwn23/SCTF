@@ -38,12 +38,12 @@ class UserScoreTest(TestCase):
         ]
 
         # solved challenges: each user u_i solves all challenges from c_0 to c_i (ie: u2 solves c0,c1,c2)
-        for i, u in enumerate(self.user, 1):
+        for i, u in enumerate(self.users, 1):
             for c in self.challenges[:i]:
                 ChallengeSolved.objects.create(user=u, challenge=c)
 
 
     def test_users_score(self):
-        for i, u in annotate_score(get_user_model().objects).all():
+        for i, u in enumerate(annotate_score(get_user_model().objects).all(), 1):
             self.assertEqual(u.points, sum(c.points for c in self.challenges[:i]))
 
