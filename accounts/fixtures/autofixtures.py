@@ -51,8 +51,7 @@ class UserProfileAutoFixture(AutoFixture):
                 challenge=challenge
             )
             start = instance.created_at
-            solved.created_at = start + (now() - start) * random.random()
-            print(solved.created_at)
+            solved.datetime = start + (now() - start) * random.random()
             solved.save()
 
 
