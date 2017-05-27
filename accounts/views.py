@@ -70,14 +70,14 @@ def team_detail(request, pk=None):
 def user_detail(request, pk=None):
     user = request.user if pk is None else get_user_model().objects.get(pk=pk)
 
-    solved = user.percentage_solved_by_category()
-    categories_names = solved.keys()
+    solved = user.profile.percentage_solved_by_category
+    categories_names = list(solved.keys())
     categories_num_done_user = [solved[c] for c in categories_names]
 
     parameters = {
         'categories_names': json.dumps(categories_names),
         'categories_num_done_user': categories_num_done_user,
         'user_detail_page': user,
-        'time_points': json.dumps(user.score_over_time),
+        'time_points': json.dumps(user.profile.score_over_time),
     }
     return render(request, 'accounts/user.html', parameters)
