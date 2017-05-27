@@ -174,15 +174,7 @@
     }
     console.log('init_flot_chart');
     // Page team - Score Over Time Table
-    var arr_data1 = [
-      [gd(2012, 1, 1), 10],
-      [gd(2013, 2, 2), 30],
-      [gd(2014, 3, 3), 45],
-      [gd(2015, 4, 4), 60],
-      [gd(2016, 5, 5), 70],
-      [gd(2017, 6, 6), 95],
-      [gd(2018, 7, 7), 150]
-    ];
+    var arr_data1 = JSON.parse("{{ time_points | escapejs }}");
 
     var teamScoreOverTime_settings = {
       series: {
