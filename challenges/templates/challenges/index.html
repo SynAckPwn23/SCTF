@@ -36,11 +36,11 @@
 			</div>
 
 			{% for category in categories %}
-			<div class="clearfix"></div>
+			<!--<div class="clearfix"></div>-->
 			<div class="">
 
 			</div>
-			<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="col-md-6 col-sm-6 col-xs-6">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2><i class="fa fa-tag"></i> {{ category.name }} Category</h2>
@@ -50,7 +50,7 @@
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
+					<div style="min-height:250px;"class="x_content">
 						<!-- modals -->
 
 						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
