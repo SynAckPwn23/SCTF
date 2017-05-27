@@ -52,8 +52,9 @@ class CustomRegistrationView(RegistrationView):
 
 
 def team_detail(request, pk=None):
-    team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
-
+    # TODO check the more efficent way (order here or not)
+    #team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
+    team = Team.objects.ordered().get(pk=pk or request.user.profile.team.pk)
     time_points = []
     points = 0
     for solved in ChallengeSolved.objects.filter(user__team=team).distinct().order_by('datetime'):
@@ -75,7 +76,7 @@ def team_detail(request, pk=None):
         'total_points_count': Challenge.objects.total_points(),
         'time_points': json.dumps(time_points),
         'category_solved': category_solved,
-         'last_team_solutions': last_team_solutions,
+        'last_team_solutions': last_team_solutions,
     }
 
     return render(request, 'accounts/team.html', parameters)

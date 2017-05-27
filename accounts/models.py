@@ -41,8 +41,11 @@ class StatsFromChallengesMixin:
 
     @property
     def position(self):
-        elements = self.__class__.objects.ordered()
-        return next(i for i, e in enumerate(elements, 1) if e.pk == self.pk)
+        # TODO check if can annotate it with sql rownumber
+        # if not test if using value_list is faster or not
+        elements = self.__class__.objects.ordered().values_list('id', flat=True)
+        return next(i for i, e in enumerate(elements, 1) if e == self.pk)
+
 
 
 class TeamQuerySet(models.QuerySet):
