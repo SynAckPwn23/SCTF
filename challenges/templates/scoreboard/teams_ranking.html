@@ -70,11 +70,11 @@
 									</td>
 									<td style="text-align: center;">
 										<ul class="list-inline">
-											{% for user in team.users.all %}
+											{% for team_user in team.users.all %}
 											<li>
-												<img src="/{{user.profile.image.url}}" class="avatar" alt="Avatar">
-												<a class="green" href="{% url 'user' pk=user.pk %}">
-													<font size="0" id="user_{{user.username}}" style="display:block;">{{user.username}}</font>
+												<img src="/{{team_user.profile.image.url}}" class="avatar" alt="Avatar">
+												<a class="green" href="{% url 'user' pk=team_user.pk %}">
+													<font size="0" id="team_user_{{team_user.username}}" style="display:block;">{{team_user.username}}</font>
 												</a>
 											</li>
 											{% endfor %}

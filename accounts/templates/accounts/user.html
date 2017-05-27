@@ -175,12 +175,12 @@
     console.log('init_flot_chart');
     // Page team - Score Over Time Table
     var arr_data1 = JSON.parse("{{ time_points | escapejs }}");
-
     var teamScoreOverTime_settings = {
+      
       series: {
         lines: {
-          show: false,
-          fill: true
+          show: true,
+          fill: 0.4
         },
         splines: {
           show: true,

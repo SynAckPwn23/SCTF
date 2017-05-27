@@ -79,7 +79,7 @@
 										<ul class="list-inline">
 											<li>
 												<img src="/{{profile.image.url}}" class="avatar" alt="Avatar">
-												<a class="green" href="{% url 'user' pk=user.pk %}">
+												<a class="green" href="{% url 'user' pk=profile.user.pk %}">
 													<font size="0" style="display:block;">{{profile.user.username}}</font>
 												</a>
 											</li>
