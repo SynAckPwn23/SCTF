@@ -1,15 +1,13 @@
 from operator import or_
 
-import registration.signals
 from cities_light.models import Country
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Sum
+from django.db.models.expressions import RawSQL
 from django.db.models.functions import Coalesce
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from functools import reduce
-
 
 
 User = get_user_model()
@@ -48,10 +46,17 @@ class StatsFromChallengesMixin:
 
 
 class TeamQuerySet(models.QuerySet):
-    # TODO fix (distinct solved challenges)
     def annotate_score(self):
-        return self.annotate(points=Coalesce(Sum('userprofile__solved_challenges__points',
-                                                 distinct=True), 0))
+        query = """
+            select sum(c.points) 
+            from challenges_challenge c
+            where c.id in (
+                select s.challenge_id
+                from challenges_challengesolved s
+                join accounts_userprofile p on p.id = s.user_id
+                where p.team_id = accounts_team.id
+            )"""
+        return self.annotate(points=RawSQL(query, []))
 
     def ordered(self, *args):
         return self.annotate_score().order_by('-points', '-created_at')
@@ -71,9 +76,8 @@ class Team(models.Model, StatsFromChallengesMixin):
 
     @property
     def challengesolved_set(self):
-        return reduce(or_,
-                      (u.challengesolved_set.all() for u in self.users.all()),
-                      Team.objects.none())
+        from challenges.models import ChallengeSolved
+        return ChallengeSolved.objects.filter(user__team=self)
 
     @property
     def solved_challenges(self):
