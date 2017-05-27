@@ -48,8 +48,10 @@ class StatsFromChallengesMixin:
 
 
 class TeamQuerySet(models.QuerySet):
+    # TODO fix (distinct solved challenges)
     def annotate_score(self):
-        return self.annotate(points=Coalesce(Sum('userprofile__solved_challenges__points'), 0))
+        return self.annotate(points=Coalesce(Sum('userprofile__solved_challenges__points',
+                                                 distinct=True), 0))
 
     def ordered(self, *args):
         return self.annotate_score().order_by('-points', '-created_at')

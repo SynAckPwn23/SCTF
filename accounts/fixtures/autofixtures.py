@@ -25,6 +25,7 @@ class UserAutoFixture(AutoFixture):
     }
 
 
+
 class TeamAutoFixture(AutoFixture):
     field_values = {
         'name': generators.ChoicesGenerator(choices=team_names),
@@ -40,6 +41,8 @@ class UserProfileAutoFixture(AutoFixture):
     }
 
     def post_process_instance(self, instance, commit=True):
+        # created date
+        instance.created_at = now() - timedelta(days=30)
 
         # solved challenges
         for challenge in Challenge.objects.filter(pk__gt=instance.pk):
@@ -49,6 +52,7 @@ class UserProfileAutoFixture(AutoFixture):
             )
             start = instance.created_at
             solved.created_at = start + (now() - start) * random.random()
+            print(solved.created_at)
             solved.save()
 
 
