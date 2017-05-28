@@ -454,3 +454,24 @@ team_names = [(name, name) for name in [
     'The Graceful Eels'
     ]
 ]
+
+
+user_profiles_skills = [
+    "Application Security",
+    "Biometrics",
+    "Data Leak Prevention",
+    "Ethical Hacking",
+    "Forensic Analysis",
+    "Identity & Access Management",
+    "Incident Handling & Analysis",
+    "Intrusion Detection and Prevention",
+    "Network Security",
+    "Penetration Testing",
+    "Regulatory Compliance & Audit",
+    "Secure Code Development",
+    "Security Architecture",
+    "Smart cards",
+    "Threat/ Vulnerability Assessment Management",
+    "VOIP Security",
+    "Web"
+]

@@ -9,10 +9,10 @@ from autofixture import generators, register, AutoFixture
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now
 
-from accounts.models import UserProfile, Team
+from accounts.models import UserProfile, Team, SKILLS_SEPARATOR
 from django.contrib.auth.hashers import make_password
 
-from accounts.fixtures.autofixtures_data import user_first_names, user_last_names, team_names, user_usernames
+from accounts.fixtures.autofixtures_data import user_first_names, user_last_names, team_names, user_usernames, user_profiles_skills
 from challenges.models import Challenge, ChallengeSolved
 
 
@@ -34,10 +34,16 @@ class TeamAutoFixture(AutoFixture):
 teams = cycle(iter(Team.objects.exclude(name='admin')))
 
 
+def set_skill(*args, **kwargs):
+    randIndex = random.sample(range(len(user_profiles_skills)), random.randint(2,5))
+    return SKILLS_SEPARATOR.join([user_profiles_skills[i] for i in randIndex])
+
+
 class UserProfileAutoFixture(AutoFixture):
 
     field_values = {
-        'team': generators.CallableGenerator(lambda *args, **kwargs: next(teams))
+        'team': generators.CallableGenerator(lambda *args, **kwargs: next(teams)),
+        'skills': generators.CallableGenerator(set_skill)
     }
 
     def post_process_instance(self, instance, commit=True):

@@ -12,6 +12,7 @@ from django.db.models.signals import post_save
 
 User = get_user_model()
 
+SKILLS_SEPARATOR = '$$$'
 
 class StatsFromChallengesMixin:
     @property
@@ -46,6 +47,23 @@ class StatsFromChallengesMixin:
         elements = self.__class__.objects.ordered().values_list('id', flat=True)
         return next(i for i, e in enumerate(elements, 1) if e == self.pk)
 
+    @property
+    def score_over_time(self):
+        time_points = []
+        points = 0
+        for solved in self.challengesolved_set.distinct().order_by('datetime'):
+            points += solved.challenge.points
+            time_points.append([int(solved.datetime.timestamp()) * 1000, points])
+        return time_points
+
+    @property
+    def percentage_solved_by_category(self):
+        from challenges.models import Category
+        return {
+            c.name: int(self.solved_challenges.filter(category=c).count() /
+                        (c.challenges.count() or 1) * 100)
+            for c in Category.objects.all()
+        }
 
 
 class TeamQuerySet(models.QuerySet):
@@ -118,6 +136,7 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     gender = models.CharField(max_length=1, choices=(('M', 'Male'), ('F','Female')))
     website = models.CharField(max_length=255, null=True, blank=True)
     country = models.ForeignKey(Country)
+    skills = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)

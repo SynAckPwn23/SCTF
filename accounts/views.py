@@ -55,28 +55,13 @@ def team_detail(request, pk=None):
     # TODO check the more efficent way (order here or not)
     #team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
     team = Team.objects.ordered().get(pk=pk or request.user.profile.team.pk)
-    time_points = []
-    points = 0
-    for solved in ChallengeSolved.objects.filter(user__team=team).distinct().order_by('datetime'):
-        points += solved.challenge.points
-        time_points.append([int(solved.datetime.timestamp())*1000, points])
-
-    category_solved = {
-        c.name: int(team.solved_challenges.filter(category=c).count() / (c.challenges.count() or 1) * 100)
-        for c in Category.objects.all()
-    }
-
-    last_team_solutions = ChallengeSolved.objects\
-        .filter(user__team=team)\
-        .order_by('-datetime')\
-        .all()
 
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
-        'time_points': json.dumps(time_points),
-        'category_solved': category_solved,
-        'last_team_solutions': last_team_solutions,
+        'time_points': json.dumps(team.score_over_time),
+        'category_solved': team.percentage_solved_by_category,
+        'last_team_solutions': team.challengesolved_set.order_by('-datetime').all()
     }
 
     return render(request, 'accounts/team.html', parameters)
@@ -85,17 +70,14 @@ def team_detail(request, pk=None):
 def user_detail(request, pk=None):
     user = request.user if pk is None else get_user_model().objects.get(pk=pk)
 
-    categories = Category.objects.all()
-    categories_num_done_user = [
-        int((c.challenges.filter(solved_by=user.profile).distinct().count() /
-             c.challenges.count() * 100))
-        for c in categories
-    ]
+    solved = user.percentage_solved_by_category()
+    categories_names = solved.keys()
+    categories_num_done_user = [solved[c] for c in categories_names]
 
     parameters = {
-        'categories_names': json.dumps([c.name for c in categories]),
+        'categories_names': json.dumps(categories_names),
         'categories_num_done_user': categories_num_done_user,
-        'user_detail_page': user
-
+        'user_detail_page': user,
+        'time_points': json.dumps(user.score_over_time),
     }
     return render(request, 'accounts/user.html', parameters)
