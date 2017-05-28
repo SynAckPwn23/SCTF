@@ -70,10 +70,16 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
         return Response('Wrong KEY', status=HTTP_417_EXPECTATION_FAILED)
 
 
-def scoreboard(request):
+def teams_ranking(request):
     parameters = {
         'teams': Team.objects.ordered(),
+    }
+    return render(request, 'scoreboard/teams_ranking.html', parameters)
+
+
+def users_ranking(request):
+    parameters = {
         'user_profiles': UserProfile.objects.ordered(),
     }
-    return render(request, 'scoreboard/index.html', parameters)
+    return render(request, 'scoreboard/users_ranking.html', parameters)
 
