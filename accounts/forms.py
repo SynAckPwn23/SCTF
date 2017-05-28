@@ -17,4 +17,4 @@ class CustomRegistrationForm(RegistrationForm):
 class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ['user', 'team', 'skills']
+        exclude = ['user', 'team']
