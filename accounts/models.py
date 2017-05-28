@@ -140,7 +140,7 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
 
     @property
     def skill_list(self):
-        return self.skills.split(SKILLS_SEPARATOR)
+        return (self.skills or '').split(SKILLS_SEPARATOR)
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
