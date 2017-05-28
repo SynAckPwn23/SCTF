@@ -165,6 +165,16 @@
       var canvasRadar = new Chart(ctx, {
         type: 'radar',
         data: data,
+        options: {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+              steps: 10,
+              stepValue: 5,
+              max: 100
+            }
+          }
+        }
       });
     }
   }
