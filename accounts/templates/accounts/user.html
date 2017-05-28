@@ -79,7 +79,7 @@
               <span class="label label-primary">Primary</span>
               <span class="label label-primary">Primary</span>
               <span class="label label-primary">Primary</span>
-                 <span class="label label-primary">Primary</span>
+              <span class="label label-primary">Primary</span>
               <span class="label label-primary">Primary</span>
               <span class="label label-primary">Primary</span>
               <span class="label label-primary">Primary</span>
@@ -118,11 +118,6 @@
             </div>
     </div>
   </div>
-  Cat:
-  {{ categories_names | escapejs }}<br>
-  Done_By_User:
-  {{ categories_num_done_user | escapejs }}
-
 </div>
 <!-- /page content -->
 
@@ -165,7 +160,7 @@
       var canvasRadar = new Chart(ctx, {
         type: 'radar',
         data: data,
-        options: {
+        options: {    
           scale: {
             ticks: {
               beginAtZero: true,
@@ -173,7 +168,7 @@
               stepValue: 5,
               max: 100
             }
-          }
+          },
         }
       });
     }
