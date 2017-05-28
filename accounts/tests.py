@@ -86,6 +86,7 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
             'job': 'job',
             'gender': 'M',
             'country': 1,
+            'skills': 's1,s2'
         })
         # Created
         self.assertEqual(response.status_code, 302)
@@ -105,6 +106,8 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
         self.assertEqual(u.profile.gender, 'M')
         # Correct country
         self.assertEqual(u.profile.country, self.country)
+        # Correct skills
+        self.assertEqual(u.profile.skills, 's1,s2')
 
 
     # Test User Registration Empty
