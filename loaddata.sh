@@ -31,7 +31,8 @@ UserProfile.objects.create(
     job='job',
     gender='M',
     country=Country.objects.get_or_create(name='Italy')[0],
-    team=team
+    team=team,
+    skills='skill 1, skill 2, skill 3'
 );
 
 start = now() - timedelta(days=30)
