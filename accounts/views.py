@@ -87,7 +87,8 @@ def user_detail(request, pk=None):
 
     categories = Category.objects.all()
     categories_num_done_user = [
-        c.challenges.filter(solved_by=user.profile).distinct().count()
+        int((c.challenges.filter(solved_by=user.profile).distinct().count() /
+             c.challenges.count() * 100))
         for c in categories
     ]
 
