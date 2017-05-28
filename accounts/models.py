@@ -12,7 +12,7 @@ from django.db.models.signals import post_save
 
 User = get_user_model()
 
-SKILLS_SEPARATOR = '$$$'
+SKILLS_SEPARATOR = ','
 
 class StatsFromChallengesMixin:
     @property
@@ -137,6 +137,10 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
     website = models.CharField(max_length=255, null=True, blank=True)
     country = models.ForeignKey(Country)
     skills = models.TextField(null=True, blank=True)
+
+    @property
+    def skill_list(self):
+        return self.skills.split(SKILLS_SEPARATOR)
 
     def __str__(self):
         return '{}, Team: {}'.format(self.user.username, self.team)
