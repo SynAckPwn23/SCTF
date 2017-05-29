@@ -1,12 +1,15 @@
 <!DOCTYPE html> {% load static %}
 
 <html lang="en">
+
 <head>
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Security CTF | Home{% endblock %}</title>
+
+  <link href="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css' %}" rel="stylesheet">
   <link href="{% static 'sctf/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="{% static 'sctf/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
@@ -18,14 +21,34 @@
   <link href="{% static 'sctf/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
   <!-- JQVMap -->
   <link href="{% static 'sctf/vendors/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet" />
+  <!-- bootstrap-daterangepicker -->
+  <link href="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
   <!-- Datatables -->
   <link href="{% static 'sctf/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'sctf/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sctf/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="{% static 'sctf/build/css/custom.css' %}" rel="stylesheet">
+	<!--<link href="{% static 'sctf/build/css/custom.min.css' %}" rel="stylesheet">-->
   <link href="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css' %}" rel="stylesheet">
    <!-- jQuery -->
   <script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
+
+<style type="text/css">
+  /* Hide Scrollbars in Google Chrome */
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide Scrollbars in IE 10+ */
+
+  body {
+    -ms-overflow-style: none;
+  }
+  /* No solution for Firefox */
+</style>
 </head>
 
 
@@ -129,6 +152,7 @@
 
     <!-- top navigation -->
     <div class="top_nav">
+
       <div class="nav_menu">
         <nav>
           <div class="nav toggle">
@@ -204,6 +228,8 @@
                   <h3 style="color:#fff;text-align:center;margin-top:-25px;">Hi, welcome to Accenture Security Capture the Flag Platform.</h3>
                   <h3 style="text-align:center;margin-bottom:-20px;"><img style="width:25%;" src="{% static 'sctf/images/acn-flag.png' %}" alt=""></h3>
                   <h1 style="text-align:center;margin-bottom:-20px;"><span class="blue">Let's Go! Give Your best</span></h1>
+								<!--<h3 style="color:#fff;text-align:center;margin-bottom:-20px;"><i class="fa fa-home"></i> Please <a href="#"><span class="blue">Log-In</span></a>
+                 or <i class="fa fa-user"></i><a href="{{ register_url }}"><span class="blue"> Register</span></a> New Account.</h3>-->
                 </div>
               </div>
             </div>
@@ -309,25 +335,51 @@
   <script src="{% static 'sctf/vendors/nprogress/nprogress.js' %}"></script>
   <!-- Chart.js -->
   <script src="{% static 'sctf/vendors/Chart.js/dist/Chart.min.js' %}"></script>
+  <!-- gauge.js -->
+  <script src="{% static 'sctf/vendors/gauge.js/dist/gauge.min.js' %}"></script>
   <!-- bootstrap-progressbar -->
   <script src="{% static 'sctf/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
   <!-- iCheck -->
   <script src="{% static 'sctf/vendors/iCheck/icheck.min.js' %}"></script>
   <!-- jQuery Tags Input -->
   <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
+  <!-- Skycons -->
+  <script src="{% static 'sctf/vendors/skycons/skycons.js' %}"></script>
   <!-- Flot -->
   <script src="{% static 'sctf/vendors/Flot/jquery.flot.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.pie.js' %}"></script>
   <script src="{% static 'sctf/vendors/Flot/jquery.flot.time.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.stack.js' %}"></script>
+  <script src="{% static 'sctf/vendors/Flot/jquery.flot.resize.js' %}"></script>
+  <!-- Flot plugins -->
+  <script src="{% static 'sctf/vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+  <script src="{% static 'sctf/vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/flot.curvedlines/curvedLines.js' %}"></script>
+  <!-- DateJS -->
+  <script src="{% static 'sctf/vendors/DateJS/build/date.js' %}"></script>
   <!-- JQVMap -->
   <script src="{% static 'sctf/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
   <script src="{% static 'sctf/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="{% static 'sctf/vendors/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
   <!-- Custom Theme Scripts -->
+  <!-- <script src="{% static 'sctf/build/js/custom.min.js' %}"></script> -->
   <script src="{% static 'sctf/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
   <script src="{% static 'sctf/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
   <script src="{% static 'sctf/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
   <script src="{% static 'sctf/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
   <script src="{% static 'sctf/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
   <script src="{% static 'sctf/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js' %}"></script>
+  <script src="{% static 'sctf/vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/jszip/dist/jszip.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+  <script src="{% static 'sctf/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
   <!-- jQuery Smart Wizard -->
   <script src="{% static 'sctf/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js' %}"></script>
   <!-- Tags input -->

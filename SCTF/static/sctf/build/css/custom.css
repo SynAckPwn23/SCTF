@@ -4,6 +4,16 @@ html , body{
  height:100%;
  
 }
+
+/* Hide Scrollbars in Google Chrome */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide Scrollbars in IE 10+ */
+  body {
+    -ms-overflow-style: none;
+  }
+  /* No solution for Firefox */
  
 .full-width {
 	
