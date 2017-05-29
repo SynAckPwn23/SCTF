@@ -1,6 +1,6 @@
 <!DOCTYPE html> {% load static %}
-
 <html lang="en">
+
 <head>
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,11 +24,9 @@
   <!-- Custom Theme Style -->
   <link href="{% static 'sctf/build/css/custom.css' %}" rel="stylesheet">
   <link href="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.css' %}" rel="stylesheet">
-   <!-- jQuery -->
+  <!-- jQuery -->
   <script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
 </head>
-
-
 
 <body class="nav-md">
   <div class="container body">
@@ -37,7 +35,6 @@
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
             <a href="{% url 'index' %}" class="site_title"><img style="width:80px;margin:0px 0px 0px 0px;float:left;" src="/static/sctf/images/acn-flag.png" alt=""><img style="width:63%;margin:0px 0px 0px 0px;" src="/static/sctf/images/acn-logo-white.png" alt=""></a>
-            
           </div>
           <div class="clearfix"></div>
           <!-- menu profile quick info -->
@@ -106,7 +103,6 @@
           </div>
         </div>
         <!-- /sidebar menu -->
-
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
           <p style="text-align:center;"> <img style="width:85%;" src="{% static 'sctf/images/acn-logo-white.png' %}" alt=""></p>
@@ -126,7 +122,6 @@
         <!-- /menu footer buttons -->
       </div>
     </div>
-
     <!-- top navigation -->
     <div class="top_nav">
       <div class="nav_menu">
@@ -188,7 +183,7 @@
       </div>
       <!-- /top tiles -->
       <div class="row">
-         <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
               <h2 class="blue">LET'S GO</h2>
@@ -254,53 +249,23 @@
             </div>
           </div>
         </div>
-                      <div class="clearfix"></div>
-</div>
-    
+        <div class="clearfix"></div>
+      </div>
     </div>
     <script>
-      $(document).ready(function () {
-      init_JQVmap();
-    });
- 
-    var sample_data = JSON.parse("{{ countries_users | escapejs }}");
-
-    function init_JQVmap() {
-      //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );  
-      if (typeof (jQuery.fn.vectorMap) === 'undefined') {
-        return;
-      }
-      console.log('init_JQVmap');
-      if ($('#world-map-gdp').length) {
-        $('#world-map-gdp').vectorMap({
-          map: 'world_en',
-          backgroundColor: null,
-          color: '#ffffff',
-          hoverOpacity: 0.7,
-          selectedColor: '#666666',
-          enableZoom: true,
-          showTooltip: true,
-          values: sample_data,
-          scaleColors: ['#E6F2F0', '#149B7E'],
-          normalizeFunction: 'polynomial'
-        });
-      }
-    };
+      function init_JQVmap() { void 0 !== jQuery.fn.vectorMap && (console.log("init_JQVmap"), $("#world-map-gdp").length && $("#world-map-gdp").vectorMap({ map: "world_en", backgroundColor: null, color: "#ffffff", hoverOpacity: .7, selectedColor: "#666666", enableZoom: !0, showTooltip: !0, values: sample_data, scaleColors: ["#E6F2F0", "#149B7E"], normalizeFunction: "polynomial" })) } $(document).ready(function () { init_JQVmap() }); var sample_data = JSON.parse("{{ countries_users | escapejs }}");
     </script>
-        <!-- /page content -->
-        {% endblock %}
-        
-      
-       <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+    <!-- /page content -->
+    {% endblock %}
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
   </div>
- 
   <!-- Bootstrap -->
   <script src="{% static 'sctf/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
   <!-- FastClick -->
@@ -334,15 +299,15 @@
   <script src="{% static 'sctf/vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
-
   {% block extra_js %}{% endblock %}
   <!-- Cookie -->
   <script type="text/javascript">
-   $.ajaxSetup({beforeSend:function(e,t){/^http:.*/.test(t.url)||/^https:.*/.test(t.url)||e.setRequestHeader("X-CSRFToken",function(e){var t=null;if(document.cookie&&""!=document.cookie)for(var n=document.cookie.split(";"),o=0;o<n.length;o++){var r=jQuery.trim(n[o]);if(r.substring(0,e.length+1)==e+"="){t=decodeURIComponent(r.substring(e.length+1));break}}return t}("csrftoken"))}});
+    $.ajaxSetup({ beforeSend: function (e, t) { /^http:.*/.test(t.url) || /^https:.*/.test(t.url) || e.setRequestHeader("X-CSRFToken", function (e) { var t = null; if (document.cookie && "" != document.cookie) for (var n = document.cookie.split(";"), o = 0; o < n.length; o++) { var r = jQuery.trim(n[o]); if (r.substring(0, e.length + 1) == e + "=") { t = decodeURIComponent(r.substring(e.length + 1)); break } } return t }("csrftoken")) } });
   </script>
   <!-- Full Screen -->
   <script type="text/javascript">
-   function toggleFullscreen(e){e=e||document.documentElement,document.fullscreenElement||document.mozFullScreenElement||document.webkitFullscreenElement||document.msFullscreenElement?document.exitFullscreen?document.exitFullscreen():document.msExitFullscreen?document.msExitFullscreen():document.mozCancelFullScreen?document.mozCancelFullScreen():document.webkitExitFullscreen&&document.webkitExitFullscreen():(e.requestFullscreen?e.requestFullscreen():e.msRequestFullscreen?e.msRequestFullscreen():e.mozRequestFullScreen?e.mozRequestFullScreen():e.webkitRequestFullscreen&&e.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT),b)}
+    function toggleFullscreen(e) { e = e || document.documentElement, document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : (e.requestFullscreen ? e.requestFullscreen() : e.msRequestFullscreen ? e.msRequestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen && e.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT), b) }
   </script>
 </body>
+
 </html>
