@@ -665,19 +665,7 @@ if (typeof NProgress != 'undefined') {
 			alert("Changed a tag: " + tag);
 		}
 
-			/*  //tags input
-			  function init_TagsInput() {
 
-			  	if(typeof $.fn.tagsInput !== 'undefined'){	
-
-			  		$('#tags_1').tagsInput({
-			  			width: 'auto'
-			  		});
-
-			  	}
-
-			  };
-*/
 			  /* SELECT2 */
 
 			  function init_select2() {
