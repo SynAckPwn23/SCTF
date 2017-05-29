@@ -20,7 +20,7 @@ We would love to see how you use this awesome Platform. You can notify us about 
 
 <b>4. Start Application</b>:
 	
-	$ python manage.py runserver <[port]>
+	$ python manage.py runserver 0.0.0.0:<[port]>
 	
 <b>5. Reset Application</b>:
 	
