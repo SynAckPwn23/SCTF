@@ -9,12 +9,11 @@
 		<div class="page-title">
 			<div class="title_left">
 				<!--<h3>Challenges Categories</h3>-->
-			</div>		
+			</div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="row">
-
-	<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2 class="green">ALL CHALLENGES</h2>
@@ -28,14 +27,13 @@
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron" style="background-color:#333;">
 								<h1 style="text-align: center;color:#fff;"><span class="blue"><i class="fa fa-bug"></i> You're playing for {{team.name}}</span></h1><br>
-								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tags"></i> Categories:<span class="blue"> #{{categories_num}}</span> | <i class="fa fa-bug"></i> Challenges:<span class="blue"> #{{challenges_count}}</span></h3>
+								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tags"></i> Categories:<span class="blue"> #{{categories_num}}</span> | <i class="fa fa-bug"></i>									Challenges:<span class="blue"> #{{challenges_count}}</span></h3>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-				<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2 class="green">TEAM MATE SOLVES</h2>
@@ -47,7 +45,6 @@
 					</div>
 					<div class="x_content">
 						<!--<table class="table table-hover">-->
-						
 						<table data-page-length='10' data-order='[[ 0, "asc" ]]' id="datatable-buttons-team-buddy-solves" class="table table-striped table-bordered">
 							<thead>
 								<tr>
@@ -72,7 +69,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -88,13 +84,10 @@
 					</div>
 				</div>
 			</div>
-									<div class="clearfix"></div>
-
-
+			<div class="clearfix"></div>
 			{% for category in categories %}
 			<!--<div class="clearfix"></div>-->
 			<div class="">
-
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-6">
 				<div class="x_panel">
@@ -106,141 +99,124 @@
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<div style="min-height:250px;"class="x_content">
+					<div style="min-height:250px;" class="x_content">
 						<!-- modals -->
-
 						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
-
-							<!-- Large modal -->
-							{% for challenge in category.challenges.all %}
-							<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}" data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
-							<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" onclick="redirect()"><span aria-hidden="true">×</span>
-											</button>
-											{% challenge_is_solved as solved %}
-											{% if solved %}
-											<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
-											<span class="label label-default">Category: {{challenge.category}}</span>
-											<span class="label label-warning">Points: {{challenge.points}}</span>
-											<span class="label label-success">Status: SOLVED</span>
-											{% else %}
-											<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
-											<span class="label label-default">Category: {{challenge.category}}</span>
-											<span class="label label-warning">Points: {{challenge.points}}</span>
-											<span class="label label-danger">Status: NOT SOLVED</span>
-											{% endif %}
-
-										</div>
-
-										<div class="x_panel">
-											<div class="x_content">
-												<div class="" role="tabpanel" data-example-id="togglable-tabs">
-													<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-														<li role="presentation" class="active"><a href="#tab_content1_{{ challenge.id }}" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Challenge</a>
-														</li>
-														<li role="presentation" class=""><a href="#tab_content2_{{ challenge.id }}" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Last 10 Solves</a>
-														</li>                        
-													</ul>
-													<div id="myTabContent" class="tab-content">
-														<div role="tabpanel" class="tab-pane fade active in" id="tab_content1_{{ challenge.id }}" aria-labelledby="home-tab">
-
-															<div class="modal-body">
-																<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description|safe}}</p>
-
-																{% for hint in challenge.hints.all %}
-																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<div class="x_panel">
-																		<div class="x_title">
-																			<h7><i class="fa fa-bolt"></i><strong>  Hints</strong></h7>
-																			<ul class="nav navbar-right panel_toolbox">
-																				<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-																				</li>
-																			</ul>
-																			<div class="clearfix"></div>
-																		</div>
-																		<div class="x_content" style="display: none;">
-																			<p>{{hint}}</p>
-																		</div>
+						<!-- Large modal -->
+						{% for challenge in category.challenges.all %}
+						<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
+						 data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
+						<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" onclick="redirect()"><span aria-hidden="true">×</span>
+											</button> {% challenge_is_solved as solved %} {% if solved %}
+										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
+										<span class="label label-default">Category: {{challenge.category}}</span>
+										<span class="label label-warning">Points: {{challenge.points}}</span>
+										<span class="label label-success">Status: SOLVED</span> {% else %}
+										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
+										<span class="label label-default">Category: {{challenge.category}}</span>
+										<span class="label label-warning">Points: {{challenge.points}}</span>
+										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
+									</div>
+									<div class="x_panel">
+										<div class="x_content">
+											<div class="" role="tabpanel" data-example-id="togglable-tabs">
+												<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+													<li role="presentation" class="active"><a href="#tab_content1_{{ challenge.id }}" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Challenge</a>
+													</li>
+													<li role="presentation" class=""><a href="#tab_content2_{{ challenge.id }}" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Last 10 Solves</a>
+													</li>
+												</ul>
+												<div id="myTabContent" class="tab-content">
+													<div role="tabpanel" class="tab-pane fade active in" id="tab_content1_{{ challenge.id }}" aria-labelledby="home-tab">
+														<div class="modal-body">
+															<p style="margin-bottom:20px;"><i class="fa fa-bug"></i><strong> Description</strong>:<br> {{challenge.description|safe}}</p>
+															{% for hint in challenge.hints.all %}
+															<div class="col-md-12 col-sm-12 col-xs-12">
+																<div class="x_panel">
+																	<div class="x_title">
+																		<h7><i class="fa fa-bolt"></i><strong>  Hints</strong></h7>
+																		<ul class="nav navbar-right panel_toolbox">
+																			<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+																			</li>
+																		</ul>
+																		<div class="clearfix"></div>
+																	</div>
+																	<div class="x_content" style="display: none;">
+																		<p>{{hint}}</p>
 																	</div>
 																</div>
-																{% endfor %}
-
-																{% for attachment in challenge.attachments.all %}
-
-																<p style="float:left;margin-right:15px;margin-top:15px;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>: 
-																	<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
-																</p>
-
-																{% endfor %}
-																<div class="clearfix"></div>
-
-																{% challenge_is_solved as solved %}
-																{% if solved %}
-																<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
-																{% else %}
-																<span style="margin-bottom: 50px;" class="count green"><i class="fa fa-key"></i><strong> Key</strong>:
-																</span>
-																<input id="key_{{ challenge.id }}" style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key" required="required"  type="text">
-																<ul id="message_{{ challenge.id }}" class="parsley-errors-list" id="parsley-id-5"><li class="parsley-required"></li></ul>
-
-																<div class="x_content bs-example-popovers_{{ challenge.id }}">	
-																	<div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
-																		<p id="alert_message_{{ challenge.id }}"></p>
-																	</div>
-																</div>
-
-																<div style="padding: 0px;" class="modal-footer">
-																	<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
-																	<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
-																</div>	
-																{% endif %}
 															</div>
-														</div>
-														<div role="tabpanel" class="tab-pane fade" id="tab_content2_{{ challenge.id }}" aria-labelledby="profile-tab">
-															<div class="x_panel">
-																<div class="x_title">
-																	<h2>Solves - <div style="display:inline;" class="count green">list</div></h2>
-																	<ul class="nav navbar-right panel_toolbox">
-																		<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-																		</li>
-																	</ul>
-																	<div class="clearfix"></div>
-																</div>
-																<div class="x_content" style="display: block;">
-
-																	<table class="table table-hover">			
-																		<thead>
-																			<tr>
-																				<th>#</th>
-																				<th>Username</th>
-																				<th>Team</th>
-																				<th>Challenge</th>
-																				<th>Date</th>
-																			</tr>
-																		</thead>
-																		<tbody>
-																		<!-- Change for witch general solution non team-specific -->
-																			{% for solution in last_team_solutions %}
-																			<tr>
-																				<th >{{forloop.counter}}</th>
-																				<td>TODO</td>
-																				<td>TODO</td>
-																				<td>TODO</td>
-																				<td>TODO</td>
-																			</tr>
-																			{% endfor %}
-																		</tbody>
-																	</table>
+															{% endfor %} {% for attachment in challenge.attachments.all %}
+															<p style="float:left;margin-right:15px;margin-top:15px;"><i class="fa fa-file-text"></i><strong> Attachement {{forloop.counter}}</strong>:
+																<button type="button" onclick="window.open('/{{attachment.file.url}}', '_blank')" class="btn btn-primary">{{attachment.name}}</button>
+															</p>
+															{% endfor %}
+															<div class="clearfix"></div>
+															{% challenge_is_solved as solved %} {% if solved %}
+															<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button> {% else %}
+															<span style="margin-bottom: 50px;" class="count green"><i class="fa fa-key"></i><strong> Key</strong>:
+																</span>
+															<input id="key_{{ challenge.id }}" style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key"
+															 required="required" type="text">
+															<ul id="message_{{ challenge.id }}" class="parsley-errors-list" id="parsley-id-5">
+																<li class="parsley-required"></li>
+															</ul>
+															<div class="x_content bs-example-popovers_{{ challenge.id }}">
+																<div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
+																	<p id="alert_message_{{ challenge.id }}"></p>
 																</div>
 															</div>
 															<div style="padding: 0px;" class="modal-footer">
 																<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
-
-															</div>	
+																<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
+															</div>
+															{% endif %}
+														</div>
+													</div>
+													<div role="tabpanel" class="tab-pane fade" id="tab_content2_{{ challenge.id }}" aria-labelledby="profile-tab">
+														<div class="x_panel">
+															<div class="x_title">
+																<h2>Solves -
+																	<div style="display:inline;" class="count green">list</div>
+																</h2>
+																<ul class="nav navbar-right panel_toolbox">
+																	<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+																	</li>
+																</ul>
+																<div class="clearfix"></div>
+															</div>
+															<div class="x_content" style="display: block;">
+																<table class="table table-hover">
+																	<thead>
+																		<tr>
+																			<th>#</th>
+																			<th>Username</th>
+																			<th>Team</th>
+																			<th>Challenge</th>
+																			<th>Date</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<!-- Change for witch general solution non team-specific -->
+																		{% for solution in last_team_solutions %}
+																		<tr>
+																			<th>{{forloop.counter}}</th>
+																			<td>TODO</td>
+																			<td>TODO</td>
+																			<td>TODO</td>
+																			<td>TODO</td>
+																		</tr>
+																		{% endfor %}
+																	</tbody>
+																</table>
+															</div>
+														</div>
+														<div style="padding: 0px;" class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
 														</div>
 													</div>
 												</div>
@@ -249,26 +225,17 @@
 									</div>
 								</div>
 							</div>
-
-
-
-
-							{% endfor %}
-							<!-- /modals -->
 						</div>
-						
+						{% endfor %}
+						<!-- /modals -->
 					</div>
 				</div>
-				{% endfor %}
-
-
-		
 			</div>
-			
+			{% endfor %}
 		</div>
 	</div>
+</div>
 	<!-- /page content -->
-
 	<script >
 	function solve(id) {
 			key = $('#key_' + id);
@@ -326,4 +293,3 @@ $(document).ready(function(){init_TeamBuddySolves()});function init_TeamBuddySol
 var createTable_TeamBuddySolves=function(){if($("#datatable-buttons-team-buddy-solves").length){$("#datatable-buttons-team-buddy-solves").DataTable({dom:"Bfrtip",buttons:[{extend:"copy",className:"btn-sm"},{extend:"csv",className:"btn-sm"},{extend:"print",className:"btn-sm"},],responsive:!0})}};TableManageButtons=function(){"use strict";return{init:function(){createTable_TeamBuddySolves()}}}();TableManageButtons.init()}
 </script>
 {% endblock %}
-
