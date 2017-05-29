@@ -269,14 +269,14 @@
 	</div>
 	<!-- /page content -->
 
-	<script>
-		function solve(id){
-			key = $('#key_'+id);
-			message = $('#message_'+id);
-			alert = $('#alert_'+id);
-			alert_message = $('#alert_message_'+id);
+	<script >
+	function solve(id) {
+			key = $('#key_' + id);
+			message = $('#message_' + id);
+			alert = $('#alert_' + id);
+			alert_message = $('#alert_message_' + id);
 
-			if(key.val() == ""){
+			if (key.val() == "") {
 				key.addClass('parsley-error');
 				message.text('This value is required.');
 			}
@@ -284,155 +284,46 @@
 				$.ajax({
 					type: 'post',
 					url: '{% url "api-challenge:solve-challenge-list" %}',
-					data: {challenge: id, key: $('#key_'+id).val()},
+					data: { challenge: id, key: $('#key_' + id).val() },
 					success: function (data) {
 						key.removeClass('parsley-error');
-						$("#challenge_button_id_"+id).removeClass('btn-primary').addClass('btn-success');
+						$("#challenge_button_id_" + id).removeClass('btn-primary').addClass('btn-success');
 						alert_message.text('Nice Job! That thing that you were trying to do worked!');
 						alert.removeClass('alert-danger alert-warning').addClass('alert-success');
 						alert.show();
 					},
 					error: function (data) {
-				if(data.status == "417"){ // wrong key
-					key.addClass('parsley-error');
-					alert_message.text('Oh Noo! Something terrible happened. Wrong Key!');
-					alert.removeClass('alert-success alert-warning').addClass('alert-danger');
-					alert.show();
-				}
-				else if(data.status == "412"){ // already solved
-					key.addClass('parsley-error');			
-					alert_message.text('Hey man, don\'t cheat! You have already solved this challenge ok?!');
-					alert.removeClass('alert-success alert-danger').addClass('alert-warning');
-					alert.show();
-				}
-			},
-		});
+						if (data.status == "417") { // wrong key
+							key.addClass('parsley-error');
+							alert_message.text('Oh Noo! Something terrible happened. Wrong Key!');
+							alert.removeClass('alert-success alert-warning').addClass('alert-danger');
+							alert.show();
+						}
+						else if (data.status == "412") { // already solved
+							key.addClass('parsley-error');
+							alert_message.text('Hey man, don\'t cheat! You have already solved this challenge ok?!');
+							alert.removeClass('alert-success alert-danger').addClass('alert-warning');
+							alert.show();
+						}
+					},
+				});
 				return false;
 			}
 		}
-
-	// TODO: Capire come gestire il fatto che se non faccio redirect l'if sul solved non funziona (ovviamente) mostrando i bottoni.
-	function redirect(){
-		window.location.href="{% url 'challenges' %}";
-		return false;
-	}
+// TODO: Capire come gestire il fatto che se non faccio redirect l'if sul solved non funziona (ovviamente) mostrando i bottoni.
+function redirect(){window.location.href="{% url 'challenges' %}";return false;}
 </script>
-
 {% endblock %}
-
 {% block extra_js %}
-
+<!-- Graphic (Challenges Overview) init -->
 <script type="text/javascript">
-	$(document).ready(function() {
-		init_charts();
-	});
+$(document).ready(function(){init_charts()});function init_charts(){console.log('run_charts  typeof ['+typeof(Chart)+']');if(typeof(Chart)==='undefined'){return}
+Chart.defaults.global.legend={enabled:!1};if($('#challengesSolvedForCategory').length){var ctx=document.getElementById("challengesSolvedForCategory");var mybarChart=new Chart(ctx,{type:'bar',data:{labels:JSON.parse("{{ categories_names | escapejs }}"),datasets:[{label:'# Total Challenges',backgroundColor:"#337ab7",data:{{categories_num_total|escapejs}}},{label:'# Challenges Resolved by Team',backgroundColor:"#5bc0de",data:{{categories_num_done_team|escapejs}}},{label:'# Challenges Resolved by You',backgroundColor:"#26B99A",data:{{categories_num_done_user|escapejs}}}]},options:{legend:!0,scales:{yAxes:[{stacked:!1,ticks:{beginAtZero:!0}}]},}})}}
 </script>
-
+<!-- Tables (Team Mate Solves) init -->
 <script type="text/javascript">
-	function init_charts() {
-
-		console.log('run_charts  typeof [' + typeof (Chart) + ']');
-		if( typeof (Chart) === 'undefined'){ return; }
-		console.log('init_charts');
-
-		Chart.defaults.global.legend = {
-			enabled: false
-		};
-
-		  // challengesSolvedForCategory chart
-		  if ($('#challengesSolvedForCategory').length ){ 
-		  	var ctx = document.getElementById("challengesSolvedForCategory");
-		  	var mybarChart = new Chart(ctx, {
-		  		type: 'bar',
-		  		data: {
-		  			labels: JSON.parse("{{ categories_names | escapejs }}"),
-		  			datasets: [{
-		  				label: '# Total',
-		  				backgroundColor: "#337ab7",
-		  				data: {{ categories_num_total | escapejs }}
-		  			},
-		  			{
-		  				label: '# Team Resolved',
-		  				backgroundColor: "#5bc0de",
-		  				data: {{ categories_num_done_team | escapejs }}
-		  			},
-		  			{
-		  				label: '# You Resolved',
-		  				backgroundColor: "#26B99A",
-		  				data: {{ categories_num_done_user | escapejs }}
-		  			}]
-		  		},
-
-		  		options: {
-		  			legend: true,
-		  			scales: {
-		  				yAxes: [{
-		  					stacked:false,
-		  					ticks: {
-		  						beginAtZero: true
-		  					}
-		  				}]
-		  			},
-		  		}
-		  	});
-
-		  } 
-		}
-	</script>
-
-	<!-- Tables (Solves, Team Components) init -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			init_TeamBuddySolves();
-		});
-	</script>
-
-	<script type="text/javascript">
-		/* DATA TABLES */
-		function init_TeamBuddySolves() {
-			console.log('run_datatables');
-			if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-			console.log('init_DataTables');
-
-			// Page challenges - Team Solves 
-			var createTable_TeamBuddySolves = function() {
-
-				if ($("#datatable-buttons-team-buddy-solves").length) {
-					$("#datatable-buttons-team-buddy-solves").DataTable({
-						dom: "Bfrtip",
-						buttons: [
-						{
-							extend: "copy",
-							className: "btn-sm"
-						},
-						{
-							extend: "csv",
-							className: "btn-sm"
-						},
-						{
-							extend: "print",
-							className: "btn-sm"
-						},
-						],
-						responsive: true
-					});
-				}
-			};
-
-			TableManageButtons = function() {
-				"use strict";
-				return {
-					init: function() {
-							// Page challenges - Team Solves Table
-							createTable_TeamBuddySolves();
-
-						}
-					};
-				}();
-
-				TableManageButtons.init();
-			}
-		</script>
-
-		{% endblock %}
+$(document).ready(function(){init_TeamBuddySolves()});function init_TeamBuddySolves(){console.log('run_datatables');if(typeof($.fn.DataTable)==='undefined'){return}
+var createTable_TeamBuddySolves=function(){if($("#datatable-buttons-team-buddy-solves").length){$("#datatable-buttons-team-buddy-solves").DataTable({dom:"Bfrtip",buttons:[{extend:"copy",className:"btn-sm"},{extend:"csv",className:"btn-sm"},{extend:"print",className:"btn-sm"},],responsive:!0})}};TableManageButtons=function(){"use strict";return{init:function(){createTable_TeamBuddySolves()}}}();TableManageButtons.init()}
+</script>
+{% endblock %}
 
