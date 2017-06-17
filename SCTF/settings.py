@@ -50,7 +50,9 @@ INSTALLED_APPS = [
 
     'cities_light',
     'autofixture',
-    'tinymce'
+    'tinymce',
+
+    'channels',
 ]
 
 MIDDLEWARE = [
