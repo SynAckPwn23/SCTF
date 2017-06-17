@@ -1,0 +1,229 @@
+{% extends "sctf/base.html" %}
+{% block title %}Security CTF | User Profile{% endblock %}
+{% block content %}
+{% load static %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Daily active users <small>Sessions</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="bs-example" data-example-id="simple-jumbotron">
+              <div class="jumbotron" style="background-color:#333;">
+								<h1 style="text-align: center;color:#fff;"><span class="blue"><i class="fa fa-user"></i> {{user_detail_page}}</span></h1><br>
+								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tasks"></i> Strenghts:<span class="blue"> #{{teams_count}}</span></h3>
+							</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2 class="green">USER PROFILE</small>
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+              <div class="profile_img">
+                <div id="crop-avatar">
+                  <!-- Current avatar -->
+                  <img class="img-responsive avatar-view" src="/{{ user_detail_page.profile.image.url }}" alt="Avatar" title="Change the avatar">
+                </div>
+              </div>
+              <h3>{{user_detail_page}}</h3>
+              <ul class="list-unstyled user_data">
+                <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                </li>
+                <li>
+                  <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                </li>
+                <li class="m-top-xs">
+                  <i class="fa fa-external-link user-profile-icon"></i>
+                  <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                </li>
+                <li class="m-top-xs">
+                  <i class="fa fa-external-link user-profile-icon"></i>
+                  <a href="http://www.kimlabs.com/profile/" target="_blank">{{user_detail_page.email}}</a>
+                </li>
+              </ul>
+              <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+              <br />
+              <!-- start skills -->
+              <h4>Skills</h4>
+              {% for skill in user_detail_page.profile.skill_list %}
+                <span class="label label-info">{{skill}}</span>
+              {% endfor %}
+
+              <!-- end of skills -->
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                  <canvas id="canvasRadar"></canvas>
+            </div>    
+          </div>
+        </div>
+      </div>
+          <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2 class="green">SCORE OVER TIME</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="dashboard_graph">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div id="teamScoreOverTime" class="demo-placeholder"></div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+{% endblock %} {% block extra_js %}
+<!-- Tables (Solves, Team Components) init -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    init_Radar();
+    init_flot_chart();
+
+  });
+</script>
+
+<script type="text/javascript">
+  function init_Radar() {
+    console.log('run_charts  typeof [' + typeof (Chart) + ']');
+    if (typeof (Chart) === 'undefined') {
+      return;
+    }
+    console.log('init_charts');
+    Chart.defaults.global.legend = {
+      enabled: false
+    };
+    // Radar chart
+    if ($('#canvasRadar').length) {
+      var ctx = document.getElementById("canvasRadar");
+      var data = {
+        labels: JSON.parse("{{ categories_names | escapejs }}"),
+        datasets: [{
+          label: "My Second dataset",
+          backgroundColor: "rgba(38, 185, 154, 0.2)",
+          borderColor: "rgba(38, 185, 154, 0.85)",
+          pointColor: "rgba(38, 185, 154, 0.85)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          data: JSON.parse("{{ categories_num_done_user | escapejs }}")
+        }]
+      };
+      var canvasRadar = new Chart(ctx, {
+        type: 'radar',
+        data: data,
+        options: {    
+          scale: {
+            ticks: {
+              beginAtZero: true,
+              steps: 10,
+              stepValue: 5,
+              max: 100
+            }
+          },
+        }
+      });
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  function init_flot_chart() {
+    if (typeof ($.plot) === 'undefined') {
+      return;
+    }
+    console.log('init_flot_chart');
+    // Page team - Score Over Time Table
+    var arr_data1 = JSON.parse("{{ time_points | escapejs }}");
+    var teamScoreOverTime_settings = {
+      
+      series: {
+        lines: {
+          show: true,
+          fill: 0.4
+        },
+        splines: {
+          show: true,
+          tension: 0.4,
+          lineWidth: 1,
+          fill: 0.4
+        },
+        points: {
+          radius: 0,
+          show: true
+        },
+        shadowSize: 2
+      },
+      grid: {
+        verticalLines: true,
+        hoverable: true,
+        clickable: true,
+        tickColor: "#d5d5d5",
+        borderWidth: 1,
+        color: '#fff'
+      },
+      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+      xaxis: {
+        tickColor: "rgba(51, 51, 51, 0.06)",
+        mode: "time",
+        //tickSize: [1, "month"],
+        //tickLength: 10,
+        axisLabel: "Date",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 10
+      },
+      yaxis: {
+        ticks: 8,
+        tickColor: "rgba(51, 51, 51, 0.06)",
+      },
+      tooltip: false
+    }
+    if ($("#teamScoreOverTime").length) {
+      console.log('Plot_teamScoreOverTime');
+      // Page team - Score Over Time Table
+      $.plot($("#teamScoreOverTime"), [arr_data1], teamScoreOverTime_settings);
+    }
+  }
+</script>
+{% endblock %}

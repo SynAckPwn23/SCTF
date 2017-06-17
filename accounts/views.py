@@ -1,4 +1,5 @@
 from django.http.response import HttpResponseBadRequest
+from django.views.generic.edit import UpdateView
 from registration.backends.simple.views import RegistrationView
 
 from accounts.models import Team
@@ -81,3 +82,19 @@ def user_detail(request, pk=None):
         'time_points': json.dumps(user.profile.score_over_time),
     }
     return render(request, 'accounts/user.html', parameters)
+
+
+def user_detail_test(request, pk=None):
+    user = request.user if pk is None else get_user_model().objects.get(pk=pk)
+
+    solved = user.profile.percentage_solved_by_category
+    categories_names = list(solved.keys())
+    categories_num_done_user = [solved[c] for c in categories_names]
+
+    parameters = {
+        'categories_names': json.dumps(categories_names),
+        'categories_num_done_user': categories_num_done_user,
+        'user_detail_page': user,
+        'time_points': json.dumps(user.profile.score_over_time),
+    }
+    return render(request, 'accounts/user_test.html', parameters)
