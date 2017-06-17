@@ -120,6 +120,32 @@ class RegistrationTestCase(TestCase, SimpleTestCase):
         # TODO: test this for all required fields
         self.assertContains(response, 'This field is required')
 
+    # Test User Registration Security
+    def test_register_noadmin(self):
+        response = self.client.post(reverse('registration_register'), {
+            'username': 'fake_admin',
+            'email': 'fakeadmin@fakeadmin.it',
+            'first_name': 'FirstName',
+            'last_name': 'LastName',
+            'password1': 'u1u2u3u4',
+            'password2': 'u1u2u3u4',
+            'job': 'job',
+            'gender': 'M',
+            'country': 1,
+            'skills': 's1,s2',
+            'is_superuser': 'True',
+            'is_staff': 'True'
+        })
+        # Created
+        self.assertEqual(response.status_code, 302)
+        u = get_user_model().objects.get(username='fake_admin')
+
+        # Not admin
+        self.assertFalse(u.is_superuser)
+
+        # Not staff
+        self.assertFalse(u.is_staff)
+
 
     def test_login_without_profile(self):
         response = self.client.post(reverse('auth_login'), {
