@@ -1474,7 +1474,7 @@ if (typeof NProgress != 'undefined') {
 
   };
 
-  /* PNotify */
+  /* PNotify 
 
   function init_PNotify() {
 
@@ -1504,7 +1504,7 @@ if (typeof NProgress != 'undefined') {
   	});
 
   }; 
-
+*/
 
   /* CUSTOM NOTIFICATION */
 
