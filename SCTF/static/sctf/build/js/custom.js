@@ -4408,7 +4408,7 @@ $(document).ready(function() {
 	init_select2();
 	init_validator();
 	init_gauge();
-	init_PNotify();
+	//init_PNotify();
 	init_starrr();
 	init_calendar();
 	init_compose();
