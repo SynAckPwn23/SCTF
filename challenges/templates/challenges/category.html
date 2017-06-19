@@ -227,7 +227,7 @@
 			}
 		}
 // TODO: Capire come gestire il fatto che se non faccio redirect l'if sul solved non funziona (ovviamente) mostrando i bottoni.
-function redirect(){window.location.href="{% url 'challenges_categories' %}";return false;}
+function redirect(){window.location.href="{% url 'challenges_category' category_pk=category.pk %}";return false;}
 </script>
 {% endblock %}
 {% block extra_js %}
