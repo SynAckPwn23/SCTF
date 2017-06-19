@@ -33,57 +33,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="x_panel">
-					<div class="x_title">
-						<h2 class="green">TEAM MATE SOLVES</h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content">
-						<!--<table class="table table-hover">-->
-						<table data-page-length='10' data-order='[[ 0, "asc" ]]' id="datatable-buttons-team-buddy-solves" class="table table-striped table-bordered">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Username</th>
-									<th>Challenge</th>
-									<th>Date</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for solution in last_team_solutions %}
-								<tr>
-									<th scope="row">{{forloop.counter}}</th>
-									<td>{{solution.user}}</td>
-									<td>{{solution.challenge.name}}</td>
-									<td>{{solution.datetime}}</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="x_panel">
-					<div class="x_title">
-						<h2 class="green">CHALLENGES OVERVIEW</h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content">
-						<canvas id="challengesSolvedForCategory" style="min-height:470px;"></canvas>
-					</div>
-				</div>
-			</div>
+		
+		
 			<div class="clearfix"></div>
 			{% for category in categories %}
 			<!--<div class="clearfix"></div>-->
@@ -282,14 +233,15 @@ function redirect(){window.location.href="{% url 'challenges' %}";return false;}
 </script>
 {% endblock %}
 {% block extra_js %}
-<!-- Graphic (Challenges Overview) init -->
+<!-- Graphic (Challenges Overview) init 
 <script type="text/javascript">
 $(document).ready(function(){init_charts()});function init_charts(){console.log('run_charts  typeof ['+typeof(Chart)+']');if(typeof(Chart)==='undefined'){return}
 Chart.defaults.global.legend={enabled:!1};if($('#challengesSolvedForCategory').length){var ctx=document.getElementById("challengesSolvedForCategory");var mybarChart=new Chart(ctx,{type:'bar',data:{labels:JSON.parse("{{ categories_names | escapejs }}"),datasets:[{label:'# Total Challenges',backgroundColor:"#337ab7",data:{{categories_num_total|escapejs}}},{label:'# Challenges Resolved by Team',backgroundColor:"#5bc0de",data:{{categories_num_done_team|escapejs}}},{label:'# Challenges Resolved by You',backgroundColor:"#26B99A",data:{{categories_num_done_user|escapejs}}}]},options:{legend:!0,scales:{yAxes:[{stacked:!1,ticks:{beginAtZero:!0}}]},}})}}
 </script>
-<!-- Tables (Team Mate Solves) init -->
+<!-- Tables (Team Mate Solves) init 
 <script type="text/javascript">
 $(document).ready(function(){init_TeamBuddySolves()});function init_TeamBuddySolves(){console.log('run_datatables');if(typeof($.fn.DataTable)==='undefined'){return}
 var createTable_TeamBuddySolves=function(){if($("#datatable-buttons-team-buddy-solves").length){$("#datatable-buttons-team-buddy-solves").DataTable({dom:"Bfrtip",buttons:[{extend:"copy",className:"btn-sm"},{extend:"csv",className:"btn-sm"},{extend:"print",className:"btn-sm"},],responsive:!0})}};TableManageButtons=function(){"use strict";return{init:function(){createTable_TeamBuddySolves()}}}();TableManageButtons.init()}
 </script>
+-->
 {% endblock %}
