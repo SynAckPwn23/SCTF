@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +31,10 @@
   <link href="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.css' %}" rel="stylesheet">
   <!-- jQuery -->
   <script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
+  <!-- PNotify -->
+  <link href="{% static 'sctf/vendors/pnotify/dist/pnotify.css' %}" rel="stylesheet">
+  <script type="text/javascript" src="{% static 'sctf/vendors/pnotify/dist/pnotify.js' %}"></script>
+
 </head>
 
 <body class="nav-md">
@@ -38,7 +43,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="{% url 'index' %}" class="site_title"><img style="width:80px;margin:0px 0px 0px 0px;float:left;" src="/static/sctf/images/acn-flag.png" alt=""><img style="width:63%;margin:0px 0px 0px 0px;" src="/static/sctf/images/acn-logo-white.png" alt=""></a>
+            <a href="{% url 'index' %}" class="site_title"><img style="width:55px;margin:0px 0px 0px 0px;float:left;" src="/static/sctf/images/main_logo.png" alt=""><img style="width:63%;margin:0px 0px 0px 0px;" src="/static/sctf/images/acn-logo-white.png" alt=""></a>
           </div>
           <div class="clearfix"></div>
           <!-- menu profile quick info -->
@@ -307,7 +312,9 @@
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.js' %}"></script>
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
+ 
   {% block extra_js %}{% endblock %}
+
   <!-- Cookie -->
   <script type="text/javascript">
     $.ajaxSetup({ beforeSend: function (e, t) { /^http:.*/.test(t.url) || /^https:.*/.test(t.url) || e.setRequestHeader("X-CSRFToken", function (e) { var t = null; if (document.cookie && "" != document.cookie) for (var n = document.cookie.split(";"), o = 0; o < n.length; o++) { var r = jQuery.trim(n[o]); if (r.substring(0, e.length + 1) == e + "=") { t = decodeURIComponent(r.substring(e.length + 1)); break } } return t }("csrftoken")) } });
@@ -316,6 +323,25 @@
   <script type="text/javascript">
     function toggleFullscreen(e) { e = e || document.documentElement, document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : (e.requestFullscreen ? e.requestFullscreen() : e.msRequestFullscreen ? e.msRequestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen && e.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT), b) }
   </script>
+
+  {% if user.is_authenticated %}
+    <script>
+      // channels
+      socket = new WebSocket("ws://" + window.location.host + "/sctf_channels/");
+      socket.onmessage = function(e) {
+        console.log(e);
+        message = JSON.parse(e['data']);
+        new PNotify({
+          title: 'Challenge solved',
+          text: `User ${message['user']} of team ${message['team']} solved challenge ${message['challenge']}`,
+          type: 'info',
+          styling: 'bootstrap3'
+        });
+      }
+      // Call onopen directly if socket is already open
+      if (socket.readyState == WebSocket.OPEN) socket.onopen();
+    </script>
+  {% endif %}
 </body>
 
 </html>

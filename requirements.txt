@@ -12,3 +12,5 @@ django-tinymce4-lite
 pyenchant
 
 requests
+
+channels

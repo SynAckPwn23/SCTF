@@ -50,7 +50,9 @@ INSTALLED_APPS = [
 
     'cities_light',
     'autofixture',
-    'tinymce'
+    'tinymce',
+
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,12 @@ REST_FRAMEWORK = {
 
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = []
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+
+        "ROUTING": "SCTF.routing.channel_routing",
+    },
+}
