@@ -334,9 +334,12 @@
         message = JSON.parse(e['data']);
         new PNotify({
           title: 'Challenge solved',
-          text: `User ${message['user']} of team ${message['team']} solved challenge ${message['challenge']}`,
+          text: `User ${message['user_id']} of team ${message['team_id']} solved challenge ${message['challenge_id']}`,
           type: 'info',
-          styling: 'bootstrap3'
+          styling: 'bootstrap3',
+          nonblock: {
+            nonblock: true
+          },
         });
       }
       // Call onopen directly if socket is already open

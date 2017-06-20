@@ -81,9 +81,9 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
             ChallengeSolved.objects.create(user=user.profile, challenge=challenge)
             send_message(json.dumps({
                 'event': 'CHALLENGE_SOLVED',
-                'user': user.pk,
-                'team': user.profile.team.pk,
-                'challenge': challenge.pk,
+                'user_id': user.pk,
+                'team_id': user.profile.team.pk,
+                'challenge_id': challenge.pk,
             }))
             return Response('OK')
         ChallengeFail.objects.create(user=user.profile, challenge=challenge)
