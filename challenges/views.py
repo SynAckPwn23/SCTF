@@ -37,7 +37,7 @@ def challenges_categories(request):
     parameters = {
         'team': team,
         'challenges_count': Challenge.objects.count(),
-        #'categories_num': categories.count(),
+        'categories_num': categories.count(),
         'categories': categories,
         #'categories_names': json.dumps([c.name for c in categories]),
         #'categories_num_done_user': categories_num_done_user,
