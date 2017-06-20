@@ -16,8 +16,9 @@ urlpatterns = [
     url(r'^user/$', views.user_detail, name='user'),
     url(r'^user/(?P<pk>\w+)$', views.user_detail, name='user'),
 
-    url(r'^user_test/$', views.user_detail_test, name='user'),
-    url(r'^user_test/(?P<pk>\w+)$', views.user_detail_test, name='user'),
+    #url(r'^user_test/$', views.user_detail_test, name='user'),
+    #url(r'^user_test/(?P<pk>\w+)$', views.user_detail_test, name='user'),
+    
 
     url(r'^no-team/$',
         TemplateView.as_view(template_name="accounts/no_team.html"),
