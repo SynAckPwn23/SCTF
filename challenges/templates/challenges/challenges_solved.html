@@ -51,6 +51,7 @@
 									<th>#</th>
 									<th>Username</th>
 									<th>Challenge</th>
+									<th>Category</th>
 									<th>Date</th>
 								</tr>
 							</thead>
@@ -60,6 +61,7 @@
 									<th scope="row">{{forloop.counter}}</th>
 									<td>{{solution.user}}</td>
 									<td>{{solution.challenge.name}}</td>
+									<td>{{solution.challenge.category}}</td>
 									<td>{{solution.datetime}}</td>
 								</tr>
 								{% endfor %}

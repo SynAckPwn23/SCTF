@@ -34,13 +34,12 @@
 				</div>
 			</div>
 		
-		
 			<div class="clearfix"></div>
 			{% for category in categories %}
 			<!--<div class="clearfix"></div>-->
 			<div class="">
 			</div>
-			<div class="col-md-4 col-sm-8 col-xs-12">
+			<div class="col-md-4 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2><a href="{% url 'challenges_category' category_pk=category.pk %}"><i class="fa fa-tag"></i> {{ category.name }} Category</h2>
