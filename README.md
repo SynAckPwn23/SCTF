@@ -39,7 +39,7 @@ We would love to see how you use this awesome Platform. You can notify us about 
 # Live Demo
 Insert Description
 
-<img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/All_Teams.png" width="500"/>
+<img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/All_Teams.PNG" width="500"/>
 
 
 # License Information
