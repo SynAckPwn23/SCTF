@@ -54,8 +54,10 @@
 						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
 						<!-- Large modal -->
 						{% for challenge in category.challenges.all %}
-						<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
 						 data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
+						</div>
 						<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
