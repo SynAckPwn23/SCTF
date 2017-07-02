@@ -19,12 +19,12 @@ from django.contrib.auth.models import User;
 from accounts.models import UserProfile, Team;
 from cities_light.models import Country;
 from challenges.models import Challenge, ChallengeSolved;
-from django.utils.timezone import now, timedelta
-import random
+from django.utils.timezone import now, timedelta;
+import random;
 
 admin=User.objects.create_superuser('admin', 'admin@admin.com', 'admin');
 
-team=Team.objects.create(name='admin')
+team=Team.objects.create(name='admin');
 
 UserProfile.objects.create(
     user=admin,
