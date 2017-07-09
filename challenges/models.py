@@ -70,7 +70,7 @@ class ChallengeSolved(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'User: {}, Challange: {}'.format(self.user.username, self.challenge.name)
+        return 'Challenge: {}, User: {}'.format(self.challenge.name, self.user)
 
 
 class ChallengeFail(models.Model):
@@ -79,4 +79,4 @@ class ChallengeFail(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'User: {}, Challange: {}'.format(self.user.username, self.challenge.name)
+        return 'Challenge: {}, User: {}'.format(self.challenge.name, self.user)
