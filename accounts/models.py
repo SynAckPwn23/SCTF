@@ -1,7 +1,7 @@
 from operator import or_
 
 from cities_light.models import Country
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.db import models
 from django.db.models import Sum
 from django.db.models.expressions import RawSQL
@@ -10,8 +10,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-User = get_user_model()
-
+User = settings.AUTH_USER_MODEL
 SKILLS_SEPARATOR = ','
 
 class StatsFromChallengesMixin:

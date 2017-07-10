@@ -9,11 +9,10 @@ from rest_framework.viewsets import GenericViewSet
 from challenges.models import Challenge, Category, ChallengeSolved, ChallengeFail
 from challenges.serializers import ChallengeSolvedSerializer
 
-from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from accounts.models import Team, UserProfile
+from SCTF.consumers import send_message
 
 
 def challenges(request):
@@ -45,7 +44,6 @@ def challenges(request):
         'categories_num_done_team': categories_num_done_team,
         'categories_num_total': [c.challenges.count() for c in categories],
         'last_team_solutions': last_team_solutions,
-                
     }
 
     return render(request, 'challenges/index.html', parameters)
@@ -61,12 +59,18 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
         challenge = get_object_or_404(Challenge.objects, pk=serializer.data.get('challenge'))
         key = serializer.data.get('key')
         user = self.request.user
-        if user.solved_challenges.filter(pk=challenge.pk).exists():
+        if user.profile.solved_challenges.filter(pk=challenge.pk).exists():
             return Response('Already solved', status=HTTP_412_PRECONDITION_FAILED)
         if key == challenge.key:
-            ChallengeSolved.objects.create(user=user, challenge=challenge)
+            ChallengeSolved.objects.create(user=user.profile, challenge=challenge)
+            send_message(json.dumps({
+                'event': 'CHALLENGE_SOLVED',
+                'user': user.pk,
+                'team': user.profile.team.pk,
+                'challenge': challenge.pk,
+            }))
             return Response('OK')
-        ChallengeFail.objects.create(user=user, challenge=challenge)
+        ChallengeFail.objects.create(user=user.profile, challenge=challenge)
         return Response('Wrong KEY', status=HTTP_417_EXPECTATION_FAILED)
 
 

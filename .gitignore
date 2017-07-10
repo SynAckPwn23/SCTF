@@ -1,5 +1,6 @@
 venv
 migrations/
+0001_initial.py
 .idea
 db.sqlite3
 *.pyc
