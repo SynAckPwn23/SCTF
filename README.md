@@ -39,6 +39,9 @@ We would love to see how you use this awesome Platform. You can notify us about 
 # Live Demo
 Insert Description
 
+<img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads/img/All_Teams.png" width="500"/>
+
+
 # License Information
 <b>SCTF is licensed under the GNU General Public License v3.0 - Copyright (c) [2017] [Daniele Votta, Filippo Schiavio]</b>
 
