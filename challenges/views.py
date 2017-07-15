@@ -61,7 +61,7 @@ def challenges_category(request, category_pk=None):
         'category': category,
     }
 
-    return render(request, 'challenges/categories.html', parameters)
+    return render(request, 'challenges/category.html', parameters)
 
 
 class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
