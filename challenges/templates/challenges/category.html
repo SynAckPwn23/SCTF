@@ -146,19 +146,17 @@
 																			<th>#</th>
 																			<th>Username</th>
 																			<th>Team</th>
-																			<th>Challenge</th>
 																			<th>Date</th>
 																		</tr>
 																	</thead>
 																	<tbody>
 																		<!-- Change for witch general solution non team-specific -->
-																		{% for solution in last_team_solutions|slice:":10" %}
+																		{% for solution in last_solutions|slice:":10" %}
 																		<tr>
 																			<th>{{forloop.counter}}</th>
-																			<td>{{solution.user.username}}</td>
-																			<td>TODO</td>
-																			<td>TODO</td>
-																			<td>TODO</td>
+																			<td>{{solution.user.user.username}}</td>
+																			<td>{{solution.user.team.name}}</td>
+																			<td>{{solution.datetime}}</td>
 																		</tr>
 																		{% endfor %}
 																	</tbody>

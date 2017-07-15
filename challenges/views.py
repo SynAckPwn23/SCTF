@@ -59,6 +59,7 @@ def challenges_category(request, category_pk=None):
         'team': team,
         'challenges_count': category.challenges.count(),
         'category': category,
+        'last_solutions': ChallengeSolved.objects.order_by('-datetime').all()
     }
 
     return render(request, 'challenges/category.html', parameters)
