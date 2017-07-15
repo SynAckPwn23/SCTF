@@ -45,6 +45,8 @@ Insert Description
 
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Rank.PNG" width="100%"/>
 
+<img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Team.PNG" width="100%"/>
+
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Profile.PNG" width="100%"/>
 
 # License Information
