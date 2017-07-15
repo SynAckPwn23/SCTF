@@ -39,6 +39,10 @@ class Challenge(models.Model):
                                        related_name='_all_failed_challenges',
                                        through='challenges.ChallengeFail')
 
+    @property
+    def newest_solved(self):
+        return self.challengesolved_set.order_by('-datetime')
+
     def __str__(self):
         return self.name
 

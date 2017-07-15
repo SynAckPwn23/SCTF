@@ -151,7 +151,7 @@
 																	</thead>
 																	<tbody>
 																		<!-- Change for witch general solution non team-specific -->
-																		{% for solution in last_solutions|slice:":10" %}
+																		{% for solution in challenge.newest_solved|slice:":10" %}
 																		<tr>
 																			<th>{{forloop.counter}}</th>
 																			<td>{{solution.user.user.username}}</td>
