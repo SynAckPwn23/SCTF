@@ -22,8 +22,10 @@ from challenges.models import Challenge, ChallengeSolved;
 from django.utils.timezone import now, timedelta;
 import random;
 
-admin=User.objects.create_superuser('admin', 'admin@admin.com', 'admin');
 
+
+# Admin
+admin=User.objects.create_superuser('admin', 'admin@admin.com', 'admin');
 team=Team.objects.create(name='admin');
 
 UserProfile.objects.create(
@@ -35,9 +37,28 @@ UserProfile.objects.create(
     skills='skill 1, skill 2, skill 3'
 );
 
+
 start = now() - timedelta(days=30)
 admin.profile.created_at = start
 admin.profile.save()
+
+# User without solved challenges
+user_no_solved=User.objects.create_user('demo', 'demo@demo.com', 'demo');
+team_no_solved=Team.objects.create(name='Test Team');
+
+UserProfile.objects.create(
+    user=user_no_solved,
+    job='job',
+    gender='M',
+    country=Country.objects.get_or_create(name='Italy')[0],
+    team=team_no_solved,
+    skills='skill 1, skill 2, skill 3'
+);
+
+
+start = now() - timedelta(days=30)
+user_no_solved.profile.created_at = start
+user_no_solved.profile.save()
 
 for challenge in Challenge.objects.all():
     solved = ChallengeSolved.objects.create(
