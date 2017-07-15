@@ -15,7 +15,7 @@ from accounts.models import Team, UserProfile
 from SCTF.consumers import send_message
 
 
-def challenges(request):
+def challenges_categories(request):
     categories = Category.objects.all()
     
     user = request.user
@@ -37,16 +37,31 @@ def challenges(request):
     parameters = {
         'team': team,
         'challenges_count': Challenge.objects.count(),
-        'categories_num': categories.count(),
+        #'categories_num': categories.count(),
         'categories': categories,
-        'categories_names': json.dumps([c.name for c in categories]),
-        'categories_num_done_user': categories_num_done_user,
+        #'categories_names': json.dumps([c.name for c in categories]),
+        #'categories_num_done_user': categories_num_done_user,
         'categories_num_done_team': categories_num_done_team,
-        'categories_num_total': [c.challenges.count() for c in categories],
+        #'categories_num_total': [c.challenges.count() for c in categories],
         'last_team_solutions': last_team_solutions,
     }
 
-    return render(request, 'challenges/index.html', parameters)
+    return render(request, 'challenges/categories.html', parameters)
+
+
+def challenges_category(request, category_pk=None):
+    category = get_object_or_404(Category, pk=category_pk)
+
+    user = request.user
+    team = user.profile.team
+
+    parameters = {
+        'team': team,
+        'challenges_count': category.challenges.count(),
+        'category': category,
+    }
+
+    return render(request, 'challenges/categories.html', parameters)
 
 
 class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
@@ -111,7 +126,7 @@ def challenges_solved(request):
         'team': team,
         'challenges_count': Challenge.objects.count(),
         'categories_num': categories.count(),
-        'categories': categories,
+        #'categories': categories,
         'categories_names': json.dumps([c.name for c in categories]),
         'categories_num_done_user': categories_num_done_user,
         'categories_num_done_team': categories_num_done_team,

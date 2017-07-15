@@ -36,7 +36,6 @@
 		
 		
 			<div class="clearfix"></div>
-			{% for category in categories %}
 			<!--<div class="clearfix"></div>-->
 			<div class="">
 			</div>
@@ -153,10 +152,10 @@
 																	</thead>
 																	<tbody>
 																		<!-- Change for witch general solution non team-specific -->
-																		{% for solution in last_team_solutions %}
+																		{% for solution in last_team_solutions|slice:":10" %}
 																		<tr>
 																			<th>{{forloop.counter}}</th>
-																			<td>TODO</td>
+																			<td>{{solution.user.username}}</td>
 																			<td>TODO</td>
 																			<td>TODO</td>
 																			<td>TODO</td>
@@ -182,7 +181,6 @@
 					</div>
 				</div>
 			</div>
-			{% endfor %}
 		</div>
 	</div>
 </div>
@@ -229,7 +227,7 @@
 			}
 		}
 // TODO: Capire come gestire il fatto che se non faccio redirect l'if sul solved non funziona (ovviamente) mostrando i bottoni.
-function redirect(){window.location.href="{% url 'challenges' %}";return false;}
+function redirect(){window.location.href="{% url 'challenges_categories' %}";return false;}
 </script>
 {% endblock %}
 {% block extra_js %}
