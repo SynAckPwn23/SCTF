@@ -8,4 +8,4 @@ uploaded_media
 coverage
 .coverage
 .coveragerc
-SCTF/settings.py
+settings.py
