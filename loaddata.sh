@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Locations
-#python manage.py loaddata locations.json
+python manage.py loaddata locations.json
 
 
 # Challenges Categories
-#python manage.py loaddata categories.json
+python manage.py loaddata categories.json
 
 
 # Challenges
-#python manage.py loadtestdata challenges.Challenge:50 -u challenges.fixtures.autofixtures.ChallengeAutoFixture
+python manage.py loadtestdata challenges.Challenge:50 -u challenges.fixtures.autofixtures.ChallengeAutoFixture
 
 
 
@@ -21,14 +21,13 @@ from cities_light.models import Country;
 from challenges.models import Challenge, ChallengeSolved;
 from django.utils.timezone import now, timedelta;
 import random;
-import string;
+
 
 
 # Admin
-rand_pass = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6));
-admin_pass=input('Admin password [{}]:'.format(rand_pass)) or rand_pass;
-admin=User.objects.create_superuser('admin', 'admin@admin.com', admin_pass);
+admin=User.objects.create_superuser('admin', 'admin@admin.com', 'admin');
 team=Team.objects.create(name='admin');
+
 UserProfile.objects.create(
     user=admin,
     job='job',
@@ -75,6 +74,6 @@ for challenge in Challenge.objects.all():
 
 
 # Users Data
-#python manage.py loadtestdata accounts.Team:10 -u accounts.fixtures.autofixtures.TeamAutoFixture
-#python manage.py loadtestdata auth.User:50 -u accounts.fixtures.autofixtures.UserAutoFixture
-#python manage.py loadtestdata accounts.UserProfile:50 -u accounts.fixtures.autofixtures.UserProfileAutoFixture
+python manage.py loadtestdata accounts.Team:10 -u accounts.fixtures.autofixtures.TeamAutoFixture
+python manage.py loadtestdata auth.User:50 -u accounts.fixtures.autofixtures.UserAutoFixture
+python manage.py loadtestdata accounts.UserProfile:50 -u accounts.fixtures.autofixtures.UserProfileAutoFixture
