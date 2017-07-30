@@ -54,8 +54,10 @@
 						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
 						<!-- Large modal -->
 						{% for challenge in category.challenges.all %}
-						<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
 						 data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
+						</div>
 						<div class="modal fade bs-example-modal-lg" id="dialog_challenge_{{ challenge.id }}" tabindex="-1" role="dialog" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -112,6 +114,7 @@
 																</span>
 															<input id="key_{{ challenge.id }}" style="margin-bottom:15px;" class="form-control col-md-7 col-xs-12" type="text" name="key"
 															 required="required" type="text">
+								
 															<ul id="message_{{ challenge.id }}" class="parsley-errors-list" id="parsley-id-5">
 																<li class="parsley-required"></li>
 															</ul>
@@ -124,6 +127,14 @@
 																<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect()">Close</button>
 																<button id="send_key_{{ challenge.id }}" onclick="solve({{ challenge.id }})" value="" class="btn btn-success">Send Key</button>
 															</div>
+															<script>
+																// For Enter Key
+																$('#key_{{ challenge.id }}').bind('keypress', function (e) {
+																	if (e.keyCode == 13) {
+																		solve({{challenge.id}});
+																	}
+																});
+															</script>															
 															{% endif %}
 														</div>
 													</div>

@@ -333,7 +333,7 @@
         console.log(e);
         message = JSON.parse(e['data']);
         new PNotify({
-          title: 'Challenge solved',
+          title: 'New Challenge Solved',
           text: `User ${message['user_id']} of team ${message['team_id']} solved challenge ${message['challenge_id']}`,
           type: 'info',
           styling: 'bootstrap3',
