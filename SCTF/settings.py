@@ -159,8 +159,10 @@ CITIES_LIGHT_INCLUDE_CITY_TYPES = []
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgi_ipc.IPCChannelLayer",
-
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
         "ROUTING": "SCTF.routing.channel_routing",
     },
 }
