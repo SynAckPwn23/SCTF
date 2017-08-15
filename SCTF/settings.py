@@ -159,7 +159,7 @@ CITIES_LIGHT_INCLUDE_CITY_TYPES = []
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "BACKEND": "asgi_ipc.IPCChannelLayer",
 
         "ROUTING": "SCTF.routing.channel_routing",
     },
