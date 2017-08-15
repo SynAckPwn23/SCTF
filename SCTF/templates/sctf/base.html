@@ -328,7 +328,7 @@
   {% if user.is_authenticated %}
     <script>
       // channels
-      socket = new WebSocket("ws://" + window.location.host + "/sctf_channels/");
+      socket = new WebSocket("wss://" + window.location.host + "/sctf_channels/");
       socket.onmessage = function(e) {
         console.log(e);
         message = JSON.parse(e['data']);
