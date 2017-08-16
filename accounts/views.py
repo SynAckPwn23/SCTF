@@ -32,8 +32,7 @@ class CustomRegistrationView(RegistrationView):
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        self.profile_form = UserProfileForm(request.POST)
-
+        self.profile_form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid() and self.profile_form.is_valid():
             return self.form_valid(form)
         else:

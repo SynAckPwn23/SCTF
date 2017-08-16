@@ -127,7 +127,7 @@ class UserProfileQuerySet(models.QuerySet):
 class UserProfile(models.Model, StatsFromChallengesMixin):
     objects = UserProfileQuerySet.as_manager()
 
-    team = models.ForeignKey('accounts.Team', null=True)
+    team = models.ForeignKey('accounts.Team', null=True, blank=True)
     user = models.OneToOneField(User, related_name='profile')
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.FileField(upload_to='accounts/', default='accounts/user.png')
