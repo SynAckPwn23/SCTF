@@ -2,19 +2,7 @@ from itertools import count
 
 from autofixture import generators, register, AutoFixture
 
-from challenges.models import Category, Challenge
-
-categories_names = [
-    'C1',
-    'C2',
-    'C3'
-]
-
-
-class CategoryAutoFixture(AutoFixture):
-    field_values = {
-        'name': generators.ChoicesGenerator(choices=categories_names),
-    }
+from challenges.models import Challenge
 
 
 points = count(start=1)
@@ -30,5 +18,4 @@ class ChallengeAutoFixture(AutoFixture):
         'key': generators.CallableGenerator(lambda *args, **kwargs: next(keys)),
     }
 
-register(Category, CategoryAutoFixture)
 register(Challenge, ChallengeAutoFixture)

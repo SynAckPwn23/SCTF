@@ -30,6 +30,11 @@ class Challenge(models.Model):
     description = models.TextField()
     key = models.CharField(max_length=256)
     points = models.IntegerField()
+    difficulty = models.CharField(max_length=1, choices=(
+        ('E', 'Easy'),
+        ('M', 'Medium'),
+        ('H', 'Hard')
+    ))
 
     solved_by = models.ManyToManyField(RelatedUserModel,
                                        related_name='solved_challenges',

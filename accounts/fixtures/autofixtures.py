@@ -76,7 +76,7 @@ class UserProfileAutoFixture(AutoFixture):
             BytesIO(response.content)
         )
         """
-        instance.image = 'accounts/image_{}.jpg'.format(instance.id + 1)
+        instance.image = 'accounts/' + ('image_{}.jpg'.format(instance.id) if instance.id < 50 else 'user.png')
 
         if commit:
             instance.save()
