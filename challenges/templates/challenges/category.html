@@ -42,7 +42,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2><i class="fa fa-tag"></i> {{ category.name }} Category</h2>
+						<h2><i class="fa fa-tag"></i> {{ category.name }}</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -52,6 +52,22 @@
 					<div style="min-height:250px;" class="x_content">
 						<!-- modals -->
 						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
+						<br>
+
+						<p style="text-align:center;">
+							<a class="btn btn-app">
+                     	 <span class="badge">2</span>
+                      <i style="color:#1ABB9C;" class="fa fa-users"></i> Easy
+                    		</a>
+							<a class="btn btn-app">
+                      <span class="badge">4</span>
+                      <i style="color:#f0ad4e;"class="fa fa-users"></i> Medium
+                    </a>
+							<a class="btn btn-app" style="width=100px;">
+                      <span class="badge">3</span>
+                      <i style="color:#d9534f;"class="fa fa-users"></i> Hard
+                    </a>
+						</p>
 						<!-- Large modal -->
 						{% for challenge in category.challenges.all %}
 						<div class="col-md-3 col-sm-6 col-xs-12">
