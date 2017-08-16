@@ -62,6 +62,7 @@ class UserProfileAutoFixture(AutoFixture):
 
 
         # random image
+        """
         gender = 'men' if instance.gender == 'M' else 'women'
         image_url = 'https://randomuser.me/api/portraits/{}/{}.jpg'.format(gender, instance.id)
         try:
@@ -74,6 +75,8 @@ class UserProfileAutoFixture(AutoFixture):
             os.path.basename('image_{}.jpg'.format(instance.id)),
             BytesIO(response.content)
         )
+        """
+        instance.image = 'image_{}.jpg'.format(instance.id + 1)
 
         if commit:
             instance.save()
