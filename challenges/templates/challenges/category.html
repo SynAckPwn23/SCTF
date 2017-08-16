@@ -37,6 +37,7 @@
 		
 			<div class="clearfix"></div>
 			<!--<div class="clearfix"></div>-->
+			{% if category.challenges.easy.exists %}
 			<div class="">
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -69,7 +70,7 @@
                     </a>
 						</p>
 						<!-- Large modal -->
-						{% for challenge in category.challenges.all %}
+						{% for challenge in category.challenges.easy %}
 						<div class="col-md-3 col-sm-6 col-xs-12">
 							<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
 						 data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
@@ -208,7 +209,9 @@
 			</div>
 			<div class="clearfix"></div>
 			<!--<div class="clearfix"></div>-->
-			
+			{% endif %}
+
+			{% if category.challenges.medium.exists %}
 			<div class="row">
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -241,7 +244,7 @@
                     </a>
 						</p>
 						<!-- Large modal -->
-						{% for challenge in category.challenges.all %}
+						{% for challenge in category.challenges.medium %}
 						<div class="col-md-3 col-sm-6 col-xs-12">
 							<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
 						 data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
@@ -380,9 +383,10 @@
 			</div>
 			<div class="clearfix"></div>
 			<!--<div class="clearfix"></div>-->
-			
-			<div class="row">
-			</div>
+			{% endif %}
+
+			{% if category.challenges.hard.exists %}
+			<div class="row"></div>
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -413,7 +417,7 @@
                     </a>
 						</p>
 						<!-- Large modal -->
-						{% for challenge in category.challenges.all %}
+						{% for challenge in category.challenges.hard %}
 						<div class="col-md-3 col-sm-6 col-xs-12">
 							<button style="min-width:220px;" id="challenge_button_id_{{ challenge.id }}" type="button" class="btn {% btn_challenge_class user challenge %}"
 						 data-toggle="modal" data-target="#dialog_challenge_{{ challenge.id }}">{{challenge.name}}<span style="margin-left:10px;" class="label label-warning">Points: {{challenge.points}}</span></button>
@@ -550,6 +554,7 @@
 					</div>
 				</div>
 			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>

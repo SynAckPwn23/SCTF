@@ -21,6 +21,18 @@ class ChallengeQuerySet(models.QuerySet):
     def total_points(self):
         return self.aggregate(_sum=Coalesce(Sum('points'), 0))['_sum']
 
+    def filter_difficulty(self, difficulty):
+        return self.filter(difficulty=difficulty)
+
+    def easy(self):
+        return self.filter_difficulty('E')
+
+    def medium(self):
+        return self.filter_difficulty('M')
+
+    def hard(self):
+        return self.filter_difficulty('H')
+
 
 class Challenge(models.Model):
     objects = ChallengeQuerySet.as_manager()
