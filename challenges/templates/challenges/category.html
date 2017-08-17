@@ -52,7 +52,7 @@
 					</div>
 					<div style="min-height:250px;" class="x_content">
 						<!-- modals -->
-						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
+						<p><i class="fa fa-bug"></i> <strong>Legend</strong>: <span class="label btn-info">NOT SOLVED</span><span class="label label-success">SOLVED BY TEAM MATE</span><span class="label btn-success">SOLVED</span></p>
 						<br>
 
 						<p style="text-align:center;">
@@ -60,14 +60,7 @@
                      	 <span class="badge">2</span>
                       <i style="color:#1ABB9C;" class="fa fa-users"></i> Easy
                     		</a>
-							<a class="btn btn-app">
-                      <span class="badge">4</span>
-                      <i style="color:#f0ad4e;"class="fa fa-users"></i> Medium
-                    </a>
-							<a class="btn btn-app" style="width=100px;">
-                      <span class="badge">3</span>
-                      <i style="color:#d9534f;"class="fa fa-users"></i> Hard
-                    </a>
+					
 						</p>
 						<!-- Large modal -->
 						{% for challenge in category.challenges.easy %}
@@ -80,14 +73,12 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" onclick="redirect()"><span aria-hidden="true">×</span>
-											</button> {% challenge_is_solved as solved %} {% if solved %}
+											</button> 
 										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
 										<span class="label label-default">Category: {{challenge.category}}</span>
 										<span class="label label-warning">Points: {{challenge.points}}</span>
+										{% challenge_is_solved as solved %} {% if solved %}
 										<span class="label label-success">Status: SOLVED</span> {% else %}
-										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
-										<span class="label label-default">Category: {{challenge.category}}</span>
-										<span class="label label-warning">Points: {{challenge.points}}</span>
 										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
 									</div>
 									<div class="x_panel">
@@ -229,19 +220,12 @@
 						<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>
 						<br>
 
-						<p style="text-align:center;">
-							<a class="btn btn-app">
-                     	 <span class="badge">2</span>
-                      <i style="color:#1ABB9C;" class="fa fa-users"></i> Easy
-                    		</a>
+						
 							<a class="btn btn-app">
                       <span class="badge">4</span>
                       <i style="color:#f0ad4e;"class="fa fa-users"></i> Medium
                     </a>
-							<a class="btn btn-app" style="width=100px;">
-                      <span class="badge">3</span>
-                      <i style="color:#d9534f;"class="fa fa-users"></i> Hard
-                    </a>
+						
 						</p>
 						<!-- Large modal -->
 						{% for challenge in category.challenges.medium %}
@@ -254,14 +238,12 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" onclick="redirect()"><span aria-hidden="true">×</span>
-											</button> {% challenge_is_solved as solved %} {% if solved %}
+											</button> 
 										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
 										<span class="label label-default">Category: {{challenge.category}}</span>
 										<span class="label label-warning">Points: {{challenge.points}}</span>
+										{% challenge_is_solved as solved %} {% if solved %}
 										<span class="label label-success">Status: SOLVED</span> {% else %}
-										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
-										<span class="label label-default">Category: {{challenge.category}}</span>
-										<span class="label label-warning">Points: {{challenge.points}}</span>
 										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
 									</div>
 									<div class="x_panel">
@@ -403,14 +385,7 @@
 						<br>
 
 						<p style="text-align:center;">
-							<a class="btn btn-app">
-                     	 <span class="badge">2</span>
-                      <i style="color:#1ABB9C;" class="fa fa-users"></i> Easy
-                    		</a>
-							<a class="btn btn-app">
-                      <span class="badge">4</span>
-                      <i style="color:#f0ad4e;"class="fa fa-users"></i> Medium
-                    </a>
+						
 							<a class="btn btn-app" style="width=100px;">
                       <span class="badge">3</span>
                       <i style="color:#d9534f;"class="fa fa-users"></i> Hard
@@ -427,14 +402,12 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" onclick="redirect()"><span aria-hidden="true">×</span>
-											</button> {% challenge_is_solved as solved %} {% if solved %}
+											</button> 
 										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
 										<span class="label label-default">Category: {{challenge.category}}</span>
 										<span class="label label-warning">Points: {{challenge.points}}</span>
+										{% challenge_is_solved as solved %} {% if solved %}
 										<span class="label label-success">Status: SOLVED</span> {% else %}
-										<h2 class="modal-title" id="myModalLabel"><strong>{{challenge.name}}</strong></h2>
-										<span class="label label-default">Category: {{challenge.category}}</span>
-										<span class="label label-warning">Points: {{challenge.points}}</span>
 										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
 									</div>
 									<div class="x_panel">
