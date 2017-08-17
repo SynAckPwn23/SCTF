@@ -114,6 +114,7 @@
         </div>
         <!-- /sidebar menu -->
         <!-- /menu footer buttons -->
+        
         <div class="sidebar-footer hidden-small">
           <a data-toggle="tooltip" data-placement="top" title="Settings">
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -134,11 +135,14 @@
     <!-- top navigation -->
     <div class="top_nav">
       <div class="nav_menu">
+        
         <nav>
           <div class="nav toggle">
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-          </div>
+          </div> 
+         
           <ul class="nav navbar-nav navbar-right">
+                  
             <li class="">
               <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <img src="/{{ user.profile.image.url }}" alt="">{{user.username}}
@@ -149,6 +153,7 @@
                 <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
               </ul>
             </li>
+            
             <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -221,6 +226,10 @@
     {% block content %}
     <!-- page content -->
     <div class="right_col" role="main">
+        <div class="countdown">
+            <h1>GAME STARTED:
+            <span id="clock"></span></h1>
+            </div>
       <!-- top tiles -->
       <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -376,8 +385,40 @@
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.js' %}"></script>
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
+  <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
  
   {% block extra_js %}{% endblock %}
+
+  <script>
+    
+      var d = new Date();
+      function pad(n) { return ("0" + n).slice(-2); }    
+      Number.prototype.pad = function (len) {
+        return (new Array(len+1).join("0") + this).slice(-len);
+      }  
+      var strDate = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+      var later=new Date();
+      // SET CTF DURATION +3h
+      later.setHours(d.getHours()+3);
+      var endDate=later.getHours().pad(2)+":"+later.getMinutes().pad(2)+":"+later.getSeconds().pad(2);
+
+      $('#clock').countdown(strDate +' '+endDate)
+      .on('update.countdown', function(event) {
+        var format = '%H:%M:%S';
+        if(event.offset.totalDays > 0) {
+          format = '%-d day%!d ' + format;
+        }
+        if(event.offset.weeks > 0) {
+          format = '%-w week%!w ' + format;
+        }
+        $(this).html(event.strftime(format));
+      })
+      .on('finish.countdown', function(event) {
+        $(this).html('CTF ENDED!')
+          .parent().addClass('disabled');
+      
+      });
+    </script>
 
   <!-- Cookie -->
   <script type="text/javascript">
