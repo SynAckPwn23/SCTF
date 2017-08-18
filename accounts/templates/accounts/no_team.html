@@ -88,9 +88,9 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <p>
                     <p class="helptext">
-                      Team 1: <input type="radio" class="flat" name="team" id="" value="" required="required" /> <br> Team
-                      2: <input type="radio" class="flat" name="team" id="" value="" required="required" /><br> Team 3: <input
-                        type="radio" class="flat" name="team" id="" value="" required="required" /><br>
+                      {% for team in teams %}
+                      {{team.name}}: <input type="radio" class="flat" name="team" id="" value="" required="required" /> <br> 
+											{% endfor %}
                     </p>
                   </p>
                 </div>
