@@ -49,8 +49,8 @@
           </div>
           <div class="x_content">
             <div class="clearfix"></div><br>
-            <form enctype="multipart/form-data" method="post" action='{% url "team_create" %}' id="demo-form2" data-parsley-validate
-              class="form-horizontal form-label-left">{% csrf_token %}
+         
+
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
                                 </label>
@@ -59,13 +59,19 @@
                 </div>
               </div>
 
+              <div class="x_content bs-example-popovers_{{ challenge.id }}">
+                  <div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
+                    <p id="alert_message_{{ challenge.id }}"></p>
+                  </div>
+                </div>
+
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button type="submit" value="#" class="btn btn-success">Create Team</button>
+                  <button type="submit" value="#" onclick="create();" class="btn btn-success">Create Team</button>
                   <input type="hidden" name="next" value="{{next}}" />
                 </div>
               </div>
-            </form>
+            
           </div>
         </div>
       </div>
@@ -81,8 +87,8 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <form enctype="multipart/form-data" method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
-              <div class="form-group">
+
+            <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Join Team: <span style="color:#E74C3C;" class="required">*</span>
                               </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -95,13 +101,19 @@
                   </p>
                 </div>
               </div>
+
+              <div class="x_content bs-example-popovers_{{ challenge.id }}">
+                  <div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
+                    <p id="alert_message_{{ challenge.id }}"></p>
+                  </div>
+                </div>
+              
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button type="submit" value="#" class="btn btn-success">Send Join Request</button>
+                  <button type="submit" value="#" onclick="join();" class="btn btn-success">Send Join Request</button>
                   <input type="hidden" name="next" value="{{next}}" />
                 </div>
               </div>
-            </form>
             <div class="clearfix"></div><br>
           </div>
         </div>
@@ -182,3 +194,75 @@
 </div>
 
 {% endblock %}
+
+<script >
+    function create(teamName) {
+        key = $('#name_' + teamName);
+        message = $('#message_' + teamName);
+        alert = $('#alert_' + teamName);
+        alert_message = $('#alert_message_' + teamName);
+  
+        if (key.val() == "") {
+          key.addClass('parsley-error');
+          message.text('This value is required.');
+        }
+        else {
+          $.ajax({
+            type: 'post',
+            url: '{% url "api-challenge:solve-challenge-list" %}',
+            data: { challenge: teamName, key: $('#name_' + teamName).val() },
+            success: function (data) {
+              key.removeClass('parsley-error');
+              $("#challenge_button_teamName_" + teamName).removeClass('btn-primary').addClass('btn-success');
+              alert_message.text('OK!');
+              alert.removeClass('alert-danger alert-warning').addClass('alert-success');
+              alert.show();
+            },
+            error: function (data) {
+             if (data.status == "412") { // already solved
+                key.addClass('parsley-error');
+                alert_message.text('Team Already exists!');
+                alert.removeClass('alert-success alert-danger').addClass('alert-warning');
+                alert.show();
+              }
+            },
+          });
+          return false;
+        }
+      }
+
+      function join(id) {
+        key = $('#key_' + id);
+        message = $('#message_' + id);
+        alert = $('#alert_' + id);
+        alert_message = $('#alert_message_' + id);
+  
+        if (key.val() == "") {
+          key.addClass('parsley-error');
+          message.text('This value is required.');
+        }
+        else {
+          $.ajax({
+            type: 'post',
+            url: '{% url "api-challenge:solve-challenge-list" %}',
+            data: { challenge: id, key: $('#key_' + id).val() },
+            success: function (data) {
+              key.removeClass('parsley-error');
+              $("#challenge_button_id_" + id).removeClass('btn-primary').addClass('btn-success');
+              alert_message.text('OK!');
+              alert.removeClass('alert-danger alert-warning').addClass('alert-success');
+              alert.show();
+            },
+            error: function (data) {
+             if (data.status == "412") { // already solved
+                key.addClass('parsley-error');
+                alert_message.text('Team Already exists!');
+                alert.removeClass('alert-success alert-danger').addClass('alert-warning');
+                alert.show();
+              }
+            },
+          });
+          return false;
+        }
+      }
+    </script>
