@@ -228,7 +228,7 @@
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-accounts:team-list" %}',
+            url: '{% url "api-accounts:team-create-list" %}',
             data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
@@ -264,7 +264,7 @@
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-accounts:team-list" %}',
+            url: '{% url "api-accounts:team-join-list" %}',
             data: { id:id },
             success: function (data) {
               $('#id_team_name_join').removeClass('parsley-error');
