@@ -203,9 +203,15 @@
 </div>
 
 <script >
-    function redirect(){
+    function redirectHome(){
       window.setTimeout(function(){
         window.location.href="{% url 'index' %}";return false;
+      }, 2000);
+    }
+
+    function redirectXXX(){
+      window.setTimeout(function(){
+        window.location.href="{% url 'xxx' %}";return false;
       }, 2000);
     }
     
@@ -265,7 +271,7 @@
               alert_message.text("Ok!, request sent");
               al.removeClass('alert-danger alert-warning').addClass('alert-success');
               al.show();
-              redirect();
+              //redirectXXX(); Wait for admission
             },
             error: function (data) {
              if (data.status == "400") { // already solved
