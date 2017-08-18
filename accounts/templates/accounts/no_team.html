@@ -261,16 +261,16 @@
             data: { name:name },
             success: function (data) {
               $('#id_team_name_join').removeClass('parsley-error');
-              alert_message.text(data);
+              alert_message.text("Ok!, request sent");
               al.removeClass('alert-danger alert-warning').addClass('alert-success');
               al.show();
               redirect();
             },
             error: function (data) {
-             if (data.status == "412") { // already solved
+             if (data.status == "400") { // already solved
                 $('#id_team_name_join').addClass('parsley-error');
                 alert("Error");                
-                alert_message.text('Team Already exists!');
+                alert_message.text('Error');
                 al.removeClass('alert-success alert-danger').addClass('alert-warning');
                 al.show();
               }
