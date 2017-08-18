@@ -6,6 +6,8 @@ from django.views.defaults import *
 from django.http import HttpResponseRedirect
 from django.utils.deprecation import MiddlewareMixin
 
+from accounts.utils import user_without_team
+
 
 class FilterRequestMiddlewareMixin(MiddlewareMixin):
     redirect_url = ''
@@ -60,4 +62,4 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     ]
 
     def custom_filter(self, request):
-        return request.user.profile.team is None
+        return user_without_team(request.user)

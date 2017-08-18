@@ -1,5 +1,3 @@
-
-
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,3 +29,6 @@ urlpatterns.append(url(r'^api/', include(router.urls)))
 urlpatterns.append(url(r'^api/challenges/',
                        include('challenges.api_urls', namespace='api-challenge')))
 
+
+urlpatterns.append(url(r'^api/accounts/',
+                       include('accounts.api_urls', namespace='api-accounts')))
