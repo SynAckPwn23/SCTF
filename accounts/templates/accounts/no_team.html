@@ -225,6 +225,7 @@
             error: function (data) {
              if (data.status == "412") { // already solved
                 $('#id_team_name').addClass('parsley-error');
+                alert("Error");                
                 alert_message.text('Team Already exists!');
                 alert.removeClass('alert-success alert-danger').addClass('alert-warning');
                 alert.show();
