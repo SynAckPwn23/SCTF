@@ -96,16 +96,19 @@
                   <p>
                     <p class="helptext">
                       {% for team in teams %}
-                      {{team.name}}: <input type="radio" class="flat" name="team" id="" value="" required="required" /> <br> 
-											{% endfor %}
+                      {{team.name}}: <input type="radio" class="flat" name="team" id="team_name_{{team.name}}" value="" required="required" /> <br> 
+                      <ul id="message_{{team.name}}" class="parsley-errors-list" id="parsley-id-5">
+                        <li class="parsley-required"></li>
+                      </ul>
+                      {% endfor %}
                     </p>
                   </p>
                 </div>
               </div>
 
               <div class="x_content">
-                  <div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
-                    <p id="alert_message_{{ challenge.id }}"></p>
+                  <div style="display:none;" id="alert_{{team.name}}" class="alert alert-success fade in" role="alert">
+                    <p id="alert_message_{{team.name}}"></p>
                   </div>
                 </div>
               
@@ -197,14 +200,15 @@
 {% endblock %}
 
 <script >
-    function create(teamName) {
-        key = $('#name_' + teamName);
-        message = $('#message_' + teamName);
-        alert = $('#alert_' + teamName);
-        alert_message = $('#alert_message_' + teamName);
-  
-        if (key.val() == "") {
-          key.addClass('parsley-error');
+    function create() {
+        name = $('#id_team_name').val();
+
+        message = $('#message_' + id);
+        alert = $('#alert_' + id);
+        alert_message = $('#alert_message_' + id);
+         
+        if (name == "") {
+          $('#id_team_name').addClass('parsley-error');
           message.text('This value is required.');
         }
         else {
@@ -213,15 +217,14 @@
             url: '{% url "api-challenge:solve-challenge-list" %}',
             data: { team: name, name: $('#id_team_name').val() },
             success: function (data) {
-              key.removeClass('parsley-error');
-              $("#challenge_button_teamName_" + teamName).removeClass('btn-primary').addClass('btn-success');
+              $('#id_team_name').removeClass('parsley-error');
               alert_message.text('OK!');
               alert.removeClass('alert-danger alert-warning').addClass('alert-success');
               alert.show();
             },
             error: function (data) {
              if (data.status == "412") { // already solved
-                key.addClass('parsley-error');
+                $('#id_team_name').addClass('parsley-error');
                 alert_message.text('Team Already exists!');
                 alert.removeClass('alert-success alert-danger').addClass('alert-warning');
                 alert.show();
