@@ -245,13 +245,13 @@
       }
 
       function join() {
-        name= $("input[type='radio']:checked").val();
-        alert("You want to join team: "+name);
+        id= $("input[type='radio']:checked").val();
+        alert("You want to join team: "+id);
         message = $('#message_join');
         al = $('#alert_join');
         alert_message = $('#alert_message_join');
          
-        if (name == "") {
+        if (id == "") {
           $('#id_team_name_join').addClass('parsley-error');
           message.text('This value is required.');
         }
@@ -259,7 +259,7 @@
           $.ajax({
             type: 'post',
             url: '{% url "api-accounts:team-list" %}',
-            data: { name:name },
+            data: { id:id },
             success: function (data) {
               $('#id_team_name_join').removeClass('parsley-error');
               alert_message.text("Ok!, request sent");
