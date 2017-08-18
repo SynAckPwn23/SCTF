@@ -60,9 +60,9 @@
               </div>
 
               <!-- to change -->
-              <div class="x_content bs-example-popovers_{{ challenge.id }}">
-                  <div style="display:none;" id="alert_{{ challenge.id }}" class="alert alert-success fade in" role="alert">
-                    <p id="alert_message_{{ challenge.id }}"></p>
+              <div class="x_content bs-example-popovers">
+                  <div style="display:none;" id="alert" class="alert alert-success fade in" role="alert">
+                    <p id="alert_message"></p>
                   </div>
                 </div>
 
@@ -217,7 +217,7 @@
             data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
-              alert("OK");
+              //alert("OK");
               alert_message.text('OK!');
               al.removeClass('alert-danger alert-warning').addClass('alert-success');
               al.show();
