@@ -388,9 +388,7 @@
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
  
   {% block extra_js %}{% endblock %}
-
   <script>
-    
       var d = new Date();
       function pad(n) { return ("0" + n).slice(-2); }    
       Number.prototype.pad = function (len) {
@@ -415,8 +413,7 @@
       })
       .on('finish.countdown', function(event) {
         $(this).html('CTF ENDED!')
-          .parent().addClass('disabled');
-      
+          .parent().addClass('disabled');   
       });
     </script>
 
