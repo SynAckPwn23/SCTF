@@ -16,7 +16,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">CATEGORY: {{category}}</h2>
+							<h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > <a class="blue" href="{% url 'challenges_categories' %}">CHALLENGES CATEGORIES</a> > {{ category.name }}</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -43,7 +43,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2><i class="fa fa-tag"></i> {{ category.name }} EASY</h2>
+							<h2 class="blue"><i class="fa fa-tag"></i> {{ category.name }} - EASY CHALLENGES</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -52,7 +52,7 @@
 					</div>
 					<div style="min-height:250px;" class="x_content">
 						<!-- modals -->
-						<p><i class="fa fa-bug"></i> <strong>Legend</strong>: <span class="label btn-info">NOT SOLVED</span><span class="label label-success">SOLVED BY TEAM MATE</span><span class="label btn-success">SOLVED</span></p>
+						<p><i class="fa fa-bug"></i> <strong>Legend</strong>: <span style="margin-right:10px;" class="label label-primary">NOT SOLVED</span><span style="margin-right:10px;" class="label label-info">SOLVED BY TEAM MATE</span><span style="background:#26B99A;" class="label">SOLVED</span></p>
 						<br>
 
 						<p>
@@ -77,8 +77,8 @@
 										<span class="label label-default">Category: {{challenge.category}}</span>
 										<span class="label label-warning">Points: {{challenge.points}}</span>
 										{% challenge_is_solved as solved %} {% if solved %}
-										<span class="label label-success">Status: SOLVED</span> {% else %}
-										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
+										<span id="status_lable{{ challenge.id }}" style="background:#26B99A;" class="label">Status: SOLVED</span> {% else %}
+										<span id="status_lable{{ challenge.id }}" class="label label-danger">Status: NOT SOLVED</span> {% endif %}
 									</div>
 									<div class="x_panel">
 										<div class="x_content">
@@ -207,8 +207,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2><i class="fa fa-tag"></i> {{ category.name }} MEDIUM</h2>
-						<ul class="nav navbar-right panel_toolbox">
+							<h2 class="blue"><i class="fa fa-tag"></i> {{ category.name }} - MEDIUM CHALLENGES</h2>
+							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
@@ -241,8 +241,8 @@
 										<span class="label label-default">Category: {{challenge.category}}</span>
 										<span class="label label-warning">Points: {{challenge.points}}</span>
 										{% challenge_is_solved as solved %} {% if solved %}
-										<span class="label label-success">Status: SOLVED</span> {% else %}
-										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
+										<span id="status_lable{{ challenge.id }}" style="background:#26B99A;" class="label">Status: SOLVED</span> {% else %}
+										<span id="status_lable{{ challenge.id }}" class="label label-danger">Status: NOT SOLVED</span> {% endif %}
 									</div>
 									<div class="x_panel">
 										<div class="x_content">
@@ -370,8 +370,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2><i class="fa fa-tag"></i> {{ category.name }} HARD</h2>
-						<ul class="nav navbar-right panel_toolbox">
+							<h2 class="blue"><i class="fa fa-tag"></i> {{ category.name }} - HARD CHALLENGES</h2>
+							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
@@ -404,8 +404,8 @@
 										<span class="label label-default">Category: {{challenge.category}}</span>
 										<span class="label label-warning">Points: {{challenge.points}}</span>
 										{% challenge_is_solved as solved %} {% if solved %}
-										<span class="label label-success">Status: SOLVED</span> {% else %}
-										<span class="label label-danger">Status: NOT SOLVED</span> {% endif %}
+										<span id="status_lable{{ challenge.id }}" style="background:#26B99A;" class="label">Status: SOLVED</span> {% else %}
+										<span id="status_lable{{ challenge.id }}" class="label label-danger">Status: NOT SOLVED</span> {% endif %}
 									</div>
 									<div class="x_panel">
 										<div class="x_content">
@@ -548,6 +548,7 @@
 					success: function (data) {
 						key.removeClass('parsley-error');
 						$("#challenge_button_id_" + id).removeClass('btn-primary').addClass('btn-success');
+						$("#status_lable" + id).removeClass('label-danger').css("background","#26B99A").text("Status: SOLVED");
 						alert_message.text('Nice Job! That thing that you were trying to do worked!');
 						alert.removeClass('alert-danger alert-warning').addClass('alert-success');
 						alert.show();
