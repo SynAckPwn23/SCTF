@@ -31,9 +31,53 @@
               <div class="jumbotron">
                 <h1 style="text-align: center;"><i class="fa fa-warning red"></i> You're not part of a team.</h1>
                 <h1 style="text-align: center;"><i class="fa fa-user"></i> <i class="fa fa-arrow-right green"></i> <i class="fa fa-group"></i></h1>
-                <h3 style="text-align:center;"><i class="fa fa-info green"></i> Please contact the Administrator.</h3>
+                <h3 style="text-align:center;"><i class="fa fa-info green"></i> Join an existing Team or create Your own Team.</h3>
               </div>
             </div>
+						<form enctype="multipart/form-data" method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+              
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Join Team: <span style="color:#E74C3C;" class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p>
+                  <p class="helptext">
+                    Team 1: <input type="radio" class="flat" name="team" id="" value="" required="required" /> <br>
+                    Team 2: <input type="radio" class="flat" name="team" id="" value="" required="required" /><br>
+                    Team 3: <input type="radio" class="flat" name="team" id="" value="" required="required" /><br>
+                  </p>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="submit" value="#" class="btn btn-success">Send Join Request</button>
+                <input type="hidden" name="next" value="{{next}}" />
+              </div>
+            </div>
+            </form>
+            <div class="clearfix"></div><br>
+            
+            
+            <form enctype="multipart/form-data" method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+              
+              <div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="team_name" id="id_team_name" type="text" required="required">
+								</div>
+              </div>
+              
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="submit" value="#" class="btn btn-success">Create Team</button>
+                <input type="hidden" name="next" value="{{next}}" />
+              </div>
+            </div>
+						</form>
+
+
           </div>
         </div>
       </div>
