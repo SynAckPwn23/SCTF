@@ -97,7 +97,7 @@
                     <p class="helptext">
                       {% for team in teams %}
                       {{team.name}}: <input type="radio" class="flat" name="team" id="team_name_{{team.name}}" value="" required="required" /> <br> 
-                      <ul id="message_{{team.name}}" class="parsley-errors-list" id="parsley-id-5">
+                      <ul id="message" class="parsley-errors-list" id="parsley-id-5">
                         <li class="parsley-required"></li>
                       </ul>
                       {% endfor %}
@@ -107,8 +107,8 @@
               </div>
 
               <div class="x_content">
-                  <div style="display:none;" id="alert_{{team.name}}" class="alert alert-success fade in" role="alert">
-                    <p id="alert_message_{{team.name}}"></p>
+                  <div style="display:none;" id="alert" class="alert alert-success fade in" role="alert">
+                    <p id="alert_message"></p>
                   </div>
                 </div>
               
@@ -202,9 +202,9 @@
     function create() {
         name = $('#id_team_name').val();
 
-        //message = $('#message_' + id);
-        //alert = $('#alert_' + id);
-        //alert_message = $('#alert_message_' + id);
+        message = $('#message');
+        alert = $('#alert');
+        alert_message = $('#alert_message');
          
         if (name == "") {
           $('#id_team_name').addClass('parsley-error');
