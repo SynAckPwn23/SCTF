@@ -195,7 +195,6 @@ class UserTeamRequestManage(UpdateView):
     fields = ['status']
     success_url = reverse_lazy('team_admin')
     http_method_names = ['post']
-    #form_class = UserTeamRequestStatusForm
 
     def post(self, request, *args, **kwargs):
         r = self.get_object()
@@ -203,3 +202,8 @@ class UserTeamRequestManage(UpdateView):
             return Response('You are not team admin', status=403)
         return super(UserTeamRequestManage, self).post(request, *args, **kwargs)
 
+    def form_valid(self, form):
+        r = super(UserTeamRequestManage, self).form_valid(form)
+        self.object.user.profile.team = self.object.team
+        self.object.user.profile.save()
+        return r
