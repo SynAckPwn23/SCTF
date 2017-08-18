@@ -5,12 +5,11 @@ from registration.backends.simple.views import RegistrationView
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth import get_user_model
 
 from accounts.models import Team
-from accounts.permissions import UserWithoutTeam
-from accounts.utils import user_without_team
+from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
@@ -89,20 +88,23 @@ def team_detail(request, pk=None):
 
 class TeamCreateViewSet(CreateModelMixin, GenericViewSet):
     queryset = Team.objects.none()
-    permission_classes = (IsAuthenticated, UserWithoutTeam)
-
+    permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
 
     def perform_create(self, serializer):
-        serializer.instance.user = self.request.user
-        return super(TeamCreateViewSet, self).perform_create(serializer)
+        user = self.request.user
+        serializer.instance.user = user
+        serializer.save()
+        if not user.is_admin:
+            user.profile.team = serializer.instance
+            user.profile.save()
 
 
 class NoTeamView(TemplateView):
     template_name = 'accounts/no_team.html'
 
-    def get(self, request, *args, **kwargs):
-        if not user_without_team(request.user):
-            return redirect('index')
+    #def get(self, request, *args, **kwargs):
+    #    if not user_without_team(request.user):
+    #        return redirect('index')
 
     def get_context_data(self, **kwargs):
         return dict(teams=Team.objects.all())

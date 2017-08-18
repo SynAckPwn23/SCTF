@@ -28,6 +28,7 @@ class UserAutoFixture(AutoFixture):
 class TeamAutoFixture(AutoFixture):
     field_values = {
         'name': generators.ChoicesGenerator(choices=team_names),
+        'created_by_id': 1
     }
 
 
