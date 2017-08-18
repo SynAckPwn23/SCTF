@@ -100,7 +100,7 @@
                   <p>
                     <p class="helptext">
                       {% for team in teams %}
-                      <input type="radio" class="flat" name="team" id="id_team_name_join" value="" required="required" /> Team: {{team.name}}<br> 
+                      <input type="radio" class="flat" name="team" id="{{team.id}}" value="{{team.id}}" required="required" /> Team: {{team.name}}<br> 
                       <ul id="message_join" class="parsley-errors-list" id="parsley-id-5">
                         <li class="parsley-required"></li>
                       </ul>
@@ -245,7 +245,8 @@
       }
 
       function join() {
-        name = $('#id_team_name_join').val();
+        name= $("input[type='radio']:checked").val();
+        alert(name);
         message = $('#message_join');
         al = $('#alert_join');
         alert_message = $('#alert_message_join');
