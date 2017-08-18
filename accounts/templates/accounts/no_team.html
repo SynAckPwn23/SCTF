@@ -69,8 +69,13 @@
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                   <button type="submit" value="#" onclick="create();" class="btn btn-success">Create Team</button>
+                  
                   <input type="hidden" name="next" value="{{next}}" />
+                  
                 </div>
+                <ul id="message" class="parsley-errors-list" id="parsley-id-5">
+                  <li class="parsley-required"></li>
+                </ul>
               </div>
             
           </div>
@@ -97,7 +102,7 @@
                     <p class="helptext">
                       {% for team in teams %}
                       {{team.name}}: <input type="radio" class="flat" name="team" id="team_name_{{team.name}}" value="" required="required" /> <br> 
-                      <ul id="message" class="parsley-errors-list" id="parsley-id-5">
+                      <ul id="message2" class="parsley-errors-list" id="parsley-id-5">
                         <li class="parsley-required"></li>
                       </ul>
                       {% endfor %}
