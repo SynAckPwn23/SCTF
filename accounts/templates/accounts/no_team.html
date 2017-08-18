@@ -214,8 +214,8 @@
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-challenge:solve-challenge-list" %}',
-            data: { team: name, name: $('#id_team_name').val() },
+            url: '{% url "api-accounts:team_create" %}',
+            data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
               alert_message.text('OK!');
