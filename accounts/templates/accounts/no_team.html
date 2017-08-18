@@ -203,7 +203,7 @@
         name = $('#id_team_name').val();
 
         message = $('#message');
-        alert = $('#alert');
+        al = $('#alert');
         alert_message = $('#alert_message');
          
         if (name == "") {
@@ -217,10 +217,10 @@
             data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
-              //alert("OK");
+              alert("OK");
               alert_message.text('OK!');
-              alert.removeClass('alert-danger alert-warning').addClass('alert-success');
-              alert.show();
+              al.removeClass('alert-danger alert-warning').addClass('alert-success');
+              al.show();
             },
             error: function (data) {
              if (data.status == "412") { // already solved
