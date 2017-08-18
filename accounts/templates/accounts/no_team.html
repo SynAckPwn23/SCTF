@@ -40,7 +40,40 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2 class="blue"><i class="fa fa-info-circle"></i> JOIN OR CREATE TEAM</h2>
+            <h2 class="blue"><i class="fa fa-info-circle"></i> CREATE TEAM</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="clearfix"></div><br>
+            <form enctype="multipart/form-data" method="post" action='{% url "team_create" %}' id="demo-form2" data-parsley-validate
+              class="form-horizontal form-label-left">{% csrf_token %}
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
+                                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" type="text" name="team_name" id="id_team_name" type="text" required="required">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                  <button type="submit" value="#" class="btn btn-success">Create Team</button>
+                  <input type="hidden" name="next" value="{{next}}" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2 class="blue"><i class="fa fa-info-circle"></i> JOIN TEAM</h2>
             <ul class="nav navbar-right panel_toolbox">
               <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -70,24 +103,6 @@
               </div>
             </form>
             <div class="clearfix"></div><br>
-            
-            <form enctype="multipart/form-data" method="post" action='{% url "team_create" %}' id="demo-form2" data-parsley-validate
-              class="form-horizontal form-label-left">{% csrf_token %}
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
-                                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input class="form-control col-md-7 col-xs-12" type="text" name="team_name" id="id_team_name" type="text" required="required">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button type="submit" value="#" class="btn btn-success">Create Team</button>
-                  <input type="hidden" name="next" value="{{next}}" />
-                </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>
