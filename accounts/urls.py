@@ -20,6 +20,9 @@ urlpatterns = [
 
     url(r'^team/admin/$', views.TeamAdminView.as_view(), name='team_admin'),
 
+    url(r'^team/admin/request/(?P<pk>\w+)/$',
+        views.UserTeamRequestManage.as_view(), name='user_team_request_manage'),
+
     url(r'^no-profile/$',
         TemplateView.as_view(template_name="accounts/no_profile.html"),
         name='no_profile'

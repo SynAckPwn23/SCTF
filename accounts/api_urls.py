@@ -6,4 +6,3 @@ router.register(r'team-create', TeamCreateViewSet, 'team-create')
 router.register(r'team-join', UserTeamRequestViewSet, 'team-join')
 
 urlpatterns = router.urls
-print(urlpatterns)

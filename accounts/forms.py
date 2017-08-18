@@ -2,7 +2,7 @@ from django import forms
 from django.forms.models import ModelForm
 from registration.forms import RegistrationForm
 
-from accounts.models import UserProfile
+from accounts.models import UserProfile, UserTeamRequest
 
 
 class CustomRegistrationForm(RegistrationForm):
@@ -18,3 +18,9 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         exclude = ['user', 'team']
+
+
+class UserTeamRequestStatusForm(ModelForm):
+    class Meta:
+        model = UserTeamRequest
+        fields = ['status']

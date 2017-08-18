@@ -64,5 +64,4 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     ]
 
     def custom_filter(self, request):
-        print(self.allowed_paths)
         return user_without_team(request.user)
