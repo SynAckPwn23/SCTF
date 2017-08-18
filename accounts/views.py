@@ -74,8 +74,6 @@ def team_detail(request, pk=None):
         .order_by('-datetime') \
         .all()
 
-    
-
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
