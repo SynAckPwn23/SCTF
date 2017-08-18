@@ -92,12 +92,12 @@
                                             <form method="post" action="{% url 'user_team_request_manage' pk=request.id %}">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="status" value="A">
-                                                <button type="submit">Approve</button>
+                                                <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-pencil"></i>Approve</button>
                                             </form>
                                             <form method="post" action="{% url 'user_team_request_manage' pk=request.id %}">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="status" value="R">
-                                                <button type="submit">Reject</button>
+                                                <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-trash-o"></i>Reject</button>
                                             </form>
                                         {% endif %}
 									</td>											
@@ -110,7 +110,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
 	
 	<!-- HTML SAMPLE Delete from here -->
 	<div class="clearfix"></div>
