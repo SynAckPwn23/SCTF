@@ -102,38 +102,3 @@ def users_ranking(request):
         'user_profiles': UserProfile.objects.ordered(),
     }
     return render(request, 'scoreboard/users_ranking.html', parameters)
-
-
-def challenges_solved(request):
-    categories = Category.objects.all()
-
-    user = request.user
-    team = user.profile.team
-    categories_num_done_user = [
-        c.challenges.filter(solved_by=user.profile).distinct().count()
-        for c in categories
-    ]
-    categories_num_done_team = [
-        c.challenges.filter(solved_by__team=team).distinct().count()
-        for c in categories
-    ]
-
-    last_team_solutions = ChallengeSolved.objects \
-        .filter(user__team=team) \
-        .order_by('-datetime') \
-        .all()
-
-    parameters = {
-        'team': team,
-        'challenges_count': Challenge.objects.count(),
-        'categories_num': categories.count(),
-        #'categories': categories,
-        'categories_names': json.dumps([c.name for c in categories]),
-        'categories_num_done_user': categories_num_done_user,
-        'categories_num_done_team': categories_num_done_team,
-        'categories_num_total': [c.challenges.count() for c in categories],
-        'last_team_solutions': last_team_solutions,
-    }
-
-    return render(request, 'challenges/challenges_solved.html', parameters)
-

@@ -17,8 +17,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">ALL CHALLENGES</h2>
-						<ul class="nav navbar-right panel_toolbox">
+					<h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > USERS RANKING</h2>							
+							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
@@ -38,8 +38,8 @@
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">USERS RANKING</h2>
-						<ul class="nav navbar-right panel_toolbox">
+							<h2 class="blue"><i class="fa fa-info-circle"></i> USERS RANKING</h2>
+							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
@@ -65,10 +65,10 @@
 								{% for profile in user_profiles %}
 								<tr>
 									<td style="text-align: center;">
-										<h4 class="count green">{{forloop.counter}}</h4>
+										<h4 class="count">{{forloop.counter}}</h4>
 									</td>
 									<td style="text-align: center;">
-										<a class="count green" href="#">{{user.profile.username}}</a>
+										<a class="count blue" href="{% url 'user' pk=profile.user.pk %}">{{profile.user.username}}</a>
 										<br/>
 										<small>Created on {{profile.created_at}}</small>
 									</td>
@@ -79,7 +79,7 @@
 										<ul class="list-inline">
 											<li>
 												<img src="/{{profile.image.url}}" class="avatar" alt="Avatar">
-												<a class="green" href="{% url 'user' pk=profile.user.pk %}">
+												<a class="blue" href="{% url 'user' pk=profile.user.pk %}">
 													<font size="0" style="display:block;">{{profile.user.username}}</font>
 												</a>
 											</li>

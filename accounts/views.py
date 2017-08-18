@@ -55,13 +55,38 @@ def team_detail(request, pk=None):
     # TODO check the more efficent way (order here or not)
     #team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
     team = Team.objects.ordered().get(pk=pk or request.user.profile.team.pk)
+    
+    categories = Category.objects.all()
+
+    user = request.user
+    team = user.profile.team
+    categories_num_done_user = [
+        c.challenges.filter(solved_by=user.profile).distinct().count()
+        for c in categories
+    ]
+    categories_num_done_team = [
+        c.challenges.filter(solved_by__team=team).distinct().count()
+        for c in categories
+    ]
+
+    last_team_solutions = ChallengeSolved.objects \
+        .filter(user__team=team) \
+        .order_by('-datetime') \
+        .all()
+
+    
 
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
         'time_points': json.dumps(team.score_over_time),
         'category_solved': team.percentage_solved_by_category,
-        'last_team_solutions': team.challengesolved_set.order_by('-datetime').all()
+        'last_team_solutions': team.challengesolved_set.order_by('-datetime').all(),
+
+        'categories_names': json.dumps([c.name for c in categories]),
+        'categories_num_done_user': categories_num_done_user,
+        'categories_num_done_team': categories_num_done_team,
+        'categories_num_total': [c.challenges.count() for c in categories],
     }
 
     return render(request, 'accounts/team.html', parameters)

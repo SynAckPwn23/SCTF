@@ -109,6 +109,22 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2 class="green">CHALLENGES OVERVIEW</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+								</li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<canvas id="challengesSolvedForCategory" style="min-height:470px;"></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			<br />
 			<div class="clearfix"></div>
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -200,6 +216,9 @@
 	</div>
 </div>
 {% endblock %} {% block extra_js %}
+<script type="text/javascript">
+
+</script>
 
 <!-- Tables (Solves, Team Components) init -->
 <script type="text/javascript">
@@ -208,6 +227,7 @@
 		init_flot_chart();
 		init_TeamSolves();
 		init_TeamComponents();
+		init_charts();
 
 	});
 </script>
@@ -387,6 +407,40 @@ function init_flot_chart(){if(void 0!==$.plot){console.log("init_flot_chart");va
 			};
 		}();
 		TableManageButtons.init();
+	}
+</script>
+<script>
+	function init_charts() {
+		console.log('run_charts  typeof [' + typeof (Chart) + ']'); 
+		if (typeof (Chart) === 'undefined') {return;}
+		Chart.defaults.global.legend = { enabled: !1 }; 
+		if ($('#challengesSolvedForCategory').length) { 
+			var ctx = document.getElementById("challengesSolvedForCategory");
+			var mybarChart = new Chart(ctx, { 
+				type: 'bar',
+				data: { labels: JSON.parse("{{ categories_names | escapejs }}"), 
+				datasets: [
+					{ 
+						label: '# Total Challenges', backgroundColor: "#337ab7", 
+						data: {{categories_num_total|escapejs }}
+					},
+					{ 
+						label: '# Challenges Resolved by Team', 
+						backgroundColor: "#5bc0de", 
+						data: {{categories_num_done_team|escapejs }}
+					},
+					{ 
+						label: '# Challenges Resolved by You', 
+						backgroundColor:"#26B99A", 
+						data:{{categories_num_done_user|escapejs }}
+					},
+				]},
+				options: { 
+					legend: !0,
+					scales:{ yAxes: [{ stacked: !1, ticks: { beginAtZero: !0 } }] },
+				}
+			})
+		}
 	}
 </script>
 {% endblock %}

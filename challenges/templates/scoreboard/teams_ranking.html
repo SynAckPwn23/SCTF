@@ -17,7 +17,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">ALL CHALLENGES</h2>
+							<h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > TEAMS RANKING</h2>							
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -37,8 +37,8 @@
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="green">TEAMS RANKING</h2>
-						<ul class="nav navbar-right panel_toolbox">
+							<h2 class="blue"><i class="fa fa-info-circle"></i> TEAMS RANKING</h2>
+							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 						</ul>
@@ -61,10 +61,10 @@
 								{% for team in teams %}
 								<tr>
 									<td style="text-align: center;">
-										<h4 class="count green">{{forloop.counter}}</h4>
+										<h4 class="count">{{forloop.counter}}</h4>
 									</td>
 									<td style="text-align: center;">
-										<a class="count green" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
+										<a class="count blue" href="{% url 'team' pk=team.pk %}">{{team.name}}</a>
 										<br />
 										<small>Created on {{team.created_at}}</small>
 									</td>
@@ -73,7 +73,7 @@
 											{% for team_user in team.users.all %}
 											<li>
 												<img src="/{{team_user.profile.image.url}}" class="avatar" alt="Avatar">
-												<a class="green" href="{% url 'user' pk=team_user.pk %}">
+												<a class="blue" href="{% url 'user' pk=team_user.pk %}">
 													<font size="0" id="team_user_{{team_user.username}}" style="display:block;">{{team_user.username}}</font>
 												</a>
 											</li>
