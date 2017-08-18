@@ -73,7 +73,7 @@
                   <ul id="message" class="parsley-errors-list" id="parsley-id-5">
                     <li class="parsley-required"></li>
                   </ul>
-                  <button type="submit" value="#" onclick="create();" class="btn btn-success">Create Team</button>
+                  <button type="submit" value="#" onclick="create();" class="btn btn-success">Create Team & Start</button>
               
                 </div>  
               </div>
@@ -201,8 +201,13 @@
   </div>
 </div>
 
-
 <script >
+    function redirect(){
+      window.setTimeout(function(){
+        window.location.href="{% url 'index' %}";return false;
+      }, 2000);
+    }
+    
     function create() {
         name = $('#id_team_name').val();
         message = $('#message');
@@ -220,10 +225,10 @@
             data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
-              //alert("OK");
               alert_message.text(data);
               al.removeClass('alert-danger alert-warning').addClass('alert-success');
               al.show();
+              redirect();
             },
             error: function (data) {
              if (data.status == "412") { // already solved
