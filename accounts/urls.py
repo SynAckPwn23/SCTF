@@ -18,10 +18,7 @@ urlpatterns = [
 
     url(r'^no-team/$', views.NoTeamView.as_view(), name='no_team'),
 
-    url(r'^team/admin/$',
-        TemplateView.as_view(template_name="accounts/team_admin.html"),
-        name='no_profile'
-    ),
+    url(r'^team/admin/$', views.TeamAdminView.as_view(), name='team_admin'),
 
     url(r'^no-profile/$',
         TemplateView.as_view(template_name="accounts/no_profile.html"),

@@ -120,6 +120,22 @@ class NoTeamView(TemplateView):
         return dict(teams=Team.objects.all())
 
 
+class TeamAdminView(TemplateView):
+    template_name = 'accounts/team_admin.html'
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.created_team:
+            return redirect('index')
+        return super(TeamAdminView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        return dict(
+            requests=UserTeamRequest.objects.filter(team=user.created_team.first())
+        )
+
+
+TeamAdminView
 
 
 def user_detail(request, pk=None):
