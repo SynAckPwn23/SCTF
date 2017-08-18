@@ -211,7 +211,7 @@
           $.ajax({
             type: 'post',
             url: '{% url "api-challenge:solve-challenge-list" %}',
-            data: { challenge: teamName, key: $('#name_' + teamName).val() },
+            data: { team: name, key: $('#id_team_name_' + teamName).val() },
             success: function (data) {
               key.removeClass('parsley-error');
               $("#challenge_button_teamName_" + teamName).removeClass('btn-primary').addClass('btn-success');
