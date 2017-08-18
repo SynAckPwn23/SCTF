@@ -39,7 +39,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="blue"><i class="fa fa-info-circle"></i> PLEASE INSERT YOUR DATA <small>required filds are idetified by *</small></h2>
+						<h2 class="blue"><i class="fa fa-info-circle"></i> PLEASE INSERT YOUR DATA <small>required filds are idetified by <span style="color:#E74C3C;">*</span></small></h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
 						</ul>
@@ -49,7 +49,7 @@
 						<br>
 						<form enctype="multipart/form-data" method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">{% trans form.username.label_tag %} <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">{% trans form.username.label_tag %} <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="username" autofocus="" id="id_username" maxlength="254"
@@ -63,7 +63,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="email" id="id_email" type="email" required="required">
@@ -76,21 +76,21 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">First Name: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">First Name: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="first_name" id="id_first_name" type="text" required="required">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Last Name: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Last Name: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="last_name" id="id_last_name" type="text" required="required">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span class="required">*</span></label>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nationality: <span style="color:#E74C3C;" class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select name="country" class="select2_group form-control" required="required">
 									  {% for value, name in profile_form.fields.country.choices %}
@@ -100,7 +100,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Gender: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Gender: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<p>
@@ -118,7 +118,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job">Job Title: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job">Job Title: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="text" name="job" id="job" type="text" required="required">
@@ -139,7 +139,7 @@
 							</div>
 							<div class="clearfix"></div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="password" name="password1" id="id_password1" type="password" required="required">
@@ -155,7 +155,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span class="required">*</span>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password Confirmation: <span style="color:#E74C3C;" class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input class="form-control col-md-7 col-xs-12" type="password" name="password2" id="id_password2" type="password" required="required">
