@@ -3,7 +3,7 @@ from builtins import super
 
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import DeleteView, CreateView
+from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django.views.generic.list import ListView
 from registration.backends.simple.views import RegistrationView
 from rest_framework.decorators import detail_route
@@ -17,7 +17,7 @@ from django.contrib.auth import get_user_model
 
 from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
-from accounts.forms import CustomRegistrationForm, UserProfileForm
+from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestStatusForm
 from accounts.utils import user_without_team
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
@@ -135,9 +135,6 @@ class TeamAdminView(TemplateView):
         )
 
 
-TeamAdminView
-
-
 def user_detail(request, pk=None):
     user = request.user if pk is None else get_user_model().objects.get(pk=pk)
 
@@ -191,4 +188,18 @@ class UserTeamRequestViewSet(ModelViewSet):
         r.user.save()
         r.delete()
         return Response('OK')
+
+
+class UserTeamRequestManage(UpdateView):
+    model = UserTeamRequest
+    fields = ['status']
+    success_url = reverse_lazy('team_admin')
+    http_method_names = ['post']
+    #form_class = UserTeamRequestStatusForm
+
+    def post(self, request, *args, **kwargs):
+        r = self.get_object()
+        if not r.team.created_by == request.user:
+            return Response('You are not team admin', status=403)
+        return super(UserTeamRequestManage, self).post(request, *args, **kwargs)
 

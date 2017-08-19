@@ -150,9 +150,14 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
 
 
 class UserTeamRequest(models.Model):
-    user = models.ForeignKey(User)
-    team = models.ForeignKey(Team)
+    user = models.OneToOneField(User)
+    team = models.OneToOneField(Team)
     datetime = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=1, default='P', choices=(
+        ('P', 'Pending'),
+        ('A', 'Accepted'),
+        ('R', 'Rejected'),
+    ))
 
 
 @receiver(post_save, sender=User)
