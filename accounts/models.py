@@ -149,6 +149,10 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
         return self._all_failed_challenges.exclude(pk__in=self.solved_challenges.all())
 
 
+class UserTeamRequest(models.Model):
+    user = models.ForeignKey(User)
+    team = models.ForeignKey(Team)
+    datetime = models.DateTimeField(auto_now=True)
 
 
 @receiver(post_save, sender=User)

@@ -1,7 +1,10 @@
 import json
 from builtins import super
 
+from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import DeleteView, CreateView
+from django.views.generic.list import ListView
 from registration.backends.simple.views import RegistrationView
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
@@ -9,13 +12,13 @@ from rest_framework.viewsets import GenericViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
-from accounts.models import Team
+from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm
 from accounts.utils import user_without_team
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
-from challenges.serializers import TeamSerializer
+from challenges.serializers import TeamSerializer, UserTeamRequestSerializer
 
 
 def index(request):
@@ -146,3 +149,36 @@ def user_detail_test(request, pk=None):
         'time_points': json.dumps(user.profile.score_over_time),
     }
     return render(request, 'accounts/user_test.html', parameters)
+
+
+
+class UserTeamRequestList(ListView):
+    pass
+
+
+class UserTeamRequestCreate(CreateView):
+    model = UserTeamRequest
+
+
+    def get_initial(self):
+        return {
+          'user': self.request.user
+        }
+
+
+class UserTeamRequestDelete(DeleteView):
+    model = UserTeamRequest
+    success_url = reverse_lazy('user_team_request-list')
+
+
+class UserTeamRequestViewSet(CreateView, GenericViewSet):
+    queryset = UserTeamRequest.objects.none()
+    permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
+    serializer_class = UserTeamRequestSerializer
+
+    def get_queryset(self):
+        return self.request.user.team.userteamrequest_set.all()
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)

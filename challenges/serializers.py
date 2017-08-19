@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from accounts.models import Team
+from accounts.models import Team, UserTeamRequest
 from challenges.models import ChallengeSolved
 
 
@@ -24,3 +24,9 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ('name',)
+
+
+class UserTeamRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserTeamRequest
+        fields = ('team',)
