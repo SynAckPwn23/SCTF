@@ -150,8 +150,8 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
 
 
 class UserTeamRequest(models.Model):
-    user = models.OneToOneField(User)
-    team = models.OneToOneField(Team)
+    user = models.ForeignKey(User)
+    team = models.ForeignKey(Team)
     datetime = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, default='P', choices=(
         ('P', 'Pending'),
