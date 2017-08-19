@@ -199,10 +199,13 @@ class UserTeamRequestManage(UpdateView):
         r = self.get_object()
         if not r.team.created_by == request.user:
             return Response('You are not team admin', status=403)
+        if r.status != 'P':
+            return Response('Not yet pending', status=400)
         return super(UserTeamRequestManage, self).post(request, *args, **kwargs)
 
     def form_valid(self, form):
         r = super(UserTeamRequestManage, self).form_valid(form)
-        self.object.user.profile.team = self.object.team
-        self.object.user.profile.save()
+        if self.object.status == 'A':
+            self.object.user.profile.team = self.object.team
+            self.object.user.profile.save()
         return r
