@@ -1,4 +1,5 @@
 import json
+from builtins import super
 
 from django.views.generic.base import TemplateView
 from registration.backends.simple.views import RegistrationView
@@ -107,6 +108,7 @@ class NoTeamView(TemplateView):
     def get(self, request, *args, **kwargs):
         if not user_without_team(request.user):
             return redirect('index')
+        return super(NoTeamView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         return dict(teams=Team.objects.all())
