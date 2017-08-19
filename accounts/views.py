@@ -3,21 +3,20 @@ from builtins import super
 
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import DeleteView, CreateView, UpdateView
-from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
 from registration.backends.simple.views import RegistrationView
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet, ViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet,  ModelViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
 from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
-from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestStatusForm
+from accounts.forms import CustomRegistrationForm, UserProfileForm
 from accounts.utils import user_without_team
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
