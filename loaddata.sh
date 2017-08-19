@@ -44,15 +44,17 @@ admin.profile.save()
 
 
 # User without team
-user_no_team=User.objects.create_user('noteam', 'noteam@noteam.com', 'noteam');
+for i in range(10):
+    user_no_team=User.objects.create_user('noteam%s'%i, 'noteam@noteam.com', 'noteam');
+    UserProfile.objects.create(
+        user=user_no_team,
+        job='job',
+        gender='M',
+        country=Country.objects.get_or_create(name='Italy')[0],
+        skills='skill 1, skill 2, skill 3'
+    );
 
-UserProfile.objects.create(
-    user=user_no_team,
-    job='job',
-    gender='M',
-    country=Country.objects.get_or_create(name='Italy')[0],
-    skills='skill 1, skill 2, skill 3'
-);
+
 
 
 # User without solved challenges
