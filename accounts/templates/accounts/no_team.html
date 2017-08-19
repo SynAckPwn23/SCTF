@@ -100,7 +100,7 @@
                   <p>
                     <p class="helptext">
                       {% for team in teams %}
-                      <input type="radio" class="flat" name="team" id="id_team_name_join" value="" required="required" /> Team: {{team.name}}<br> 
+                      <input type="radio" class="flat" name="team" id="{{team.id}}" value="{{team.id}}" required="required" /> Team: {{team.name}}<br> 
                       <ul id="message_join" class="parsley-errors-list" id="parsley-id-5">
                         <li class="parsley-required"></li>
                       </ul>
@@ -203,9 +203,15 @@
 </div>
 
 <script >
-    function redirect(){
+    function redirectHome(){
       window.setTimeout(function(){
         window.location.href="{% url 'index' %}";return false;
+      }, 2000);
+    }
+
+    function redirectXXX(){
+      window.setTimeout(function(){
+        window.location.href="{% url 'xxx' %}";return false;
       }, 2000);
     }
     
@@ -222,7 +228,7 @@
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-accounts:team-list" %}',
+            url: '{% url "api-accounts:team-create-list" %}',
             data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
@@ -245,26 +251,27 @@
       }
 
       function join() {
-        name = $('#id_team_name_join').val();
+        id= $("input[type='radio']:checked").val();
+        alert("You want to join team: "+id);
         message = $('#message_join');
         al = $('#alert_join');
         alert_message = $('#alert_message_join');
          
-        if (name == "") {
+        if (id == "") {
           $('#id_team_name_join').addClass('parsley-error');
           message.text('This value is required.');
         }
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-accounts:team-list" %}',
-            data: { name:name },
+            url: '{% url "api-accounts:team-join-list" %}',
+            data: { id:id },
             success: function (data) {
               $('#id_team_name_join').removeClass('parsley-error');
               alert_message.text("Ok!, request sent");
               al.removeClass('alert-danger alert-warning').addClass('alert-success');
               al.show();
-              redirect();
+              //redirectXXX(); Wait for admission
             },
             error: function (data) {
              if (data.status == "400") { // already solved
