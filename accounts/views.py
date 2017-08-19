@@ -1,28 +1,26 @@
-from django.http.response import HttpResponseBadRequest
-from django.views.generic.edit import CreateView
-from registration.backends.simple.views import RegistrationView
-
-from accounts.models import Team
-from challenges.models import Challenge, ChallengeSolved
-from accounts.forms import CustomRegistrationForm, UserProfileForm
-
 import json
 
-
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from registration.backends.simple.views import RegistrationView
+from rest_framework.mixins import CreateModelMixin
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import GenericViewSet
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
+from accounts.models import Team
+from accounts.permissions import UserWithoutTeam
+from accounts.utils import user_without_team
+from accounts.forms import CustomRegistrationForm, UserProfileForm
+from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
 
 
 def index(request):
-    parameters = {
+    return render(request, 'accounts/teams.html', {
         'teams': Team.objects.all(),
         'teams_count': Team.objects.count(),
-
-    }
-
-    return render(request, 'accounts/teams.html', parameters)
+    })
 
 
 class CustomRegistrationView(RegistrationView):
@@ -89,19 +87,25 @@ def team_detail(request, pk=None):
     return render(request, 'accounts/team.html', parameters)
 
 
-class TeamCreateView(CreateView):
-    model = Team
-    fields = ['name']
-    http_method_names = ['post']
+class TeamCreateViewSet(CreateModelMixin, GenericViewSet):
+    queryset = Team.objects.none()
+    permission_classes = (IsAuthenticated, UserWithoutTeam)
 
-    def form_valid(self, form):
-        print(self.request.user.profile, self.request.user.profile.team)
-        if self.request.user.profile.team is not None:
-            print('NO')
-            return HttpResponseBadRequest('User already has a team')
-        print('SI')
-        form.instance.user = self.request.user
-        return super(TeamCreateView, self).form_valid()
+
+    def perform_create(self, serializer):
+        serializer.instance.user = self.request.user
+        return super(TeamCreateViewSet, self).perform_create(serializer)
+
+
+class NoTeamView(TemplateView):
+    template_name = 'accounts/no_team.html'
+
+    def get(self, request, *args, **kwargs):
+        if not user_without_team(request.user):
+            return redirect('index')
+
+    def get_context_data(self, **kwargs):
+        return dict(teams=Team.objects.all())
 
 
 def user_detail(request, pk=None):
