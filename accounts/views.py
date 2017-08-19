@@ -1,5 +1,5 @@
 from django.http.response import HttpResponseBadRequest
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import CreateView
 from registration.backends.simple.views import RegistrationView
 
 from accounts.models import Team
@@ -10,7 +10,6 @@ import json
 
 
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 
 from challenges.models import Category
@@ -88,6 +87,21 @@ def team_detail(request, pk=None):
     }
 
     return render(request, 'accounts/team.html', parameters)
+
+
+class TeamCreateView(CreateView):
+    model = Team
+    fields = ['name']
+    http_method_names = ['post']
+
+    def form_valid(self, form):
+        print(self.request.user.profile, self.request.user.profile.team)
+        if self.request.user.profile.team is not None:
+            print('NO')
+            return HttpResponseBadRequest('User already has a team')
+        print('SI')
+        form.instance.user = self.request.user
+        return super(TeamCreateView, self).form_valid()
 
 
 def user_detail(request, pk=None):

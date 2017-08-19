@@ -88,6 +88,7 @@ class Team(models.Model, StatsFromChallengesMixin):
     name = models.CharField(max_length=256)
     users = models.ManyToManyField(User, through='accounts.userprofile')
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_by = models.ForeignKey(User, related_name='created_team')
 
 
     @property
