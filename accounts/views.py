@@ -151,26 +151,6 @@ def user_detail_test(request, pk=None):
     return render(request, 'accounts/user_test.html', parameters)
 
 
-
-class UserTeamRequestList(ListView):
-    pass
-
-
-class UserTeamRequestCreate(CreateView):
-    model = UserTeamRequest
-
-
-    def get_initial(self):
-        return {
-          'user': self.request.user
-        }
-
-
-class UserTeamRequestDelete(DeleteView):
-    model = UserTeamRequest
-    success_url = reverse_lazy('user_team_request-list')
-
-
 class UserTeamRequestViewSet(CreateView, GenericViewSet):
     queryset = UserTeamRequest.objects.none()
     permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
@@ -182,3 +162,4 @@ class UserTeamRequestViewSet(CreateView, GenericViewSet):
     def perform_create(self, serializer):
         user = self.request.user
         serializer.save(user=user)
+
