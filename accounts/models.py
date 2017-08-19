@@ -85,11 +85,10 @@ class TeamQuerySet(models.QuerySet):
 class Team(models.Model, StatsFromChallengesMixin):
     objects = TeamQuerySet.as_manager()
 
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256, unique=True)
     users = models.ManyToManyField(User, through='accounts.userprofile')
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     created_by = models.ForeignKey(User, related_name='created_team')
-
 
     @property
     def num_users(self):
