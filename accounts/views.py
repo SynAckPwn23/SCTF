@@ -8,7 +8,7 @@ from django.views.generic.list import ListView
 from registration.backends.simple.views import RegistrationView
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import GenericViewSet, ViewSet, ModelViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
@@ -151,7 +151,7 @@ def user_detail_test(request, pk=None):
     return render(request, 'accounts/user_test.html', parameters)
 
 
-class UserTeamRequestViewSet(CreateView, GenericViewSet):
+class UserTeamRequestViewSet(ModelViewSet):
     queryset = UserTeamRequest.objects.none()
     permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
     serializer_class = UserTeamRequestSerializer

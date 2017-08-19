@@ -260,7 +260,7 @@
           $.ajax({
             type: 'post',
             url: '{% url "api-accounts:team-join-list" %}',
-            data: { id:id },
+            data: { team:id },
             success: function (data) {
               $('#id_team_name_join').removeClass('parsley-error');
               alert_message.text("Ok!, request sent");
