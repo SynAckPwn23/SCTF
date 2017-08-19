@@ -6,8 +6,11 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import DeleteView, CreateView
 from django.views.generic.list import ListView
 from registration.backends.simple.views import RegistrationView
+from rest_framework.decorators import detail_route
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet, ModelViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
@@ -162,4 +165,14 @@ class UserTeamRequestViewSet(ModelViewSet):
     def perform_create(self, serializer):
         user = self.request.user
         serializer.save(user=user)
+
+    @detail_route(methods=['post'])
+    def accept(self, request):
+        r = self.get_object()
+        if r.team.created_by != request.user:
+            raise PermissionDenied('You are not team admin')
+        r.user.team = r.team
+        r.user.save()
+        r.delete()
+        return Response('OK')
 

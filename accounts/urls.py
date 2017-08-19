@@ -17,6 +17,12 @@ urlpatterns = [
     url(r'^user/(?P<pk>\w+)$', views.user_detail, name='user'),
 
     url(r'^no-team/$', views.NoTeamView.as_view(), name='no_team'),
+
+    url(r'^team/admin/$',
+        TemplateView.as_view(template_name="accounts/team_admin.html"),
+        name='no_profile'
+    ),
+
     url(r'^no-profile/$',
         TemplateView.as_view(template_name="accounts/no_profile.html"),
         name='no_profile'

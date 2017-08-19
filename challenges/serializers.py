@@ -29,4 +29,4 @@ class TeamSerializer(serializers.ModelSerializer):
 class UserTeamRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserTeamRequest
-        fields = ('team',)
+        fields = ('team', 'id',)
