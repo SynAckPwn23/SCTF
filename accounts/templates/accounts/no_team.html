@@ -213,7 +213,7 @@
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-accounts:team_create" %}',
+            url: '{% url "api-accounts:team-list" %}',
             data: { name:name },
             success: function (data) {
               $('#id_team_name').removeClass('parsley-error');
@@ -247,7 +247,7 @@
         else {
           $.ajax({
             type: 'post',
-            url: '{% url "api-challenge:solve-challenge-list" %}',
+            url: '{% url "api-accounts:team-list" %}',
             data: { challenge: id, key: $('#key_' + id).val() },
             success: function (data) {
               key.removeClass('parsley-error');
