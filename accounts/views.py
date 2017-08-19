@@ -195,7 +195,6 @@ class UserTeamRequestManage(UpdateView):
     fields = ['status']
     success_url = reverse_lazy('team_admin')
     http_method_names = ['post']
-    #form_class = UserTeamRequestStatusForm
 
     def post(self, request, *args, **kwargs):
         r = self.get_object()

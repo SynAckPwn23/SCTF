@@ -18,9 +18,3 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         exclude = ['user', 'team']
-
-
-class UserTeamRequestStatusForm(ModelForm):
-    class Meta:
-        model = UserTeamRequest
-        fields = ['status']
