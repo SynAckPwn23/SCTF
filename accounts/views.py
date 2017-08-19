@@ -5,12 +5,13 @@ from registration.backends.simple.views import RegistrationView
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
 from accounts.models import Team
 from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm
+from accounts.utils import user_without_team
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
 from challenges.serializers import TeamSerializer
@@ -103,12 +104,14 @@ class TeamCreateViewSet(CreateModelMixin, GenericViewSet):
 class NoTeamView(TemplateView):
     template_name = 'accounts/no_team.html'
 
-    #def get(self, request, *args, **kwargs):
-    #    if not user_without_team(request.user):
-    #        return redirect('index')
+    def get(self, request, *args, **kwargs):
+        if not user_without_team(request.user):
+            return redirect('index')
 
     def get_context_data(self, **kwargs):
         return dict(teams=Team.objects.all())
+
+
 
 
 def user_detail(request, pk=None):
