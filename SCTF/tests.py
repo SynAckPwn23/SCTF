@@ -13,15 +13,17 @@ class UserScoreTest(TestCase):
         test_category = Category.objects.create(name='test')
         country = Country.objects.create(name='Italy')
 
-        # create 3 teams: t0, t1, t2
-        self.teams = [Team.objects.create(name='t{}'.format(i)) for i in range(3)]
-
         # create 9 users: u0, u1, ... u8
         self.users = [get_user_model().objects.create_user(
             'u{}'.format(i),
             'u{}@test.com'.format(i),
             'u1u2u3u4'
         ) for i in range(9)]
+
+        # create 3 teams: t0, t1, t2
+        self.teams = [Team.objects.create(
+            name='t{}'.format(i), created_by_id=i+1
+        ) for i in range(3)]
 
         # teams - users association: t0: (u0, u1, u2), t1: (u3, u4, u5), t2: (u6, u7, u8)
         teams_users = chain.from_iterable(repeat(t, 3) for t in self.teams)

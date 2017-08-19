@@ -26,7 +26,7 @@ import random;
 
 # Admin
 admin=User.objects.create_superuser('admin', 'admin@admin.com', 'admin');
-team=Team.objects.create(name='admin');
+team=Team.objects.create(name='admin', created_by=admin);
 
 UserProfile.objects.create(
     user=admin,
@@ -42,9 +42,22 @@ start = now() - timedelta(days=30)
 admin.profile.created_at = start
 admin.profile.save()
 
+
+# User without team
+user_no_team=User.objects.create_user('noteam', 'noteam@noteam.com', 'noteam');
+
+UserProfile.objects.create(
+    user=user_no_team,
+    job='job',
+    gender='M',
+    country=Country.objects.get_or_create(name='Italy')[0],
+    skills='skill 1, skill 2, skill 3'
+);
+
+
 # User without solved challenges
 user_no_solved=User.objects.create_user('demo', 'demo@demo.com', 'demo');
-team_no_solved=Team.objects.create(name='Test Team');
+team_no_solved=Team.objects.create(name='Test Team', created_by=admin);
 
 UserProfile.objects.create(
     user=user_no_solved,
