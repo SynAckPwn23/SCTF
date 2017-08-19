@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from challenges.models import Challenge, ChallengeSolved
+from accounts.models import Team
+from challenges.models import ChallengeSolved
 
 
 class ChallengeSolverSerializer(serializers.Serializer):
@@ -19,3 +20,7 @@ class ChallengeSolvedSerializer(serializers.ModelSerializer):
         fields = ('challenge', 'key')
 
 
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ('name',)

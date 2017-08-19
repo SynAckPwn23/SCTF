@@ -12,4 +12,4 @@ class UserWithoutTeam(BasePermission):
 class UserWithoutTeamOrAdmin(BasePermission):
 
     def has_permission(self, request, view):
-        return user_without_team(request.user) or request.user.is_admin
+        return user_without_team(request.user) or request.user.is_superuser

@@ -13,6 +13,7 @@ from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
+from challenges.serializers import TeamSerializer
 
 
 def index(request):
@@ -87,14 +88,14 @@ def team_detail(request, pk=None):
 
 
 class TeamCreateViewSet(CreateModelMixin, GenericViewSet):
-    queryset = Team.objects.none()
+    queryset = Team.objects.all()
     permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
+    serializer_class = TeamSerializer
 
     def perform_create(self, serializer):
         user = self.request.user
-        serializer.instance.user = user
-        serializer.save()
-        if not user.is_admin:
+        serializer.save(created_by=user)
+        if not user.is_superuser:
             user.profile.team = serializer.instance
             user.profile.save()
 

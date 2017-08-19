@@ -58,8 +58,9 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     redirect_url = reverse('no_team')
 
     allowed_paths = [
-        reverse('no_team')
+        reverse('no_team'), reverse('api-accounts:team-list')
     ]
 
     def custom_filter(self, request):
+        print(self.allowed_paths)
         return user_without_team(request.user)
