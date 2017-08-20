@@ -2940,8 +2940,8 @@ ul.messages li,
 }
 ul.messages li img.avatar,
 img.avatar {
-    height: 32px;
-    width: 32px;
+    height: 60px;
+    width: 60px;
     float: left;
     display: inline-block;
     border-radius: 2px;
