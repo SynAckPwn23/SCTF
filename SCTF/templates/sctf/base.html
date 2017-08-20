@@ -228,19 +228,20 @@
                     <span class="badge bg-green">1</span>
                   </a>
                 </li>
-
+                 {% if user.is_staff %}
                 <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                     <i class="fa fa-stop red"></i>
                 </a>
-              </li>
-              <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                </li>
+                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                   <i class="fa fa-pause orange"></i>
               </a>
-            </li>
-            <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                </li>
+                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                 <i class="fa fa-play green"></i>
-            </a>
-          </li>
+               </a>
+                </li>
+                {% endif %}
           </ul>
         </nav>
       </div>
