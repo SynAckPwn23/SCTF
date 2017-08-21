@@ -17,7 +17,7 @@ class FilterRequestMiddlewareMixin(MiddlewareMixin):
     allowed_views = []
 
     def base_filter(self, request):
-        return False
+        #return False
         return 'admin' not in request.path and \
                'accounts/registration' not in request.path and \
                request.path not in self.allowed_paths
@@ -77,5 +77,5 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
 
     def custom_filter(self, request):
         print(resolve(request.path_info).url_name)
-        return False
+        #return False
         return user_without_team(request.user)

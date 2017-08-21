@@ -177,10 +177,10 @@ class NoTeamView(TemplateView, CreateView):
     def get_form(self):
         if self.request.POST.get('action') == 'create':
             form_class = TeamCreateForm
-            data = dict(created_by=self.request.user.pk, **self.request.POST)
+            data = dict(created_by=self.request.user.pk, name=self.request.POST.get('name'))
         if self.request.POST.get('action') == 'join':
             form_class = UserTeamRequestCreateForm
-            data = dict(user=self.request.user.pk, **self.request.POST)
+            data = dict(user=self.request.user.pk, team=self.request.POST.get('team'))
         print('GETFORM', data)
         return form_class(data)
 
