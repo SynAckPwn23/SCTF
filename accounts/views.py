@@ -6,13 +6,11 @@ from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, FormView, DeleteView
 from registration.backends.simple.views import RegistrationView
-from rest_framework.decorators import detail_route
-from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet,  ModelViewSet
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
 from accounts.models import Team, UserTeamRequest
@@ -125,18 +123,21 @@ class NoTeamView(TemplateView, CreateView):
     success_url = '.'
 
     def _pending_request_exists(self):
-        return self.request.user.userteamrequest_set.filter(status='P').exists()
+        res = self.request.user.userteamrequest_set.filter(status='P').exists()
+        if res:
+            self.success_url = '/accounts/team/admin/'
+        else:
+            pass
+        return res
 
     def get(self, request, *args, **kwargs):
         if not user_without_team(request.user):
             return redirect('index')
         if self._pending_request_exists():
-            print('pending req')
             self.template_name = 'accounts/pending_request.html'
         return super(NoTeamView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        #context = super(NoTeamView, self).get_context_data(**kwargs)
         context = {}
         if self._pending_request_exists():
             context['request'] = self.request.user.userteamrequest_set.filter(status='P').first()
@@ -144,35 +145,8 @@ class NoTeamView(TemplateView, CreateView):
             context['teams'] = Team.objects.all()
         return context
 
-    '''
-    def get_form_class(self):
-        if self.request.POST.get('action') == 'create':
-            return TeamCreateForm
-        if self.request.POST.get('action') == 'join':
-            return UserTeamRequestCreateForm
-        return TeamCreateForm   
-    '''
-
     def get_initial(self):
-        print('NoTeamView.get_initial')
         return dict(user=self.request.user)
-
-    def form_valid(self, form):
-        print('NoTeamView.form_valid')
-        return super(NoTeamView, self).form_valid(form)
-        try:
-            form.save()
-        except Exception as e:
-            form.errors['extra'] = e
-            print('EXCEPTION', e)
-            return self.form_invalid(form)
-        return super(NoTeamView, self).form_valid(form)
-
-    def form_invalid(self, form):
-        print('NoTeamView.form_invalid')
-        print(form.errors)
-        print(form.data, form.cleaned_data)
-        return super(NoTeamView, self).form_invalid(form)
 
     def get_form(self):
         if self.request.POST.get('action') == 'create':
@@ -181,11 +155,7 @@ class NoTeamView(TemplateView, CreateView):
         if self.request.POST.get('action') == 'join':
             form_class = UserTeamRequestCreateForm
             data = dict(user=self.request.user.pk, team=self.request.POST.get('team'))
-        print('GETFORM', data)
         return form_class(data)
-
-
-
 
 
 class TeamAdminView(TemplateView):
@@ -251,10 +221,7 @@ class UserTeamRequestViewSet(ModelViewSet):
 
 
 class UserTeamRequestCreate(FormView):
-    #model = UserTeamRequest
-    #success_url = reverse_lazy('no_team')
     success_url = '/'
-    #fields = ['team', 'user']
     template_name = 'accounts/no_team.html'
     form_class = UserTeamRequestCreateForm
 

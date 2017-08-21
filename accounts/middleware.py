@@ -35,11 +35,8 @@ class FilterRequestMiddlewareMixin(MiddlewareMixin):
         return HttpResponseRedirect(self.redirect_url)
 
     def process_request(self, request):
-        print(request)
         if self.filter(request):
-            print('nopass middleware')
             return self.response(request)
-        print('pass middleware')
 
 
 class LoginRequiredMiddleware(FilterRequestMiddlewareMixin):
@@ -77,5 +74,4 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     ]
 
     def custom_filter(self, request):
-        print(resolve(request.path_info).url_name)
         return user_without_team(request.user)
