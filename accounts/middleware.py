@@ -20,8 +20,9 @@ class FilterRequestMiddlewareMixin(MiddlewareMixin):
         return False
         return 'admin' not in request.path and \
                'accounts/registration' not in request.path and \
-               (request.path in self.allowed_paths and\
-                resolve(request.path_info).url_name in self.allowed_views)
+               request.path not in self.allowed_paths
+               #(request.path not in self.allowed_paths and\
+               # resolve(request.path_info).url_name not in self.allowed_views)
 
     def custom_filter(self, request):
         return True
@@ -38,6 +39,7 @@ class FilterRequestMiddlewareMixin(MiddlewareMixin):
             print('nopass middleware')
             return self.response(request)
         print('pass middleware')
+
 
 class LoginRequiredMiddleware(FilterRequestMiddlewareMixin):
 

@@ -131,6 +131,7 @@ class NoTeamView(TemplateView, FormView):
         if not user_without_team(request.user):
             return redirect('index')
         if self._pending_request_exists():
+            print('pending req')
             self.template_name = 'accounts/pending_request.html'
         return super(NoTeamView, self).get(request, *args, **kwargs)
 
