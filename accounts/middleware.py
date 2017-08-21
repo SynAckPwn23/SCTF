@@ -77,4 +77,5 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
 
     def custom_filter(self, request):
         print(resolve(request.path_info).url_name)
+        return False
         return user_without_team(request.user)

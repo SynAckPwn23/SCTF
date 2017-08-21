@@ -120,7 +120,7 @@ class NoTeamView(TemplateView):
         return dict(teams=Team.objects.all())
 
 
-class NoTeamView(TemplateView, FormView):
+class NoTeamView(TemplateView, CreateView):
     template_name = 'accounts/no_team.html'
     success_url = '.'
 
@@ -136,20 +136,22 @@ class NoTeamView(TemplateView, FormView):
         return super(NoTeamView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(NoTeamView, self).get_context_data(**kwargs)
+        #context = super(NoTeamView, self).get_context_data(**kwargs)
+        context = {}
         if self._pending_request_exists():
             context['request'] = self.request.user.userteamrequest_set.filter(status='P').first()
         else:
             context['teams'] = Team.objects.all()
         return context
 
+    '''
     def get_form_class(self):
         if self.request.POST.get('action') == 'create':
             return TeamCreateForm
         if self.request.POST.get('action') == 'join':
-            print('JOIN')
             return UserTeamRequestCreateForm
-        return TeamCreateForm
+        return TeamCreateForm   
+    '''
 
     def get_initial(self):
         print('NoTeamView.get_initial')
@@ -162,6 +164,7 @@ class NoTeamView(TemplateView, FormView):
             form.save()
         except Exception as e:
             form.errors['extra'] = e
+            print('EXCEPTION', e)
             return self.form_invalid(form)
         return super(NoTeamView, self).form_valid(form)
 
@@ -172,11 +175,13 @@ class NoTeamView(TemplateView, FormView):
         return super(NoTeamView, self).form_invalid(form)
 
     def get_form(self):
-        form_class = self.get_form_class()
-        data = dict(user=self.request.user.pk, **self.request.POST)
-        if 'team' in data:
-            data['team'] = int(data['team'][0])
-        print(data)
+        if self.request.POST.get('action') == 'create':
+            form_class = TeamCreateForm
+            data = dict(created_by=self.request.user.pk, **self.request.POST)
+        if self.request.POST.get('action') == 'join':
+            form_class = UserTeamRequestCreateForm
+            data = dict(user=self.request.user.pk, **self.request.POST)
+        print('GETFORM', data)
         return form_class(data)
 
 

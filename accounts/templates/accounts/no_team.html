@@ -52,6 +52,7 @@
          
               <form method="post">
               {% csrf_token %}
+                <input type="hidden" name="action" value="create" />
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
                                 </label>
@@ -70,7 +71,6 @@
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                   
-                  <input type="hidden" name="next" value="{{next}}" />
                   <ul id="message" class="parsley-errors-list" id="parsley-id-5">
                     <li class="parsley-required"></li>
                   </ul>

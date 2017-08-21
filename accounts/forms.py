@@ -24,9 +24,16 @@ class UserProfileForm(ModelForm):
 
 
 class TeamCreateForm(ModelForm):
+
+    def save(self, commit=True):
+        team = super(TeamCreateForm, self).save(commit=commit)
+        team.created_by.profile.team = team
+        team.created_by.profile.save()
+        return team
+
     class Meta:
         model = Team
-        fields = ['name']
+        fields = ['name', 'created_by']
 
 
 class UserTeamRequestCreateForm(ModelForm):
