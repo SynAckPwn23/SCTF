@@ -20,6 +20,12 @@ urlpatterns = [
 
     url(r'^team/admin/$', views.TeamAdminView.as_view(), name='team_admin'),
 
+    url(r'^team/request/create/$',
+        views.UserTeamRequestCreate.as_view(), name='user_team_request_create'),
+
+    url(r'^team/request/delete/(?P<pk>\w+)/$',
+        views.UserTeamRequestDelete.as_view(), name='user_team_request_delete'),
+
     url(r'^team/admin/request/(?P<pk>\w+)/$',
         views.UserTeamRequestManage.as_view(), name='user_team_request_manage'),
 

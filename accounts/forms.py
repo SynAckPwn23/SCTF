@@ -1,8 +1,11 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms.models import ModelForm
+import django.forms.models as models
 from registration.forms import RegistrationForm
 
-from accounts.models import UserProfile, UserTeamRequest
+from accounts.models import UserProfile, UserTeamRequest, Team
+from accounts.utils import user_without_team
 
 
 class CustomRegistrationForm(RegistrationForm):
@@ -18,3 +21,15 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         exclude = ['user', 'team']
+
+
+class TeamCreateForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name']
+
+
+class UserTeamRequestCreateForm(ModelForm):
+    class Meta:
+        model = UserTeamRequest
+        fields = ['user', 'team']

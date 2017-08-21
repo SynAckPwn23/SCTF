@@ -1,7 +1,6 @@
-from operator import or_
-
 from cities_light.models import Country
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Sum
 from django.db.models.expressions import RawSQL
@@ -9,6 +8,7 @@ from django.db.models.functions import Coalesce
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from accounts.utils import user_without_team
 
 User = settings.AUTH_USER_MODEL
 SKILLS_SEPARATOR = ','
@@ -158,6 +158,18 @@ class UserTeamRequest(models.Model):
         ('A', 'Accepted'),
         ('R', 'Rejected'),
     ))
+
+    def clean(self):
+        print('save')
+
+        if not user_without_team(self.user):
+            raise ValidationError('User is already a team member')
+
+        if self.status == 'P' and self.user.userteamrequest_set.filter(status='P').exists():
+            raise ValidationError('Other pending request exists')
+
+        if self.status == 'P' and self.user.userteamrequest_set.filter(status='A').exists():
+            raise ValidationError('Other accepted request exists')
 
 
 @receiver(post_save, sender=User)

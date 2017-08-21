@@ -1,9 +1,10 @@
 import json
 from builtins import super
 
+from django.http import HttpResponseForbidden
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView, FormView, DeleteView
 from registration.backends.simple.views import RegistrationView
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import PermissionDenied
@@ -11,12 +12,12 @@ from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet,  ModelViewSet
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 
 from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
-from accounts.forms import CustomRegistrationForm, UserProfileForm
+from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
 from accounts.utils import user_without_team
 from challenges.models import Challenge, ChallengeSolved
 from challenges.models import Category
@@ -119,11 +120,73 @@ class NoTeamView(TemplateView):
         return dict(teams=Team.objects.all())
 
 
+class NoTeamView(TemplateView, FormView):
+    template_name = 'accounts/no_team.html'
+    success_url = '.'
+
+    def _pending_request_exists(self):
+        return self.request.user.userteamrequest_set.filter(status='P').exists()
+
+    def get(self, request, *args, **kwargs):
+        if not user_without_team(request.user):
+            return redirect('index')
+        if self._pending_request_exists():
+            self.template_name = 'accounts/pending_request.html'
+        return super(NoTeamView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(NoTeamView, self).get_context_data(**kwargs)
+        if self._pending_request_exists():
+            context['request'] = self.request.user.userteamrequest_set.filter(status='P').first()
+        else:
+            context['teams'] = Team.objects.all()
+        return context
+
+    def get_form_class(self):
+        if self.request.POST.get('action') == 'create':
+            return TeamCreateForm
+        if self.request.POST.get('action') == 'join':
+            print('JOIN')
+            return UserTeamRequestCreateForm
+        return TeamCreateForm
+
+    def get_initial(self):
+        print('NoTeamView.get_initial')
+        return dict(user=self.request.user)
+
+    def form_valid(self, form):
+        print('NoTeamView.form_valid')
+        return super(NoTeamView, self).form_valid(form)
+        try:
+            form.save()
+        except Exception as e:
+            form.errors['extra'] = e
+            return self.form_invalid(form)
+        return super(NoTeamView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print('NoTeamView.form_invalid')
+        print(form.errors)
+        print(form.data, form.cleaned_data)
+        return super(NoTeamView, self).form_invalid(form)
+
+    def get_form(self):
+        form_class = self.get_form_class()
+        data = dict(user=self.request.user.pk, **self.request.POST)
+        if 'team' in data:
+            data['team'] = int(data['team'][0])
+        print(data)
+        return form_class(data)
+
+
+
+
+
 class TeamAdminView(TemplateView):
     template_name = 'accounts/team_admin.html'
 
     def get(self, request, *args, **kwargs):
-        if not self.request.user.created_team:
+        if not self.request.user.created_team.first():
             return redirect('index')
         return super(TeamAdminView, self).get(request, *args, **kwargs)
 
@@ -166,6 +229,7 @@ def user_detail_test(request, pk=None):
     return render(request, 'accounts/user_test.html', parameters)
 
 
+
 class UserTeamRequestViewSet(ModelViewSet):
     queryset = UserTeamRequest.objects.none()
     permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
@@ -178,15 +242,57 @@ class UserTeamRequestViewSet(ModelViewSet):
         user = self.request.user
         serializer.save(user=user)
 
-    @detail_route(methods=['post'])
-    def accept(self, request):
+
+
+class UserTeamRequestCreate(FormView):
+    #model = UserTeamRequest
+    #success_url = reverse_lazy('no_team')
+    success_url = '/'
+    #fields = ['team', 'user']
+    template_name = 'accounts/no_team.html'
+    form_class = UserTeamRequestCreateForm
+
+    def get_success_url(self):
+        print('get_success_url')
+        return super(UserTeamRequestCreate, self).get_success_url()
+
+    def form_valid(self, form):
+        print('form_valid')
+        return super(UserTeamRequestCreate, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print('form_invalid')
+        print(form.errors)
+        return super(UserTeamRequestCreate, self).form_invalid(form)
+
+    '''
+    def post(self, request, *args, **kwargs):
+        data = request.POST.copy()
+        data['user'] = request.user
+        print(data['user'])
+        form = UserTeamRequestCreateForm(data)
+
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)  
+    '''
+
+    #def get_initial(self):
+    #    print('get_initial')
+    #    return dict(user=self.request.user)
+
+
+
+class UserTeamRequestDelete(DeleteView):
+    model = UserTeamRequest
+    success_url = reverse_lazy('no_team')
+
+    def dispatch(self, request, *args, **kwargs):
         r = self.get_object()
-        if r.team.created_by != request.user:
-            raise PermissionDenied('You are not team admin')
-        r.user.team = r.team
-        r.user.save()
-        r.delete()
-        return Response('OK')
+        if r.user != request.user and r.team.created_by != request.user:
+            return HttpResponseForbidden()
+        return super(UserTeamRequestDelete, self).dispatch(request, *args, **kwargs)
 
 
 class UserTeamRequestManage(UpdateView):
