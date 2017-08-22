@@ -33,4 +33,5 @@ urlpatterns = [
         TemplateView.as_view(template_name="accounts/no_profile.html"),
         name='no_profile'
     ),
+
 ]
