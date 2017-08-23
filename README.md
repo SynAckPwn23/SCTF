@@ -51,6 +51,10 @@ Link: https://156.ip-151-80-57.eu/
 
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Profile.PNG" width="100%"/>
 
+# Contributing
+
+We encourage contributions to the project. Briefly, please fork from https://github.com/SynAckPwn23/SCTF, create a branch, make and commit your changes, then create a pull request.
+
 # License Information
 <b>SCTF is licensed under the GNU General Public License v3.0 - Copyright (c) [2017] [Daniele Votta, Filippo Schiavio]</b>
 
