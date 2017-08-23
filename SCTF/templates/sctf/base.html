@@ -482,6 +482,7 @@
           });
         },
         JOIN_REQUEST: function(message){
+          $('#badge_join').text(message['num_pending_requests']);          
           new PNotify({
             title: '<div style="width:100%; height:100%;"><p style="text-align:center;">JOIN REQ</p></div>',
             text: `<div style="width:100%; height:100%;">JOIN</div>`,
