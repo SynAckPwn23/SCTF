@@ -161,10 +161,11 @@ class NoTeamView(TemplateView, CreateView):
     def form_valid(self, form):
         res = super(NoTeamView, self).form_valid(form)
         if self.request.POST.get('action') == 'join':
-            print('SEND JOIN TO ' + self.object.team.created_by.username)
+            team =  self.object.team
             consumers.send_message_to_user(json.dumps({
-                'event': 'JOIN_REQUEST'
-            }), self.object.team.created_by)
+                'event': 'JOIN_REQUEST',
+                'num_pending_requests': team.userteamrequest_set.filter(status='P').count()
+            }), team.created_by)
         return res
 
 
