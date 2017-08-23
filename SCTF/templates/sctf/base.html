@@ -468,9 +468,10 @@
       var events_functions = {
         CHALLENGE_SOLVED: function(message){
           var color = message['team_id'] == my_team ? "success" : "warning";
+          var title = message['team_id'] == my_team ? "You Rock! New Challenge Solved" : "Feel the Pressure?! New Challenge Solved";
           new PNotify({
-            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">You Rock! New Challenge Solved</p></div>',
-            text: `<div style="width:100%; height:100%;"><img style="width:50%;margin:20px auto 20px auto;display:block;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}</div>`,
+            title: '<div class="full-width full-height"><p class="aligncenter">'+title+'</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}</div>`,
             hide: true,
             type: color,
             styling: 'bootstrap3',
@@ -482,8 +483,8 @@
         JOIN_REQUEST: function(message){
           $('#badge_join').text(message['num_pending_requests']);          
           new PNotify({
-            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">Hey! New Join Request</p></div>',
-            text: `<div style="width:100%; height:100%;"><img style="width:50%;margin:20px auto 20px auto;display:block;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} wants to join your team</div>`,
+            title: '<div class="full-width full-height"><p class="aligncenter">Hey! New Join Request</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} wants to join your team</div>`,
             hide: true,
             type: 'success',
             styling: 'bootstrap3',
@@ -495,8 +496,8 @@
         JOIN_REQUEST_APPROVED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
           new PNotify({
-            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">Hey! Join Request Approved</p></div>',
-            text: `<div style="width:100%; height:100%;"><img style="width:50%;margin:20px auto 20px auto;display:block;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You are now play for team ${message['team_id']}</div>`,
+            title: '<div class="full-width full-height"><p class="aligncenter">Hey! Join Request Approved</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You are now play for team ${message['team_id']}</div>`,
             hide: true,
             type: 'success',
             styling: 'bootstrap3',
@@ -508,8 +509,8 @@
         JOIN_REQUEST_REJECTED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
           new PNotify({
-            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">Oh Noo! Join Request Rejected</p></div>',
-            text: `<div style="width:100%; height:100%;"><img style="width:50%;margin:20px auto 20px auto;display:block;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You can't play for team ${message['team_id']}</div>`,
+            title: '<div class="full-width full-height"><p class="aligncenter">Oh Noo! Join Request Rejected</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You can't play for team ${message['team_id']}</div>`,
             hide: true,
             type: 'error',
             styling: 'bootstrap3',
@@ -521,8 +522,8 @@
         JOIN_REQUEST_DELETED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
           new PNotify({
-            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">Hey! Join Request Deleted</p></div>',
-            text: `<div style="width:100%; height:100%;"><img style="width:50%;margin:20px auto 20px auto;display:block;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} don't wants anymore join your team</div>`,
+            title: '<div class="full-width full-height"><p style="text-align:center;">Hey! Join Request Deleted</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} don't wants anymore join your team</div>`,
             hide: true,
             type: 'warning',
             styling: 'bootstrap3',
