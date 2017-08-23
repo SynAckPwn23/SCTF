@@ -460,7 +460,6 @@
         var message = JSON.parse(e['data']);
         var event = message['event'];
         events_functions[event](message);
-        return false;
       }
       // Call onopen directly if socket is already open
       if (socket.readyState == WebSocket.OPEN) socket.onopen();
