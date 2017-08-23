@@ -31,9 +31,7 @@
   <link href="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.css' %}" rel="stylesheet">
   <!-- jQuery -->
   <script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
-  <!-- PNotify -->
-  <link href="{% static 'sctf/vendors/pnotify/dist/pnotify.css' %}" rel="stylesheet">
-  <script type="text/javascript" src="{% static 'sctf/vendors/pnotify/dist/pnotify.js' %}"></script>
+ 
 
 </head>
 
@@ -462,7 +460,7 @@
         var message = JSON.parse(e['data']);
         var event = message['event'];
         events_functions[event](message);
-
+        return false;
       }
       // Call onopen directly if socket is already open
       if (socket.readyState == WebSocket.OPEN) socket.onopen();
