@@ -49,10 +49,39 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            Team name: {{ request.team.name }}
+           
             <form action="{% url 'user_team_request_delete' pk=request.pk %}" method="post">
               {% csrf_token %}
-              <button type="submit" onclick="return confirm('Are you sure?')">Delete request</button>
+              <!--<button type="submit" class="btn btn-warning" aria-expanded="false" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Delete request</button>-->
+              <button type="submit" class="btn btn-warning" aria-expanded="false" onclick="(new PNotify({
+                title: 'Confirmation Needed',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                hide: false,
+                styling: 'bootstrap3',                
+                confirm: {
+                  confirm: true
+                },
+                type: 'warning',
+                buttons: {
+                  closer: false,
+                  sticker: false
+                },
+                history: {
+                  history: false
+                },
+                addclass: 'stack-modal',
+                stack: {
+                    'dir1': 'down',
+                    'dir2': 'right',
+                    'modal': true
+                }
+              })).get().on('pnotify.confirm', function(){
+                form.submit();
+              }).on('pnotify.cancel', function(){
+                $('div.ui-pnotify-modal-overlay').remove();
+              });" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-trash-o"></i> Delete Request</button>
+              Team name: {{ request.team.name }}              
             </form>
           </div>
         </div>

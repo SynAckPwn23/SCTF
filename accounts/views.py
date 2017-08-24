@@ -29,7 +29,6 @@ def index(request):
         'teams_count': Team.objects.count(),
     })
 
-
 class CustomRegistrationView(RegistrationView):
     form_class = CustomRegistrationForm
     profile_form = None
