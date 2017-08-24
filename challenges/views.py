@@ -79,12 +79,12 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
             return Response('Already solved', status=HTTP_412_PRECONDITION_FAILED)
         if key == challenge.key:
             ChallengeSolved.objects.create(user=user.profile, challenge=challenge)
-            send_message(json.dumps({
+            send_message({
                 'event': 'CHALLENGE_SOLVED',
                 'user_id': user.pk,
                 'team_id': user.profile.team.pk,
                 'challenge_id': challenge.pk,
-            }))
+            })
             return Response('OK')
         ChallengeFail.objects.create(user=user.profile, challenge=challenge)
         return Response('Wrong KEY', status=HTTP_417_EXPECTATION_FAILED)

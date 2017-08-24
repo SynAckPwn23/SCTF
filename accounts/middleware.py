@@ -1,3 +1,4 @@
+from django.urls import resolve
 from rest_framework.reverse import reverse
 
 from django.utils.functional import curry
@@ -13,11 +14,16 @@ class FilterRequestMiddlewareMixin(MiddlewareMixin):
     redirect_url = ''
 
     allowed_paths = []
+    allowed_views = []
 
     def base_filter(self, request):
+        #return False
         return 'admin' not in request.path and \
                'accounts/registration' not in request.path and \
-               request.path not in self.allowed_paths
+               request.path not in self.allowed_paths and \
+               resolve(request.path_info).url_name not in self.allowed_views
+               #(request.path not in self.allowed_paths and\
+               # resolve(request.path_info).url_name not in self.allowed_views)
 
     def custom_filter(self, request):
         return True
@@ -60,7 +66,11 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
     allowed_paths = [
         reverse('no_team'),
         reverse('api-accounts:team-create-list'),
-        reverse('api-accounts:team-join-list')
+        reverse('user_team_request_create'),
+    ]
+
+    allowed_views = [
+        'user_team_request_delete'
     ]
 
     def custom_filter(self, request):

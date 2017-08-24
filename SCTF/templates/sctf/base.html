@@ -31,9 +31,7 @@
   <link href="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.css' %}" rel="stylesheet">
   <!-- jQuery -->
   <script src="{% static 'sctf/vendors/jquery/dist/jquery.min.js' %}"></script>
-  <!-- PNotify -->
-  <link href="{% static 'sctf/vendors/pnotify/dist/pnotify.css' %}" rel="stylesheet">
-  <script type="text/javascript" src="{% static 'sctf/vendors/pnotify/dist/pnotify.js' %}"></script>
+ 
 
 </head>
 
@@ -104,6 +102,7 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-shield"></i> Final Results <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
+                    <li><a href="#"><i class="fa fa-trophy"></i> Winners</a></li>
                     <li><a href="#"><i class="fa fa-trophy"></i> Team Report</a></li>
                     <li><a href="#"><i class="fa fa-trophy"></i> My Report</a></li>
                   </ul>
@@ -160,7 +159,7 @@
             <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span id="badge_message" class="badge bg-green">6</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
@@ -222,11 +221,25 @@
                   </ul>
                 </li>
 
-                <li><a href="{% url 'team_admin' %}" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                <li><a href="{% url 'team_admin' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                     <i class="fa fa-bell"></i>
-                    <span class="badge bg-green">1</span>
+                    <span id="badge_join" class="badge bg-green">{{user.profile.team.userteamrequest_set.pending.count}}</span>
                   </a>
                 </li>
+                 {% if user.is_staff %}
+                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                    <i class="fa fa-stop red"></i>
+                </a>
+                </li>
+                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                  <i class="fa fa-pause orange"></i>
+              </a>
+                </li>
+                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                <i class="fa fa-play green"></i>
+               </a>
+                </li>
+                {% endif %}
           </ul>
         </nav>
       </div>
@@ -392,6 +405,8 @@
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.js' %}"></script>
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.buttons.js' %}"></script>
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.js' %}"></script>
+  <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.confirm.js' %}"></script>
+  
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
@@ -437,24 +452,87 @@
   
   {% if user.is_authenticated %}
     <script>
+      var my_team = "{{ user.profile.team.id }}";
       // channels
       socket = new WebSocket("ws{% if request.is_secure %}s{% endif %}://" + window.location.host + "/sctf_channels/");
       socket.onmessage = function(e) {
         console.log(e);
-        message = JSON.parse(e['data']);
-        new PNotify({ //TODO: se risolve il mio team alert verde (type:success), altrimenti arancione (type:warning)
-          title: '<div style="width:100%; height:100%;"><p style="text-align:center;">You Rock! New Challenge Solved</p></div>',
-          text: `<div style="width:100%; height:100%;"><img style="width:50%;margin:20px auto 20px auto;display:block;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}</div>`,
-          hide: true,
-          type: 'success',
-          styling: 'bootstrap3',
-          nonblock: {
-            nonblock: true
-          },
-        });
+        var message = JSON.parse(e['data']);
+        var event = message['event'];
+        events_functions[event](message);
       }
       // Call onopen directly if socket is already open
       if (socket.readyState == WebSocket.OPEN) socket.onopen();
+
+      var events_functions = {
+        CHALLENGE_SOLVED: function(message){
+          var color = message['team_id'] == my_team ? "success" : "warning";
+          var title = message['team_id'] == my_team ? "You Rock! New Challenge Solved" : "Feel the Pressure?! New Challenge Solved";
+          new PNotify({
+            title: '<div class="full-width full-height"><p class="aligncenter">'+title+'</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}</div>`,
+            hide: true,
+            type: color,
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        },
+        JOIN_REQUEST: function(message){
+          $('#badge_join').text(message['num_pending_requests']);          
+          new PNotify({
+            title: '<div class="full-width full-height"><p class="aligncenter">Hey! New Join Request</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} wants to join your team</div>`,
+            hide: true,
+            type: 'success',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        },
+        JOIN_REQUEST_APPROVED: function(message){
+          $('#badge_join').text(message['num_pending_requests']);
+          new PNotify({
+            title: '<div class="full-width full-height"><p class="aligncenter">Hey! Join Request Approved</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You are now play for team ${message['team_id']}</div>`,
+            hide: true,
+            type: 'success',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        },
+        JOIN_REQUEST_REJECTED: function(message){
+          $('#badge_join').text(message['num_pending_requests']);
+          new PNotify({
+            title: '<div class="full-width full-height"><p class="aligncenter">Oh Noo! Join Request Rejected</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You can't play for team ${message['team_id']}</div>`,
+            hide: true,
+            type: 'error',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        },
+        JOIN_REQUEST_DELETED: function(message){
+          $('#badge_join').text(message['num_pending_requests']);
+          new PNotify({
+            title: '<div class="full-width full-height"><p style="text-align:center;">Hey! Join Request Deleted</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} don't wants anymore join your team</div>`,
+            hide: true,
+            type: 'warning',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        }
+      };
+
     </script>
   {% endif %}
 </body>

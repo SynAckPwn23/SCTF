@@ -278,6 +278,11 @@ html , body{
     border: 1px solid rgba(52, 73, 94, 0.44);
     padding: 4px
 }
+.img_notify {
+    width:50%;
+    margin:20px auto 20px auto;
+    display:block;
+}
 .profile_info {
     padding: 25px 10px 10px;
     width: 65%;
@@ -428,6 +433,10 @@ body .container.body .right_col {
 }
 .red {
     color: #E74C3C
+}
+
+.orange {
+    color: #f0ad4e
 }
 .dark {
     color: #34495E
@@ -2940,8 +2949,8 @@ ul.messages li,
 }
 ul.messages li img.avatar,
 img.avatar {
-    height: 32px;
-    width: 32px;
+    height: 60px;
+    width: 60px;
     float: left;
     display: inline-block;
     border-radius: 2px;
@@ -3490,6 +3499,10 @@ a.hiddenanchor {
     float: right;
     margin-left: 15px
 }
+.aligncenter {
+    text-align:center;
+}
+
 .clearfix:after,
 form:after {
     content: ".";

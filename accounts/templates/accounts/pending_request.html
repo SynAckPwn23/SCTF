@@ -17,7 +17,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > NO TEAM</h2>
+            <h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > Pending Request</h2>
             
             <ul class="nav navbar-right panel_toolbox">
               <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -30,17 +30,18 @@
 							<div class="jumbotron" style="background-color:#333;">
 								<h1 style="text-align: center;color:#fff;"><i class="fa fa-warning red"></i> You're not part of a team.</h1><br>
                 <h1 style="text-align: center;"><i class="fa fa-user"></i> <i class="fa fa-arrow-right green"></i> <i class="fa fa-group"></i></h1><br>               
-                <h3 style="text-align:center;color:#fff;"><i class="fa fa-info"></i> Join an existing Team or create Your own Team.</h3>
+                <h3 style="text-align:center;color:#fff;"><i class="fa fa-info"></i> Pending Request </h3>
 							</div>
 						</div>
 					</div>
         </div>
       </div>
 
+
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2 class="blue"><i class="fa fa-info-circle"></i> CREATE TEAM</h2>
+            <h2 class="blue"><i class="fa fa-info-circle"></i> Pending Request</h2>
             <ul class="nav navbar-right panel_toolbox">
               <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -48,87 +49,39 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <div class="clearfix"></div><br>
-         
-              <form method="post">
+           
+            <form action="{% url 'user_team_request_delete' pk=join_request.pk %}" method="post">
               {% csrf_token %}
-                <input type="hidden" name="action" value="create" />
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
-                                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input class="form-control col-md-7 col-xs-12" type="text" name="name" id="id_team_name" type="text" required="required">
-                </div>
-              </div>
-
-              <!-- to change -->
-              <div class="x_content bs-example-popovers">
-                  <div style="display:none;" id="alert" class="alert alert-success fade in" role="alert">
-                    <p id="alert_message"></p>
-                  </div>
-                </div>
-
-              <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  
-                  <ul id="message" class="parsley-errors-list" id="parsley-id-5">
-                    <li class="parsley-required"></li>
-                  </ul>
-                  <button type="submit" class="btn btn-success">Create Team & Start</button>
-              
-                </div>  
-              </div>
-              </form>
-            {{form.errors}}{{errors}}
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2 class="blue"><i class="fa fa-info-circle"></i> JOIN TEAM</h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-            <form method="post">
-              {% csrf_token %}
-              <input type="hidden" name="action" value="join" />
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Join Team: <span style="color:#E74C3C;" class="required">*</span>
-                              </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <p>
-                    <p class="helptext">
-                      {% for team in teams %}
-                      <input type="radio" class="flat" name="team" id="{{team.id}}" value="{{team.id}}" required="required" /> Team: {{team.name}}<br> 
-                      <ul id="message_join" class="parsley-errors-list" id="parsley-id-5">
-                        <li class="parsley-required"></li>
-                      </ul>
-                      {% endfor %}
-                    </p>
-                  </p>
-                </div>
-              </div>
-
-              <div class="x_content">
-                  <div style="display:none;" id="alert_join" class="alert alert-success fade in" role="alert">
-                    <p id="alert_message_join"></p>
-                  </div>
-                </div>
-              
-              <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-
-                    <button type="submit" class="btn btn-success">Send Join Request</button>
-
-                </div>
-              </div>
-            <div class="clearfix"></div><br>
+              <!--<button type="submit" class="btn btn-warning" aria-expanded="false" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Delete request</button>-->
+              <button type="submit" class="btn btn-warning" aria-expanded="false" onclick="(new PNotify({
+                title: 'Confirmation Needed',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                hide: false,
+                styling: 'bootstrap3',                
+                confirm: {
+                  confirm: true
+                },
+                type: 'warning',
+                buttons: {
+                  closer: false,
+                  sticker: false
+                },
+                history: {
+                  history: false
+                },
+                addclass: 'stack-modal',
+                stack: {
+                    'dir1': 'down',
+                    'dir2': 'right',
+                    'modal': true
+                }
+              })).get().on('pnotify.confirm', function(){
+                form.submit();
+              }).on('pnotify.cancel', function(){
+                $('div.ui-pnotify-modal-overlay').remove();
+              });" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-trash-o"></i> Delete Request</button>
+              Team name: {{ join_request.team.name }}
             </form>
           </div>
         </div>
