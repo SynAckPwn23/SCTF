@@ -157,11 +157,11 @@ class NoTeamView(TemplateView, CreateView):
             data = dict(user=self.request.user.pk, team=self.request.POST.get('team'))
         return form_class(data)
 
-    #def form_valid(self, form):
-    #    res = super(NoTeamView, self).form_valid(form)
-    #    if self.request.POST.get('action') == 'join':
-    #        send_message('JOIN', group=self.object.team.created_by)
-    #    return res
+    def form_valid(self, form):
+        res = super(NoTeamView, self).form_valid(form)
+        if self.request.POST.get('action') == 'join':
+            send_message('JOIN', group='user-' + self.object.team.created_by.username)
+        return res
 
 
 class TeamAdminView(TemplateView):

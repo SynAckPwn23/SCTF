@@ -1,6 +1,4 @@
-from channels.auth import channel_session_user, http_session_user
-from django.http import HttpResponse
-from channels.handler import AsgiHandler
+from channels.auth import http_session_user
 
 # In consumers.py
 from channels import Group
@@ -12,18 +10,21 @@ def ws_add(message):
     message.reply_channel.send({"accept": True})
     # Add to the chat group
     print(message.user)
-    Group("chat").add(message.reply_channel)
+    Group("challenge-solved").add(message.reply_channel)
+    Group("user-{}".format(message.user.username)).add(message.reply_channel)
+
 
 # Connected to websocket.receive
 def ws_message(message):
-    Group("chat").send({
+    Group("challenge-solved").send({
         "text": "[user] %s" % message.content['text'],
     })
 
+
 # Connected to websocket.disconnect
 def ws_disconnect(message):
-    Group("chat").discard(message.reply_channel)
+    Group("challenge-solved").discard(message.reply_channel)
 
 
-def send_message(text):
-    Group("chat").send({"text": text})
+def send_message(text, group='challenge-solved'):
+    Group(group).send({"text": text})
