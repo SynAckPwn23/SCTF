@@ -13,6 +13,7 @@ from rest_framework.viewsets import GenericViewSet,  ModelViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
+from SCTF.consumers import ws_message, send_message
 from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
@@ -156,6 +157,12 @@ class NoTeamView(TemplateView, CreateView):
             form_class = UserTeamRequestCreateForm
             data = dict(user=self.request.user.pk, team=self.request.POST.get('team'))
         return form_class(data)
+
+    #def form_valid(self, form):
+    #    res = super(NoTeamView, self).form_valid(form)
+    #    if self.request.POST.get('action') == 'join':
+    #        send_message('JOIN', group=self.object.team.created_by)
+    #    return res
 
 
 class TeamAdminView(TemplateView):

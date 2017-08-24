@@ -1,3 +1,4 @@
+from channels.auth import channel_session_user, http_session_user
 from django.http import HttpResponse
 from channels.handler import AsgiHandler
 
@@ -5,10 +6,12 @@ from channels.handler import AsgiHandler
 from channels import Group
 
 # Connected to websocket.connect
+@http_session_user
 def ws_add(message):
     # Accept the connection
     message.reply_channel.send({"accept": True})
     # Add to the chat group
+    print(message.user)
     Group("chat").add(message.reply_channel)
 
 # Connected to websocket.receive
