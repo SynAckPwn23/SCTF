@@ -14,7 +14,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
 from SCTF import consumers
-from SCTF.consumers import ws_message, send_message
+from SCTF.consumers import ws_message, send_message, send_message_to_user
 from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
@@ -162,10 +162,10 @@ class NoTeamView(TemplateView, CreateView):
         res = super(NoTeamView, self).form_valid(form)
         if self.request.POST.get('action') == 'join':
             team =  self.object.team
-            consumers.send_message_to_user(json.dumps({
+            consumers.send_message_to_user({
                 'event': 'JOIN_REQUEST',
                 'num_pending_requests': team.userteamrequest_set.filter(status='P').count()
-            }), team.created_by)
+            }, team.created_by)
         return res
 
 
@@ -278,6 +278,11 @@ class UserTeamRequestDelete(DeleteView):
             return HttpResponseForbidden()
         return super(UserTeamRequestDelete, self).dispatch(request, *args, **kwargs)
 
+    def delete(self, request, *args, **kwargs):
+        r = super(UserTeamRequestDelete, self).delete(request, *args, **kwargs)
+        send_message_to_user({'event': 'JOIN_REQUEST_DELETED'}, self.object.team.created_by)
+        return r
+
 
 class UserTeamRequestManage(UpdateView):
     model = UserTeamRequest
@@ -295,7 +300,12 @@ class UserTeamRequestManage(UpdateView):
 
     def form_valid(self, form):
         r = super(UserTeamRequestManage, self).form_valid(form)
+        user = self.object.user
         if self.object.status == 'A':
-            self.object.user.profile.team = self.object.team
-            self.object.user.profile.save()
+            user.profile.team = self.object.team
+            user.profile.save()
+            send_message_to_user({'event': 'JOIN_REQUEST_ACCEPTED'}, user)
+        elif self.object.status == 'R':
+            send_message_to_user({'event': 'JOIN_REQUEST_REJECTED'}, user)
+
         return r

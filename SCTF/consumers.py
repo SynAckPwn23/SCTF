@@ -1,3 +1,5 @@
+import json
+
 from channels.auth import http_session_user
 
 # In consumers.py
@@ -26,10 +28,10 @@ def ws_disconnect(message):
     Group("challenge-solved").discard(message.reply_channel)
 
 
-def send_message(text, group='challenge-solved'):
-    Group(group).send({"text": text})
+def send_message(dict_message, group='challenge-solved'):
+    Group(group).send({"text": json.dump(dict_message)})
 
 
-def send_message_to_user(text, user):
+def send_message_to_user(dict_message, user):
     group = "user-{}".format(user.username)
-    Group(group).send({"text": text})
+    Group(group).send({"text": json.dump(dict_message)})
