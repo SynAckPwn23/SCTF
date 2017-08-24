@@ -149,6 +149,18 @@ class UserProfile(models.Model, StatsFromChallengesMixin):
         return self._all_failed_challenges.exclude(pk__in=self.solved_challenges.all())
 
 
+class UserTeamRequestQuerySet(models.QuerySet):
+
+    def pending(self):
+        return self.filter(status='P')
+
+    def accepted(self):
+        return self.filter(status='A')
+
+    def rejected(self):
+        return self.filter(status='R')
+
+
 class UserTeamRequest(models.Model):
     user = models.ForeignKey(User)
     team = models.ForeignKey(Team)
@@ -158,6 +170,8 @@ class UserTeamRequest(models.Model):
         ('A', 'Accepted'),
         ('R', 'Rejected'),
     ))
+
+    objects = UserTeamRequestQuerySet.as_manager()
 
     def clean(self):
         print('save')
