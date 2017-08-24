@@ -13,6 +13,7 @@ from rest_framework.viewsets import GenericViewSet,  ModelViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
+from SCTF import consumers
 from SCTF.consumers import ws_message, send_message
 from accounts.models import Team, UserTeamRequest
 from accounts.permissions import UserWithoutTeamOrAdmin
@@ -160,7 +161,10 @@ class NoTeamView(TemplateView, CreateView):
     def form_valid(self, form):
         res = super(NoTeamView, self).form_valid(form)
         if self.request.POST.get('action') == 'join':
-            send_message('JOIN', group='user-' + self.object.team.created_by.username)
+            print('SEND JOIN TO ' + self.object.team.created_by.username)
+            consumers.send_message_to_user(json.dumps({
+                'event': 'JOIN_REQUEST'
+            }), self.object.team.created_by)
         return res
 
 

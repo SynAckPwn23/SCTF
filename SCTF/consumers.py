@@ -28,3 +28,8 @@ def ws_disconnect(message):
 
 def send_message(text, group='challenge-solved'):
     Group(group).send({"text": text})
+
+
+def send_message_to_user(text, user):
+    group = "user-{}".format(user.username)
+    Group(group).send({"text": text})
