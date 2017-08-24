@@ -29,9 +29,9 @@ def ws_disconnect(message):
 
 
 def send_message(dict_message, group='challenge-solved'):
-    Group(group).send({"text": json.dump(dict_message)})
+    Group(group).send({"text": json.dumps(dict_message)})
 
 
 def send_message_to_user(dict_message, user):
     group = "user-{}".format(user.username)
-    Group(group).send({"text": json.dump(dict_message)})
+    Group(group).send({"text": json.dumps(dict_message)})
