@@ -122,6 +122,8 @@ class NoTeamView(TemplateView):
 class NoTeamView(TemplateView, CreateView):
     template_name = 'accounts/no_team.html'
     success_url = '.'
+    form_class = TeamCreateForm
+    object = None
 
     def _pending_request_exists(self):
         res = self.request.user.userteamrequest_set.filter(status='P').exists()
@@ -139,12 +141,13 @@ class NoTeamView(TemplateView, CreateView):
         return super(NoTeamView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = {}
+        #context = {k: v for k, v in super(NoTeamView, self).get_context_data(**kwargs)}
         if self._pending_request_exists():
-            context['request'] = self.request.user.userteamrequest_set.filter(status='P').first()
+            context = {'request': self.request.user.userteamrequest_set.filter(status='P').first()}
         else:
-            context['teams'] = Team.objects.all()
-        return context
+            context = {'teams': Team.objects.all()}
+        context.update(**kwargs)
+        return super(NoTeamView, self).get_context_data(**context)
 
     def get_initial(self):
         return dict(user=self.request.user)
@@ -153,9 +156,11 @@ class NoTeamView(TemplateView, CreateView):
         if self.request.POST.get('action') == 'create':
             form_class = TeamCreateForm
             data = dict(created_by=self.request.user.pk, name=self.request.POST.get('name'))
-        if self.request.POST.get('action') == 'join':
+        elif self.request.POST.get('action') == 'join':
             form_class = UserTeamRequestCreateForm
             data = dict(user=self.request.user.pk, team=self.request.POST.get('team'))
+        else:
+            return TeamCreateForm()
         return form_class(data)
 
     def form_valid(self, form):
