@@ -50,7 +50,7 @@
           </div>
           <div class="x_content">
            
-            <form action="{% url 'user_team_request_delete' pk=request.pk %}" method="post">
+            <form action="{% url 'user_team_request_delete' pk=join_request.pk %}" method="post">
               {% csrf_token %}
               <!--<button type="submit" class="btn btn-warning" aria-expanded="false" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Delete request</button>-->
               <button type="submit" class="btn btn-warning" aria-expanded="false" onclick="(new PNotify({
@@ -81,7 +81,7 @@
               }).on('pnotify.cancel', function(){
                 $('div.ui-pnotify-modal-overlay').remove();
               });" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-trash-o"></i> Delete Request</button>
-              Team name: {{ request.team.name }}              
+              Team name: {{ join_request.team.name }}
             </form>
           </div>
         </div>

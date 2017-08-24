@@ -141,9 +141,8 @@ class NoTeamView(TemplateView, CreateView):
         return super(NoTeamView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        #context = {k: v for k, v in super(NoTeamView, self).get_context_data(**kwargs)}
         if self._pending_request_exists():
-            context = {'request': self.request.user.userteamrequest_set.filter(status='P').first()}
+            context = {'join_request': self.request.user.userteamrequest_set.filter(status='P').first()}
         else:
             context = {'teams': Team.objects.all()}
         context.update(**kwargs)
