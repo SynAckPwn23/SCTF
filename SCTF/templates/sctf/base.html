@@ -493,6 +493,45 @@
               nonblock: true
             },
           });
+        },
+        JOIN_REQUEST_APPROVED: function(message){
+          $('#badge_join').text(message['num_pending_requests']);
+          new PNotify({
+            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">JOIN REQ</p></div>',
+            text: `<div style="width:100%; height:100%;">APPROVED</div>`,
+            hide: true,
+            type: 'success',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        },
+        JOIN_REQUEST_REJECTED: function(message){
+          $('#badge_join').text(message['num_pending_requests']);
+          new PNotify({
+            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">JOIN REQ</p></div>',
+            text: `<div style="width:100%; height:100%;">REJECTED</div>`,
+            hide: true,
+            type: 'success',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
+        },
+        JOIN_REQUEST_DELETED: function(message){
+          $('#badge_join').text(message['num_pending_requests']);
+          new PNotify({
+            title: '<div style="width:100%; height:100%;"><p style="text-align:center;">JOIN REQ</p></div>',
+            text: `<div style="width:100%; height:100%;">DELETED</div>`,
+            hide: true,
+            type: 'success',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+          });
         }
       };
 

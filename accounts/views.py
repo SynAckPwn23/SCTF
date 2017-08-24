@@ -164,7 +164,7 @@ class NoTeamView(TemplateView, CreateView):
             team =  self.object.team
             consumers.send_message_to_user({
                 'event': 'JOIN_REQUEST',
-                'num_pending_requests': team.userteamrequest_set.filter(status='P').count()
+                'num_pending_requests': team.userteamrequest_set.pending().count()
             }, team.created_by)
         return res
 
@@ -280,7 +280,10 @@ class UserTeamRequestDelete(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         r = super(UserTeamRequestDelete, self).delete(request, *args, **kwargs)
-        send_message_to_user({'event': 'JOIN_REQUEST_DELETED'}, self.object.team.created_by)
+        send_message_to_user({
+            'event': 'JOIN_REQUEST_DELETED',
+            'num_pending_requests': self.object.team.userteamrequest_set.pending().count()
+        }, self.object.team.created_by)
         return r
 
 
@@ -304,8 +307,12 @@ class UserTeamRequestManage(UpdateView):
         if self.object.status == 'A':
             user.profile.team = self.object.team
             user.profile.save()
-            send_message_to_user({'event': 'JOIN_REQUEST_ACCEPTED'}, user)
+            send_message_to_user({
+                'event': 'JOIN_REQUEST_APPROVED',
+            }, user)
         elif self.object.status == 'R':
-            send_message_to_user({'event': 'JOIN_REQUEST_REJECTED'}, user)
+            send_message_to_user({
+                'event': 'JOIN_REQUEST_REJECTED',
+            }, user)
 
         return r
