@@ -466,72 +466,45 @@
 
       var events_functions = {
         CHALLENGE_SOLVED: function(message){
-          var color = message['team_id'] == my_team ? "success" : "warning";
-          var title = message['team_id'] == my_team ? "You Rock! New Challenge Solved" : "Feel the Pressure?! New Challenge Solved";
-          new PNotify({
-            title: '<div class="full-width full-height"><p class="aligncenter">'+title+'</p></div>',
-            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}</div>`,
-            hide: true,
-            type: color,
-            styling: 'bootstrap3',
-            nonblock: {
-              nonblock: true
-            },
-          });
+          createNewNotification(
+            message['team_id'] == my_team ? "You Rock! New Challenge Solved" : "Feel the Pressure?! New Challenge Solved",
+            `User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}`,
+            message['team_id'] == my_team ? "success" : "warning"
+          );
         },
         JOIN_REQUEST: function(message){
-          $('#badge_join').text(message['num_pending_requests']);          
-          new PNotify({
-            title: '<div class="full-width full-height"><p class="aligncenter">Hey! New Join Request</p></div>',
-            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} wants to join your team</div>`,
-            hide: true,
-            type: 'success',
-            styling: 'bootstrap3',
-            nonblock: {
-              nonblock: true
-            },
-            after_open: function(notice, timer_hide){
-              fake_load("{% url 'team_admin' %}");
-            }
-          });
+          $('#badge_join').text(message['num_pending_requests']);
+          createNewNotification(
+            'Hey! New Join Request',
+            `User ${message['user_id']} wants to join your team`,
+            'success',
+            function(){ fake_load("{% url 'team_admin' %}"); }
+          );
         },
         JOIN_REQUEST_APPROVED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
-          new PNotify({
-            title: '<div class="full-width full-height"><p class="aligncenter">Hey! Join Request Approved</p></div>',
-            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You are now play for team ${message['team_id']}</div>`,
-            hide: true,
-            type: 'success',
-            styling: 'bootstrap3',
-            nonblock: {
-              nonblock: true
-            },
-            after_open: function(notice, timer_hide){
-              fake_load("{% url 'index' %}");
-            }
-        });
+          createNewNotification(
+            'Hey! Join Request Approved',
+            `You are now play for team ${message['team_id']}`,
+            'success',
+            function(){ fake_load("{% url 'index' %}"); }
+          );
       },
         JOIN_REQUEST_REJECTED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
-          new PNotify({
-            title: '<div class="full-width full-height"><p class="aligncenter">Oh Noo! Join Request Rejected</p></div>',
-            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> You can't play for team ${message['team_id']}</div>`,
-            hide: true,
-            type: 'error',
-            styling: 'bootstrap3',
-            nonblock: {
-              nonblock: true
-            },
-            after_open: function(notice, timer_hide){
-              fake_load("{% url 'no_team' %}");
-            }
-          });
+          createNewNotification(
+            'Oh Noo! Join Request Rejected',
+            `You can't play for team ${message['team_id']}`,
+            'error',
+            function(){ fake_load("{% url 'no_team' %}"); }
+          );
         },
         JOIN_REQUEST_DELETED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
           createNewNotification(
             'Hey! Join Request Deleted',
-            `User ${message['user_id']} don't wants anymore join your team`
+            `User ${message['user_id']} don't wants anymore join your team`,
+            'warning'
           );
         }
       };
