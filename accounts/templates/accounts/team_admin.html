@@ -63,6 +63,7 @@
 									
 								</tr>
 							</thead>
+							{% comment %}
 							<tbody>
 								{% for request in requests %}
 								<tr>
@@ -104,6 +105,7 @@
 								</tr>
 								{% endfor %}
 							</tbody>
+							{% endcomment %}
 						</table>
 					</div>
 				</div>
@@ -118,73 +120,77 @@
 {% block extra_js %}
 <script type="text/javascript">
 
+function load_table(){
+	$('#datatable-buttons-team-list').DataTable( {
+		"processing": true,
+		"serverSide": true,
+		"ajax": {
+			"url": "{% url 'api-users:user-team-request-list' %}",
+			"dataType": "json"
+		}
+    });
+}
+
+
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
 	createNewNotification(
 		'New Join Request IN ADMIN TEAM PAGE',
 		`User ${message['user_id']} wants to join your team`
 	);
-  };
+	load_table()
+};
 
-</script>
 
+$(document).ready(function() {
+	load_table();
+	init_TeamBuddyList();
+});
 
-<!-- Tables (Solves, Team Components) init -->
+/* DATA TABLES */
+function init_TeamBuddyList() {
+	console.log('run_datatables');
+	if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+	console.log('init_DataTables');
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		init_TeamBuddyList();
-	});
-</script>
+	// Page challenges - Team Solves
+	var createTable_TeamList = function() {
+		if ($("#datatable-buttons-team-list").length) {
+			$("#datatable-buttons-team-list").DataTable({
+				dom: "Bfrtip",
+				buttons: [
+				{
+					extend: "copy",
+					className: "btn-sm"
+				},
+				{
+					extend: "csv",
+					className: "btn-sm"
+				},
+				{
+					extend: "print",
+					className: "btn-sm"
+				},
+				],
+				responsive: true
+			});
+		}
+	};
 
-<script type="text/javascript">
-	/* DATA TABLES */
-	function init_TeamBuddyList() {
-		console.log('run_datatables');
-		if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-		console.log('init_DataTables');
-
-			// Page challenges - Team Solves
-			var createTable_TeamList = function() {
-
-				if ($("#datatable-buttons-team-list").length) {
-					$("#datatable-buttons-team-list").DataTable({
-						dom: "Bfrtip",
-						buttons: [
-						{
-							extend: "copy",
-							className: "btn-sm"
-						},
-						{
-							extend: "csv",
-							className: "btn-sm"
-						},
-						{
-							extend: "print",
-							className: "btn-sm"
-						},
-						],
-						responsive: true
-					});
+	TableManageButtons = function() {
+		"use strict";
+		return {
+			init: function() {
+					// Page challenges - Team Solves Table
+					createTable_TeamList();
 				}
 			};
+		}();
+		TableManageButtons.init();
+	}
 
-			TableManageButtons = function() {
-				"use strict";
-				return {
-					init: function() {
-							// Page challenges - Team Solves Table
-							createTable_TeamList();
-
-						}
-					};
-				}();
-
-				TableManageButtons.init();
-			}
-		</script>
-
-		{% endblock %}
+</script>
+{% endblock %}
 
 
 

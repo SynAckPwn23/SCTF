@@ -31,5 +31,5 @@ urlpatterns.append(url(r'^api/challenges/',
 
 
 urlpatterns.append(url(r'^api/users/',
-                       include('accounts.api_urls', namespace='api-challenge')))
+                       include('accounts.api_urls', namespace='api-users')))
 
