@@ -478,7 +478,7 @@
             'Hey! New Join Request',
             `User ${message['user_id']} wants to join your team`,
             'success',
-            function(notice, timer_hide){ fake_load("{% url 'team_admin' %}"); }
+            function(notice, timer_hide){ /*fake_load("{% url 'team_admin' %}");*/ }
           );
         },
         JOIN_REQUEST_APPROVED: function(message){
@@ -529,7 +529,7 @@
     
         // Make a loader.
         var loader = new PNotify({
-            title: "Creating series of tubes",
+            title: "Redirect...",
             text: '<div class="progress progress-striped active" style="margin:0">\
       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">\
         <span class="sr-only">0%</span>\
@@ -550,39 +550,33 @@
                 progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
                 // Pretend to do something.
                 var timer = setInterval(function() {
-                    if (cur_value == 70) {
+                    /*if (cur_value == 70) {
                         loader.update({
-                            title: "Aligning discrete worms",
+                            title: "Redirect in 3 seconds...",
                             icon: "fa fa-circle-o-notch fa-spin"
                         });
                     }
                     if (cur_value == 80) {
                         loader.update({
-                            title: "Connecting end points",
+                            title: "Redirect in 2 seconds...",
                             icon: "fa fa-refresh fa-spin"
                         });
-                    }
-                    if (cur_value == 90) {
-                        loader.update({
-                            title: "Dividing and conquering",
-                            icon: "fa fa-spinner fa-spin"
-                        });
-                    }
+                    }*/
                     if (cur_value >= 100) {
                         // Remove the interval.
                         window.clearInterval(timer);
                         loader.remove();
                         return;
                     }
-                    cur_value += 1;
+                    cur_value += 8;
                     progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
-                }, 65);
+                }, 90);
             }
         });
        
        setTimeout(function() {
         window.location=url
-    }, 3000);
+    }, 2000);
     }
 
     </script>
