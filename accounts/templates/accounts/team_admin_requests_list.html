@@ -22,13 +22,13 @@
             </td>
             <td style="text-align: center;">
                 {% if join_request.status == 'P' %}
-                    <label type="label" class="label label-success label-xs">Pending</label>
+                    <label type="label" class="label label-warning label-xs">Pending</label>
                 {% endif %}
                 {% if join_request.status == 'A' %}
                     <label type="label" class="label label-success label-xs">Accepted</label>
                 {% endif %}
                 {% if join_request.status == 'R' %}
-                    <label type="label" class="label label-success label-xs">Rejected</label>
+                    <label type="label" class="label label-danger label-xs">Rejected</label>
                 {% endif %}
 
             </td>
