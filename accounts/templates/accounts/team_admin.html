@@ -87,8 +87,7 @@ function load_table_ajax(){
 	$.ajax({
 		url: "{% url 'api-users:user-team-request' %}",
 		success: function (data) {
-			$("datatable-buttons-team-list").html(data);
-			console.log(data);
+			$("#datatable-buttons-team-list").html(data);
 			load_table();
 		},
 	});
