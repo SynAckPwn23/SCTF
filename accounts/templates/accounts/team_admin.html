@@ -81,6 +81,11 @@ events_functions['JOIN_REQUEST'] = function(message){
 	load_table_ajax()
 };
 
+base_delete = events_functions['JOIN_REQUEST_DELETED'];
+events_functions['JOIN_REQUEST_DELETED'] = function(message){
+	base_delete(message);
+	load_table_ajax();
+}
 
 function load_table_ajax(){
 	$('#datatable-buttons-team-list').dataTable().fnDestroy();

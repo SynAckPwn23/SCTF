@@ -9,37 +9,37 @@
         </tr>
     </thead>
     <tbody>
-        {% for request in requests %}
+        {% for join_request in join_requests %}
         <tr>
-            <td style="text-align: center;">{{ request.datetime }}</td>
+            <td style="text-align: center;">{{ join_request.datetime }}</td>
             <td style="text-align: center;">
                 <ul class="list-inline">
                     <li>
-                        <img src="/{{request.user.profile.image.url}}" class="avatar" alt="Avatar">
-                        <a class="blue" href="{% url 'user' pk=user.pk %}"><font size="0" style="display:block;" >{{request.user.username}}</font></a>
+                        <img src="/{{join_request.user.profile.image.url}}" class="avatar" alt="Avatar">
+                        <a class="blue" href="{% url 'user' pk=user.pk %}"><font size="0" style="display:block;" >{{join_request.user.username}}</font></a>
                     </li>
                 </ul>
             </td>
             <td style="text-align: center;">
-                {% if request.status == 'P' %}
+                {% if join_request.status == 'P' %}
                     <label type="label" class="label label-success label-xs">Pending</label>
                 {% endif %}
-                {% if request.status == 'A' %}
+                {% if join_request.status == 'A' %}
                     <label type="label" class="label label-success label-xs">Accepted</label>
                 {% endif %}
-                {% if request.status == 'R' %}
+                {% if join_request.status == 'R' %}
                     <label type="label" class="label label-success label-xs">Rejected</label>
                 {% endif %}
 
             </td>
             <td style="text-align: center;">
-                {% if request.status == 'P' %}
-                    <form method="post" action="{% url 'user_team_request_manage' pk=request.id %}">
+                {% if join_request.status == 'P' %}
+                    <form method="post" action="{% url 'user_team_request_manage' pk=join_request.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="status" value="A">
                         <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-pencil"></i>Approve</button>
                     </form>
-                    <form method="post" action="{% url 'user_team_request_manage' pk=request.id %}">
+                    <form method="post" action="{% url 'user_team_request_manage' pk=join_request.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="status" value="R">
                         <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-trash-o"></i>Reject</button>

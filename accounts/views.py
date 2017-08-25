@@ -148,7 +148,7 @@ class TeamAdminView(TemplateView):
         return super(TeamAdminView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        return {'requests': self.request.user.created_team.first().userteamrequest_set.all()}
+        return {'join_requests': self.request.user.created_team.first().userteamrequest_set.all()}
 
 
 def user_detail(request, pk=None):
