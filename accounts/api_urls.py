@@ -11,4 +11,6 @@ urlpatterns = router.urls + [
     
 ]
 '''
-urlpatterns = [url('user-team-request', UserRequestHTMLTable.as_view())]
+urlpatterns = [
+    url(r'^/user-team-request/$', UserRequestHTMLTable.as_view(), name='user-team-request')
+]
