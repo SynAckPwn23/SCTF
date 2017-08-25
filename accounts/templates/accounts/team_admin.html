@@ -144,11 +144,10 @@ events_functions['JOIN_REQUEST'] = function(message){
 
 $(document).ready(function() {
 	load_table();
-	init_TeamBuddyList();
 });
 
 /* DATA TABLES */
-function init_TeamBuddyList() {
+function load_table() {
 	console.log('run_datatables');
 	if( typeof ($.fn.DataTable) === 'undefined'){ return; }
 	console.log('init_DataTables');
@@ -159,21 +158,28 @@ function init_TeamBuddyList() {
 			$("#datatable-buttons-team-list").DataTable({
 				dom: "Bfrtip",
 				buttons: [
-				{
-					extend: "copy",
-					className: "btn-sm"
-				},
-				{
-					extend: "csv",
-					className: "btn-sm"
-				},
-				{
-					extend: "print",
-					className: "btn-sm"
-				},
+					{
+						extend: "copy",
+						className: "btn-sm"
+					},
+					{
+						extend: "csv",
+						className: "btn-sm"
+					},
+					{
+						extend: "print",
+						className: "btn-sm"
+					},
 				],
-				responsive: true
+				responsive: true,
+				processing: true,
+				serverSide: true,
+				ajax: {
+					url: "{% url 'api-users:user-team-request-list' %}",
+					dataType: "json"
+				}
 			});
+
 		}
 	};
 
