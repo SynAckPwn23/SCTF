@@ -491,11 +491,9 @@
             nonblock: {
               nonblock: true
             },
-            after_open: function(notice, timer_hide) {    
-              setTimeout(function() { // TODO Redirect to TEAM ADMIN
-                window.location.href="{% url 'team_admin' %}"
-            }, 1500);
-          }
+            after_open: function(notice, timer_hide){
+              fake_load("{% url 'team_admin' %}");
+            }
           });
         },
         JOIN_REQUEST_APPROVED: function(message){
@@ -509,11 +507,9 @@
             nonblock: {
               nonblock: true
             },
-            after_open: function(notice, timer_hide) {    
-              setTimeout(function() { // TODO Redirect to GAME NOT STARTED
-                window.location.href="{% url 'index' %}"
-            }, 1500);
-          }
+            after_open: function(notice, timer_hide){
+              fake_load("{% url 'index' %}");
+            }
         });
       },
         JOIN_REQUEST_REJECTED: function(message){
@@ -527,11 +523,9 @@
             nonblock: {
               nonblock: true
             },
-            after_open: function(notice, timer_hide) {    
-              setTimeout(function() { // TODO Redirect to NO TEAM
-                window.location.href="{% url 'no_team' %}"
-            }, 1500);
-          }
+            after_open: function(notice, timer_hide){
+              fake_load("{% url 'no_team' %}");
+            }
           });
         },
         JOIN_REQUEST_DELETED: function(message){
@@ -548,6 +542,67 @@
           });
         }
       };
+
+      function fake_load(url) {
+        var cur_value = 1,
+            progress;
+    
+        // Make a loader.
+        var loader = new PNotify({
+            title: "Creating series of tubes",
+            text: '<div class="progress progress-striped active" style="margin:0">\
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">\
+        <span class="sr-only">0%</span>\
+      </div>\
+    </div>',
+            //icon: 'fa fa-moon-o fa-spin',
+            icon: 'fa fa-cog fa-spin',
+            hide: false,
+            buttons: {
+                closer: false,
+                sticker: false
+            },
+            history: {
+                history: false
+            },
+            before_open: function(notice) {
+                progress = notice.get().find("div.progress-bar");
+                progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
+                // Pretend to do something.
+                var timer = setInterval(function() {
+                    if (cur_value == 70) {
+                        loader.update({
+                            title: "Aligning discrete worms",
+                            icon: "fa fa-circle-o-notch fa-spin"
+                        });
+                    }
+                    if (cur_value == 80) {
+                        loader.update({
+                            title: "Connecting end points",
+                            icon: "fa fa-refresh fa-spin"
+                        });
+                    }
+                    if (cur_value == 90) {
+                        loader.update({
+                            title: "Dividing and conquering",
+                            icon: "fa fa-spinner fa-spin"
+                        });
+                    }
+                    if (cur_value >= 100) {
+                        // Remove the interval.
+                        window.clearInterval(timer);
+                        loader.remove();
+                        return;
+                    }
+                    cur_value += 1;
+                    progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
+                }, 65);
+            }
+        });
+        setTimeout(function(url) { // TODO Redirect to GAME NOT STARTED
+          window.location.href="{% url 'index' %}"
+      }, 1500);
+    }
 
     </script>
   {% endif %}
