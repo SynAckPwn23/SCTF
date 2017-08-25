@@ -4,24 +4,17 @@ from builtins import super
 from django.http import HttpResponseForbidden
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import UpdateView, CreateView, FormView, DeleteView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from registration.backends.simple.views import RegistrationView
-from rest_framework.mixins import CreateModelMixin
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet,  ModelViewSet
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
-from SCTF import consumers
-from SCTF.consumers import ws_message, send_message, send_message_to_user
 from accounts.models import Team, UserTeamRequest
-from accounts.permissions import UserWithoutTeamOrAdmin
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
 from accounts.utils import user_without_team
-from challenges.models import Challenge, ChallengeSolved
+from challenges.models import Challenge
 from challenges.models import Category
-from challenges.serializers import TeamSerializer, UserTeamRequestSerializer
 
 
 def index(request):
@@ -29,6 +22,7 @@ def index(request):
         'teams': Team.objects.all(),
         'teams_count': Team.objects.count(),
     })
+
 
 class CustomRegistrationView(RegistrationView):
     form_class = CustomRegistrationForm
@@ -44,7 +38,6 @@ class CustomRegistrationView(RegistrationView):
 
     def register(self, form):
         new_user = super(CustomRegistrationView, self).register(form)
-
         profile = self.profile_form.save(commit=False)
         profile.user = new_user
         profile.save()
@@ -73,11 +66,6 @@ def team_detail(request, pk=None):
         for c in categories
     ]
 
-    last_team_solutions = ChallengeSolved.objects \
-        .filter(user__team=team) \
-        .order_by('-datetime') \
-        .all()
-
     parameters = {
         'team': team,
         'total_points_count': Challenge.objects.total_points(),
@@ -94,98 +82,71 @@ def team_detail(request, pk=None):
     return render(request, 'accounts/team.html', parameters)
 
 
-class TeamCreateViewSet(CreateModelMixin, GenericViewSet):
-    queryset = Team.objects.all()
-    permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
-    serializer_class = TeamSerializer
+def no_team_view(request, create_form=TeamCreateForm(), join_form=UserTeamRequestCreateForm()):
+    # TODO: use permissions
+    if not user_without_team(request.user):
+        return redirect('index')
 
-    def perform_create(self, serializer):
-        user = self.request.user
-        serializer.save(created_by=user)
-        if not user.is_superuser:
-            user.profile.team = serializer.instance
-            user.profile.save()
+    pending_request = request.user.userteamrequest_set.pending().first()
+    if pending_request:
+        return render(request, 'accounts/pending_request.html', {
+            'join_request': pending_request
+        })
 
-
-class NoTeamView(TemplateView):
-    template_name = 'accounts/no_team.html'
-
-    def get(self, request, *args, **kwargs):
-        if not user_without_team(request.user):
-            return redirect('index')
-        return super(NoTeamView, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        return dict(teams=Team.objects.all())
+    return render(request, 'accounts/no_team.html', dict(
+        team_create_form=create_form,
+        team_join_form=join_form,
+        teams=Team.objects.all()
+    ))
 
 
-class NoTeamView(TemplateView, CreateView):
-    template_name = 'accounts/no_team.html'
-    success_url = '.'
+class NoTeamPostView(CreateView):
+    success_url = '/'
+    form_name = None
+
+    # TODO: use permissions
+    def get(self, *args, **kwargs):
+        return redirect('no_team')
+
+    def form_invalid(self, form):
+        return no_team_view(self.request, **{self.form_name: form})
+
+
+class TeamCreateView(NoTeamPostView):
     form_class = TeamCreateForm
-    object = None
-
-    def _pending_request_exists(self):
-        res = self.request.user.userteamrequest_set.filter(status='P').exists()
-        if res:
-            self.success_url = '/accounts/team/admin/'
-        else:
-            pass
-        return res
-
-    def get(self, request, *args, **kwargs):
-        if not user_without_team(request.user):
-            return redirect('index')
-        if self._pending_request_exists():
-            self.template_name = 'accounts/pending_request.html'
-        return super(NoTeamView, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        if self._pending_request_exists():
-            context = {'join_request': self.request.user.userteamrequest_set.filter(status='P').first()}
-        else:
-            context = {'teams': Team.objects.all()}
-        context.update(**kwargs)
-        return super(NoTeamView, self).get_context_data(**context)
-
-    def get_initial(self):
-        return dict(user=self.request.user)
-
-    def get_form(self):
-        if self.request.POST.get('action') == 'create':
-            form_class = TeamCreateForm
-            data = dict(created_by=self.request.user.pk, name=self.request.POST.get('name'))
-        elif self.request.POST.get('action') == 'join':
-            form_class = UserTeamRequestCreateForm
-            data = dict(user=self.request.user.pk, team=self.request.POST.get('team'))
-        else:
-            return TeamCreateForm()
-        return form_class(data)
+    success_url = reverse_lazy('index')
+    form_name = 'create_form'
 
     def form_valid(self, form):
-        res = super(NoTeamView, self).form_valid(form)
-        if self.request.POST.get('action') == 'join':
-            team =  self.object.team
-            consumers.send_message_to_user({
-                'event': 'JOIN_REQUEST',
-                'num_pending_requests': team.userteamrequest_set.pending().count()
-            }, team.created_by)
-        return res
+        team=form.save(commit=False)
+        team.created_by=self.request.user
+        team.save()
+        team.created_by.profile.team = team
+        team.created_by.profile.save()
+        return super(TeamCreateView, self).form_valid(form)
+
+
+class UserTeamRequestCreate(NoTeamPostView):
+    form_class = UserTeamRequestCreateForm
+    form_name = 'join_form'
+
+    def get_form(self):
+        return UserTeamRequestCreateForm(data=dict(
+            user=self.request.user.pk,
+            team=self.request.POST.get('team')))
 
 
 class TeamAdminView(TemplateView):
     template_name = 'accounts/team_admin.html'
 
+    # TODO: use permissions
     def get(self, request, *args, **kwargs):
         if not self.request.user.created_team.first():
             return redirect('index')
         return super(TeamAdminView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        user = self.request.user
-        return dict(
-            requests=UserTeamRequest.objects.filter(team=user.created_team.first())
-        )
+        return {'requests': self.request.user.created_team.first().userteamrequest_set.all()}
 
 
 def user_detail(request, pk=None):
@@ -204,91 +165,16 @@ def user_detail(request, pk=None):
     return render(request, 'accounts/user.html', parameters)
 
 
-def user_detail_test(request, pk=None):
-    user = request.user if pk is None else get_user_model().objects.get(pk=pk)
-
-    solved = user.profile.percentage_solved_by_category
-    categories_names = list(solved.keys())
-    categories_num_done_user = [solved[c] for c in categories_names]
-
-    parameters = {
-        'categories_names': json.dumps(categories_names),
-        'categories_num_done_user': categories_num_done_user,
-        'user_detail_page': user,
-        'time_points': json.dumps(user.profile.score_over_time),
-    }
-    return render(request, 'accounts/user_test.html', parameters)
-
-
-
-class UserTeamRequestViewSet(ModelViewSet):
-    queryset = UserTeamRequest.objects.none()
-    permission_classes = (IsAuthenticated, UserWithoutTeamOrAdmin)
-    serializer_class = UserTeamRequestSerializer
-
-    def get_queryset(self):
-        return self.request.user.team.userteamrequest_set.all()
-
-    def perform_create(self, serializer):
-        user = self.request.user
-        serializer.save(user=user)
-
-
-
-class UserTeamRequestCreate(FormView):
-    success_url = '/'
-    template_name = 'accounts/no_team.html'
-    form_class = UserTeamRequestCreateForm
-
-    def get_success_url(self):
-        print('get_success_url')
-        return super(UserTeamRequestCreate, self).get_success_url()
-
-    def form_valid(self, form):
-        print('form_valid')
-        return super(UserTeamRequestCreate, self).form_valid(form)
-
-    def form_invalid(self, form):
-        print('form_invalid')
-        print(form.errors)
-        return super(UserTeamRequestCreate, self).form_invalid(form)
-
-    '''
-    def post(self, request, *args, **kwargs):
-        data = request.POST.copy()
-        data['user'] = request.user
-        print(data['user'])
-        form = UserTeamRequestCreateForm(data)
-
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)  
-    '''
-
-    #def get_initial(self):
-    #    print('get_initial')
-    #    return dict(user=self.request.user)
-
-
-
 class UserTeamRequestDelete(DeleteView):
     model = UserTeamRequest
     success_url = reverse_lazy('no_team')
 
+    # TODO: use permissions
     def dispatch(self, request, *args, **kwargs):
         r = self.get_object()
         if r.user != request.user and r.team.created_by != request.user:
             return HttpResponseForbidden()
         return super(UserTeamRequestDelete, self).dispatch(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        r = super(UserTeamRequestDelete, self).delete(request, *args, **kwargs)
-        send_message_to_user({
-            'event': 'JOIN_REQUEST_DELETED',
-            'num_pending_requests': self.object.team.userteamrequest_set.pending().count()
-        }, self.object.team.created_by)
-        return r
 
 
 class UserTeamRequestManage(UpdateView):
@@ -297,6 +183,7 @@ class UserTeamRequestManage(UpdateView):
     success_url = reverse_lazy('team_admin')
     http_method_names = ['post']
 
+    # TODO: use permissions
     def post(self, request, *args, **kwargs):
         r = self.get_object()
         if not r.team.created_by == request.user:
@@ -306,17 +193,8 @@ class UserTeamRequestManage(UpdateView):
         return super(UserTeamRequestManage, self).post(request, *args, **kwargs)
 
     def form_valid(self, form):
-        r = super(UserTeamRequestManage, self).form_valid(form)
-        user = self.object.user
+        response = super(UserTeamRequestManage, self).form_valid(form)
         if self.object.status == 'A':
-            user.profile.team = self.object.team
-            user.profile.save()
-            send_message_to_user({
-                'event': 'JOIN_REQUEST_APPROVED',
-            }, user)
-        elif self.object.status == 'R':
-            send_message_to_user({
-                'event': 'JOIN_REQUEST_REJECTED',
-            }, user)
-
-        return r
+            self.object.user.profile.team = self.object.team
+            self.object.user.profile.save()
+        return response

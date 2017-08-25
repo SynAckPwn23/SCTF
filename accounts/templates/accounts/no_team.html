@@ -50,9 +50,8 @@
           <div class="x_content">
             <div class="clearfix"></div><br>
          
-              <form method="post">
+              <form method="post" action="{% url 'user_team_create' %}">
               {% csrf_token %}
-                <input type="hidden" name="action" value="create" />
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="team_name">New Team Name: <span style="color:#E74C3C;" class="required">*</span>
                                 </label>
@@ -79,7 +78,7 @@
                 </div>  
               </div>
               </form>
-            {{form.errors}}{{errors}}
+            {{team_create_form.errors}}{{errors}}
           </div>
         </div>
       </div>
@@ -95,9 +94,8 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <form method="post">
+            <form method="post" action="{% url 'user_team_request_create' %}">
               {% csrf_token %}
-              <input type="hidden" name="action" value="join" />
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Join Team: <span style="color:#E74C3C;" class="required">*</span>
                               </label>

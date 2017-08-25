@@ -16,9 +16,11 @@ urlpatterns = [
     url(r'^user/$', views.user_detail, name='user'),
     url(r'^user/(?P<pk>\w+)$', views.user_detail, name='user'),
 
-    url(r'^no-team/$', views.NoTeamView.as_view(), name='no_team'),
+    url(r'^no-team/$', views.no_team_view, name='no_team'),
 
     url(r'^team/admin/$', views.TeamAdminView.as_view(), name='team_admin'),
+
+    url(r'^team/create/$', views.TeamCreateView.as_view(), name='user_team_create'),
 
     url(r'^team/request/create/$',
         views.UserTeamRequestCreate.as_view(), name='user_team_request_create'),

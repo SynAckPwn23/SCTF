@@ -6,7 +6,7 @@ from django.db.models import Sum
 from django.db.models.expressions import RawSQL
 from django.db.models.functions import Coalesce
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 
 from accounts.utils import user_without_team
 
@@ -174,8 +174,6 @@ class UserTeamRequest(models.Model):
     objects = UserTeamRequestQuerySet.as_manager()
 
     def clean(self):
-        print('save')
-
         if not user_without_team(self.user):
             raise ValidationError('User is already a team member')
 
@@ -190,3 +188,38 @@ class UserTeamRequest(models.Model):
 def save_user_profile(sender, instance, **kwargs):
     if hasattr(instance, 'profile'):
         instance.profile.save()
+
+
+def _send_join_request_to_admin(event, team):
+    from SCTF.consumers import send_message_to_user
+    send_message_to_user({
+        'event': event,
+        'num_pending_requests': team.userteamrequest_set.pending().count()
+    }, team.created_by)
+
+
+@receiver(post_save, sender=UserTeamRequest)
+def join_request_approved_add_to_team(sender, instance, **kwargs):
+    if instance.status == 'A':
+        instance.user.profile.team = instance.team
+        instance.user.profile.save()
+
+@receiver(post_save, sender=UserTeamRequest)
+def web_socket_notify_join_request(sender, instance, created, **kwargs):
+    from SCTF.consumers import send_message_to_user
+
+    if created:
+        _send_join_request_to_admin('JOIN_REQUEST', instance.team)
+
+    elif instance.status == 'A':
+        send_message_to_user({'event': 'JOIN_REQUEST_APPROVED'}, instance.user)
+
+    elif instance.status == 'R':
+        send_message_to_user({'event': 'JOIN_REQUEST_REJECTED'}, instance.user)
+
+
+
+
+@receiver(post_delete, sender=UserTeamRequest)
+def web_socket_notify_join_request_delete(sender, instance, **kwargs):
+    _send_join_request_to_admin('JOIN_REQUEST_DELETED', instance.team)

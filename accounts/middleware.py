@@ -65,8 +65,9 @@ class LoggedInUserWithoutTeamMiddleware(FilterRequestMiddlewareMixin):
 
     allowed_paths = [
         reverse('no_team'),
-        reverse('api-accounts:team-create-list'),
+        #reverse('api-accounts:team-create-list'),
         reverse('user_team_request_create'),
+        reverse('user_team_create')
     ]
 
     allowed_views = [
