@@ -3,6 +3,8 @@ Security Capture the Flag Platform is the best platform for CTF Challenges. You 
 
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Main.PNG" width="100%"/>
 
+Live  Demo: https://156.ip-151-80-57.eu/
+
 We would love to see how you use this awesome Platform. You can notify us about your site, app or service by mail. 
 
 # Install & Start
@@ -38,8 +40,7 @@ We would love to see how you use this awesome Platform. You can notify us about 
 * Challenge overview page.
 * and more ...
 
-# Live Demo
-Link: https://156.ip-151-80-57.eu/
+# Screenshots
 
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/All_Teams.PNG" width="100%"/>
 
