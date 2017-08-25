@@ -29,3 +29,7 @@ urlpatterns.append(url(r'^api/', include(router.urls)))
 urlpatterns.append(url(r'^api/challenges/',
                        include('challenges.api_urls', namespace='api-challenge')))
 
+
+urlpatterns.append(url(r'^api/users/',
+                       include('accounts.api_urls', namespace='api-challenge')))
+

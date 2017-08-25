@@ -1,9 +1,15 @@
 from rest_framework import serializers
 
-from .models import Team
+from .models import UserTeamRequest
 
 
-class ChallengeSolvedSerializer(serializers.ModelSerializer):
+class UserTeamRequestCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Team
-        fields = ('name',)
+        model = UserTeamRequest
+        fields = ('team',)
+
+
+class UserTeamRequestListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserTeamRequest
+        fields = ('datetime', 'user', 'status')
