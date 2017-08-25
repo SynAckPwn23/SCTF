@@ -412,7 +412,6 @@
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
  
-  {% block extra_js %}{% endblock %}
   <script>
       var d = new Date();
       function pad(n) { return ("0" + n).slice(-2); }    
@@ -606,6 +605,8 @@
 
     </script>
   {% endif %}
+  {% block extra_js %}{% endblock %}
+
 </body>
 
 </html>
