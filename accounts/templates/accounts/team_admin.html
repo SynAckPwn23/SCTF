@@ -105,19 +105,6 @@ function load_table() {
 						extend: "print",
 						className: "btn-sm"
 					},
-				],
-				responsive: true,
-				processing: true,
-				serverSide: true,
-				ajax: {
-					url: "{% url 'api-users:user-team-request-list' %}",
-					dataType: "json",
-					dataSrc: ''
-				},
-				columns: [
-					{ "data": "datetime"},
-					{ "data": "user"},
-					{ "data": "status"},
 				]
 			});
 
