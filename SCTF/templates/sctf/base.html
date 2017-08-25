@@ -474,12 +474,27 @@
         },
         JOIN_REQUEST: function(message){
           $('#badge_join').text(message['num_pending_requests']);
+          /*
           createNewNotification(
             'Hey! New Join Request',
             `User ${message['user_id']} wants to join your team`,
             'success',
             function(){ fake_load("{% url 'team_admin' %}"); }
           );
+          */
+          new PNotify({
+            title: '<div class="full-width full-height"><p class="aligncenter">Hey! New Join Request</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} wants to join your team</div>`,
+            hide: true,
+            type: 'success',
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+            after_open: function(notice, timer_hide){
+              fake_load("{% url 'team_admin' %}");
+            }
+          });
         },
         JOIN_REQUEST_APPROVED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
