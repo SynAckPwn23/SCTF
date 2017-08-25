@@ -9,9 +9,11 @@ from registration.backends.simple.views import RegistrationView
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from rest_framework.viewsets import ModelViewSet
 
 from accounts.models import Team, UserTeamRequest
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
+from accounts.serializers import UserTeamRequestListSerializer
 from accounts.utils import user_without_team
 from challenges.models import Challenge
 from challenges.models import Category
@@ -198,3 +200,10 @@ class UserTeamRequestManage(UpdateView):
             self.object.user.profile.team = self.object.team
             self.object.user.profile.save()
         return response
+
+
+class UserTeamRequestViewSet(ModelViewSet):
+    serializer_class = UserTeamRequestListSerializer
+
+    def get_queryset(self):
+        return UserTeamRequest.objects.filter(team__created_by=self.request.user)
