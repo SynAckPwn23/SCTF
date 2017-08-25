@@ -529,16 +529,10 @@
         },
         JOIN_REQUEST_DELETED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
-          new PNotify({
-            title: '<div class="full-width full-height"><p style="text-align:center;">Hey! Join Request Deleted</p></div>',
-            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} don't wants anymore join your team</div>`,
-            hide: true,
-            type: 'warning',
-            styling: 'bootstrap3',
-            nonblock: {
-              nonblock: true
-            },
-          });
+          createNewNotification(
+            'Hey! Join Request Deleted',
+            `User ${message['user_id']} don't wants anymore join your team`
+          );
         }
       };
 
