@@ -120,18 +120,6 @@
 {% block extra_js %}
 <script type="text/javascript">
 
-function load_table(){
-	$('#datatable-buttons-team-list').DataTable( {
-		"processing": true,
-		"serverSide": true,
-		"ajax": {
-			"url": "{% url 'api-users:user-team-request-list' %}",
-			"dataType": "json"
-		}
-    });
-}
-
-
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
 	createNewNotification(
@@ -176,24 +164,34 @@ function load_table() {
 				serverSide: true,
 				ajax: {
 					url: "{% url 'api-users:user-team-request-list' %}",
-					dataType: "json"
-				}
+					dataType: "json",
+					dataSrc: ''
+				},
+				columns: [
+					{ "data": "datetime"},
+					{ "data": "user"},
+					{ "data": "status"},
+				]
 			});
 
 		}
 	};
-
+	createTable_TeamList();
+	/*
 	TableManageButtons = function() {
 		"use strict";
 		return {
 			init: function() {
-					// Page challenges - Team Solves Table
-					createTable_TeamList();
-				}
-			};
-		}();
-		TableManageButtons.init();
-	}
+				// Page challenges - Team Solves Table
+				createTable_TeamList();
+			}
+		};
+	}();
+
+	TableManageButtons.init();
+	*/
+}
+
 
 </script>
 {% endblock %}
