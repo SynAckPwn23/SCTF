@@ -580,11 +580,9 @@
             }
         });
        
-        (function(){
-          setTimeout(function(){
-            window.location=url;
-          },3000); /* 1000 = 1 second*/
-       })();
+       setTimeout(function() {
+        window.location=url
+    }, 3000);
     }
 
     </script>
