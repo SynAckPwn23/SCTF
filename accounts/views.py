@@ -207,3 +207,7 @@ class UserTeamRequestViewSet(ModelViewSet):
 
     def get_queryset(self):
         return UserTeamRequest.objects.filter(team__created_by=self.request.user)
+
+
+class UserRequestHTMLTable(TeamAdminView, TemplateView):
+    template_name = 'accounts/team_admin_requests_list.html'

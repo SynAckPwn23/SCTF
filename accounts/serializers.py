@@ -9,8 +9,8 @@ class UserTeamRequestCreateSerializer(serializers.ModelSerializer):
         fields = ('team',)
 
 
+
 class UserTeamRequestListSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
 
     class Meta:
         model = UserTeamRequest

@@ -1,0 +1,52 @@
+<table data-order='[[ 0, "desc" ]]' width="100%" id="datatable-buttons-team-list" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Date</th>
+            <th style="text-align: center;">User</th>
+            <th style="text-align: center;">Status</th>
+            <th style="text-align: center;">Manage</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+        <tr>
+            <td style="text-align: center;">{{ request.datetime }}</td>
+            <td style="text-align: center;">
+                <ul class="list-inline">
+                    <li>
+                        <img src="/{{request.user.profile.image.url}}" class="avatar" alt="Avatar">
+                        <a class="blue" href="{% url 'user' pk=user.pk %}"><font size="0" style="display:block;" >{{request.user.username}}</font></a>
+                    </li>
+                </ul>
+            </td>
+            <td style="text-align: center;">
+                {% if request.status == 'P' %}
+                    <label type="label" class="label label-success label-xs">Pending</label>
+                {% endif %}
+                {% if request.status == 'A' %}
+                    <label type="label" class="label label-success label-xs">Accepted</label>
+                {% endif %}
+                {% if request.status == 'R' %}
+                    <label type="label" class="label label-success label-xs">Rejected</label>
+                {% endif %}
+
+            </td>
+            <td style="text-align: center;">
+                {% if request.status == 'P' %}
+                    <form method="post" action="{% url 'user_team_request_manage' pk=request.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="status" value="A">
+                        <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-pencil"></i>Approve</button>
+                    </form>
+                    <form method="post" action="{% url 'user_team_request_manage' pk=request.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="status" value="R">
+                        <button class="btn btn-info btn-xs" type="submit"><i class="fa fa-trash-o"></i>Reject</button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
