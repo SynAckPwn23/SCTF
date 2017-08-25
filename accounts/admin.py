@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from .models import Team, UserProfile
+from .models import Team, UserProfile, UserTeamRequest
 
 
 class TabularUserAdmin(admin.TabularInline):
@@ -16,4 +16,9 @@ class TeamAdmin(admin.ModelAdmin):
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(UserTeamRequest)
+class UserTeamRequestAdmin(admin.ModelAdmin):
     pass
