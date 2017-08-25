@@ -278,6 +278,11 @@ html , body{
     border: 1px solid rgba(52, 73, 94, 0.44);
     padding: 4px
 }
+.img_notify {
+    width:50%;
+    margin:20px auto 20px auto;
+    display:block;
+}
 .profile_info {
     padding: 25px 10px 10px;
     width: 65%;
@@ -3494,6 +3499,10 @@ a.hiddenanchor {
     float: right;
     margin-left: 15px
 }
+.aligncenter {
+    text-align:center;
+}
+
 .clearfix:after,
 form:after {
     content: ".";
