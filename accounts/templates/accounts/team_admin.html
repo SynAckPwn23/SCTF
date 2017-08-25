@@ -67,19 +67,29 @@
 {% block extra_js %}
 <script type="text/javascript">
 
+$(document).ready(function() {
+	load_table();
+});
+
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
 	createNewNotification(
 		'New Join Request IN ADMIN TEAM PAGE',
 		`User ${message['user_id']} wants to join your team`
 	);
-	load_table()
+	load_table_ajax()
 };
 
 
-$(document).ready(function() {
-	load_table();
-});
+function load_table_ajax(){
+	$.ajax({
+		url: {% url 'api-users:user-team-request' %},
+		success: function (data) {
+			$("datatable-buttons-team-list").html(data);
+			load_table();
+		},
+	});
+}
 
 /* DATA TABLES */
 function load_table() {
