@@ -116,6 +116,7 @@
 {% endblock %}
 
 {% block extra_js %}
+<script type="text/javascript">
 
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
@@ -130,6 +131,8 @@ events_functions['JOIN_REQUEST'] = function(message){
 	  },
 	});
   };
+
+</script>
 
 
 <!-- Tables (Solves, Team Components) init -->
