@@ -406,6 +406,7 @@
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.buttons.js' %}"></script>
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.nonblock.js' %}"></script>
   <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.confirm.js' %}"></script>
+  <script src="{% static 'sctf/vendors/pnotify/dist/pnotify.callbacks.js' %}"></script>
   
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
@@ -490,6 +491,11 @@
             nonblock: {
               nonblock: true
             },
+            after_open: function(notice, timer_hide) {    
+              setTimeout(function() { // TODO Redirect to TEAM ADMIN
+                window.location.href="{% url 'team_admin' %}"
+            }, 1000);
+          }
           });
         },
         JOIN_REQUEST_APPROVED: function(message){
@@ -503,13 +509,13 @@
             nonblock: {
               nonblock: true
             },
-            before_close: function(notice, timer_hide) {
-              var source_note = 'Return false to cancel close. Use PNotify.queueRemove() to set the removal timer again.';
-              dont_alert('I\'m called before the notice closes. I\'m passed the PNotify object for the current notice: ' + notice);
-              dont_alert('I also have an argument called timer_hide, which is true if the notice was closed because the timer ran down. Value: ' + timer_hide);
-          },
-          });
-        },
+            after_open: function(notice, timer_hide) {    
+              setTimeout(function() { // TODO Redirect to GAME NOT STARTED
+                window.location.href="{% url 'index' %}"
+            }, 1000);
+          }
+        });
+      },
         JOIN_REQUEST_REJECTED: function(message){
           $('#badge_join').text(message['num_pending_requests']);
           new PNotify({
@@ -521,6 +527,11 @@
             nonblock: {
               nonblock: true
             },
+            after_open: function(notice, timer_hide) {    
+              setTimeout(function() { // TODO Redirect to NO TEAM
+                window.location.href="{% url 'no_team' %}"
+            }, 1000);
+          }
           });
         },
         JOIN_REQUEST_DELETED: function(message){
