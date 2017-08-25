@@ -71,6 +71,7 @@ $(document).ready(function() {
 	load_table();
 });
 
+
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
 	createNewNotification(
@@ -83,7 +84,7 @@ events_functions['JOIN_REQUEST'] = function(message){
 
 function load_table_ajax(){
 	$.ajax({
-		url: {% url 'api-users:user-team-request' %},
+		url: "{% url 'api-users:user-team-request' %}",
 		success: function (data) {
 			$("datatable-buttons-team-list").html(data);
 			load_table();
