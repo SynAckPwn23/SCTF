@@ -83,10 +83,12 @@ events_functions['JOIN_REQUEST'] = function(message){
 
 
 function load_table_ajax(){
+	$('#datatable-buttons-team-list').dataTable().fnDestroy();
 	$.ajax({
 		url: "{% url 'api-users:user-team-request' %}",
 		success: function (data) {
 			$("datatable-buttons-team-list").html(data);
+			console.log(data);
 			load_table();
 		},
 	});
