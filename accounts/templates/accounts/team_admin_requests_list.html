@@ -1,6 +1,7 @@
 <table data-order='[[ 0, "desc" ]]' width="100%" id="datatable-buttons-team-list" class="table table-striped table-bordered">
     <thead>
         <tr>
+            <th style="text-align: center;">Index</th>
             <th style="text-align: center;">Date</th>
             <th style="text-align: center;">User</th>
             <th style="text-align: center;">Status</th>
@@ -11,6 +12,7 @@
     <tbody>
         {% for join_request in join_requests %}
         <tr>
+            <td style="text-align: center;">{{forloop.counter}}</td>
             <td style="text-align: center;">{{ join_request.datetime }}</td>
             <td style="text-align: center;">
                 <ul class="list-inline">
