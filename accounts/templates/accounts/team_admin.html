@@ -120,16 +120,10 @@
 
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
-	new PNotify({
-	title: '<div class="full-width full-height"><p class="aligncenter">New Join Request IN ADMIN TEAM PAGE</p></div>',
-	text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i> User ${message['user_id']} wants to join your team</div>`,
-	hide: true,
-	type: 'success',
-	styling: 'bootstrap3',
-	nonblock: {
-		nonblock: true
-	  },
-	});
+	createNewNotification(
+		'New Join Request IN ADMIN TEAM PAGE',
+		`User ${message['user_id']} wants to join your team`
+	);
   };
 
 </script>

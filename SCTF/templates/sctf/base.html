@@ -542,6 +542,20 @@
         }
       };
 
+      function createNewNotification(title, text, type='success', after_open=null){
+        new PNotify({
+            title: '<div class="full-width full-height"><p style="text-align:center;">'+title+'</p></div>',
+            text: `<div class="full-width full-height"><img class="img_notify" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""> <i class="fa fa-info-circle"></i>`+text+`</div>`,
+            hide: true,
+            type: type,
+            styling: 'bootstrap3',
+            nonblock: {
+              nonblock: true
+            },
+            after_open: after_open
+          });
+      }
+
       function fake_load(url) {
         var cur_value = 1,
             progress;
