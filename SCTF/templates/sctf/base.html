@@ -503,6 +503,11 @@
             nonblock: {
               nonblock: true
             },
+            before_close: function(notice, timer_hide) {
+              var source_note = 'Return false to cancel close. Use PNotify.queueRemove() to set the removal timer again.';
+              dont_alert('I\'m called before the notice closes. I\'m passed the PNotify object for the current notice: ' + notice);
+              dont_alert('I also have an argument called timer_hide, which is true if the notice was closed because the timer ran down. Value: ' + timer_hide);
+          },
           });
         },
         JOIN_REQUEST_REJECTED: function(message){
