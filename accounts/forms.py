@@ -1,11 +1,7 @@
 from django import forms
-from django.core.exceptions import ValidationError
 from django.forms.models import ModelForm
-import django.forms.models as models
 from registration.forms import RegistrationForm
-
 from accounts.models import UserProfile, UserTeamRequest, Team
-from accounts.utils import user_without_team
 
 
 class CustomRegistrationForm(RegistrationForm):
@@ -24,16 +20,9 @@ class UserProfileForm(ModelForm):
 
 
 class TeamCreateForm(ModelForm):
-
-    def save(self, commit=True):
-        team = super(TeamCreateForm, self).save(commit=commit)
-        team.created_by.profile.team = team
-        team.created_by.profile.save()
-        return team
-
     class Meta:
         model = Team
-        fields = ['name', 'created_by']
+        fields = ['name']
 
 
 class UserTeamRequestCreateForm(ModelForm):
