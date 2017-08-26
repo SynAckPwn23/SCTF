@@ -414,7 +414,7 @@
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
  
   <script>
-      var d = new Date();
+      var d = new Date("{{config.GAME_START_DATETIME}}");
       function pad(n) { return ("0" + n).slice(-2); }    
       Number.prototype.pad = function (len) {
         return (new Array(len+1).join("0") + this).slice(-len);
@@ -423,7 +423,10 @@
       var later=new Date();
       // SET CTF DURATION +3h
       later.setHours(d.getHours()+3);
-      var endDate=later.getHours().pad(2)+":"+later.getMinutes().pad(2)+":"+later.getSeconds().pad(2);
+      var endDate =
+        later.getHours().pad({{ config.GAME_DURATION_HOURS }}) + ":" +
+        later.getMinutes().pad({{ config.GAME_DURATION_MINS }}) + ":" +
+        later.getSeconds();
 
       $('#clock').countdown(strDate +' '+endDate)
       .on('update.countdown', function(event) {
