@@ -469,7 +469,7 @@
         CHALLENGE_SOLVED: function(message){
           createNewNotification(
             message['team_id'] == my_team ? "You Rock! New Challenge Solved" : "Feel the Pressure?! New Challenge Solved",
-            `User ${message['user_id']} from team ${message['team_id']} solved challenge ${message['challenge_id']}`,
+            `User ${message['user_name']} from team ${message['team_id']} solved challenge ${message['challenge_id']}`,
             message['team_id'] == my_team ? "success" : "warning"
           );
         },
