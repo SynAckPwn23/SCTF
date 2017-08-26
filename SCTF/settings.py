@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'tinymce',
 
     'channels',
+    'constance',
+    'constance.backends.database',
 ]
 
 MIDDLEWARE = [
@@ -162,4 +164,19 @@ CHANNEL_LAYERS = {
 
         "ROUTING": "SCTF.routing.channel_routing",
     },
+}
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'status_select': ['django.forms.fields.ChoiceField', {
+        'widget': 'django.forms.Select',
+        'choices': (("SETUP", "Setup"), ("PLAY", "Play"), ("PAUSE", "Setup"), ("FINISH", "Finish"))
+    }],
+}
+
+CONSTANCE_CONFIG = {
+    'GAME_STATUS': ('SETUP', 'Game Status', 'status_select'),
+    'GAME_DURATION_DAYS': (0, 'Duration Days'),
+    'GAME_DURATION_HOURS': (0, 'Duration Hours'),
+    'GAME_DURATION_MINS': (0, 'Duration Minutes'),
 }
