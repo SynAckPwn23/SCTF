@@ -422,19 +422,13 @@
         {{config.GAME_START_DATETIME.minute}},
         {{config.GAME_START_DATETIME.second}},
       );
-      console.log(d);
-      function pad(n) { return ("0" + n).slice(-2); }    
-      Number.prototype.pad = function (len) {
-        return (new Array(len+1).join("0") + this).slice(-len);
-      }  
-      var strDate = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
 
-      var endDate =
-        d.getHours().pad({{ config.GAME_DURATION_HOURS }}) + ":" +
-        d.getMinutes().pad({{ config.GAME_DURATION_MINS }}) + ":" +
-        d.getSeconds();
-
-      $('#clock').countdown(strDate +' '+endDate)
+      console.log(new Date("{{game_end_datetime.isoformat}}"))
+      $('#clock').countdown(new Date("{{game_end_datetime.isoformat}}"), function(event) {
+        $(this).html(event.strftime('%D days %H:%M:%S'));
+      });
+      /*
+      $('#clock').countdown("{{game_end_datetime.isoformat}}")
       .on('update.countdown', function(event) {
         var format = '%H:%M:%S';
         if(event.offset.totalDays > 0) {
@@ -449,6 +443,7 @@
         $(this).html('CTF ENDED!')
           .parent().addClass('disabled');   
       });
+      */
     </script>
 
   <!-- Cookie -->
