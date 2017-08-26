@@ -69,5 +69,11 @@ def game_end(request):
 
 def game_paused_view(request):
     if config.GAME_STATUS != settings.GAME_STATUS_PAUSE:
-        return redirect('/')
+        return _return_back_redirect(request)
     return render(request, 'sctf/game_paused.html')
+
+
+def game_stopped_view(request):
+    if config.GAME_STATUS != settings.GAME_STATUS_FINISH:
+        return _return_back_redirect(request)
+    return render(request, 'sctf/game_stopped.html')
