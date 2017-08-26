@@ -67,7 +67,7 @@ def game_pause(request):
         return _return_back_redirect(request)
 
     config.GAME_STATUS = 'PAUSE'
-    #set_game_duration(datetime.now() - config.GAME_START_DATETIME)
+    set_game_duration(datetime.now() - config.GAME_START_DATETIME)
     return _return_back_redirect(request)
 
 

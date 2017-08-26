@@ -12,8 +12,8 @@ def game_duration():
 
 def set_game_duration(timedelta):
     config.GAME_DURATION_DAYS = timedelta.days
-    config.GAME_DURATION_HOURS = timedelta.hours
-    config.GAME_DURATION_MINS = timedelta.minutes
+    config.GAME_DURATION_HOURS = 0
+    config.GAME_DURATION_MINS = timedelta.seconds // 60
 
 
 def game_end_datetime():
