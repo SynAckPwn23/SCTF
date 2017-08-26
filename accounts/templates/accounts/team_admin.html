@@ -75,7 +75,7 @@ $(document).ready(function() {
 events_functions['JOIN_REQUEST'] = function(message){
 	$('#badge_join').text(message['num_pending_requests']);
 	createNewNotification(
-		'New Join Request IN ADMIN TEAM PAGE',
+		'Hey! New Join Request',
 		`User ${message['user_name']} wants to join your team`
 	);
 	load_table_ajax()

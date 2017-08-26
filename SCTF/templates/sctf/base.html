@@ -469,7 +469,7 @@
         CHALLENGE_SOLVED: function(message){
           createNewNotification(
             message['team_id'] == my_team ? "You Rock! New Challenge Solved" : "Feel the Pressure?! New Challenge Solved",
-            `User ${message['user_name']} from team ${message['team_id']} solved challenge ${message['challenge_id']}`,
+            `User ${message['user_name']} from team ${message['team_name']} solved challenge ${message['challenge_id']}`,
             message['team_id'] == my_team ? "success" : "warning"
           );
         },
@@ -486,7 +486,7 @@
           $('#badge_join').text(message['num_pending_requests']);
           createNewNotification(
             'Hey! Join Request Approved',
-            `You are now play for team ${message['team_id']}`,
+            `You are now play for team ${message['team_name']}`,
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -495,7 +495,7 @@
           $('#badge_join').text(message['num_pending_requests']);
           createNewNotification(
             'Oh Noo! Join Request Rejected',
-            `You can't play for team ${message['team_id']}`,
+            `You can't play for team ${message['team_name']}`,
             'error',
             function(notice, timer_hide){ fake_load("{% url 'no_team' %}"); }
           );
@@ -504,7 +504,7 @@
           $('#badge_join').text(message['num_pending_requests']);
           createNewNotification(
             'Hey! Join Request Deleted',
-            `User ${message['user_id']} don't wants anymore join your team`,
+            `User ${message['user_name']} don't wants anymore join your team`,
             'warning'
           );
         }
