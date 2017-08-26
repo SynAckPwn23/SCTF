@@ -422,18 +422,17 @@
         {{config.GAME_START_DATETIME.minute}},
         {{config.GAME_START_DATETIME.second}},
       );
+      console.log(d);
       function pad(n) { return ("0" + n).slice(-2); }    
       Number.prototype.pad = function (len) {
         return (new Array(len+1).join("0") + this).slice(-len);
       }  
       var strDate = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
-      var later=new Date();
-      // SET CTF DURATION +3h
-      later.setHours(d.getHours()+3);
+
       var endDate =
-        later.getHours().pad({{ config.GAME_DURATION_HOURS }}) + ":" +
-        later.getMinutes().pad({{ config.GAME_DURATION_MINS }}) + ":" +
-        later.getSeconds();
+        d.getHours().pad({{ config.GAME_DURATION_HOURS }}) + ":" +
+        d.getMinutes().pad({{ config.GAME_DURATION_MINS }}) + ":" +
+        d.getSeconds();
 
       $('#clock').countdown(strDate +' '+endDate)
       .on('update.countdown', function(event) {
