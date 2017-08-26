@@ -477,7 +477,7 @@
           $('#badge_join').text(message['num_pending_requests']);
           createNewNotification(
             'Hey! New Join Request',
-            `User ${message['user_id']} wants to join your team`,
+            `User ${message['user_name']} wants to join your team`,
             'success',
             function(notice, timer_hide){ /*fake_load("{% url 'team_admin' %}");*/ }
           );
