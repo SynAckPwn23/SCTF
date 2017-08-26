@@ -166,11 +166,16 @@ CHANNEL_LAYERS = {
     },
 }
 
+
+GAME_STATUS = ('Setup', 'Play', 'Pause', 'Finish')
+GAME_STATUS_CHOICES = [(status.upper(), status) for status in GAME_STATUS]
+GAME_STATUS_CHOICES_NAMES = [choice[0] for choice in GAME_STATUS_CHOICES]
+
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_ADDITIONAL_FIELDS = {
     'status_select': ['django.forms.fields.ChoiceField', {
         'widget': 'django.forms.Select',
-        'choices': (("SETUP", "Setup"), ("PLAY", "Play"), ("PAUSE", "Pause"), ("FINISH", "Finish"))
+        'choices': GAME_STATUS_CHOICES
     }],
 }
 
