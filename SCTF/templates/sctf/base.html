@@ -430,7 +430,7 @@
       var strDate = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
 
       var endDate =
-        d.getHours().pad({{ config.GAME_DURATION_HOURS }}) + ":" +
+        d.getHours().pad({{ config.GAME_DURATION_HOURS + 24 * config.GAME_DURATION_DAYS }}) + ":" +
         d.getMinutes().pad({{ config.GAME_DURATION_MINS }}) + ":" +
         d.getSeconds();
 
