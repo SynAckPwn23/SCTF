@@ -11,7 +11,6 @@ def ws_add(message):
     # Accept the connection
     message.reply_channel.send({"accept": True})
     # Add to the chat group
-    print(message.user)
     Group("challenge-solved").add(message.reply_channel)
     Group("user-{}".format(message.user.username)).add(message.reply_channel)
 
