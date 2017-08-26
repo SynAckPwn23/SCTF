@@ -9,7 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from datetime import datetime
 
-from SCTF.utils import game_end_datetime, set_game_duration
+from SCTF.consumers import send_message
+from SCTF.utils import set_game_duration
 from accounts.models import Team
 from challenges.models import Challenge
 from cities_light.models import Country
@@ -31,8 +32,6 @@ def index(request):
         'total_points_count': Challenge.objects.total_points(),
         'user_points_count': user.profile.total_points,
         'countries_users': json.dumps({c.code2.lower(): c.num_user for c in countries}),
-        'config': config,
-        'game_end_datetime': game_end_datetime()
     }
     return render(request, 'sctf/base.html', parameters)
 
@@ -61,7 +60,7 @@ def game_play(request):
 def game_pause(request):
     print(config.GAME_STATUS)
     if config.GAME_STATUS == 'PLAY':
-        # TODO manage game start
+        send_message()
         pass
     else:
         return _return_back_redirect(request)

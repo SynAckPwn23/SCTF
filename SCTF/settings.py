@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'accounts.middleware.LoginRequiredMiddleware',
     'accounts.middleware.LoggedInUserWithoutProfileMiddleware',
     'accounts.middleware.LoggedInUserWithoutTeamMiddleware',
+    'SCTF.middleware.FilterRequestByGameStateMiddlewareMixin',
 ]
 
 ROOT_URLCONF = 'SCTF.urls'
@@ -86,6 +87,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
+                'SCTF.context_processors.config_constant_processor'
             ],
         },
     },
