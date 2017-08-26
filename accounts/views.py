@@ -91,14 +91,13 @@ def no_team_view(request, create_form=TeamCreateForm(), join_form=UserTeamReques
 
     pending_request = request.user.userteamrequest_set.pending().first()
     if pending_request:
-        return render(request, 'accounts/pending_request.html', {
-            'join_request': pending_request
-        })
+        return render(request, 'accounts/pending_request.html', dict(join_request=pending_request))
 
     return render(request, 'accounts/no_team.html', dict(
         team_create_form=create_form,
         team_join_form=join_form,
-        teams=Team.objects.all()
+        teams=Team.objects.all(),
+        join_request_rejected=request.user.userteamrequest_set.rejected().exists()
     ))
 
 
@@ -148,7 +147,9 @@ class TeamAdminView(TemplateView):
         return super(TeamAdminView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        return {'join_requests': self.request.user.created_team.first().userteamrequest_set.all()}
+        return dict(
+            join_requests=self.request.user.created_team.first().userteamrequest_set.order_by('-datetime')
+        )
 
 
 def user_detail(request, pk=None):
