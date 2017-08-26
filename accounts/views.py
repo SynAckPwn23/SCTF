@@ -96,7 +96,8 @@ def no_team_view(request, create_form=TeamCreateForm(), join_form=UserTeamReques
     return render(request, 'accounts/no_team.html', dict(
         team_create_form=create_form,
         team_join_form=join_form,
-        teams=Team.objects.all()
+        teams=Team.objects.all(),
+        join_request_rejected=request.user.userteamrequest_set.rejected().exists()
     ))
 
 
