@@ -415,21 +415,33 @@
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
- 
+
+
   <script>
-      var d = new Date(
+      var startDate = new Date(Date.UTC(
         {{config.GAME_START_DATETIME.year}},
         {{config.GAME_START_DATETIME.month}} - 1,
         {{config.GAME_START_DATETIME.day}},
         {{config.GAME_START_DATETIME.hour}},
         {{config.GAME_START_DATETIME.minute}},
         {{config.GAME_START_DATETIME.second}},
-      );
+      ));
+      
+      var endDate = new Date(Date.UTC(
+        {{game_end_datetime.year}},
+        {{game_end_datetime.month}} - 1,
+        {{game_end_datetime.day}},
+        {{game_end_datetime.hour}},
+        {{game_end_datetime.minute}},
+        {{game_end_datetime.second}},
+      ));
 
-      console.log('start date ' + d);
-      console.log('end date ' + new Date("{{game_end_datetime.isoformat}}"));
+      console.log('start date ' + startDate);
+      console.log('end date ' + endDate);
 
-      $('#clock').countdown(new Date("{{game_end_datetime.isoformat}}"), function(event) {
+      {% if config.GAME_STATUS == 'PLAY' %}
+
+      $('#clock').countdown(endDate, function(event) {
         $(this).html(event.strftime('%D days %H:%M:%S'));
       });
       /*
@@ -449,7 +461,12 @@
           .parent().addClass('disabled');   
       });
       */
+
+      {% endif %}
+
+
     </script>
+
 
   <!-- Cookie -->
   <script type="text/javascript">

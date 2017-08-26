@@ -169,7 +169,7 @@ CHANNEL_LAYERS = {
 
 GAME_STATUS = ('Setup', 'Play', 'Pause', 'Finish')
 GAME_STATUS_CHOICES = [(status.upper(), status) for status in GAME_STATUS]
-GAME_STATUS_CHOICES_NAMES = [choice[0] for choice in GAME_STATUS_CHOICES]
+GAME_STATUS_CHOICES_NAMES = [choice[0] for choice in GAME_STATUS]
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_ADDITIONAL_FIELDS = {
