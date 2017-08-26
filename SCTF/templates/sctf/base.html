@@ -485,8 +485,9 @@
       socket.onmessage = function(e) {
         console.log(e);
         var message = JSON.parse(e['data']);
-        var event = message['event'];
-        events_functions[event](message);
+        if ('event' in message && message['event'] in events_functions) {
+          events_functions[message['event']](message);
+        }
       }
       // Call onopen directly if socket is already open
       if (socket.readyState == WebSocket.OPEN) socket.onopen();
@@ -533,7 +534,46 @@
             `User ${message['user_name']} don't wants anymore join your team`,
             'warning'
           );
-        }
+        },
+
+        // GAME STATUS NOTIFICATIONS
+        GAME_START: function(message){
+          createNewNotification(
+            'GAME START',
+            'game start text',
+            'success',
+            function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
+          );
+        },
+
+        GAME_PAUSE: function(message){
+          createNewNotification(
+            'GAME PAUSE',
+            'game pause text',
+            'warning',
+            function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
+          );
+        },
+
+        GAME_RESUME: function(message){
+          createNewNotification(
+            'GAME RESUME',
+            'game resume text',
+            'success',
+            function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
+          );
+        },
+
+        GAME_END: function(message){
+          createNewNotification(
+            'GAME END',
+            'game end text',
+            'error',
+            function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
+          );
+        },
+
+
       };
 
       function createNewNotification(title, text, type='success', after_open=null){

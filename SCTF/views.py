@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from datetime import datetime
 
 from SCTF.consumers import send_message
-from SCTF.utils import set_game_duration
+from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message
 from accounts.models import Team
 from challenges.models import Challenge
 from cities_light.models import Country
@@ -39,15 +39,13 @@ def index(request):
 def _return_back_redirect(request):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def game_play(request):
-    print(config.GAME_STATUS)
     if config.GAME_STATUS == 'SETUP':
-        # TODO manage game start
-        pass
+        send_start_message()
     elif config.GAME_STATUS == 'PAUSE':
-        # TODO manage game resume
-        pass
+        send_resume_message()
     else:
         return _return_back_redirect(request)
 
@@ -58,15 +56,19 @@ def game_play(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def game_pause(request):
-    print(config.GAME_STATUS)
     if config.GAME_STATUS == 'PLAY':
-        send_message()
-        pass
-    else:
-        return _return_back_redirect(request)
+        send_pause_message()
+        config.GAME_STATUS = 'PAUSE'
+        set_game_duration(datetime.now() - config.GAME_START_DATETIME)
+    return _return_back_redirect(request)
 
-    config.GAME_STATUS = 'PAUSE'
-    set_game_duration(datetime.now() - config.GAME_START_DATETIME)
+
+@user_passes_test(lambda u: u.is_superuser)
+def game_end(request):
+    if config.GAME_STATUS == 'PLAY':
+        send_pause_message()
+        config.GAME_STATUS = 'PAUSE'
+        set_game_duration(datetime.now() - config.GAME_START_DATETIME)
     return _return_back_redirect(request)
 
 
