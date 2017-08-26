@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^admin/game_start/', views.game_play, name='admin_game_start'),
     url(r'^admin/game_pause/', views.game_pause, name='admin_game_pause'),
+    url(r'^admin/game_end/', views.game_end, name='admin_game_end'),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 

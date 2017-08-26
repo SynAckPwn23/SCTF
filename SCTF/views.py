@@ -7,10 +7,9 @@ from django.db.models import Count
 from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from SCTF.consumers import send_message
-from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message
+from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message, send_end_message
 from accounts.models import Team
 from challenges.models import Challenge
 from cities_light.models import Country
@@ -42,33 +41,33 @@ def _return_back_redirect(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def game_play(request):
-    if config.GAME_STATUS == 'SETUP':
+    if config.GAME_STATUS == settings.GAME_STATUS_SETUP:
         send_start_message()
-    elif config.GAME_STATUS == 'PAUSE':
+    elif config.GAME_STATUS == settings.GAME_STATUS_PAUSE:
         send_resume_message()
     else:
         return _return_back_redirect(request)
 
-    config.GAME_STATUS = 'PLAY'
+    config.GAME_STATUS = settings.GAME_STATUS_PLAY
     config.GAME_START_DATETIME = datetime.now()
     return _return_back_redirect(request)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def game_pause(request):
-    if config.GAME_STATUS == 'PLAY':
+    if config.GAME_STATUS == settings.GAME_STATUS_PLAY:
         send_pause_message()
-        config.GAME_STATUS = 'PAUSE'
+        config.GAME_STATUS = settings.GAME_STATUS_PAUSE
         set_game_duration(datetime.now() - config.GAME_START_DATETIME)
     return _return_back_redirect(request)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def game_end(request):
-    if config.GAME_STATUS == 'PLAY':
-        send_pause_message()
-        config.GAME_STATUS = 'PAUSE'
-        set_game_duration(datetime.now() - config.GAME_START_DATETIME)
+    if config.GAME_STATUS in (settings.GAME_STATUS_PLAY, settings.GAME_STATUS_PAUSE):
+        send_end_message()
+        config.GAME_STATUS = settings.GAME_STATUS_FINISH
+        set_game_duration(timedelta())
     return _return_back_redirect(request)
 
 
@@ -81,24 +80,24 @@ class ChangeGameStaus(APIView):
         if status not in settings.GAME_STATUS_CHOICES_NAMES:
             return Response('Invalid status.', status=400)
 
-        if config.GAME_STATUS == 'FINISH':
+        if config.GAME_STATUS == settings.GAME_STATUS_FINISH:
             return Response('Game is finished', status=400)
 
-        if status == 'SETUP':
+        if status == settings.GAME_STATUS_SETUP:
             return Response('Cannot set SETUP', status=400)
 
         if status == config.GAME_STATUS:
             return Response('Same status', status=400)
 
-        if status == 'PLAY':
-            if config.GAME_STATUS == 'SETUP':
+        if status == settings.GAME_STATUS_PLAY:
+            if config.GAME_STATUS == settings.GAME_STATUS_SETUP:
                 # TODO manage game start
                 pass
-            elif config.GAME_STATUS == 'PAUSE':
+            elif config.GAME_STATUS == settings.GAME_STATUS_PAUSE:
                 # TODO manage game resume
                 pass
 
-            config.GAME_STATUS = 'PLAY'
+            config.GAME_STATUS = settings.GAME_STATUS_PLAY
             config.GAME_START_DATETIME = datetime.now()
 
             # TODO manage game

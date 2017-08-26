@@ -228,7 +228,7 @@
                 </li>
                 {% endif %}
                  {% if user.is_staff %}
-                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                <li><a href="{% url 'admin_game_end' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                     <i class="fa fa-stop red"></i>
                 </a>
                 </li>
