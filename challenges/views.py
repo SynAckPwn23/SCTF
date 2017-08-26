@@ -82,7 +82,9 @@ class ChallengeSolvedViewSet(CreateModelMixin, GenericViewSet):
             send_message({
                 'event': 'CHALLENGE_SOLVED',
                 'user_id': user.pk,
+                'user_name': user.username,
                 'team_id': user.profile.team.pk,
+                'team_name': user.profile.team.name,
                 'challenge_id': challenge.pk,
             })
             return Response('OK')
