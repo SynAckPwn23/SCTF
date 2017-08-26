@@ -170,7 +170,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_ADDITIONAL_FIELDS = {
     'status_select': ['django.forms.fields.ChoiceField', {
         'widget': 'django.forms.Select',
-        'choices': (("SETUP", "Setup"), ("PLAY", "Play"), ("PAUSE", "Setup"), ("FINISH", "Finish"))
+        'choices': (("SETUP", "Setup"), ("PLAY", "Play"), ("PAUSE", "Pause"), ("FINISH", "Finish"))
     }],
 }
 
