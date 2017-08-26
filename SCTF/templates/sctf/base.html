@@ -426,7 +426,9 @@
         {{config.GAME_START_DATETIME.second}},
       );
 
-      console.log(new Date("{{game_end_datetime.isoformat}}"))
+      console.log('start date ' + d);
+      console.log('end date ' + new Date("{{game_end_datetime.isoformat}}"));
+
       $('#clock').countdown(new Date("{{game_end_datetime.isoformat}}"), function(event) {
         $(this).html(event.strftime('%D days %H:%M:%S'));
       });
