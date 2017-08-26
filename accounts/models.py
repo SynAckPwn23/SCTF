@@ -190,12 +190,16 @@ def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
 
-def _send_join_request_to_admin(event, team):
+def _send_join_request_to_admin(event, team, from_user=None):
     from SCTF.consumers import send_message_to_user
-    send_message_to_user({
-        'event': event,
-        'num_pending_requests': team.userteamrequest_set.pending().count()
-    }, team.created_by)
+    send_message_to_user(dict(
+        event=event,
+        num_pending_requests=team.userteamrequest_set.pending().count(),
+        team_id=team.id,
+        team_name=team.name,
+        user_id=from_user.id if from_user else None,
+        user_name=from_user.username if from_user else None,
+    ), team.created_by)
 
 
 @receiver(post_save, sender=UserTeamRequest)
@@ -204,12 +208,13 @@ def join_request_approved_add_to_team(sender, instance, **kwargs):
         instance.user.profile.team = instance.team
         instance.user.profile.save()
 
+
 @receiver(post_save, sender=UserTeamRequest)
 def web_socket_notify_join_request(sender, instance, created, **kwargs):
     from SCTF.consumers import send_message_to_user
 
     if created:
-        _send_join_request_to_admin('JOIN_REQUEST', instance.team)
+        _send_join_request_to_admin('JOIN_REQUEST', instance.team, from_user=instance.user)
 
     elif instance.status == 'A':
         send_message_to_user({'event': 'JOIN_REQUEST_APPROVED'}, instance.user)
@@ -222,4 +227,4 @@ def web_socket_notify_join_request(sender, instance, created, **kwargs):
 
 @receiver(post_delete, sender=UserTeamRequest)
 def web_socket_notify_join_request_delete(sender, instance, **kwargs):
-    _send_join_request_to_admin('JOIN_REQUEST_DELETED', instance.team)
+    _send_join_request_to_admin('JOIN_REQUEST_DELETED', instance.team, from_user=instance.user)
