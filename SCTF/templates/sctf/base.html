@@ -414,7 +414,14 @@
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
  
   <script>
-      var d = new Date("{{config.GAME_START_DATETIME}}");
+      var d = new Date(
+        {{config.GAME_START_DATETIME.year}},
+        {{config.GAME_START_DATETIME.month}},
+        {{config.GAME_START_DATETIME.day}},
+        {{config.GAME_START_DATETIME.hour}},
+        {{config.GAME_START_DATETIME.minute}},
+        {{config.GAME_START_DATETIME.second}},
+      );
       function pad(n) { return ("0" + n).slice(-2); }    
       Number.prototype.pad = function (len) {
         return (new Array(len+1).join("0") + this).slice(-len);
