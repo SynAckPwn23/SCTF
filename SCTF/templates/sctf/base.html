@@ -232,11 +232,11 @@
                     <i class="fa fa-stop red"></i>
                 </a>
                 </li>
-                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                <li><a href="{% url 'admin_game_pause' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                   <i class="fa fa-pause orange"></i>
               </a>
                 </li>
-                <li><a href="#" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                <li><a href="{% url 'admin_game_start' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
                 <i class="fa fa-play green"></i>
                </a>
                 </li>
@@ -251,7 +251,10 @@
     <div class="right_col" role="main">
         <div class="clearfix"></div>
             <div class="countdown alert alert-info alert-dismissible fade in" role="alert">
-                <h1 style="text-align:center;">COUNTDOWN: <span id="clock"></span></h1>
+                <h1 style="text-align:center;">
+                  ({{config.GAME_STATUS}})
+                  COUNTDOWN: <span id="clock"></span>
+                </h1>
             </div>
       <!-- top tiles -->
       <div class="row tile_count">
