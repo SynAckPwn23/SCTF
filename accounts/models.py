@@ -217,10 +217,14 @@ def web_socket_notify_join_request(sender, instance, created, **kwargs):
         _send_join_request_to_admin('JOIN_REQUEST', instance.team, from_user=instance.user)
 
     elif instance.status == 'A':
-        send_message_to_user({'event': 'JOIN_REQUEST_APPROVED'}, instance.user)
+        send_message_to_user(
+            {'event': 'JOIN_REQUEST_APPROVED', 'team_name': instance.team.name, 'team_id': instance.team.id},
+            instance.user)
 
     elif instance.status == 'R':
-        send_message_to_user({'event': 'JOIN_REQUEST_REJECTED'}, instance.user)
+        send_message_to_user(
+            {'event': 'JOIN_REQUEST_REJECTED', 'team_name': instance.team.name, 'team_id': instance.team.id},
+            instance.user)
 
 
 
