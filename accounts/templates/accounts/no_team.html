@@ -36,9 +36,7 @@
 					</div>
         </div>
       </div>
-      {% if join_request_rejected %}
-        <h1>REJECTED</h1>
-      {% endif %}
+      
 
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -97,6 +95,13 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
+              {% if join_request_rejected %}
+              <div class="alert alert-warning alert-dismissible fade in" role="warning">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  Your join request has been canceled! Please join another team or contact your team admin.
+                </div>
+            {% endif %}
             <form method="post" action="{% url 'user_team_request_create' %}">
               {% csrf_token %}
             <div class="form-group">
