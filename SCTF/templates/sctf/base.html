@@ -486,7 +486,7 @@
           $('#badge_join').text(message['num_pending_requests']);
           createNewNotification(
             'Hey! Join Request Approved',
-            `You are now play for team ${message['team_id']}`,
+            `You are now play for team ${message['team_name']}`,
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
