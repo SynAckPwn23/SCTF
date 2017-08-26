@@ -65,3 +65,9 @@ def game_end(request):
         config.GAME_STATUS = settings.GAME_STATUS_FINISH
         set_game_duration(timedelta())
     return _return_back_redirect(request)
+
+
+def game_paused_view(request):
+    if config.GAME_STATUS != settings.GAME_STATUS_PAUSE:
+        return redirect('/')
+    return render(request, 'sctf/game_paused.html')
