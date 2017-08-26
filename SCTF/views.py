@@ -5,8 +5,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Count
 from django.shortcuts import render, redirect
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from datetime import datetime, timedelta
 
 from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message, send_end_message
@@ -18,8 +16,6 @@ from constance import config
 
 
 def index(request):
-    user = request.user
-
     countries = Country.objects\
         .annotate(num_user=Count('userprofile'))\
         .filter(num_user__gt=0)
@@ -29,7 +25,7 @@ def index(request):
         'teams_count': Team.objects.count(),
         'challenges_count': Challenge.objects.count(),
         'total_points_count': Challenge.objects.total_points(),
-        'user_points_count': user.profile.total_points,
+        'user_points_count': request.user.profile.total_points,
         'countries_users': json.dumps({c.code2.lower(): c.num_user for c in countries}),
     }
     return render(request, 'sctf/base.html', parameters)
@@ -69,39 +65,3 @@ def game_end(request):
         config.GAME_STATUS = settings.GAME_STATUS_FINISH
         set_game_duration(timedelta())
     return _return_back_redirect(request)
-
-
-class ChangeGameStaus(APIView):
-    # TODO superuser required
-    # TODO only post
-
-    def post(self, request, **kwargs):
-        status = request.data.get('status')
-        if status not in settings.GAME_STATUS_CHOICES_NAMES:
-            return Response('Invalid status.', status=400)
-
-        if config.GAME_STATUS == settings.GAME_STATUS_FINISH:
-            return Response('Game is finished', status=400)
-
-        if status == settings.GAME_STATUS_SETUP:
-            return Response('Cannot set SETUP', status=400)
-
-        if status == config.GAME_STATUS:
-            return Response('Same status', status=400)
-
-        if status == settings.GAME_STATUS_PLAY:
-            if config.GAME_STATUS == settings.GAME_STATUS_SETUP:
-                # TODO manage game start
-                pass
-            elif config.GAME_STATUS == settings.GAME_STATUS_PAUSE:
-                # TODO manage game resume
-                pass
-
-            config.GAME_STATUS = settings.GAME_STATUS_PLAY
-            config.GAME_START_DATETIME = datetime.now()
-
-            # TODO manage game
-            return Response('Same status', status=200)
-
-
-
