@@ -5,7 +5,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Count
 from django.shortcuts import render, redirect
-from datetime import datetime, timedelta
+from datetime import timedelta
+from django.utils import timezone
 
 from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message, send_end_message
 from accounts.models import Team
@@ -32,7 +33,7 @@ def index(request):
 
 
 def _return_back_redirect(request):
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect('/')
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -45,7 +46,7 @@ def game_play(request):
         return _return_back_redirect(request)
 
     config.GAME_STATUS = settings.GAME_STATUS_PLAY
-    config.GAME_START_DATETIME = datetime.now()
+    config.GAME_START_DATETIME = timezone.now()
     return _return_back_redirect(request)
 
 
@@ -54,7 +55,7 @@ def game_pause(request):
     if config.GAME_STATUS == settings.GAME_STATUS_PLAY:
         send_pause_message()
         config.GAME_STATUS = settings.GAME_STATUS_PAUSE
-        set_game_duration(datetime.now() - config.GAME_START_DATETIME)
+        set_game_duration(timezone.now() - config.GAME_START_DATETIME)
     return _return_back_redirect(request)
 
 

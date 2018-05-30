@@ -14,7 +14,7 @@ import os
 
 from django.urls.base import reverse_lazy
 from registration_defaults.settings import *
-
+from django.utils import timezone
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -190,5 +190,5 @@ CONSTANCE_CONFIG = {
     'GAME_DURATION_DAYS': (0, 'Duration Days'),
     'GAME_DURATION_HOURS': (0, 'Duration Hours'),
     'GAME_DURATION_MINS': (0, 'Duration Minutes'),
-    'GAME_START_DATETIME': (datetime.now(), 'Duration Minutes', datetime),
+    'GAME_START_DATETIME': (timezone.now(), 'Duration Minutes', datetime),
 }
