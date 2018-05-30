@@ -5,6 +5,8 @@ Security Capture the Flag Platform is the best platform for CTF Challenges. You 
 
 Live  Demo: https://156.ip-151-80-57.eu/
 
+User: demo/demo
+
 We would love to see how you use this awesome Platform. You can notify us about your site, app or service by mail. 
 
 # Install & Start
