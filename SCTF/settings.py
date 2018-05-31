@@ -9,12 +9,11 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
 import os
 
 from django.urls.base import reverse_lazy
 from registration_defaults.settings import *
-from django.utils import timezone
+import pytz
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -186,9 +185,9 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 
 from datetime import datetime
 CONSTANCE_CONFIG = {
-    'GAME_STATUS': ('SETUP', 'Game Status', 'status_select'),
-    'GAME_DURATION_DAYS': (0, 'Duration Days'),
+    'GAME_STATUS': ('PLAY', 'Game Status', 'status_select'),
+    'GAME_DURATION_DAYS': (1, 'Duration Days'),
     'GAME_DURATION_HOURS': (0, 'Duration Hours'),
     'GAME_DURATION_MINS': (0, 'Duration Minutes'),
-    'GAME_START_DATETIME': (timezone.now(), 'Duration Minutes', datetime),
+    'GAME_START_DATETIME': (datetime.now(pytz.utc), 'Duration Minutes', datetime),
 }
