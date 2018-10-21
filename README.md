@@ -1,4 +1,9 @@
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.rawsec.ml/ctf_platforms.html#SCTF)
+[![GitHub stars](https://img.shields.io/github/stars/SynAckPwn23/SCTF.svg)](https://github.com/SynAckPwn23/SCTF/stargazers)
+[![GitHub license](https://img.shields.io/github/license/SynAckPwn23/SCTF.svg)](https://github.com/SynAckPwn23/SCTF/blob/master/LICENSE.txt)
+
 # SCTF
+
 Security Capture the Flag Platform is the best platform for CTF Challenges. You will be able to define Teams, Challenges and access to relative statistics. SCTF is lightweight and fast django application that is able to support large competition. 
 
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Main.PNG" width="100%"/>
