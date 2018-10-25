@@ -24,20 +24,20 @@ We would love to see how you use this awesome Platform. You can notify us about 
 <b>2. Install Requirements</b>:
 
 	$ pip install -r requirements.txt
+	
+<b>3. Reset Application</b>:
+	
+	$ chmod +x reset.sh
+	$ ./reset.sh
 
-<b>3. [OPTIONAL] Install Demo Data</b>:
+<b>4. [OPTIONAL] Install Demo Data</b>:
 	
 	$ chmod +x loaddata.sh
 	$ ./loaddata.sh
 
-<b>4. Start Application</b>:
+<b>5. Start Application</b>:
 	
 	$ python manage.py runserver 0.0.0.0:<[port]>
-	
-<b>5. Reset Application</b>:
-	
-	$ chmod +x reset.sh
-	$ ./reset.sh
 	
 # Features
 
