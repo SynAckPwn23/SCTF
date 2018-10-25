@@ -16,6 +16,7 @@ We would love to see how you use this awesome Platform. You can notify us about 
 
 # Install & Start
 <b>1. [OPTIONAL] Virtual Environment (Strongly Suggested)</b>: 
+
 	$ apt-get install python3-venv
 	$ pyvenv-3.5 venv
 	$ source venv/bin/activate
