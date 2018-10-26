@@ -16,7 +16,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-							<h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > CHALLENGES CATEGORIES</h2>
+							<h2 class="main_color_text"><i class="fa fa-home"></i><a class="main_color_text" href="{% url 'index' %}"> HOME</a> > CHALLENGES CATEGORIES</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -26,8 +26,8 @@
 					<div class="x_content">
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron" style="background-color:#333;">
-								<h1 style="text-align: center;color:#fff;"><span class="blue"><i class="fa fa-bug"></i> You're playing for {{team.name}}</span></h1><br>
-								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tags"></i> Total Categories:<span class="blue"> #{{categories_num}}</span> | <i class="fa fa-bug"></i> Total Challenges:<span class="blue"> #{{challenges_count}}</span></h3>
+								<h1 style="text-align: center;color:#fff;"><span class="main_color_text"><i class="fa fa-bug"></i> You're playing for {{team.name}}</span></h1><br>
+								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tags"></i> Total Categories:<span class="main_color_text"> #{{categories_num}}</span> | <i class="fa fa-bug"></i> Total Challenges:<span class="main_color_text"> #{{challenges_count}}</span></h3>
 							</div>
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="blue"><a class="blue" href="{% url 'challenges_category' category_pk=category.pk %}"><i class="fa fa-tag"></i> {{ category.name }} </a></h2>
+						<h2 class="main_color_text"><a class="main_color_text" href="{% url 'challenges_category' category_pk=category.pk %}"><i class="fa fa-tag"></i> {{ category.name }} </a></h2>
 							<p style="position:absolute;margin:8px 0 0 15px;"class="label label-warning">[TODO_COUNT] Challenges</p>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
