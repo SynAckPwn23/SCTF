@@ -4,7 +4,7 @@
 
 # SCTF
 
-Security Capture the Flag Platform is the best platform for CTF Challenges. You will be able to define Teams, Challenges and access to relative statistics. SCTF is lightweight and fast django application that is able to support large competition. 
+Security Capture the Flag Platform is the best platform for Security CTF Challenges. You will be able to define Teams, Challenges and access to relative statistics. SCTF is lightweight and fast django application that is able to support large competition. 
 
 <img src="https://raw.github.com/SynAckPwn23/SCTF/master/Uploads_For_Demo/img/Main.PNG" width="100%"/>
 
@@ -65,7 +65,7 @@ We would love to see how you use this awesome Platform. You can notify us about 
 We encourage contributions to the project. Briefly, please fork from https://github.com/SynAckPwn23/SCTF, create a branch, make and commit your changes, then create a pull request.
 
 # License Information
-<b>SCTF is licensed under the GNU General Public License v3.0 - Copyright (c) [2017] [Daniele Votta, Filippo Schiavio]</b>
+<b>SCTF is licensed under the GNU General Public License v3.0 - Copyright (c) [2018] [Daniele Votta, Filippo Schiavio]</b>
 
 Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
 
