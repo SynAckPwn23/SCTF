@@ -30,6 +30,7 @@ def index(request):
 class CustomRegistrationView(RegistrationView):
     form_class = CustomRegistrationForm
     profile_form = None
+    success_url = '/'
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
