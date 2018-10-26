@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 
-from accounts.models import Team, UserTeamRequest
+from accounts.models import Team, UserTeamRequest, User
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
 from accounts.serializers import UserTeamRequestListSerializer
 from accounts.utils import user_without_team
@@ -40,7 +40,8 @@ class CustomRegistrationView(RegistrationView):
             return self.form_invalid(form)
 
     def register(self, form):
-        new_user = super(CustomRegistrationView, self).register(form)
+        # new_user = super(CustomRegistrationView, self).register(form)
+        new_user = form.save()
         profile = self.profile_form.save(commit=False)
         profile.user = new_user
         profile.save()
