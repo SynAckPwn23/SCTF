@@ -417,6 +417,11 @@ body .container.body .right_col {
 .left_col .mCSB_dragger {
     max-height: 400px !important
 }
+.main_color{
+    /*color:#1498D5;*/
+    color:#2343ee;
+}
+
 .blue {
     /*color: #3498DB*/
     /*color:#00d1ec*/
