@@ -35,9 +35,9 @@ router = routers.SimpleRouter()
 urlpatterns.append(url(r'^api/', include(router.urls)))
 
 urlpatterns.append(url(r'^api/challenges/',
-                       include('challenges.api_urls', namespace='api-challenge')))
+                       include('challenges.api_urls', namespace='api_challenge')))
 
 
 urlpatterns.append(url(r'^api/users/',
-                       include('accounts.api_urls', namespace='api-users')))
+                       include('accounts.api_urls', namespace='api_users')))
 

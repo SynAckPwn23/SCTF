@@ -13,6 +13,6 @@ def btn_challenge_class(current_user, challenge):
     return 'btn-primary'
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def challenge_is_solved(context, *args):
     return context['user'].profile.solved_challenges.filter(pk=context['challenge'].pk).exists()

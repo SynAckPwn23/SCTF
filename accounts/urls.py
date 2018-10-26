@@ -8,8 +8,8 @@ urlpatterns = [
         CustomRegistrationView.as_view(),
         name='registration_register'
     ),
-    url(r'^registration/', include('registration.backends.simple.urls')),
-    url(r'^registration/', include('registration.auth_urls')),
+    url(r'^registration/', include('django_registration.backends.one_step.urls')),
+    url(r'^registration/', include('django.contrib.auth.urls')),
     url(r'^teams/$', views.index, name='teams'),
     url(r'^team/$', views.team_detail, name='team'),
     url(r'^team/(?P<pk>\w+)$', views.team_detail, name='team'),

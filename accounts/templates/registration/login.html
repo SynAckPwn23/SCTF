@@ -50,7 +50,7 @@
           </div>
           <div class="x_content">
             <br>
-            <form method="post" action="{% url 'auth_login' %}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+            <form method="post" action="{% url 'login' %}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{% trans form.username.label_tag %} <span style="color:#E74C3C;" class="required">*</span>
                   </label>

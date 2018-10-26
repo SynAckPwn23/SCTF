@@ -1,4 +1,4 @@
-from django.urls import resolve
+from django.urls import resolve, reverse_lazy
 from rest_framework.reverse import reverse
 
 from django.utils.functional import curry
@@ -41,15 +41,15 @@ class FilterRequestMiddlewareMixin(MiddlewareMixin):
 
 class LoginRequiredMiddleware(FilterRequestMiddlewareMixin):
 
-    redirect_url = reverse('auth_login')
+    redirect_url = reverse_lazy('login')
 
     def custom_filter(self, request):
-        return not request.user.is_authenticated()
+        return not request.user.is_authenticated
 
 
 class LoggedInUserWithoutProfileMiddleware(FilterRequestMiddlewareMixin):
     allowed_paths = [
-        reverse('auth_logout')
+        reverse_lazy('logout')
     ]
 
     def custom_filter(self, request):

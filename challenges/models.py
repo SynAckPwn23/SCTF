@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Sum
-from django.db.models.functions.base import Coalesce
+from django.db.models.functions import Coalesce
 
 RelatedUserModel = 'accounts.UserProfile'
 
@@ -38,7 +38,7 @@ class Challenge(models.Model):
     objects = ChallengeQuerySet.as_manager()
 
     name = models.CharField(max_length=256)
-    category = models.ForeignKey('challenges.Category', related_name='challenges')
+    category = models.ForeignKey('challenges.Category', related_name='challenges', on_delete=models.CASCADE)
     description = models.TextField()
     key = models.CharField(max_length=256)
     points = models.IntegerField()
@@ -65,7 +65,7 @@ class Challenge(models.Model):
 
 
 class Hint(models.Model):
-    challenge = models.ForeignKey('challenges.Challenge', related_name='hints')
+    challenge = models.ForeignKey('challenges.Challenge', related_name='hints', on_delete=models.CASCADE)
     text = models.TextField()
 
     class Meta:
@@ -77,7 +77,7 @@ class Hint(models.Model):
 
 class Attachment(models.Model):
     name = models.CharField(max_length=256)
-    challenge = models.ForeignKey('challenges.Challenge', related_name='attachments')
+    challenge = models.ForeignKey('challenges.Challenge', related_name='attachments', on_delete=models.CASCADE)
     description = models.TextField()
     file = models.ImageField(upload_to='challenges')
 
@@ -86,8 +86,8 @@ class Attachment(models.Model):
 
 
 class ChallengeSolved(models.Model):
-    user = models.ForeignKey(RelatedUserModel)
-    challenge = models.ForeignKey('challenges.Challenge')
+    user = models.ForeignKey(RelatedUserModel, on_delete=models.CASCADE)
+    challenge = models.ForeignKey('challenges.Challenge', on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -95,8 +95,8 @@ class ChallengeSolved(models.Model):
 
 
 class ChallengeFail(models.Model):
-    user = models.ForeignKey(RelatedUserModel)
-    challenge = models.ForeignKey('challenges.Challenge')
+    user = models.ForeignKey(RelatedUserModel, on_delete=models.CASCADE)
+    challenge = models.ForeignKey('challenges.Challenge', on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

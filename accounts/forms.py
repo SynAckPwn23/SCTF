@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.models import ModelForm
-from registration.forms import RegistrationForm
+# from registration.forms import RegistrationForm
+from django_registration.forms import RegistrationForm
 from accounts.models import UserProfile, UserTeamRequest, Team
 
 

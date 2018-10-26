@@ -80,7 +80,7 @@
 			else {
 				$.ajax({
 					type: 'post',
-					url: '{% url "api-challenge:solve-challenge-list" %}',
+					url: '{% url "api_challenge:solve-challenge-list" %}',
 					data: { challenge: id, key: $('#key_' + id).val() },
 					success: function (data) {
 						key.removeClass('parsley-error');

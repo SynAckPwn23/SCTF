@@ -5,7 +5,8 @@ from django.http import HttpResponseForbidden
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from registration.backends.simple.views import RegistrationView
+# from registration.backends.simple.views import RegistrationView
+from django_registration.views import RegistrationView
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
