@@ -1,3 +1,4 @@
+
 from constance import config
 from . import consumers
 
@@ -11,11 +12,16 @@ def game_duration():
     )
 
 
-def set_game_duration(timedelta):
-    print(timedelta)
-    config.GAME_DURATION_DAYS = timedelta.days
-    config.GAME_DURATION_MINS += config.GAME_DURATION_HOURS * 60 - timedelta.seconds / 60
+def set_game_duration(delta):
+    from datetime import timedelta
+    duration = timedelta(
+        days=config.GAME_DURATION_DAYS,
+        seconds=config.GAME_DURATION_HOURS * 3600 + config.GAME_DURATION_MINS * 60
+    )
+    new_duration = duration - delta
+    config.GAME_DURATION_DAYS = new_duration.days
     config.GAME_DURATION_HOURS = 0
+    config.GAME_DURATION_MINS = new_duration.seconds / 60
 
 
 def game_end_datetime():
