@@ -537,6 +537,15 @@
         },
 
         // GAME STATUS NOTIFICATIONS
+        GAME_RESET: function(message){
+          createNewNotification(
+            'GAME RESET',
+            'game reset text',
+            'success',
+            function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
+          );
+        },
+
         GAME_START: function(message){
           createNewNotification(
             'GAME START',
