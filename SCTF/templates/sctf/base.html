@@ -225,7 +225,7 @@
                 </li>
                 {% if user.created_team.exists %}
                 <li><a href="{% url 'team_admin' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
-                    <i class="fa fa-bell"></i>
+                    <i class="fa fa-group"> </i><i class="fa fa-bell"></i>
                     <span id="badge_join" class="badge bg-green">{{user.profile.team.userteamrequest_set.pending.count}}</span>
                   </a>
                 </li>
