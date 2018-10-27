@@ -540,7 +540,7 @@
         GAME_RESET: function(message){
           createNewNotification(
             'GAME RESET',
-            'game reset text',
+            'The Game is going to reset.',
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -549,7 +549,7 @@
         GAME_START: function(message){
           createNewNotification(
             'GAME START',
-            'game start text',
+            'The Game is going to start. Good Luck!',
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -558,7 +558,7 @@
         GAME_PAUSE: function(message){
           createNewNotification(
             'GAME PAUSE',
-            'game pause text',
+            'The Game is going to start. Take a break!',
             'warning',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -567,7 +567,7 @@
         GAME_RESUME: function(message){
           createNewNotification(
             'GAME RESUME',
-            'game resume text',
+            'The Game is going to resume. Good Luck!',
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -576,7 +576,7 @@
         GAME_END: function(message){
           createNewNotification(
             'GAME END',
-            'game end text',
+            'The Game is ended!',
             'error',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
