@@ -185,7 +185,7 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 
 from datetime import datetime
 CONSTANCE_CONFIG = {
-    'GAME_STATUS': ('PLAY', 'Game Status', 'status_select'),
+    'GAME_STATUS': ('SETUP', 'Game Status', 'status_select'),
     'GAME_DURATION_DAYS': (1, 'Duration Days'),
     'GAME_DURATION_HOURS': (0, 'Duration Hours'),
     'GAME_DURATION_MINS': (0, 'Duration Minutes'),
