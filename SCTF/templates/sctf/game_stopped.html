@@ -14,7 +14,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2 class="main_color_text"><i class="fa fa-home"></i><a class="main_color_text" href="{% url 'index' %}"> FINISH</a> > RESULTS...</h2>
+						<h2 class="main_color_text"><i class="fa fa-home"></i><a class="main_color_text" href="{% url 'index' %}"> FINISH</a>
+							> RESULTS...</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -24,128 +25,113 @@
 					<div class="x_content">
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron" style="background-color:#333;">
-								<h1 style="text-align: center;color:#fff;"><span class="main_color_text"><i class="fa fa-gamepad"></i> GAME FINISHED</span></h1><br>
+								<h1 style="text-align: center;color:#fff;"><span class="main_color_text"><i class="fa fa-gamepad"></i> GAME
+										FINISHED</span></h1><br>
 								<h3 style="text-align:center;color:#fff;"><i class="fa fa-trophy"></i> CONGRATULATIONS!</h3>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
 		</div>
-
-
 		<!-- to move in a dedicated winner page-->
 		<div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-					  
-										<h2 class="main_color_text"><i class="fa fa-trophy"></i> FINAL SCORE</h2>
-										{% if user.is_staff %}
-										<li><a href="{% url 'admin_game_setup' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
-											<i class="fa fa-undo red"></i>
-										 </a>
-											</li>
-											{% endif %}
-
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="x_content">
-                    <div class="row">
-
-                      <div class="col-md-12">
-
-                        <!-- price element -->
-                        <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top:50px;">
-							<div class="pricing ui-ribbon-container">
-							  <div class="ui-ribbon-wrapper">
-								<div class="ui-ribbon" style="background:#C0C0C0;">
-								  SECOND
-								</div>
-							  </div>
-							  <div class="title">
-									<h2>2nd</h2>
-									<h1><i class="fa fa-rocket"></i> Team 23</h1>
-									<span><i class="fa fa-flag"></i> 333pt</span>
-							  </div>
-							  <div class="x_content">
-										<img style="display:block;margin:5px auto;text-align:center;width:150px;" src="{% static 'sctf/images/silver.png' %}" alt="">
-
-							
-								<div class="pricing_footer">
-								  <button onclick="window.print();" class="btn btn-default" role="button">See Certificate!</button>
-								</div>
-							  </div>
-							</div>
-						  </div>
-						  <!-- price element -->
-
-                        <!-- price element -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                          <div class="pricing ui-ribbon-container">
-                            <div class="ui-ribbon-wrapper">
-                              <div class="ui-ribbon" style="background:#FFD700;">
-                                WINNER
-                              </div>
-                            </div>
-                            <div class="title">
-									<h2>1st</h2>
-									<h1><i class="fa fa-rocket"></i> Team 2</h1>
-									<span><i class="fa fa-flag"></i> 340pt</span>
-                            </div>
-                            <div class="x_content">
-																<img style="display:block;margin:5px auto;text-align:center;width:200px;" src="{% static 'sctf/images/gold.png' %}" alt="">
-
-                              
-                              <div class="pricing_footer">
-																	<button onclick="window.print();" class="btn btn-default" role="button">See Certificate!</button>
-																</div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- price element -->
-
-                        <!-- price element -->
-                        <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top:50px;">
-							<div class="pricing ui-ribbon-container">
-							  <div class="ui-ribbon-wrapper">
-								<div class="ui-ribbon" style="background:#CD7F32;">
-								  THIRD
-								</div>
-							  </div>
-							  <div class="title">
-									<h2>3rd</h2>
-								<h1><i class="fa fa-rocket"></i> Team 10</h1>
-								<span><i class="fa fa-flag"></i> 223pt</span>
-							  </div>
-							  <div class="x_content">
-										<img style="display:block;margin:5px auto;text-align:center;width:150px;" src="{% static 'sctf/images/bronze.png' %}" alt="">
-
-							
-								<div class="pricing_footer">
-										<button onclick="window.print();" class="btn btn-default" role="button">See Certificate!</button>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2 class="main_color_text"><i class="fa fa-trophy"></i> FINAL SCORE</h2>
+						{% if user.is_staff %}
+						<li><a href="{% url 'admin_game_setup' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+								<i class="fa fa-undo red"></i>
+							</a>
+						</li>
+						{% endif %}
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<div class="row">
+							<div class="col-md-12">
+								<!-- price element -->
+								<div class="col-md-4 col-sm-6 col-xs-12" style="margin-top:50px;">
+									<div class="pricing ui-ribbon-container">
+										<div class="ui-ribbon-wrapper">
+											<div class="ui-ribbon" style="background:#C0C0C0;">
+												SECOND
+											</div>
+										</div>
+										<div class="title">
+											<h2>2nd</h2>
+											<h1><i class="fa fa-rocket"></i> Team 23</h1>
+											<span><i class="fa fa-flag"></i> 333pt</span>
+										</div>
+										<div class="x_content">
+											<img style="display:block;margin:5px auto;text-align:center;width:150px;" src="{% static 'sctf/images/silver.png' %}"
+											 alt="">
+											<div class="pricing_footer">
+												<button onclick="window.print();" class="btn btn-default" role="button">See Certificate!</button>
+											</div>
+										</div>
 									</div>
-							  </div>
+								</div>
+								<!-- price element -->
+								<!-- price element -->
+								<div class="col-md-4 col-sm-6 col-xs-12">
+									<div class="pricing ui-ribbon-container">
+										<div class="ui-ribbon-wrapper">
+											<div class="ui-ribbon" style="background:#FFD700;">
+												WINNER
+											</div>
+										</div>
+										<div class="title">
+											<h2>1st</h2>
+											<h1><i class="fa fa-rocket"></i> Team 2</h1>
+											<span><i class="fa fa-flag"></i> 340pt</span>
+										</div>
+										<div class="x_content">
+											<img style="display:block;margin:5px auto;text-align:center;width:200px;" src="{% static 'sctf/images/gold.png' %}"
+											 alt="">
+											<div class="pricing_footer">
+												<button onclick="window.print();" class="btn btn-default" role="button">See Certificate!</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- price element -->
+								<!-- price element -->
+								<div class="col-md-4 col-sm-6 col-xs-12" style="margin-top:50px;">
+									<div class="pricing ui-ribbon-container">
+										<div class="ui-ribbon-wrapper">
+											<div class="ui-ribbon" style="background:#CD7F32;">
+												THIRD
+											</div>
+										</div>
+										<div class="title">
+											<h2>3rd</h2>
+											<h1><i class="fa fa-rocket"></i> Team 10</h1>
+											<span><i class="fa fa-flag"></i> 223pt</span>
+										</div>
+										<div class="x_content">
+											<img style="display:block;margin:5px auto;text-align:center;width:150px;" src="{% static 'sctf/images/bronze.png' %}"
+											 alt="">
+											<div class="pricing_footer">
+												<button onclick="window.print();" class="btn btn-default" role="button">See Certificate!</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- price element -->
 							</div>
-						  </div>
-						  <!-- price element -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!-- to move -->
-
+		</div>
+		<!-- to move -->
 	</div>
 </div>
 {% endblock %}
