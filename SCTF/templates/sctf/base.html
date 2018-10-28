@@ -624,18 +624,6 @@
                 progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
                 // Pretend to do something.
                 var timer = setInterval(function() {
-                    /*if (cur_value == 70) {
-                        loader.update({
-                            title: "Redirect in 3 seconds...",
-                            icon: "fa fa-circle-o-notch fa-spin"
-                        });
-                    }
-                    if (cur_value == 80) {
-                        loader.update({
-                            title: "Redirect in 2 seconds...",
-                            icon: "fa fa-refresh fa-spin"
-                        });
-                    }*/
                     if (cur_value >= 100) {
                         // Remove the interval.
                         window.clearInterval(timer);
