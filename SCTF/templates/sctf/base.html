@@ -600,16 +600,12 @@
       function fake_load(url) {
         var cur_value = 1,
             progress;
-    
         // Make a loader.
         var loader = new PNotify({
             title: "Redirect...",
             text: '<div class="progress progress-striped active" style="margin:0">\
-      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">\
-        <span class="sr-only">0%</span>\
-      </div>\
-    </div>',
-            //icon: 'fa fa-moon-o fa-spin',
+                  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">\
+                  <span class="sr-only">0%</span></div></div>',
             icon: 'fa fa-cog fa-spin',
             hide: false,
             buttons: {
@@ -635,16 +631,10 @@
                 }, 90);
             }
         });
-       
-       setTimeout(function() {
-        window.location=url
-    }, 1000);
+       setTimeout(function(){window.location=url},1000);
     }
-
     </script>
   {% endif %}
   {% block extra_js %}{% endblock %}
-
 </body>
-
 </html>
