@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^admin/game_start/', views.game_play, name='admin_game_start'),
     url(r'^admin/game_pause/', views.game_pause, name='admin_game_pause'),
+    url(r'^admin/game_setup/', views.game_reset, name='admin_game_setup'),
 
     url(r'^game_paused/$', views.game_paused_view, name='game_paused_view'),
     url(r'^game_stopped/$', views.game_stopped_view, name='game_stopped_view'),
