@@ -41,3 +41,7 @@ def send_resume_message():
 
 def send_end_message():
     consumers.send_message(dict(event='GAME_END'))
+
+
+def send_reset_message():
+    consumers.send_message(dict(event='GAME_RESET'))
