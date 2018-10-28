@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from datetime import timedelta
 from django.utils import timezone
 
-from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message, send_end_message
+from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message, send_end_message, send_reset_message
 from accounts.models import Team
 from challenges.models import Challenge
 from cities_light.models import Country
@@ -71,7 +71,7 @@ def game_end(request):
 @user_passes_test(lambda u: u.is_superuser)
 def game_reset(request):
     if config.GAME_STATUS == settings.GAME_STATUS_FINISH:
-        # TODO send_reset_message()
+        send_reset_message()
         config.GAME_STATUS = settings.GAME_STATUS_FINISH
         config.GAME_DURATION_DAYS = settings.CONSTANCE_CONFIG['GAME_DURATION_DAYS'][0]
         config.GAME_DURATION_HOURS = settings.CONSTANCE_CONFIG['GAME_DURATION_HOURS'][0]
