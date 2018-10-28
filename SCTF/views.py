@@ -68,6 +68,17 @@ def game_end(request):
     return _return_back_redirect(request)
 
 
+@user_passes_test(lambda u: u.is_superuser)
+def game_reset(request):
+    if config.GAME_STATUS == settings.GAME_STATUS_FINISH:
+        # TODO send_reset_message()
+        config.GAME_STATUS = settings.GAME_STATUS_FINISH
+        config.GAME_DURATION_DAYS = settings.CONSTANCE_CONFIG['GAME_DURATION_DAYS'][0]
+        config.GAME_DURATION_HOURS = settings.CONSTANCE_CONFIG['GAME_DURATION_HOURS'][0]
+        config.GAME_DURATION_MINS = settings.CONSTANCE_CONFIG['GAME_DURATION_MINS'][0]
+    return _return_back_redirect(request)
+
+
 def game_paused_view(request):
     if config.GAME_STATUS != settings.GAME_STATUS_PAUSE:
         return _return_back_redirect(request)
@@ -84,3 +95,4 @@ def game_setup_state_view(request):
     if config.GAME_STATUS != settings.GAME_STATUS_SETUP:
         return _return_back_redirect(request)
     return render(request, 'sctf/game_setup.html')
+
