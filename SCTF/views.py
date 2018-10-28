@@ -76,6 +76,7 @@ def game_reset(request):
         config.GAME_DURATION_DAYS = settings.CONSTANCE_CONFIG['GAME_DURATION_DAYS'][0]
         config.GAME_DURATION_HOURS = settings.CONSTANCE_CONFIG['GAME_DURATION_HOURS'][0]
         config.GAME_DURATION_MINS = settings.CONSTANCE_CONFIG['GAME_DURATION_MINS'][0]
+        # TODO reset solved challenges
     return _return_back_redirect(request)
 
 
