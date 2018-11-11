@@ -1,12 +1,9 @@
 from django.shortcuts import redirect
 from django.utils.deprecation import MiddlewareMixin
 from django.conf import settings
-
 from constance import config
 
-
 class FilterRequestByGameStateMiddlewareMixin(MiddlewareMixin):
-
     def process_request(self, request):
         availables = ('login', 'logout', 'game_reset', 'game_reset_users', 'register')
         if any(available in request.path for available in availables):
