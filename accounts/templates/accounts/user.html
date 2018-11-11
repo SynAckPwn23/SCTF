@@ -57,18 +57,23 @@
                 <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
                 </li>
                 <li>
-                  <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{user_detail_page.profile.job}}
                 </li>
                 <li class="m-top-xs">
                   <i class="fa fa-external-link user-profile-icon"></i>
-                  <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                  <a href="http://www.kimlabs.com/profile/" target="_blank">{{user_detail_page.profile.website}}</a>
                 </li>
                 <li class="m-top-xs">
                   <i class="fa fa-external-link user-profile-icon"></i>
                   <a href="http://www.kimlabs.com/profile/" target="_blank">{{user_detail_page.email}}</a>
                 </li>
               </ul>
-              <a class="btn btn-success" href=""><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+              <a class="btn btn-success" href="{% url 'user_update' %}">
+                <i class="fa fa-edit m-right-xs"></i>Edit Profile
+              </a>
+              <a class="btn btn-success" href="{% url 'password_change' %}">
+                <i class="fa fa-edit m-right-xs"></i>Change Password
+              </a>
               <br />
               <!-- start skills -->
               <h4>Skills</h4>

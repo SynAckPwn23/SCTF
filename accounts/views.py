@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 
-from accounts.models import Team, UserTeamRequest, User
+from accounts.models import Team, UserTeamRequest, User, UserProfile
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
 from accounts.serializers import UserTeamRequestListSerializer
 from accounts.utils import user_without_team
@@ -165,6 +165,16 @@ def user_detail(request, pk=None):
         'time_points': json.dumps(user.profile.score_over_time),
     }
     return render(request, 'accounts/user.html', parameters)
+
+
+class UserProfileUpdateView(UpdateView):
+    model = UserProfile
+    fields = ['image', 'job', 'website', 'skills']
+    success_url = reverse_lazy('user')
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
 
 
 class UserTeamRequestDelete(DeleteView):

@@ -1,0 +1,141 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% block title %}Security CTF | Register{% endblock %}
+{% load static %} 
+{% block content %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="">
+		<div class="page-title">
+			<div class="title_left">
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+             <h2 class="main_color_text"><i class="fa fa-home"></i> <a class="main_color_text" href="{% url 'login' %}">LOGIN</a> > REGISTRATION</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <div class="bs-example" data-example-id="simple-jumbotron">
+                <div class="jumbotron" style="background-color:#333;">
+                  <h3 style="color:#fff;text-align:center;margin-top:-25px;">Security Capture the Flag Platform.</h3><br>
+				  <h3 style="text-align:center;margin-bottom:-20px;"><img style="width:8%;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""></h3><br>
+                  <h1 style="text-align:center;"><span class="main_color_text">So You wanna register to CTF, eh?</span></h1>
+				  <h3 style="color:#fff;text-align:center;margin-bottom:-20px;">Are You in Try Harder mode?</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2 class="main_color_text"><i class="fa fa-info-circle"></i> PLEASE INSERT YOUR DATA <small>required fields are identified by<span style="color:#E74C3C;">*</span></small></h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<br>
+
+						<form enctype="multipart/form-data" method="post" action='' id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">{% csrf_token %}
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email: <span style="color:#E74C3C;" class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="email" id="id_email"
+										   type="email" required="required" value="{{ userprofile.user.email }}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="website"
+										   id="website" type="text" value="{{ userprofile.website }}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="file" id="image" name="image"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="job">Job Title: <span style="color:#E74C3C;" class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input class="form-control col-md-7 col-xs-12" type="text" name="job"
+										   id="job" type="text" required="required" value="{{ userprofile.job }}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="skills">Main Skills:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input id="tags_1" type="text" name="skills" class="tags form-control"
+										   value="{{ userprofile.skills }}" />
+									<div class="clearfix"></div>
+									<span class="helptext">
+										<ul>
+											<li>Write skill and press Enter to add.</li>
+										</ul>
+									</span>
+									<!--<div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>-->
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							{% if form.errors %}
+							<ul id="parsley-id-5" class="parsley-errors-list filled">
+								<li class="parsley-required">{% blocktrans %}Your data seems to be incorrect. Please respect the constraints.{% endblocktrans %}</li>
+							</ul>
+							{{ form.errors }}
+							<!-- Dopo il test lato server ripristinare val lato client required="required" su ogni input -->
+							{% endif %} {% if profile_form.errors %} {{ profile_form.errors }} {% endif %}
+							<div class="form-group">
+							</div>
+							<div class="ln_solid"></div>
+							<div style="float:left;">
+								<i class="fa fa-user blue"></i> <a href="{% url 'login' %}">
+							{% blocktrans %}Already an account, Log-In?{% endblocktrans %}
+								</a>
+							</div>
+							<div class="form-group">
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+									<button class="btn btn-primary" type="reset">Cancel</button>
+									<button type="submit" value="{% trans " Save " %}" class="btn btn-success">Save</button>
+									<input type="hidden" name="next" value="{{next}}" />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+{% endblock %} {% block extra_js %}
+
+<script>
+	$(document).ready(function () {
+		init_TagsInput();
+	});
+
+	function init_TagsInput() {
+		if (typeof $.fn.tagsInput !== 'undefined') {
+			$('#tags_1').tagsInput({
+				width: 'auto'
+			});
+		}
+	};
+</script>
+{% endblock %}
