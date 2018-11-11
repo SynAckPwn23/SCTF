@@ -78,7 +78,7 @@ def game_reset(request):
 @user_passes_test(lambda u: u.is_superuser)
 def game_reset_users(request):
     send_reset_message()
-    UserProfile.objects.all().delete()
+    UserProfile.objects.filter(is_superuser=False).all().delete()
     _reset_game_status_challenges()
     return _return_back_redirect(request)
 
