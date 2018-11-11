@@ -9,7 +9,7 @@ from datetime import timedelta
 from django.utils import timezone
 
 from SCTF.utils import set_game_duration, send_pause_message, send_start_message, send_resume_message, send_end_message, send_reset_message
-from accounts.models import Team
+from accounts.models import Team, UserProfile
 from challenges.models import Challenge, ChallengeSolved, ChallengeFail
 from cities_light.models import Country
 from constance import config
@@ -71,13 +71,25 @@ def game_end(request):
 @user_passes_test(lambda u: u.is_superuser)
 def game_reset(request):
     send_reset_message()
+    _reset_game_status_challenges()
+    return _return_back_redirect(request)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def game_reset_users(request):
+    send_reset_message()
+    UserProfile.objects.all().delete()
+    _reset_game_status_challenges()
+    return _return_back_redirect(request)
+
+
+def _reset_game_status_challenges():
     config.GAME_STATUS = settings.GAME_STATUS_SETUP
     config.GAME_DURATION_DAYS = settings.CONSTANCE_CONFIG['GAME_DURATION_DAYS'][0]
     config.GAME_DURATION_HOURS = settings.CONSTANCE_CONFIG['GAME_DURATION_HOURS'][0]
     config.GAME_DURATION_MINS = settings.CONSTANCE_CONFIG['GAME_DURATION_MINS'][0]
     ChallengeSolved.objects.all().delete()
     ChallengeFail.objects.all().delete()
-    return _return_back_redirect(request)
 
 
 def game_paused_view(request):
