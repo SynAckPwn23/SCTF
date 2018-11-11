@@ -77,8 +77,11 @@ def game_reset(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def game_reset_users(request):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
     send_reset_message()
     UserProfile.objects.filter(user__is_staff=False).all().delete()
+    User.objects.filter(is_staff=False).all().delete()
     _reset_game_status_challenges()
     return _return_back_redirect(request)
 
