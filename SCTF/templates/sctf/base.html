@@ -427,8 +427,6 @@
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
-
-
   <script>
       var startDate = new Date(Date.UTC(
         {{config.GAME_START_DATETIME.year}},
@@ -450,30 +448,16 @@
 
       console.log('start date ' + startDate);
       console.log('end date ' + endDate);
-
+      
       {% if config.GAME_STATUS == 'PLAY' %}
-
       $('#clock').countdown(endDate, function(event) {
         $(this).html(event.strftime('%D days %H:%M:%S'));
-      });
-      /*
-      $('#clock').countdown("{{game_end_datetime.isoformat}}")
-      .on('update.countdown', function(event) {
-        var format = '%H:%M:%S';
-        if(event.offset.totalDays > 0) {
-          format = '%-d day%!d ' + format;
-        }
-        if(event.offset.weeks > 0) {
-          format = '%-w week%!w ' + format;
-        }
-        $(this).html(event.strftime(format));
-      })
-      .on('finish.countdown', function(event) {
-        $(this).html('CTF ENDED!')
+      }).on('finish.countdown', function(event) {
+        $(this).html('CTF ENDED! TODO REDIRECT')
           .parent().addClass('disabled');   
+          /*Insert Redirect to END GAME /*
+          /*fake_load("{% url 'admin_game_end' %}")*/
       });
-      */
-
       {% endif %}
     </script>
 
@@ -640,7 +624,7 @@
                 }, 90);
             }
         });
-       setTimeout(function(){window.location=url},1000);
+       setTimeout(function(){window.location=url},2000);
     }
     </script>
   {% endif %}
