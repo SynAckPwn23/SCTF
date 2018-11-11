@@ -54,14 +54,10 @@ class CustomRegistrationView(RegistrationView):
 
 
 def team_detail(request, pk=None):
-    # TODO check the more efficent way (order here or not)
-    #team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
-    team = Team.objects.ordered().get(pk=pk or request.user.profile.team.pk)
-    
-    categories = Category.objects.all()
-
     user = request.user
-    team = user.profile.team
+    team = user.profile.team if pk is None else Team.objects.get(pk=pk)
+
+    categories = Category.objects.all()
     categories_num_done_user = [
         c.challenges.filter(solved_by=user.profile).distinct().count()
         for c in categories
