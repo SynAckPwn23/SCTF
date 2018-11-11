@@ -8,8 +8,10 @@ from constance import config
 class FilterRequestByGameStateMiddlewareMixin(MiddlewareMixin):
 
     def process_request(self, request):
-        if 'login' in request.path or 'logout' in request.path:
+        availables = ('login', 'logout', 'game_reset')
+        if any(available in request.path for available in availables):
             return
+
         if config.GAME_STATUS == settings.GAME_STATUS_SETUP and \
                 'game_setup' not in request.path and \
                 'game_start' not in request.path and \
