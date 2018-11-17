@@ -9,7 +9,7 @@ python manage.py loaddata categories.json
 
 
 # Challenges
-python manage.py loadtestdata challenges.Challenge:50 -u challenges.fixtures.autofixtures.ChallengeAutoFixture
+python manage.py loadtestdata challenges.Challenge:150 -u challenges.fixtures.autofixtures.ChallengeAutoFixture
 
 
 

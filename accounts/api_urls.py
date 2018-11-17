@@ -3,6 +3,9 @@ from django.conf.urls import url
 
 from .views import UserRequestHTMLTable
 
+app_name = 'api_users'
+
+
 '''
 router = routers.SimpleRouter()
 router.register(r'user-team-request', UserTeamRequestViewSet, 'user-team-request')

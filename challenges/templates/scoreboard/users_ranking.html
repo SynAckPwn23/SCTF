@@ -17,7 +17,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-					<h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > USERS RANKING</h2>							
+					<h2 class="main_color_text"><i class="fa fa-home"></i><a class="main_color_text" href="{% url 'index' %}"> HOME</a> > USERS RANKING</h2>							
 							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -27,8 +27,8 @@
 					<div class="x_content">
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron" style="background-color:#333;">
-								<h1 style="text-align: center;color:#fff;"><span class="blue"><i class="fa fa-edit"></i> Check Your Score</h1><br>
-								<h3 style="text-align:center;color:#fff;"><i class="fa fa-sort-amount-desc"></i> Users Rank:<span class="blue"> #{{categories_num}}</span></h3>
+								<h1 style="text-align: center;color:#fff;"><span class="main_color_text"><i class="fa fa-edit"></i> Check Your Score</h1><br>
+								<h3 style="text-align:center;color:#fff;"><i class="fa fa-sort-amount-desc"></i> Users Rank:<span class="main_color_text"> #{{categories_num}}</span></h3>
 							</div>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
-							<h2 class="blue"><i class="fa fa-info-circle"></i> USERS RANKING</h2>
+							<h2 class="main_color_text"><i class="fa fa-info-circle"></i> USERS RANKING</h2>
 							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -79,7 +79,7 @@
 										<ul class="list-inline">
 											<li>
 												<img src="/{{profile.image.url}}" class="avatar" alt="Avatar">
-												<a class="blue" href="{% url 'user' pk=profile.user.pk %}">
+												<a class="main_color_text" href="{% url 'user' pk=profile.user.pk %}">
 													<font size="0" style="display:block;">{{profile.user.username}}</font>
 												</a>
 											</li>

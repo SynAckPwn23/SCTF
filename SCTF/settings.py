@@ -147,7 +147,7 @@ MEDIA_ROOT = 'uploaded_media/'
 MEDIA_URL = 'media/'
 
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = reverse_lazy('auth_login')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 
 REST_FRAMEWORK = {

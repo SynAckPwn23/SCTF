@@ -7,6 +7,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Authors: Daniele Votta & Filippo Schiavio |
+  Security Capture the Flag Platform is the best platform for Security CTF Challenges.">
+  <meta name="theme-color" content="#317EFB"/>
   <title>{% block title %}Security CTF | Home{% endblock %}</title>
   <link href="{% static 'sctf/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
   <!-- Font Awesome -->
@@ -124,7 +127,7 @@
           <a data-toggle="tooltip" data-placement="top" title="Lock">
             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
           </a>
-          <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'auth_logout' %}">
+          <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'logout' %}">
             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
           </a>
         </div>
@@ -134,7 +137,6 @@
     <!-- top navigation -->
     <div class="top_nav">
       <div class="nav_menu">
-        
         <nav>
           <div class="nav toggle">
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -152,7 +154,7 @@
                 {% if user.created_team.exists %}
                   <li><a href="{% url 'team_admin' %}"> Team Administration</a></li>
                 {% endif %}
-                <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
               </ul>
             </li>
             
@@ -222,7 +224,7 @@
                 </li>
                 {% if user.created_team.exists %}
                 <li><a href="{% url 'team_admin' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
-                    <i class="fa fa-bell"></i>
+                    <i class="fa fa-group"> </i><i class="fa fa-bell"></i>
                     <span id="badge_join" class="badge bg-green">{{user.profile.team.userteamrequest_set.pending.count}}</span>
                   </a>
                 </li>
@@ -240,6 +242,15 @@
                 <i class="fa fa-play green"></i>
                </a>
                 </li>
+                
+                <li><a href="{% url 'admin_game_setup' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                  <i class="fa fa-history blue"></i>
+                 </a>
+                  </li>
+                  <li><a href="{% url 'admin_game_reset_users' %}" class="dropdown-toggle info-number" data-toggle="" aria-expanded="false">
+                    <i class="fa fa-trash-o red"></i>
+                   </a>
+                    </li>
                 {% endif %}
           </ul>
         </nav>
@@ -294,7 +305,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-                <h2 class="blue"><i class="fa fa-home"></i> HOME</h2>
+                <h2 class="main_color_text"><i class="fa fa-home"></i> HOME</h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -306,7 +317,7 @@
                 <div class="jumbotron" style="background-color:#333;">
                   <h3 style="color:#fff;text-align:center;margin-top:-25px;">Hi, {{user.username}} nice to see You here!</h3><br>
                   <h3 style="text-align:center;margin-bottom:-20px;"><img style="width:8%;" src="{% static 'sctf/images/top_big_blue.png' %}" alt=""></h3><br>
-                  <h1 style="text-align:center;margin-bottom:-20px;"><span class="blue">Let's Go! Give Your best</span></h1>
+                  <h1 style="text-align:center;margin-bottom:-20px;"><span class="main_color_text">Let's Go! Give Your best</span></h1>
                 </div>
               </div>
             </div>
@@ -316,7 +327,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2 class="blue"><i class="fa fa-info-circle"></i> USERS LOCATION</h2>
+              <h2 class="main_color_text"><i class="fa fa-info-circle"></i> USERS LOCATION</h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -368,7 +379,7 @@
     <!-- footer content -->
     <footer>
       <div class="pull-right">
-        Capture The Flag Platform by <a href="#" class="green"> Daniele Votta</a> | <a href="#" class="green"> Filippo Schiavio</a>
+        {% now "Y" %} - Capture The Flag Platform by <a href="https://github.com/SynAckPwn23/SCTF/blob/master/README.md" target="_blank" class="green"> Daniele Votta</a> | <a href="https://github.com/SynAckPwn23/SCTF/blob/master/README.md" target="_blank" class="green"> Filippo Schiavio</a>
       </div>
       <div class="clearfix"></div>
     </footer>
@@ -415,8 +426,6 @@
   <!-- Custom Theme Scripts -->
   <script src="{% static 'sctf/build/js/custom.js' %}"></script>
   <script src="{% static 'sctf/build/js/countdown.js' %}"></script>
-
-
   <script>
       var startDate = new Date(Date.UTC(
         {{config.GAME_START_DATETIME.year}},
@@ -438,35 +447,18 @@
 
       console.log('start date ' + startDate);
       console.log('end date ' + endDate);
-
+      
       {% if config.GAME_STATUS == 'PLAY' %}
-
       $('#clock').countdown(endDate, function(event) {
         $(this).html(event.strftime('%D days %H:%M:%S'));
-      });
-      /*
-      $('#clock').countdown("{{game_end_datetime.isoformat}}")
-      .on('update.countdown', function(event) {
-        var format = '%H:%M:%S';
-        if(event.offset.totalDays > 0) {
-          format = '%-d day%!d ' + format;
-        }
-        if(event.offset.weeks > 0) {
-          format = '%-w week%!w ' + format;
-        }
-        $(this).html(event.strftime(format));
-      })
-      .on('finish.countdown', function(event) {
-        $(this).html('CTF ENDED!')
+      }).on('finish.countdown', function(event) {
+        $(this).html('CTF ENDED! TODO REDIRECT')
           .parent().addClass('disabled');   
+          /*Insert Redirect to END GAME /*
+          /*fake_load("{% url 'admin_game_end' %}")*/
       });
-      */
-
       {% endif %}
-
-
     </script>
-
 
   <!-- Cookie -->
   <script type="text/javascript">
@@ -537,10 +529,19 @@
         },
 
         // GAME STATUS NOTIFICATIONS
+        GAME_RESET: function(message){
+          createNewNotification(
+            'GAME RESET',
+            'The Game is going to reset.',
+            'warning',
+            function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
+          );
+        },
+
         GAME_START: function(message){
           createNewNotification(
             'GAME START',
-            'game start text',
+            'The Game is going to start. Good Luck!',
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -549,7 +550,7 @@
         GAME_PAUSE: function(message){
           createNewNotification(
             'GAME PAUSE',
-            'game pause text',
+            'The Game is going to start. Take a break!',
             'warning',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -558,7 +559,7 @@
         GAME_RESUME: function(message){
           createNewNotification(
             'GAME RESUME',
-            'game resume text',
+            'The Game is going to resume. Good Luck!',
             'success',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
@@ -567,13 +568,11 @@
         GAME_END: function(message){
           createNewNotification(
             'GAME END',
-            'game end text',
+            'The Game is ended!',
             'error',
             function(notice, timer_hide){ fake_load("{% url 'index' %}"); }
           );
         },
-
-
       };
 
       function createNewNotification(title, text, type='success', after_open=null){
@@ -593,16 +592,12 @@
       function fake_load(url) {
         var cur_value = 1,
             progress;
-    
         // Make a loader.
         var loader = new PNotify({
             title: "Redirect...",
             text: '<div class="progress progress-striped active" style="margin:0">\
-      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">\
-        <span class="sr-only">0%</span>\
-      </div>\
-    </div>',
-            //icon: 'fa fa-moon-o fa-spin',
+                  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">\
+                  <span class="sr-only">0%</span></div></div>',
             icon: 'fa fa-cog fa-spin',
             hide: false,
             buttons: {
@@ -617,39 +612,21 @@
                 progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
                 // Pretend to do something.
                 var timer = setInterval(function() {
-                    /*if (cur_value == 70) {
-                        loader.update({
-                            title: "Redirect in 3 seconds...",
-                            icon: "fa fa-circle-o-notch fa-spin"
-                        });
-                    }
-                    if (cur_value == 80) {
-                        loader.update({
-                            title: "Redirect in 2 seconds...",
-                            icon: "fa fa-refresh fa-spin"
-                        });
-                    }*/
                     if (cur_value >= 100) {
                         // Remove the interval.
                         window.clearInterval(timer);
                         loader.remove();
                         return;
                     }
-                    cur_value += 8;
+                    cur_value += 25;
                     progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
                 }, 90);
             }
         });
-       
-       setTimeout(function() {
-        window.location=url
-    }, 2000);
+       setTimeout(function(){window.location=url},2000);
     }
-
     </script>
   {% endif %}
   {% block extra_js %}{% endblock %}
-
 </body>
-
 </html>

@@ -5,13 +5,14 @@ from django.http import HttpResponseForbidden
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from registration.backends.simple.views import RegistrationView
+# from registration.backends.simple.views import RegistrationView
+from django_registration.views import RegistrationView
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 
-from accounts.models import Team, UserTeamRequest
+from accounts.models import Team, UserTeamRequest, User, UserProfile
 from accounts.forms import CustomRegistrationForm, UserProfileForm, UserTeamRequestCreateForm, TeamCreateForm
 from accounts.serializers import UserTeamRequestListSerializer
 from accounts.utils import user_without_team
@@ -29,6 +30,7 @@ def index(request):
 class CustomRegistrationView(RegistrationView):
     form_class = CustomRegistrationForm
     profile_form = None
+    success_url = '/'
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -39,7 +41,8 @@ class CustomRegistrationView(RegistrationView):
             return self.form_invalid(form)
 
     def register(self, form):
-        new_user = super(CustomRegistrationView, self).register(form)
+        # new_user = super(CustomRegistrationView, self).register(form)
+        new_user = form.save()
         profile = self.profile_form.save(commit=False)
         profile.user = new_user
         profile.save()
@@ -51,14 +54,10 @@ class CustomRegistrationView(RegistrationView):
 
 
 def team_detail(request, pk=None):
-    # TODO check the more efficent way (order here or not)
-    #team = request.user.profile.team if pk is None else Team.objects.get(pk=pk)
-    team = Team.objects.ordered().get(pk=pk or request.user.profile.team.pk)
-    
-    categories = Category.objects.all()
-
     user = request.user
-    team = user.profile.team
+    team = user.profile.team if pk is None else Team.objects.get(pk=pk)
+
+    categories = Category.objects.all()
     categories_num_done_user = [
         c.challenges.filter(solved_by=user.profile).distinct().count()
         for c in categories
@@ -166,6 +165,16 @@ def user_detail(request, pk=None):
         'time_points': json.dumps(user.profile.score_over_time),
     }
     return render(request, 'accounts/user.html', parameters)
+
+
+class UserProfileUpdateView(UpdateView):
+    model = UserProfile
+    fields = ['image', 'job', 'website', 'skills']
+    success_url = reverse_lazy('user')
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
 
 
 class UserTeamRequestDelete(DeleteView):

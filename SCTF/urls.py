@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^admin/game_start/', views.game_play, name='admin_game_start'),
     url(r'^admin/game_pause/', views.game_pause, name='admin_game_pause'),
     url(r'^admin/game_setup/', views.game_reset, name='admin_game_setup'),
+    url(r'^admin/game_reset_users/', views.game_reset_users, name='admin_game_reset_users'),
 
     url(r'^game_paused/$', views.game_paused_view, name='game_paused_view'),
     url(r'^game_stopped/$', views.game_stopped_view, name='game_stopped_view'),
@@ -36,9 +37,9 @@ router = routers.SimpleRouter()
 urlpatterns.append(url(r'^api/', include(router.urls)))
 
 urlpatterns.append(url(r'^api/challenges/',
-                       include('challenges.api_urls', namespace='api-challenge')))
+                       include('challenges.api_urls', namespace='api_challenge')))
 
 
 urlpatterns.append(url(r'^api/users/',
-                       include('accounts.api_urls', namespace='api-users')))
+                       include('accounts.api_urls', namespace='api_users')))
 

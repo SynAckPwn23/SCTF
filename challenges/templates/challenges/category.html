@@ -16,7 +16,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-							<h2 class="blue"><i class="fa fa-home"></i><a class="blue" href="{% url 'index' %}"> HOME</a> > <a class="blue" href="{% url 'challenges_categories' %}">CHALLENGES CATEGORIES</a> > {{ category.name }}</h2>
+							<h2 class="main_color_text"><i class="fa fa-home"></i><a class="main_color_text" href="{% url 'index' %}"> HOME</a> > <a class="main_color_text" href="{% url 'challenges_categories' %}">CHALLENGES CATEGORIES</a> > {{ category.name }}</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -26,8 +26,8 @@
 					<div class="x_content">
 						<div class="bs-example" data-example-id="simple-jumbotron">
 							<div class="jumbotron" style="background-color:#333;">
-								<h1 style="text-align: center;color:#fff;"><span class="blue"><i class="fa fa-bug"></i> You're playing for {{team.name}}</span></h1><br>
-								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tags"></i> Category:<span class="blue"> #{{category}}</span> | <i class="fa fa-bug"></i>									Challenges:<span class="blue"> #{{challenges_count}}</span></h3>
+								<h1 style="text-align: center;color:#fff;"><span class="main_color_text"><i class="fa fa-bug"></i> You're playing for {{team.name}}</span></h1><br>
+								<h3 style="text-align:center;color:#fff;"><i class="fa fa-tags"></i> Category:<span class="main_color_text"> #{{category}}</span> | <i class="fa fa-bug"></i>									Challenges:<span class="main_color_text"> #{{challenges_count}}</span></h3>
 							</div>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-							<h2 class="blue"><i class="fa fa-tag"></i> {{ category.name }} - EASY CHALLENGES</h2>
+							<h2 class="main_color_text"><i class="fa fa-tag"></i> {{ category.name }} - EASY CHALLENGES</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -207,7 +207,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-							<h2 class="blue"><i class="fa fa-tag"></i> {{ category.name }} - MEDIUM CHALLENGES</h2>
+							<h2 class="main_color_text"><i class="fa fa-tag"></i> {{ category.name }} - MEDIUM CHALLENGES</h2>
 							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -217,6 +217,7 @@
 					<div style="min-height:250px;" class="x_content">
 						<!-- modals -->
 						<!--<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>-->
+						<p><i class="fa fa-bug"></i> <strong>Legend</strong>: <span style="margin-right:10px;" class="label label-primary">NOT SOLVED</span><span style="margin-right:10px;" class="label label-info">SOLVED BY TEAM MATE</span><span style="background:#26B99A;" class="label">SOLVED</span></p>
 						<br>
 
 						<p>
@@ -370,7 +371,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-							<h2 class="blue"><i class="fa fa-tag"></i> {{ category.name }} - HARD CHALLENGES</h2>
+							<h2 class="main_color_text"><i class="fa fa-tag"></i> {{ category.name }} - HARD CHALLENGES</h2>
 							<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -380,6 +381,7 @@
 					<div style="min-height:250px;" class="x_content">
 						<!-- modals -->
 						<!--<p><i class="fa fa-bug"></i> <strong>Description</strong>: {{category.description}}</p>-->
+						<p><i class="fa fa-bug"></i> <strong>Legend</strong>: <span style="margin-right:10px;" class="label label-primary">NOT SOLVED</span><span style="margin-right:10px;" class="label label-info">SOLVED BY TEAM MATE</span><span style="background:#26B99A;" class="label">SOLVED</span></p>
 						<br>
 
 						<p>
@@ -543,7 +545,7 @@
 			else {
 				$.ajax({
 					type: 'post',
-					url: '{% url "api-challenge:solve-challenge-list" %}',
+					url: '{% url "api_challenge:solve-challenge-list" %}',
 					data: { challenge: id, key: $('#key_' + id).val() },
 					success: function (data) {
 						key.removeClass('parsley-error');

@@ -88,7 +88,7 @@ class Team(models.Model, StatsFromChallengesMixin):
     name = models.CharField(max_length=256, unique=True)
     users = models.ManyToManyField(User, through='accounts.userprofile')
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    created_by = models.ForeignKey(User, related_name='created_team')
+    created_by = models.ForeignKey(User, related_name='created_team', on_delete=models.CASCADE)
 
     @property
     def num_users(self):
@@ -127,14 +127,14 @@ class UserProfileQuerySet(models.QuerySet):
 class UserProfile(models.Model, StatsFromChallengesMixin):
     objects = UserProfileQuerySet.as_manager()
 
-    team = models.ForeignKey('accounts.Team', null=True, blank=True)
-    user = models.OneToOneField(User, related_name='profile')
+    team = models.ForeignKey('accounts.Team', null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.FileField(upload_to='accounts/', default='accounts/user.png')
     job = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=(('M', 'Male'), ('F','Female')))
     website = models.CharField(max_length=255, null=True, blank=True)
-    country = models.ForeignKey(Country)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     skills = models.TextField(null=True, blank=True)
 
     @property
@@ -162,8 +162,8 @@ class UserTeamRequestQuerySet(models.QuerySet):
 
 
 class UserTeamRequest(models.Model):
-    user = models.ForeignKey(User)
-    team = models.ForeignKey(Team)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, default='P', choices=(
         ('P', 'Pending'),

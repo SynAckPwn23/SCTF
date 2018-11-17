@@ -11,7 +11,6 @@ def game_duration():
         minutes=config.GAME_DURATION_MINS
     )
 
-
 def set_game_duration(delta):
     from datetime import timedelta
     duration = timedelta(
