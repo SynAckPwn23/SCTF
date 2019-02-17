@@ -90,7 +90,9 @@ def game_paused_view(request):
 def game_stopped_view(request):
     if config.GAME_STATUS != settings.GAME_STATUS_FINISH:
         return _return_back_redirect(request)
-    return render(request, 'sctf/game_stopped.html')
+    return render(request, 'sctf/game_stopped.html', {
+        'teams': Team.objects.ordered()[:3],
+    })
 
 def game_setup_state_view(request):
     if config.GAME_STATUS != settings.GAME_STATUS_SETUP:

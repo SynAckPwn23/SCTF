@@ -47,6 +47,10 @@
 							</a>
 						</li>-->
 						{% endif %}
+						{% for team in teams %}
+
+						{% endfor %}
+
 						<ul class="nav navbar-right panel_toolbox">
 							<li style="margin-left: 46px;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -66,8 +70,8 @@
 										</div>
 										<div class="title">
 											<h2>2nd</h2>
-											<h1><i class="fa fa-rocket"></i> Team 23</h1>
-											<span><i class="fa fa-flag"></i> 333pt</span>
+											<h1><i class="fa fa-rocket"></i>{{teams.1.name}}</h1>
+											<span><i class="fa fa-flag"></i>{{teams.1.points}}</span>
 										</div>
 										<div class="x_content">
 											<img style="display:block;margin:5px auto;text-align:center;width:150px;" src="{% static 'sctf/images/silver.png' %}"
@@ -89,8 +93,8 @@
 										</div>
 										<div class="title">
 											<h2>1st</h2>
-											<h1><i class="fa fa-rocket"></i> Team 2</h1>
-											<span><i class="fa fa-flag"></i> 340pt</span>
+											<h1><i class="fa fa-rocket"></i>{{teams.0.name}}</h1>
+											<span><i class="fa fa-flag"></i>{{teams.0.points}}</span>
 										</div>
 										<div class="x_content">
 											<img style="display:block;margin:5px auto;text-align:center;width:200px;" src="{% static 'sctf/images/gold.png' %}"
@@ -112,8 +116,8 @@
 										</div>
 										<div class="title">
 											<h2>3rd</h2>
-											<h1><i class="fa fa-rocket"></i> Team 10</h1>
-											<span><i class="fa fa-flag"></i> 223pt</span>
+											<h1><i class="fa fa-rocket"></i>{{teams.2.name}}</h1>
+											<span><i class="fa fa-flag"></i>{{teams.2.points}}</span>
 										</div>
 										<div class="x_content">
 											<img style="display:block;margin:5px auto;text-align:center;width:150px;" src="{% static 'sctf/images/bronze.png' %}"
