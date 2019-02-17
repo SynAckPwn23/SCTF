@@ -5,7 +5,7 @@ from constance import config
 
 class FilterRequestByGameStateMiddlewareMixin(MiddlewareMixin):
     def process_request(self, request):
-        availables = ('login', 'logout', 'game_reset', 'game_reset_users', 'register', 'no_team')
+        availables = ('login', 'logout', 'game_reset', 'game_reset_users', 'register', 'no-team')
         if any(available in request.path for available in availables):
             return
 
