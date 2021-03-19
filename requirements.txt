@@ -27,7 +27,7 @@ django-picklefield==1.1.0
 django-registration==3.0
 django-registration-defaults==0.4.4
 django-tinymce4-lite==1.7.3
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 h2==3.0.1
 hpack==3.0.0
 hyperframe==5.1.0
