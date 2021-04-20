@@ -4,7 +4,7 @@ asgiref==1.1.2
 asn1crypto==0.24.0
 async-timeout==3.0.1
 attrs==18.2.0
-autobahn==18.10.1
+autobahn==20.12.3
 Automat==0.7.0
 backcall==0.1.0
 certifi==2018.10.15
