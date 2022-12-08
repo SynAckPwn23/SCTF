@@ -7,7 +7,7 @@ attrs==18.2.0
 autobahn==18.10.1
 Automat==0.7.0
 backcall==0.1.0
-certifi==2018.10.15
+certifi==2022.12.7
 cffi==1.11.5
 channels==1.1.6
 chardet==3.0.4
