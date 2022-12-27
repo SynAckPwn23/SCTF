@@ -63,7 +63,7 @@ pytz==2018.6
 redis==2.10.6
 requests==2.20.0
 service-identity==17.0.0
-setuptools==40.4.3
+setuptools==65.5.1
 simplegeneric==0.8.1
 six==1.11.0
 traitlets==4.3.2
