@@ -1,4 +1,4 @@
-[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.rawsec.ml/ctf_platforms.html#SCTF)
+[![Rawsec's CyberSecurity Inventory](https://inventory.raw.pm/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.raw.pm/ctf_platforms.html#SCTF)
 [![GitHub stars](https://img.shields.io/github/stars/SynAckPwn23/SCTF.svg)](https://github.com/SynAckPwn23/SCTF/stargazers)
 [![GitHub license](https://img.shields.io/github/license/SynAckPwn23/SCTF.svg)](https://github.com/SynAckPwn23/SCTF/blob/master/LICENSE.txt)
 
